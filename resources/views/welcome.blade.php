@@ -101,6 +101,13 @@
                     </div>
                 </div>
 
+                <form action="{{ route('file.upload.chunk.first') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="chunk_data">
+                    <input type="submit">
+                </form>
+                @foreach($errors as $err) {{ $err }} @endforeach
+
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
