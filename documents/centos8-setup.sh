@@ -238,3 +238,10 @@ sudo vim /etc/ssh/sshd_config
 sudo systemctl restart sshd
 
 
+## SSL設定
+sudo yum install -y epel-release
+sudo yum install -y certbot python3-certbot-nginx
+sudo certbot --nginx
+
+
+
