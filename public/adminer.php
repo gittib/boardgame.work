@@ -1,12 +1,22 @@
 <?php
+$t1 = explode("\n", file_get_contents(__DIR__.'/../.env'));
+foreach($t1 as $v) {
+    $t2 = explode('=', $v);
+    if ($t2[0] == 'ADMINER_AUTH_NAME') {
+        unset($t2[0]);
+        $authName = implode('=', $t2);
+    } else if ($t2[0] == 'ADMINER_AUTH_PASSWORD') {
+        unset($t2[0]);
+        $authPass = implode('=', $t2);
+    }
+}
 
-$hashes = [
-    'gitti' => '$2y$10$z9PvCXyyS1k0dFtXNFB.oewAU30f6/VgUEV1dgbn7YCFf2RWuwOK6',
-];
+if (empty($authName) || empty($authPass)) {
+    header("HTTP/1.1 404 Not Found");
+    exit('Not Found');
+}
 
-$hash = $hashes[$_SERVER['PHP_AUTH_USER']] ?? '$2y$10$EaPHMWR/jclksCUNqufHNewC2kAXwK.OklEwi4CeesoTfMHzTGy7e';
-
-if (password_verify($_SERVER['PHP_AUTH_PW'], $hash)) {
+if ($authName == $_SERVER['PHP_AUTH_USER'] && $authPass == $_SERVER['PHP_AUTH_PW']) {
     require(__DIR__.'/../app/adminer-4.8.1.php');
 } else {
     // 初回時または認証が失敗したとき
