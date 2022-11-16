@@ -25,6 +25,11 @@ class TwitterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('top.index');
+        $url = session()->pull('intended_url');
+        if (!empty($url)) {
+            return redirect($url);
+        } else {
+            return redirect()->intended(route('top.index'));
+        }
     }
 }

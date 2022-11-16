@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+}
+
+header {
+    background-color: blueviolet;
+}
+header .my-link {
+    float: right;
+    margin: 4px;
+    display: flex;
+}
+header .icon_wrapper {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+header .icon_wrapper img {
+}
+header:after {
+    clear: both;
+    display: block;
+    content: '';
+}

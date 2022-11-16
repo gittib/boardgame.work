@@ -11,10 +11,15 @@
         <!-- Fonts -->
 
         <!-- Styles -->
+        <link rel="stylesheet" href="/screen.css">
 
     </head>
     <body class="">
-        @yield('contents')
+        @include('layouts.header')
+
+        <main>
+            @yield('contents')
+        </main>
     </body>
     @yield('additional_scripts')
 </html>

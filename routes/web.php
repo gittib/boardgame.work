@@ -17,7 +17,9 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::any('/', 'TopController@index')->name('top.index');
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
-        Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('auth.twitter.redirect');
+        Route::get('login', 'LoginController@login')->name('login');
+
+        Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('auth.twitter.login');
         Route::get('auth/twitter/callback', 'TwitterController@providerCallback')->name('auth.twitter.callback');
 
         Route::get('auth/logout', 'LoginController@logout')->name('auth.logout');
