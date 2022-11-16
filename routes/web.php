@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+if(config('app.debug')) {
+    Route::view('url-list', 'url-list');
+}
+
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::any('/', 'TopController@index')->name('top.index');
 
