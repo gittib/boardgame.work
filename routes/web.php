@@ -13,14 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::namespace('App\Http\Controllers')->group(function() {
-    Route::get('google/login/callback', 'UserController@googleLoginCallback')->name('user.google_login.callback');
+    Route::any('/', 'TopController@index')->name('top.index');
+
+    Route::namespace('Auth')->middleware('guest')->group(function() {
+        Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('auth.twitter.redirect');
+        Route::get('auth/twitter/callback', 'TwitterController@providerCallback')->name('auth.twitter.callback');
+
+        Route::get('auth/logout', 'LoginController@logout')->name('auth.logout');
+    });
+
     Route::middleware('auth')->group(function() {
-        Route::get('my-page', 'UserController@mypage')->name('my_page');
+        Route::get('home', 'UserController@mypage')->name('my_page');
     });
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
