@@ -12,9 +12,9 @@ yum install -y yum-utils epel-release
 
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
-yum install php82 php82-php php82-php-fpm php82-php-mbstring php82-php-pdo php82-php-mysql php82-php-xml php82-php-zip
+yum install -y php80 php80-php php80-php-fpm php80-php-mbstring php80-php-pdo php80-php-mysql php80-php-xml php80-php-zip
 
-ln -s /usr/bin/php82 /usr/bin/php
+ln -s /usr/bin/php80 /usr/bin/php
 
 ### composerインストール
 
@@ -117,7 +117,7 @@ sudo cat /etc/nginx/default.d/php.conf
 ###     include        fastcgi_params;
 ###     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
 ###     fastcgi_param  PATH_INFO $fastcgi_path_info;
-###     fastcgi_pass   unix:/var/opt/remi/php82/run/php-fpm/www.sock;
+###     fastcgi_pass   unix:/var/opt/remi/php80/run/php-fpm/www.sock;
 ### }
 
 #サイト設定
@@ -140,9 +140,9 @@ sudo cat /etc/nginx/conf.d/laravel-dev.boardgame.work.conf
 ### }
 
 ## php-fpmの設定
-sudo cp /etc/opt/remi/php82/php-fpm.d/www.conf /etc/opt/remi/php82/php-fpm.d/www.conf.org
-sudo vim /etc/opt/remi/php82/php-fpm.d/www.conf
-sudo diff /etc/opt/remi/php82/php-fpm.d/www.conf.org /etc/opt/remi/php82/php-fpm.d/www.conf
+sudo cp /etc/opt/remi/php80/php-fpm.d/www.conf /etc/opt/remi/php80/php-fpm.d/www.conf.org
+sudo vim /etc/opt/remi/php80/php-fpm.d/www.conf
+sudo diff /etc/opt/remi/php80/php-fpm.d/www.conf.org /etc/opt/remi/php80/php-fpm.d/www.conf
 ### 24c24
 ### < user = apache
 ### ---
@@ -178,12 +178,13 @@ sudo diff /etc/opt/remi/php82/php-fpm.d/www.conf.org /etc/opt/remi/php82/php-fpm
 ### 130c130
 ### < pm.max_spare_servers = 35
 ### ---
+### > pm.max_spare_servers = 5
 
 
 ## ImageMagickのインストール
-sudo yum -y install php82-php-pear php82-php-devel
-sudo ln -s /opt/remi/php82/root/usr/bin/pecl /usr/bin/
-sudo yum install ImageMagick-devel php82-php-imagick
+sudo yum -y install php80-php-pear php80-php-devel
+sudo ln -s /opt/remi/php80/root/usr/bin/pecl /usr/bin/
+sudo yum install ImageMagick-devel php80-php-imagick
 
 # Laravelのインストール
 composer create-project laravel/laravel:^8.0 laravel-dev.boardgame.work
@@ -197,7 +198,7 @@ sudo chmod -R 777 bootstrap/cache
 sudo chmod -R 777 storage
 composer update
 
-sudo systemctl start php82-php-fpm
+sudo systemctl start php80-php-fpm
 sudo systemctl start nginx
 
 

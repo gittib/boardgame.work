@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::namespace('App\Http\Controllers')->group(function() {
+    Route::get('google/login/callback', 'UserController@googleLoginCallback')->name('user.google_login.callback');
     Route::middleware('auth')->group(function() {
         Route::get('my-page', 'UserController@mypage')->name('my_page');
     });
