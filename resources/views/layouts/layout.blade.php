@@ -6,13 +6,13 @@
         <meta name="chunk_upload_url" content="{{ route('file.upload.chunk.first') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>@yield('title', __('惨劇RoopeR'))</title>
 
         <!-- Fonts -->
 
         <!-- Styles -->
-        <link rel="stylesheet" href="/screen.css">
-
+        <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
+        <link rel="stylesheet" href="{{ Res::ver('/screen.css') }}">
     </head>
     <body class="">
         @include('layouts.header')
@@ -20,6 +20,8 @@
         <main>
             @yield('contents')
         </main>
+
+        {{-- TODO: scriptタグ設置 --}}
+        @yield('additional_scripts')
     </body>
-    @yield('additional_scripts')
 </html>

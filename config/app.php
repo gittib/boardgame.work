@@ -231,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // my aliases
+        'Res' => App\Utils\Res::class,
     ],
 
 ];

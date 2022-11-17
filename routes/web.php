@@ -25,9 +25,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
         Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('auth.twitter.login');
         Route::get('auth/twitter/callback', 'TwitterController@providerCallback')->name('auth.twitter.callback');
-
-        Route::get('auth/logout', 'LoginController@logout')->name('auth.logout');
     });
+    Route::get('auth/logout', 'Auth\LoginController@logout')->name('auth.logout');
 
     Route::middleware('auth')->group(function() {
         Route::get('home', 'UserController@mypage')->name('my_page');
