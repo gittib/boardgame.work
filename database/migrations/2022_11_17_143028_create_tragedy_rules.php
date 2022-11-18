@@ -19,7 +19,7 @@ class CreateTragedyRules extends Migration
             $table->timestamp("updated_at")->useCurrent();
             $table->softDeletes();
 
-            $table->string('name')->unique()->comment('ルール名');
+            $table->string('code')->unique()->comment('ルールコード');
             $table->boolean('is_y')->comment('ルールYかどうか');
         });
     }

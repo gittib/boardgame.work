@@ -20,7 +20,6 @@ class CreateTragedyRuleRole extends Migration
 
             $table->unsignedBigInteger('tragedy_rule_id')->comment('惨劇ルールマスタID');
             $table->unsignedBigInteger('tragedy_role_id')->comment('役職マスタID');
-            $table->integer('people_count')->comment('追加人数');
         });
     }
 

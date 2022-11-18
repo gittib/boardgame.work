@@ -19,7 +19,7 @@ class CreateIncidents extends Migration
             $table->timestamp("updated_at")->useCurrent();
             $table->softDeletes();
 
-            $table->string('name')->unique()->comment('事件名');
+            $table->string('code')->unique()->comment('事件コード');
         });
     }
 

@@ -20,7 +20,6 @@ class CreateTragedySetIncident extends Migration
 
             $table->unsignedBigInteger('tragedy_set_id')->comment('惨劇セットマスタID');
             $table->unsignedBigInteger('incident_id')->comment('事件マスタID');
-            $table->integer('order')->comment('表示順序');
         });
     }
 

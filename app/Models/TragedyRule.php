@@ -10,16 +10,19 @@ class TragedyRule extends Model
     use SoftDeletes;
     protected $guarded = ['id'];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     // relations
     public function roles() {
-        return $this->belongsToMany(TragedyRole::class, 'tragedy_rule_role')
-                    ->withPivot([
-                        'people_count',
-                    ]);
+        return $this->belongsToMany(TragedyRole::class, 'tragedy_rule_role');
     }
 
     // attribute
     public function getNameAttribute() {
-        return __('tragedy_master.rule_name.' . $this->attributes['name']);
+        return __('tragedy_master.rule_name.' . $this->attributes['code']);
     }
 }
