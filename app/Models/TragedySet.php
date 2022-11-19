@@ -22,7 +22,7 @@ class TragedySet extends Model
 
     // relations
     public function rules() {
-        return $this->belongsToMany(TragedyRule::class, 'tragedy_set_rule');
+        return $this->belongsToMany(TragedyRule::class, 'tragedy_set_rule')->orderBy('tragedy_set_rule.order');
     }
 
     public function incidents() {

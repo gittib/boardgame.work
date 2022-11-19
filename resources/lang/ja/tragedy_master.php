@@ -24,9 +24,9 @@ return [
 
     'rule_name' => [
         'Murder-Plot' => '殺人計画',
-        'Avengers-Lights' => '復讐者の灯火',
-        'A-place-to-protect' => '守るべき場所',
-        'Shadow-of-the-Ripper' => '切り裂き魔の影',
+        'Avengers-Torch' => '復讐者の灯火',
+        'place-To-Protect' => '守るべき場所',
+        'Shadow-Of-The-Ripper' => '切り裂き魔の影',
         'Disturbing-Rumors' => '不穏な噂',
         'The-Worst-Retired-Book' => '最低の却本',
         'The-Sealed-Thing' => '封印されしもの',

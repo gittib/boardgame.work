@@ -22,7 +22,7 @@ class CreateTragedyRoles extends Migration
             $table->string('code')->unique()->comment('役職コード');
             $table->integer('hostility_type')->comment('3:傀儡友好無視、2:絶対友好無視, 1:友好無視, 0:友好無視でない');
             $table->boolean('is_immortality')->comment('true:不死');
-            $table->integer('max_count')->default(10)->comment('採用上限人数');
+            $table->integer('max_count')->nullable()->comment('採用上限人数');
         });
     }
 

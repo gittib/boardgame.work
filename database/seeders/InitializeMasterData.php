@@ -18,15 +18,15 @@ class InitializeMasterData extends Seeder
      */
     public function run()
     {
-        app()->setLocale('ja');
         $masterData = json_decode(file_get_contents(database_path('seeders/data/master_data.json')));
 
         TragedyRole::truncate();
         foreach($masterData->roleMaster as $code => $val) {
-            TragedyRole::create([
+            $role = TragedyRole::create([
                 'code' => $code,
                 'hostility_type' => $val->hostility_type,
                 'is_immortality' => $val->is_immortality,
+                'max_count' => $val->max_count ?? null,
             ]);
         }
 
@@ -44,8 +44,7 @@ class InitializeMasterData extends Seeder
 
             $order = 1;
             foreach ($setData->rules as $ruleData) {
-                $code = $ruleData->ruleName;
-                $rule = TragedyRule::firstOrNew(compact('code'));
+                $rule = TragedyRule::firstOrNew(['code' => $ruleData->ruleName]);
                 $rule->is_y = $ruleData->isRuleY;
                 $rule->save();
 
