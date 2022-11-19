@@ -16,6 +16,10 @@ class TragedyRule extends Model
         'deleted_at',
     ];
 
+    protected $appends = [
+        'name',
+    ];
+
     // relations
     public function roles() {
         return $this->belongsToMany(TragedyRole::class, 'tragedy_rule_role');

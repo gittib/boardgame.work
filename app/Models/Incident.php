@@ -16,6 +16,10 @@ class Incident extends Model
         'deleted_at',
     ];
 
+    protected $appends = [
+        'name',
+    ];
+
     // relations
     public function sets() {
         return $this->belongsToMany(TragedySet::class, 'tragedy_set_incident');

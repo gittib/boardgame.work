@@ -16,6 +16,10 @@ class TragedySet extends Model
         'deleted_at',
     ];
 
+    protected $appends = [
+        'name',
+    ];
+
     // relations
     public function rules() {
         return $this->belongsToMany(TragedyRule::class, 'tragedy_set_rule');
@@ -36,5 +40,12 @@ class TragedySet extends Model
 
     public function getRolesAttribute() {
         return $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
+    }
+
+    public function getRuleYsAttribute() {
+        return $this->rules->filter(fn($r) => $r->is_y);
+    }
+    public function getRuleXsAttribute() {
+        return $this->rules->filter(fn($r) => !$r->is_y);
     }
 }

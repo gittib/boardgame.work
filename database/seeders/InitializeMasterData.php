@@ -7,6 +7,7 @@ use App\Models\TragedySet;
 use App\Models\TragedyRule;
 use App\Models\TragedyRole;
 use App\Models\Incident;
+use DB;
 
 class InitializeMasterData extends Seeder
 {
@@ -28,6 +29,10 @@ class InitializeMasterData extends Seeder
                 'is_immortality' => $val->is_immortality,
             ]);
         }
+
+        DB::table('tragedy_set_rule')->truncate();
+        DB::table('tragedy_set_incident')->truncate();
+        DB::table('tragedy_rule_role')->truncate();
 
         TragedySet::truncate();
         TragedyRule::truncate();

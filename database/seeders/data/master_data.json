@@ -13,14 +13,14 @@
                     ]
                 },
                 {
-                    "ruleName": "Murder-Plot",
+                    "ruleName": "Avengers-Torch",
                     "isRuleY": true,
                     "roles": [
                         "Kromak"
                     ]
                 },
                 {
-                    "ruleName": "Murder-Plot",
+                    "ruleName": "place-To-Protect",
                     "isRuleY": true,
                     "roles": [
                         "KeyPerson",
@@ -28,7 +28,7 @@
                     ]
                 },
                 {
-                    "ruleName": "Murder-Plot",
+                    "ruleName": "Shadow-Of-The-Ripper",
                     "isRuleY": false,
                     "roles": [
                         "Misleader",
@@ -880,7 +880,7 @@
                     ]
                 },
                 {
-                    "ruleName": "Murder-Plot",
+                    "ruleName": "place-To-Protect",
                     "isRuleY": true,
                     "roles": [
                         "KeyPerson",
