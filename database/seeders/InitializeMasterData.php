@@ -50,8 +50,10 @@ class InitializeMasterData extends Seeder
 
                 $set->rules()->attach($rule->id, compact('order'));
 
-                $roleIds = TragedyRole::whereIn('code', $ruleData->roles)->pluck('id');
-                $rule->roles()->attach($roleIds);
+                foreach($ruleData->roles as $role) {
+                    $roleId = TragedyRole::where('code', $role)->pluck('id');
+                    $rule->roles()->attach($roleId);
+                }
 
                 $order++;
             }

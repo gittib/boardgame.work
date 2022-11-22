@@ -6,7 +6,7 @@
         <meta name="chunk_upload_url" content="{{ route('file.upload.chunk.first') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title', __('惨劇RoopeR'))</title>
+        <title>@yield('title', __('惨劇RoopeR 脚本データベース'))</title>
 
         <!-- Fonts -->
 
