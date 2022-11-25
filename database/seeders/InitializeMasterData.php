@@ -44,16 +44,20 @@ class InitializeMasterData extends Seeder
 
             $order = 1;
             foreach ($setData->rules as $ruleData) {
-                $rule = TragedyRule::firstOrNew(['code' => $ruleData->ruleName]);
-                $rule->is_y = $ruleData->isRuleY;
-                $rule->save();
+                $rule = TragedyRule::where(['code' => $ruleData->ruleName])->first();
+                if (empty($rule)) {
+                    $rule = TragedyRule::create([
+                        'code' => $ruleData->ruleName,
+                        'is_y' => $ruleData->isRuleY,
+                    ]);
+
+                    foreach($ruleData->roles as $role) {
+                        $roleId = TragedyRole::where('code', $role)->pluck('id');
+                        $rule->roles()->attach($roleId);
+                    }
+                }
 
                 $set->rules()->attach($rule->id, compact('order'));
-
-                foreach($ruleData->roles as $role) {
-                    $roleId = TragedyRole::where('code', $role)->pluck('id');
-                    $rule->roles()->attach($roleId);
-                }
 
                 $order++;
             }
