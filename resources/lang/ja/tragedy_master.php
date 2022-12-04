@@ -354,10 +354,6 @@ return [
             'name' => 'ヴァンパイア',
             'note' => '',
         ],
-        'Person' => [
-            'name' => 'パーソン',
-            'note' => '',
-        ],
     ],
 
     'incident' => [
