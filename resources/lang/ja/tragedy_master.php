@@ -118,6 +118,10 @@ return [
     ],
 
     'role' => [
+        'Person' => [
+            'name' => 'パーソン',
+            'note' => '',
+        ],
         'Person-SerialKiller' => [
             'name' => 'パーソン／シリアルキラー',
             'note' => '',
