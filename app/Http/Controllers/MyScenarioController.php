@@ -20,7 +20,8 @@ class MyScenarioController extends Controller
      */
     public function index()
     {
-        //
+        $scenarios = Auth::user()->scenarios()->paginate(100);
+        return view('my_scenario.index', compact('scenarios'));
     }
 
     /**
@@ -38,7 +39,7 @@ class MyScenarioController extends Controller
         $scenario->characters = collect([
             new ScenarioCharacter
         ]);
-        return view('scenario.create', compact('set', 'charas', 'scenario'));
+        return view('my_scenario.create', compact('set', 'charas', 'scenario'));
     }
 
     /**
@@ -57,7 +58,9 @@ class MyScenarioController extends Controller
 
         $this->storeScenario($scenario, $request);
 
-        return redirect()->route('scenario.show', ['scenario' => $scenario->id]);
+        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->withMessage([
+            'alert_message' => __('messages.alert.scenario.store'),
+        ]);
     }
 
     /**
@@ -79,7 +82,10 @@ class MyScenarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $scenario = Scenario::where('user_id', Auth::id())->findOrFail($id);
+        $set = $scenario->set;
+        $charas = Character::get();
+        return view('my_scenario.create', compact('set', 'charas', 'scenario'));
     }
 
     /**
@@ -95,7 +101,9 @@ class MyScenarioController extends Controller
 
         $this->storeScenario($scenario, $request);
 
-        return redirect()->route('scenario.show', ['scenario' => $scenario->id]);
+        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->withMessage([
+            'alert_message' => __('messages.alert.scenario.store'),
+        ]);
     }
 
     /**
@@ -113,8 +121,14 @@ class MyScenarioController extends Controller
         DB::transaction(function() use($scenario, $request) {
             $scenario->user_id = Auth::id();
             $scenario->set_id = $request->set_id;
+            $scenario->rule_y_id = $request->rule_y_id;
+            $scenario->rule_x1_id = $request->rule_x1_id;
+            $scenario->rule_x2_id = $request->rule_x2_id;
             $scenario->loops = $request->loops;
             $scenario->days = $request->days;
+            $scenario->difficulty = $request->difficulty;
+            $scenario->feature = $request->feature;
+            $scenario->advice = $request->advice;
             $scenario->is_open = $request->is_open ?? false;
             $scenario->save();
 

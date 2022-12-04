@@ -1,9 +1,10 @@
 <?php
+$isEdit = isset($scenario->id);
 $helper = new App\Utils\InputHelper($errors);
 $ruleYs = $set->ruleYs->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $ruleXs = $set->ruleXs->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $charaSelect = $charas->mapWithKeys(fn($c) => [$c->id => $c->name]);
-$roleSelect = $set->roles->mapWithKeys(fn($r) => [$r->id => $r->name]);
+$roleSelect = App\Models\TragedyRole::where('code', 'Person')->get()->concat($set->roles)->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $incidentSelect = $set->incidents->mapWithKeys(fn($i) => [$i->id => $i->name]);
 $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d, $key) {
     $star = '';
@@ -21,8 +22,9 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 <h2>@lang(':set 脚本作成', ['set' => $set->name])</h2>
 
 <div class="">
-    <form action="{{ route('my-scenario.store') }}" method="post">
+    <form action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}" method="post">
         @csrf
+        @if($isEdit) @method('put') @endif
         {{ Form::hidden('set_id', $set->id) }}
         <dl>
             <dt>@lang('ルールY')</dt>
@@ -78,7 +80,6 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                             </span>
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_chara[][role_id]', $roleSelect, $ch->role_id, [
-                                    'placeholder' => __('tragedy_master.role.Person.name'),
                                     'data-list_name' => 'scenario_chara',
                                     'data-key_name' => 'role_id']) }}
                             </span>
@@ -97,16 +98,17 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
             <dd>
                 <ul class="scenario_incident_list">
                     @for($i = 1 ; $i <= 8 ; $i++)
+                    <?php $incidentOnDb = optional($scenario->incidents->firstWhere('day', $i)); ?>
                     <li class="inline_block_wrapper" data-day="{{ $i }}">
                         <span>@lang(':day日目', ['day' => $i])</span>
                         <span class="select_wrapper">
-                            {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $helper->inputVal("scenario_incident.$i.incident_id"), ['placeholder' => '']) }}
+                            {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $helper->inputVal("scenario_incident.$i.incident_id") ?? $incidentOnDb->incident_id, ['placeholder' => '']) }}
                         </span>
                         <span>
                             犯人：
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_incident['.$i.'][character_id]', $charaSelect,
-                                    $helper->inputVal("scenario_incident.$i.character_id") ?? optional($scenario->incidents->firstWhere('day', $i))->incident_id,
+                                    $helper->inputVal("scenario_incident.$i.character_id") ?? optional($incidentOnDb->criminal)->character_id,
                                 ['placeholder' => '']) }}
                             </span>
                         </span>

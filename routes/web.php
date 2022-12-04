@@ -32,7 +32,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::middleware('auth')->group(function() {
         Route::get('home', 'UserController@mypage')->name('my_page');
-        Route::resource('my-scenario', 'MyScenarioController');
+        Route::resource('my-scenario', 'MyScenarioController', ['except' => ['show']]);
     });
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');

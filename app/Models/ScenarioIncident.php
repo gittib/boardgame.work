@@ -26,6 +26,10 @@ class ScenarioIncident extends Model
         return $this->belongsTo(Scenario::class);
     }
 
+    public function criminal() {
+        return $this->belongsTo(ScenarioCharacter::class, 'scenario_character_id');
+    }
+
     public function incident() {
         return $this->belongsTo(Incident::class);
     }

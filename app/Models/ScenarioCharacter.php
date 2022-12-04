@@ -16,6 +16,7 @@ class ScenarioCharacter extends Model
 
     protected $with = [
         'character',
+        'role',
     ];
 
     protected $appends = [
@@ -28,6 +29,10 @@ class ScenarioCharacter extends Model
 
     public function character() {
         return $this->belongsTo(Character::class);
+    }
+
+    public function role() {
+        return $this->belongsTo(TragedyRole::class, 'role_id');
     }
 
     // attribute

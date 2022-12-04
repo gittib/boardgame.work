@@ -15,7 +15,11 @@ class ScenarioController extends Controller
      */
     public function index()
     {
-        $scenarios = Scenario::where('is_open', 1)->paginate(100);
+        $query = Scenario::where('is_open', 1);
+
+        // TODO: 検索条件指定
+
+        $scenarios = $query->paginate(100);
         return view('scenario.index', compact('scenarios'));
     }
 
@@ -30,7 +34,12 @@ class ScenarioController extends Controller
         $scenario = Scenario::findOrFail($id);
 
         if (!$scenario->is_open) {
-            abort_unless($scenario->user_id == Auth::id(), 404);
+            if (Auth::check()) {
+                abort_unless($scenario->user_id == Auth::id(), 403);
+            } else {
+                session(['url.intended' => route('scenario.show', ['scenario' => $id])]);
+                return redirect()->route('login');
+            }
         }
 
         return view('scenario.show', compact('scenario'));
