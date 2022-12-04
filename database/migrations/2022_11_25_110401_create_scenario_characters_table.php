@@ -20,7 +20,7 @@ class CreateScenarioCharactersTable extends Migration
 
             $table->unsignedBigInteger("scenario_id")->comment('脚本');
             $table->unsignedBigInteger("character_id")->comment('キャラクター');
-            $table->unsignedBigInteger("role_id")->nullable()->comment('役職。NULL:パーソン');
+            $table->unsignedBigInteger("role_id")->comment('役職');
             $table->string("the_name")->nullable()->comment('同一キャラを複数採用するなど、脚本で特別に名前を設定する時用');
             $table->string("special_note")->nullable()->comment('大物のテリトリーや従者の初期配置など、キャラ固有の特記事項');
             $table->string("note")->nullable()->comment('その他特記事項');

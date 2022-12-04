@@ -46,6 +46,12 @@ class InitializeMasterData extends Seeder
         }
 
         TragedyRole::truncate();
+        TragedyRole::create([
+            'code' => 'Person',
+            'hostility_type' => 0,
+            'is_immortality' => false,
+            'max_count' => null,
+        ]);
         foreach($masterData->roleMaster as $code => $val) {
             $role = TragedyRole::create([
                 'code' => $code,
