@@ -13,6 +13,7 @@ return [
         'LL' => 'Last Liar',
         'AH' => 'Another Horizon',
         'AHR' => 'Another Horizon Revised',
+        'UM' => 'Unvoiced Malice',
     ],
 
     'board_name' => [
@@ -20,6 +21,7 @@ return [
         2 => '病院',
         3 => '都市',
         4 => '学校',
+        99 => 'その他',
     ],
 
     'rule_name' => [
@@ -348,6 +350,10 @@ return [
             'name' => 'ヴァンパイア',
             'note' => '',
         ],
+        'Person' => [
+            'name' => 'パーソン',
+            'note' => '',
+        ],
     ],
 
     'incident' => [
@@ -569,6 +575,53 @@ return [
         ],
     ],
 
-    'chara' => [
+    'chara_name' => [
+        'MaleStudent' => '男子学生',
+        'FemaleStudent' => '女子学生',
+        'Lady' => 'お嬢様',
+        'ShrineMaiden' => '巫女',
+        'Detective' => '刑事',
+        'OfficeWorker' => 'サラリーマン',
+        'Informant' => '情報屋',
+        'Doctor' => '医者',
+        'HospitalizedPatient' => '入院患者',
+        'Chairman' => '委員長',
+        'Irregular' => 'イレギュラー',
+        'Otherworlder' => '異世界人',
+        'Divinity' => '神格',
+        'Idol' => 'アイドル',
+        'MassMedia' => 'マスコミ',
+        'Bigwig' => '大物',
+        'Nurse' => 'ナース',
+        'Pawns' => '手先',
+        'Scholar' => '学者',
+        'Fantasy' => '幻想',
+        'ForensicOfficer' => '鑑識官',
+        'AI' => 'A.I.',
+        'Teacher' => '教師',
+        'TransferStudent' => '転校生',
+        'Soldier' => '軍人',
+        'BlackCat' => '黒猫',
+        'Girl' => '女の子',
+        'Guru' => '教祖',
+        'CopyCat' => 'コピーキャット',
+        'SacredTree' => 'ご神木',
+        'Sister' => '妹',
+        'Part-timeJob' => 'アルバイト',
+        'Part-timeJob-q' => 'アルバイト？',
+        'Follower' => '従者',
+        'SuperiorExistence' => '上位存在',
     ],
+
+    'difficulty' => [
+        0 => '特殊',
+        1 => '練習用',
+        2 => '簡単',
+        3 => '易しい',
+        4 => '普通',
+        5 => '難しい',
+        6 => '困難',
+        7 => '惨劇',
+        8 => '悪夢',
+    ]
 ];

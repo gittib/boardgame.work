@@ -1216,5 +1216,544 @@
             "hostility_type": 1,
             "is_immortality": true
         }
+    },
+    "charaMaster": {
+        "MaleStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "boy,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "FemaleStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Lady": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "ShrineMaiden": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "3",
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Detective": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "OfficeWorker": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "4",
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Informant": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Doctor": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "HospitalizedPatient": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "1,2,4",
+            "chara_attrs": "boy",
+            "anxiety_critical": 2,
+            "abilities": []
+        },
+        "Chairman": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }
+            ]
+        },
+        "Irregular": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "boy,student",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Otherworlder": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "2",
+            "chara_attrs": "girl",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Divinity": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 5
+                }
+            ]
+        },
+        "Idol": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 4
+                }
+            ]
+        },
+        "MassMedia": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Bigwig": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Nurse": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Pawns": {
+            "start_board_id": 99,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Scholar": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Fantasy": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "fiction,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 4
+                }
+            ]
+        },
+        "ForensicOfficer": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "AI": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "1,2,4",
+            "chara_attrs": "artifact",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Teacher": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "TransferStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Soldier": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "BlackCat": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "animal",
+            "anxiety_critical": 0,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Girl": {
+            "start_board_id": 4,
+            "keep_out_board_ids": "1,2,3",
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 1
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        },
+        "Guru": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "CopyCat": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "student,boy",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "SacredTree": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "2,3,4",
+            "chara_attrs": "tree",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Sister": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,sister",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 5
+                }
+            ]
+        },
+        "Part-timeJob": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,male",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Part-timeJob-q": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        },
+        "Follower": {
+            "start_board_id": 99,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "SuperiorExistence": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        }
     }
 }

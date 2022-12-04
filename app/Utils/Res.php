@@ -6,7 +6,10 @@ class Res {
         $tmp = parse_url($path);
 
         $publicPath = public_path(ltrim($tmp['path'], '/'));
-        assert(file_exists($publicPath), 'file not found: '.$publicPath);
+        if (!file_exists($publicPath)) {
+            assert(false, 'file not found: '.$publicPath);
+            return $path;
+        }
 
         $path = $tmp['path'];
         $query = empty($tmp['query']) ? '' : $tmp['query'].'&';

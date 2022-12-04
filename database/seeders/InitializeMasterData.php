@@ -7,6 +7,8 @@ use App\Models\TragedySet;
 use App\Models\TragedyRule;
 use App\Models\TragedyRole;
 use App\Models\Incident;
+use App\Models\Character;
+use App\Models\CharacterAbility;
 use DB;
 
 class InitializeMasterData extends Seeder
@@ -19,6 +21,29 @@ class InitializeMasterData extends Seeder
     public function run()
     {
         $masterData = json_decode(file_get_contents(database_path('seeders/data/master_data.json')));
+
+        Character::truncate();
+        CharacterAbility::truncate();
+        foreach($masterData->charaMaster as $code => $val) {
+            $chara = Character::create([
+                "code" => $code,
+                "start_board_id" => $val->start_board_id,
+                "keep_out_board_ids" => $val->keep_out_board_ids ?? '',
+                "chara_attrs" => $val->chara_attrs,
+                "anxiety_critical" => $val->anxiety_critical,
+            ]);
+            $order = 1;
+            foreach ($val->abilities as $ab) {
+                CharacterAbility::create([
+                    "character_id" => $chara->id,
+                    "is_ability" => $ab->is_ability ?? false,
+                    "is_one_time_only" => $ab->is_one_time_only ?? false,
+                    "heart" => $ab->heart ?? null,
+                    "detail_code" => "${code}-${order}",
+                ]);
+                $order++;
+            }
+        }
 
         TragedyRole::truncate();
         foreach($masterData->roleMaster as $code => $val) {

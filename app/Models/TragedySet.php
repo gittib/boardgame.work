@@ -38,6 +38,15 @@ class TragedySet extends Model
         return __('tragedy_master.set_name.' . $this->abbr);
     }
 
+    public function getHasRuleX2Attribute() {
+        switch($this->abbr) {
+        case 'FS':
+            return false;
+        default:
+            return true;
+        }
+    }
+
     public function getRolesAttribute() {
         return $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
     }

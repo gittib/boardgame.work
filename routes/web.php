@@ -19,6 +19,8 @@ if(config('app.debug')) {
 
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::any('/', 'TopController@index')->name('top.index');
+    Route::resource('tragedy-set', 'TragedySetController', ['only' => ['index', 'show']]);
+    Route::resource('scenario', 'ScenarioController', ['only' => ['index', 'show']]);
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('login', 'LoginController@login')->name('login');
@@ -30,6 +32,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::middleware('auth')->group(function() {
         Route::get('home', 'UserController@mypage')->name('my_page');
+        Route::resource('my-scenario', 'MyScenarioController');
     });
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
