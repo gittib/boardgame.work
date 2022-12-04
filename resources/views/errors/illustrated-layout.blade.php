@@ -455,8 +455,12 @@
                 }
             }
         </style>
+        <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
+        <link rel="stylesheet" href="{{ Res::ver('/screen.css') }}">
     </head>
     <body class="antialiased font-sans">
+        @include('layouts.header')
+
         <div class="md:flex min-h-screen">
             <div class="w-full md:w-1/2 bg-white flex items-center justify-center">
                 <div class="max-w-sm m-8">

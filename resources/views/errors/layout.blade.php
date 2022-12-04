@@ -44,8 +44,12 @@
                 padding: 20px;
             }
         </style>
+        <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
+        <link rel="stylesheet" href="{{ Res::ver('/screen.css') }}">
     </head>
     <body>
+        @include('layouts.header')
+
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title">
