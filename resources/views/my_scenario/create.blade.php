@@ -105,7 +105,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                             {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $helper->inputVal("scenario_incident.$i.incident_id") ?? $incidentOnDb->incident_id, ['placeholder' => '']) }}
                         </span>
                         <span>
-                            犯人：
+                            @lang('犯人')：
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_incident['.$i.'][character_id]', $charaSelect,
                                     $helper->inputVal("scenario_incident.$i.character_id") ?? optional($incidentOnDb->criminal)->character_id,
@@ -122,7 +122,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                 <label><input type="checkbox" name="is_open">@lang('脚本を公開する')</label>
             </div>
             <div class="button submit_button">
-                登録
+                @lang('登録')
             </div>
         </div>
     </form>
