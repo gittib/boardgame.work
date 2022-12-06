@@ -1,0 +1,52 @@
+input:not([type]), input[type=text] {
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0 4px;
+}
+
+.select_wrapper {
+    border: solid 1px;
+    width: fit-content;
+    border-radius: 100px;
+    padding: 0 12px;
+    position: relative;
+
+    &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-top: 8px solid #000000;
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        z-index: 1;
+        cursor: pointer;
+        pointer-events: none;
+    }
+
+    select {
+        min-width: 60px;
+        position: relative;
+        padding-top: 4px;
+        padding-left: 4px;
+        padding-right: 12px;
+        padding-bottom: 4px;
+    }
+}
+
+.button {
+    margin: 2px;
+    width: fit-content;
+    padding: 1px 12px;
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+
+.inline_block {
+    display: inline-block;
+}
+.inline_block_wrapper > span {
+    display: inline-block;
+}

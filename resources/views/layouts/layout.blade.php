@@ -17,7 +17,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
-        <link rel="stylesheet" href="{{ Res::ver('/screen.css') }}">
+        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body class="">
         @include('layouts.header')
