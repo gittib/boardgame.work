@@ -131,16 +131,6 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 
 @section('additional_scripts')
 <script>
-function setIndexNameToListItems() {
-    let idx = 1;
-    document.querySelectorAll('[data-index]').forEach(dom => {
-        dom.setAttribute('data-index', idx++);
-    });
-    document.querySelectorAll('[data-index] [data-list_name][data-key_name]').forEach(dom => {
-        const name = dom.getAttribute('data-list_name')+'['+dom.closest('[data-index]').getAttribute('data-index')+']['+dom.getAttribute('data-key_name')+']';
-        dom.setAttribute('name', name);
-    });
-}
 setIndexNameToListItems();
 
 $('[name=days]').on('change click', function() {
@@ -155,10 +145,6 @@ $('[name=days]').on('change click', function() {
     });
 });
 $('[name=days]').click();
-
-$('form .submit_button').on('click', function() {
-    $(this).closest('form').submit();
-});
 
 $('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', function() {
     const $self = $(this);

@@ -245,4 +245,16 @@ sudo yum install -y certbot python3-certbot-nginx
 sudo certbot --nginx
 
 
+## nodejsインストール
+curl -fsSL https://rpm.nodesource.com/setup_19.x | sudo bash -
+sudo yum install nodejs
+node -v
+### v19.2.0
+npm -v
+### 8.19.3
+
+cd /srv/www/vhosts/laravel-dev.boardgame.work
+npm install
+npm i jquery
+npm run dev
 
