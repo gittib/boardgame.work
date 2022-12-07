@@ -8,6 +8,10 @@ $user = Auth::user() ?? null;
             <div class="icon_wrapper">
                 <img src="{{ $user->profile_img_url }}" alt="{{ $user->name }}">
             </div>
+            @else
+            <div class="text_wrapper">
+                <p>{{ __(':nameさん', ['name' => $user->name]) }}</p>
+            </div>
             @endif
         </a>
     @else

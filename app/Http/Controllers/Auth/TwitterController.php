@@ -11,7 +11,15 @@ use Socialite;
 class TwitterController extends Controller
 {
     public function redirectToProvider(Request $request) {
-        return Socialite::driver('twitter')->redirect();
+        if (config('app.env') == 'local') {
+            $user = User::firstOrCreate([
+                'name' => 'penski-local',
+            ]);
+            Auth::login($user);
+            return redirect()->intended(route('top.index'));
+        } else {
+            return Socialite::driver('twitter')->redirect();
+        }
     }
 
     public function providerCallback(Request $request) {
