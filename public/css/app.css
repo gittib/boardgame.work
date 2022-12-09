@@ -3241,8 +3241,8 @@ input:not([type]), input[type=text] {
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 100px;
-  padding: 0 12px;
   position: relative;
+  margin: 8px;
 }
 .select_wrapper:after {
   content: "";
@@ -3261,13 +3261,13 @@ input:not([type]), input[type=text] {
   min-width: 60px;
   position: relative;
   padding-top: 4px;
-  padding-left: 4px;
-  padding-right: 12px;
+  padding-left: 8px;
+  padding-right: 30px;
   padding-bottom: 4px;
 }
 
 .button {
-  margin: 2px;
+  margin: 8px;
   width: -moz-fit-content;
   width: fit-content;
   padding: 1px 12px;
