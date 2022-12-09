@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
-    <body class="">
+    <body class="@yield('body_class')">
         @include('layouts.header')
 
         <main>
