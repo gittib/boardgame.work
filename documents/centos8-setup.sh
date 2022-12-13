@@ -180,6 +180,15 @@ sudo diff /etc/opt/remi/php80/php-fpm.d/www.conf.org /etc/opt/remi/php80/php-fpm
 ### ---
 ### > pm.max_spare_servers = 5
 
+## php.iniの設定変更
+sudo cp /etc/opt/remi/php80/php.ini /etc/opt/remi/php80/php.ini.org
+sudo vim /etc/opt/remi/php80/php.ini
+sudo diff /etc/opt/remi/php80/php.ini.org /etc/opt/remi/php80/php.ini
+### 1336c1336
+### < session.gc_maxlifetime = 1440
+### ---
+### > session.gc_maxlifetime = 18000
+
 
 ## ImageMagickのインストール
 sudo yum -y install php80-php-pear php80-php-devel
