@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('./upload');
+require('./popup');
 
 window.setIndexNameToListItems = () => {
     let idx = 1;

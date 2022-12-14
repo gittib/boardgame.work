@@ -1,0 +1,93 @@
+.c-popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 220;
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    .popup-filter-area {
+        position: fixed;
+        z-index: 200;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+    }
+
+    .popup-area {
+        display: block;
+        position: relative;
+
+        .popup-area-inner {
+            width: fit-content;
+            max-width: 90vw;
+            min-width: 30vw;
+            min-height: 10vh;
+            max-height: 90vh;
+            background-color: #fff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 220;
+            padding: 8px;
+
+            .popup-header {
+                position: relative;
+                margin-bottom: 8px;
+                min-height: 30px;
+
+                .title {
+                    padding-right: 30px;
+                }
+            }
+
+            .close_button {
+                $bar_length: 30px;
+                $bar_width: 5px;
+
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+
+                &::before, &::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: $bar_width;
+                    height: $bar_length;;
+                    background: #333;
+                }
+
+                &::before {
+                    transform: translate(-50%,-50%) rotate(45deg);
+                }
+
+                &::after {
+                    transform: translate(-50%,-50%) rotate(-45deg);
+                }
+            }
+
+            .button {
+                white-space: nowrap;
+
+                a {
+                    color: white;
+                }
+            }
+        }
+    }
+}

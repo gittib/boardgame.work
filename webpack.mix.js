@@ -17,6 +17,13 @@ mix.js('resources/js/app.js', 'public/js')
         outputStyle: "compressed",
     }
 })
+.options({
+    autoprefixer: {
+        options: {
+            grid: true,
+        },
+    },
+})
 .autoload({
     "jquery": ['$', 'window.jQuery'],
 })
