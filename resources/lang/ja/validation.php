@@ -153,6 +153,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'rule_y_id' => 'ルールY',
+        'rule_x1_id' => 'ルールX1',
+        'rule_x2_id' => 'ルールX2',
+    ],
 
 ];

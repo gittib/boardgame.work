@@ -4,6 +4,8 @@
 
 @section('title', __('マイページ'))
 
+@section('body_class', 'user-mypage')
+
 @section('contents')
     <a href="{{ route('tragedy-set.index') }}">惨劇セット一覧</a>
 
@@ -12,6 +14,16 @@
             @lang('脚本作成開始')
         </div>
     </div>
+
+    <ul>
+    @foreach(Auth::user()->scenarios as $scenario)
+        <li>
+            <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
+                [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span> {{$scenario->title}}
+            </a>
+        </li>
+    @endforeach
+    </ul>
 @endsection
 
 @section('popups')

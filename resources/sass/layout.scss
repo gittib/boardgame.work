@@ -27,7 +27,12 @@ header {
 main {
     width: fit-content;
     margin: 0 auto;
-    padding: 0 8px;
+    padding: 0;
+
+    > * {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
 }
 
 dt {

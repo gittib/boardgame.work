@@ -24,6 +24,16 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 <h2>@lang(':set 脚本作成', ['set' => $set->name])</h2>
 
 <div class="">
+    @if($errors->any())
+    <div class="error_summary">
+        <b>@lang('入力内容にエラーがありました。以下の点をご確認ください。')</b>
+        <ul>
+        @foreach($errors->all() as $message)
+            <li>{{ $message }}</li>
+        @endforeach
+        </ul>
+    </div>
+    @endif
     <form action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}" method="post">
         @csrf
         @if($isEdit) @method('put') @endif
@@ -31,39 +41,39 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
         <dl>
             <dt>@lang('ルールY')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('rule_y_id') }}">
                     {{ Form::select('rule_y_id', $ruleYs, $helper->inputVal('rule_y_id') ?? $scenario->rule_y_id) }}
                 </div>
             </dd>
             <dt>@lang('ルールX1')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('rule_x1_id') }}">
                     {{ Form::select('rule_x1_id', $ruleXs, $helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id) }}
                 </div>
             </dd>
             @if($set->hasRuleX2)
             <dt>@lang('ルールX2')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('rule_x2_id') }}">
                     {{ Form::select('rule_x2_id', $ruleXs, $helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id) }}
                 </div>
             </dd>
             @endif
             <dt>@lang('ループ数')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('loops') }}">
                     {{ Form::selectRange('loops', 1, 8, $helper->inputVal('loops') ?? $scenario->loops) }}
                 </div>
             </dd>
             <dt>@lang('日数')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('days') }}">
                     {{ Form::selectRange('days', 1, 8, $helper->inputVal('days') ?? $scenario->days) }}
                 </div>
             </dd>
             <dt>@lang('難易度')</dt>
             <dd>
-                <div class="select_wrapper">
+                <div class="select_wrapper {{ $helper->errClass('difficulty') }}">
                     {{ Form::select('difficulty', $aDifficulty, $helper->inputVal('difficulty') ?? $scenario->difficulty) }}
                 </div>
             </dd>
@@ -72,7 +82,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                 <ul class="scenario_character_list">
                     @foreach($helper->inputVal('scenario_chara') ?? $scenario->characters as $ch)
                     <?php if(is_array($ch)) $ch = (object)$ch; ?>
-                    <li class="character_row" data-index="{{ $loop->iteration }}">
+                    <li class="character_row {{ $helper->errClass('scenario_chara.'.$loop->iteration) }}" data-index="{{ $loop->iteration }}">
                         <div>
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_chara[][character_id]', $charaSelect, $ch->character_id, [

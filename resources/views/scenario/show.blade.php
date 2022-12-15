@@ -29,7 +29,8 @@
     </div>
 
     <div class="button_wrapper">
-        <div class="button">@lang('非公開シートを表示')</div>
+        <div class="button js-show_private_sheet">@lang('非公開シートを表示')</div>
+        <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
     </div>
 
     <div class="private_sheet">
@@ -51,9 +52,38 @@
             </tr>
             @endforeach
         </table>
+
+        <dl>
+            <dt>@lang('脚本の特徴')</dt>
+            <dd>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</dd>
+            <dt>@lang('脚本家への指針')</dt>
+            <dd>{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</dd>
+        </dl>
     </div>
+
+    @if($scenario->user_id == Auth::id())
+    <div class="">
+        <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
+            <p class="button">@lang('脚本を編集する')</p>
+        </a>
+    </div>
+    @endif
 </div>
 @endsection
 
 @section('additional_scripts')
+<script>
+$('.js-show_private_sheet').on('click', () => {
+    if (confirm("@lang('非公開シートを表示します。よろしいですか？')")) {
+        $('.private_sheet').show();
+        $('.js-hide_private_sheet').show();
+        $('.js-show_private_sheet').hide();
+    }
+});
+$('.js-hide_private_sheet').on('click', () => {
+    $('.private_sheet').hide();
+    $('.js-hide_private_sheet').hide();
+    $('.js-show_private_sheet').show();
+});
+</script>
 @endsection

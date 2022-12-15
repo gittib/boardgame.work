@@ -34,6 +34,6 @@ class User extends Authenticatable
     ];
 
     public function scenarios() {
-        return $this->hasMany(Scenario::class);
+        return $this->hasMany(Scenario::class)->with('set');
     }
 }

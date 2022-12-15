@@ -1,5 +1,14 @@
 $input_margin: 8px;
 
+.error_summary {
+    margin: 16px;
+    background-color: #f004;
+
+    ul {
+        padding-left: 28px;
+    }
+}
+
 input:not([type]), input[type=text] {
     border: 1px solid;
     border-radius: 6px;
@@ -25,6 +34,11 @@ input:not([type]), input[type=text] {
         z-index: 1;
         cursor: pointer;
         pointer-events: none;
+    }
+
+    &.is-error {
+        border-color: red;
+        border-width: 2px;
     }
 
     select {
