@@ -18,6 +18,8 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 
 @section('title', __('惨劇脚本作成 :set', ['set' => $set->name]))
 
+@section('body_class', 'my_scenario-create')
+
 @section('contents')
 <h2>@lang(':set 脚本作成', ['set' => $set->name])</h2>
 

@@ -3,19 +3,26 @@ window.openPopup = className => {
         const selector = '.c-popup.'+className;
         const $popup = $(selector);
 
-        $('.c-popup').removeClass('open');
         $popup.addClass('open');
 
-        $popup.find('.popup-filter-area').off('click').on('click', function() {
+        $popup.find('.filter-area').off('click.open_popup').on('click.open_popup', function() {
             $popup.removeClass('open');
             resolve({
                 'result': 'close',
             });
         });
-        $popup.find('.close_button').off('click').on('click', function() {
+        $popup.find('.close_button').off('click.open_popup').on('click.open_popup', function() {
             $popup.removeClass('open');
             resolve({
                 'result': 'close',
+            });
+        });
+        $popup.find('[data-result]').off('click.open_popup').on('click.open_popup', function() {
+            const $self = $(this);
+            $popup.removeClass('open');
+            resolve({
+                'result': $self.attr('data-result'),
+                'info': $self.attr('data-info'),
             });
         });
     });

@@ -20,8 +20,12 @@
 
 @section('additional_scripts')
 <script>
-$('.js-create_scenario_button').on('click', () => {
-    openPopup('js-popup-select_set');
+const scenarioCreateUrl = "{{ route('my-scenario.create', ['set' => '___SET___']) }}";
+$('.js-create_scenario_button').on('click', async () => {
+    const res = await openPopup('js-popup-select_set');
+    if (res.result == 'ok' && res.info) {
+        location.href = scenarioCreateUrl.replace('___SET___', res.info);
+    }
 });
 </script>
 @endsection

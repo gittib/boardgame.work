@@ -3,7 +3,7 @@
 $sets = $sets ?? App\Models\TragedySet::get();
 ?>
 <section class="c-popup js-popup-select_set">
-    <div class="popup-filter-area"></div>
+    <div class="filter-area"></div>
     <div class="popup-area">
         <div class="popup-area-inner">
             <div class="popup-header">
@@ -11,10 +11,8 @@ $sets = $sets ?? App\Models\TragedySet::get();
                 <p class="close_button"></p>
             </div>
             @foreach($sets as $set)
-            <div class="button">
-                <a href="{{ route('my-scenario.create', ['set' => $set->abbr]) }}">
-                    {{ $set->name }}
-                </a>
+            <div class="button" data-result="ok" data-info="{{ $set->abbr }}">
+                {{ $set->name }}
             </div>
             @endforeach
         </div>
