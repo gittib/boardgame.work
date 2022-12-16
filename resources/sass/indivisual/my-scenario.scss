@@ -1,8 +1,14 @@
 body.my_scenario-create {
-    padding-bottom: 20px;
+    padding-bottom: 32px;
 
     .character_row {
         margin-bottom: 24px;
+
+        .note_wrapper {
+            > span {
+                margin-bottom: 4px;
+            }
+        }
     }
 
     ul.scenario_incident_list {
@@ -13,5 +19,9 @@ body.my_scenario-create {
                 border-top: none;
             }
         }
+    }
+
+    .submit_button_wrapper {
+        margin-top: 40px;
     }
 }

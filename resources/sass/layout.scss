@@ -1,5 +1,7 @@
+@use 'parts';
+
 header {
-    background-color: blueviolet;
+    background-color: parts.$theme_color;
 
     &:after {
         clear: both;
@@ -38,4 +40,19 @@ main {
 dt {
     margin-top: 20px;
     font-weight: bold;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 20px;
+    border-left: solid 7px parts.$theme_color;
+    margin-top: 4px;
+    padding: 0 0 0 8px;
+}
+h2 {
+    font-size: 20px;
+    margin-top: 28px;
 }

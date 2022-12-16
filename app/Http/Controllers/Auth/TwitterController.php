@@ -16,7 +16,7 @@ class TwitterController extends Controller
                 'name' => 'penski-local',
             ]);
             Auth::login($user);
-            return redirect()->intended(route('top.index'));
+            return redirect()->intended(route('my_page'));
         } else {
             return Socialite::driver('twitter')->redirect();
         }
@@ -37,7 +37,7 @@ class TwitterController extends Controller
         if (!empty($url)) {
             return redirect($url);
         } else {
-            return redirect()->intended(route('top.index'));
+            return redirect()->intended(route('my_page'));
         }
     }
 }

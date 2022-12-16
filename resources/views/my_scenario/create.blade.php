@@ -96,7 +96,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                                     'data-key_name' => 'role_id']) }}
                             </span>
                         </div>
-                        <div class="inline_block_wrapper">
+                        <div class="note_wrapper inline_block_wrapper">
                             <span>@lang('キャラ固有の特記事項')<input value="{{ $ch->special_note }}" data-list_name="scenario_chara" data-key_name="special_note" placeholder="@lang('大物のテリトリーなど')"></span>
                             <span>@lang('その他特記事項')<input value="{{ $ch->note }}" data-list_name="scenario_chara" data-key_name="note"></span>
                         </div>
@@ -121,7 +121,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_incident['.$i.'][character_id]', $charaSelect,
                                     $helper->inputVal("scenario_incident.$i.character_id") ?? optional($incidentOnDb->criminal)->character_id,
-                                ['placeholder' => '']) }}
+                                ['placeholder' => '', 'class' => 'criminal']) }}
                             </span>
                         </span>
                     </li>
@@ -129,10 +129,11 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                 </ul>
             </dd>
         </dl>
-        <div class="button_wrapper">
-            <div class="">
-                <label><input type="checkbox" name="is_open">@lang('脚本を公開する')</label>
-            </div>
+        <div class="submit_button_wrapper">
+            <label class="checkbox_wrapper">
+                {{ Form::checkbox('is_open', 1, $helper->inputVal('is_open') ?? $scenario->is_open) }}
+                @lang('脚本を公開する')
+            </label>
             <div class="button submit_button">
                 @lang('登録')
             </div>
@@ -143,32 +144,6 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 
 @section('additional_scripts')
 <script>
-setIndexNameToListItems();
-
-$('[name=days]').on('change click', function() {
-    const d = $(this).val();
-    $('.scenario_incident_list > li[data-day]').each(function() {
-        const $dom = $(this);
-        if ($dom.attr('data-day') <= d) {
-            $dom.show();
-        } else {
-            $dom.hide();
-        }
-    });
-});
-$('[name=days]').click();
-
-$('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', function() {
-    const $self = $(this);
-    if ($('.character_row').length > 1) {
-        $self.closest('.character_row').remove();
-        setIndexNameToListItems();
-    }
-});
-$('.js-chara_add_button').on('click', function() {
-    const $dom = $('.character_row:last').clone();
-    $('.scenario_character_list').append($dom);
-    setIndexNameToListItems();
-});
+const CHARA_DELETE_CONFIRM_MESSAGE = "@lang('___CHARA___を削除します。よろしいですか？')";
 </script>
 @endsection

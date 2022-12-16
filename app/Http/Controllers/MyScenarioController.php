@@ -133,7 +133,7 @@ class MyScenarioController extends Controller
             $scenario->difficulty = $request->difficulty;
             $scenario->feature = $request->feature;
             $scenario->advice = $request->advice;
-            $scenario->is_open = $request->is_open ?? false;
+            $scenario->is_open = isset($request->is_open);
             $scenario->save();
 
             $scenario->characters()->delete();
