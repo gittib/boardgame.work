@@ -12,7 +12,6 @@
             <title>@lang('惨劇RoopeR 脚本データベース')</title>
         @endif
 
-        <!-- Fonts -->
         <script src="https://kit.fontawesome.com/2899befb82.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->

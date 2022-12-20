@@ -3,6 +3,17 @@
     .public_sheet {
         width: fit-content;
         margin: 0 auto;
+        text-align: center;
+
+        .incident_list {
+            th {
+                text-align: center;
+            }
+
+            td.day {
+                text-align: center;
+            }
+        }
     }
 
     .js-hide_private_sheet {
@@ -11,5 +22,22 @@
 
     .private_sheet {
         display: none;
+
+        .character_list_wrapper {
+            overflow-x: scroll;
+
+            .character_list {
+                * {
+                    word-break: keep-all;
+                    white-space: nowrap;
+                }
+
+                td {
+                    > span {
+                        display: table-row;
+                    }
+                }
+            }
+        }
     }
 }

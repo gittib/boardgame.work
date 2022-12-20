@@ -28,6 +28,7 @@ header {
 
 main {
     width: fit-content;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0;
 
@@ -55,4 +56,32 @@ h1 {
 h2 {
     font-size: 20px;
     margin-top: 28px;
+}
+
+$borderStyle: solid 1px;
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: $borderStyle;
+
+    th {
+        background-color: black;
+        color: white;
+    }
+
+    th,td {
+        padding: 0 4px;
+        border-right: $borderStyle;
+        border-bottom: $borderStyle;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    tr:last-child {
+        th,td {
+            border-bottom: none;
+        }
+    }
 }

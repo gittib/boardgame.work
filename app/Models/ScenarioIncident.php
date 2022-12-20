@@ -35,7 +35,15 @@ class ScenarioIncident extends Model
     }
 
     // attribute
-    public function getNameAttribute() {
+    public function getNameAttribute(): string {
         return $this->incident->name;
+    }
+
+    /** 公開シートでの事件名 */
+    public function getPublicNameAttribute(): string {
+        if ($this->incident->code == 'FalsifiedIncidents') {
+            return $this->special_note ?? $this->name;
+        }
+        return $this->name;
     }
 }
