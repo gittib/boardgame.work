@@ -27,7 +27,7 @@
             </tr>
         </table>
 
-        <h3>@lang('事件')</h3>
+        <h3 class="mt-20">@lang('事件')</h3>
         <table class="incident_list mx-center">
             <tr>
                 <th>@lang('日数')</th>
@@ -48,39 +48,79 @@
         </table>
     </div>
 
-    <div class="button_wrapper mt-20">
+    <div class="button_wrapper mt-24">
         <div class="button js-show_private_sheet">@lang('非公開シートを表示')</div>
         <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
     </div>
 
-    <div class="private_sheet">
+    <div class="private_sheet_wrapper">
         <h2>@lang('非公開シート')</h2>
-        <div class="character_list_wrapper">
-            <table class="character_list">
+        <div class="private_sheet">
+
+            <h3 class="scenario_title">{{ $scenario->title }}</h3>
+            <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span>{{ $scenario->difficultStar }}</div>
+
+            <table class="summary mx-center mt-16 mb-16">
                 <tr>
-                    <th>@lang('キャラクター')</th>
-                    <th>@lang('役職')</th>
-                    <th>@lang('特記')</th>
+                    <th>@lang('ルールY')</th>
+                    <td>{{ $scenario->ruleY->name }}</td>
                 </tr>
-                @foreach($scenario->characters as $chara)
                 <tr>
-                    <td class="name">{{ $chara->character->name }}</td>
-                    <td class="role">
-                        <span>
-                            {!! $chara->role->hostility_type_html !!}
-                            {!! $chara->role->immortality_html !!}
-                            {{ $chara->role->name }}
-                        </span>
-                    </td>
-                    <td class="note">
-                        <span>
-                            <span>{{ $chara->special_note }}</span>
-                            <span>{{ $chara->note }}</span>
-                        </span>
-                    </td>
+                    <th>@lang('ルールX1')</th>
+                    <td>{{ $scenario->ruleX1->name }}</td>
                 </tr>
-                @endforeach
+                @if($scenario->set->hasRuleX2)
+                <tr>
+                    <th>@lang('ルールX2')</th>
+                    <td>{{ $scenario->ruleX2->name }}</td>
+                </tr>
+                @endif
             </table>
+
+            <div class="character_list_wrapper">
+                <table class="character_list">
+                    <tr>
+                        <th>@lang('キャラクター')</th>
+                        <th>@lang('役職')</th>
+                        <th>@lang('特記')</th>
+                    </tr>
+                    @foreach($scenario->characters as $chara)
+                    <tr>
+                        <td class="name">{{ $chara->character->name }}</td>
+                        <td class="role @if(!$chara->role->isPerson) not-person @endif">
+                            <span>
+                                {!! $chara->role->hostility_type_html !!}
+                                {!! $chara->role->immortality_html !!}
+                                {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
+                            </span>
+                        </td>
+                        <td class="note">
+                            <span>
+                                <span>{{ $chara->special_note }}</span>
+                                <span>{{ $chara->note }}</span>
+                            </span>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
+
+            <div class="incident_list_wrapper mt-16">
+                <table class="incident_list mx-center">
+                    <tr>
+                        <th>@lang('日数')</th>
+                        <th>@lang('事件')</th>
+                        <th>@lang('犯人')</th>
+                    </tr>
+                    @foreach($scenario->incidents as $incident)
+                    <tr>
+                        <td class="day">{{ $incident->day }}</td>
+                        <td class="name">{{ $incident->name }}</td>
+                        <td class="criminal">{{ optional($incident->criminal)->name }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
 
         <dl>
@@ -105,13 +145,13 @@
 <script>
 $('.js-show_private_sheet').on('click', () => {
     if (confirm("@lang('非公開シートを表示します。よろしいですか？')")) {
-        $('.private_sheet').show();
+        $('.private_sheet_wrapper').show();
         $('.js-hide_private_sheet').show();
         $('.js-show_private_sheet').hide();
     }
 });
 $('.js-hide_private_sheet').on('click', () => {
-    $('.private_sheet').hide();
+    $('.private_sheet_wrapper').hide();
     $('.js-hide_private_sheet').hide();
     $('.js-show_private_sheet').show();
 });

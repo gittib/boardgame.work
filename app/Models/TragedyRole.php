@@ -63,4 +63,8 @@ class TragedyRole extends Model
             return self::STAR_HTML;
         }
     }
+
+    public function getIsPersonAttribute():bool {
+        return $this->code == 'Person';
+    }
 }

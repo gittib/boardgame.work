@@ -1,3 +1,7 @@
+.mx-center {
+    margin: 0 auto;
+}
+
 @for $i from 1 through 100 {
     .mt-#{$i} {
         margin-top: #{$i}px;
@@ -24,8 +28,4 @@
     .pb-#{$i} {
         padding-bottom: #{$i}px;
     }
-}
-
-.mx-center {
-    margin: 0 auto;
 }

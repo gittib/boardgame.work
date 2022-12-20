@@ -58,11 +58,10 @@ h2 {
     margin-top: 28px;
 }
 
-$borderStyle: solid 1px;
 table {
     border-collapse: separate;
     border-spacing: 0;
-    border: $borderStyle;
+    border: parts.$border_style;
 
     th {
         background-color: black;
@@ -71,8 +70,8 @@ table {
 
     th,td {
         padding: 0 4px;
-        border-right: $borderStyle;
-        border-bottom: $borderStyle;
+        border-right: parts.$border_style;
+        border-bottom: parts.$border_style;
 
         &:last-child {
             border-right: none;
@@ -84,4 +83,12 @@ table {
             border-bottom: none;
         }
     }
+}
+
+.difficult_name {
+    font-weight: bold;
+    background: black;
+    color: white;
+    padding: 0 8px;
+    border-radius: 8px;
 }

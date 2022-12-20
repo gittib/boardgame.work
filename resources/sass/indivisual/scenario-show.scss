@@ -1,5 +1,12 @@
 
+$tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
 .scenario-show {
+
+    th {
+        font-family: $tragedy_font;
+    }
+
     .public_sheet {
         width: fit-content;
         margin: 0 auto;
@@ -20,22 +27,57 @@
         display: none;
     }
 
-    .private_sheet {
+    .private_sheet_wrapper {
         display: none;
 
-        .character_list_wrapper {
-            overflow-x: scroll;
+        .private_sheet {
+            border: solid 1px;
+            padding: 4px 4px 12px;
 
-            .character_list {
-                * {
-                    word-break: keep-all;
-                    white-space: nowrap;
-                }
+            .scenario_title {
+                text-align: center;
+                width: auto;
+                border-bottom: 3px double;
+                margin: 0 8px 12px;
+            }
+            .difficulty {
+                text-align: center;
+            }
 
-                td {
-                    > span {
-                        display: table-row;
+            .character_list_wrapper {
+
+                .character_list {
+                    width: 98%;
+                    margin: 0 auto;
+                    font-size: 0.75rem;
+
+                    * {
+                        word-break: keep-all;
+                        white-space: nowrap;
                     }
+
+                    td {
+                        &.not-person {
+                            font-weight: bold;
+                        }
+
+                        &.note {
+                            * {
+                                word-break: initial;
+                                white-space: initial;
+                            }
+                        }
+
+                        > span {
+                            display: table-row;
+                        }
+                    }
+                }
+            }
+
+            .incident_list {
+                td.day {
+                    text-align: center;
                 }
             }
         }

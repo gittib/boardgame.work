@@ -48,4 +48,15 @@ class Scenario extends Model
     }
 
     // attribute
+    public function getDifficultNameAttribute():string {
+        return __('tragedy_master.difficulty.'.$this->difficulty);
+    }
+
+    public function getDifficultStarAttribute():string {
+        $s = '';
+        for ($i = 1; $i <= 8; $i++) {
+            $s .= $i <= $this->difficulty ? '★' : '☆';
+        }
+        return $s;
+    }
 }
