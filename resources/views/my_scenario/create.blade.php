@@ -38,7 +38,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
         @csrf
         @if($isEdit) @method('put') @endif
         {{ Form::hidden('set_id', $set->id) }}
-        <dl>
+        <dl class="summary_setting">
             <dt>@lang('ルールY')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_y_id') }}">
@@ -77,6 +77,8 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                     {{ Form::select('difficulty', $aDifficulty, $helper->inputVal('difficulty') ?? $scenario->difficulty) }}
                 </div>
             </dd>
+        </dl>
+        <dl>
             <dt>@lang('キャラクター')</dt>
             <dd>
                 <ul class="scenario_character_list">
@@ -127,6 +129,18 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                     </li>
                     @endfor
                 </ul>
+            </dd>
+            <dt>@lang('脚本の特徴')</dt>
+            <dd class="scenario_text">
+                <div class="input_wrapper">
+                    <textarea name="feature">{{ $scenario->feature }}</textarea>
+                </div>
+            </dd>
+            <dt>@lang('脚本家への指針')</dt>
+            <dd class="scenario_text">
+                <div class="input_wrapper">
+                    <textarea name="advice">{{ $scenario->advice }}</textarea>
+                </div>
             </dd>
         </dl>
         <div class="submit_button_wrapper">

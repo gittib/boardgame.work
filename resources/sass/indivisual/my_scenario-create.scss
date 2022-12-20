@@ -1,6 +1,22 @@
 body.my_scenario-create {
     padding-bottom: 32px;
 
+    dl.summary_setting {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: center;
+
+        dt {
+            width: 25%;
+            text-align: center;
+            margin-top: 0;
+        }
+        dd {
+            width: 75%;
+        }
+    }
+
     .character_row {
         margin-bottom: 24px;
 
@@ -14,9 +30,24 @@ body.my_scenario-create {
     ul.scenario_incident_list {
         > li {
             border-top: solid 1px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
 
             &:first-child {
                 border-top: none;
+            }
+        }
+    }
+
+    .scenario_text {
+        .input_wrapper {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+
+            textarea {
+                width: 100%;
             }
         }
     }

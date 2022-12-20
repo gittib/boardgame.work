@@ -31,7 +31,9 @@ class ScenarioController extends Controller
      */
     public function show($id)
     {
-        $scenario = Scenario::findOrFail($id);
+        $scenario = Scenario::with([
+            'incidents.criminal',
+        ])->findOrFail($id);
 
         if (!$scenario->is_open) {
             if (Auth::check()) {
