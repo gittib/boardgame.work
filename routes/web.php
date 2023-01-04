@@ -38,3 +38,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
     Route::post('file/file/upload/chunk/{media}', 'FileController@uploadChunk')->name('file.upload.chunk.add');
 });
+
+Route::fallback(function() {
+    return response()->view('errors.404', [], 404);
+});

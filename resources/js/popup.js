@@ -27,3 +27,9 @@ window.openPopup = className => {
         });
     });
 };
+
+window.myConfirm = (msg, title = '') => {
+    $('.c-popup.js-popup-my_confirm .message').html(msg.replace("\\n", '<br>'));
+    $('.c-popup.js-popup-my_confirm .title').text(title);
+    return openPopup('js-popup-my_confirm');
+};

@@ -30,20 +30,27 @@ if ($('body').hasClass('my_scenario-create')) {
     });
     $('[name=days]').click();
 
-    $('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', function() {
+    $('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', async function() {
         const $self = $(this);
         const charaName = $self.closest('.character_row').find('select[data-key_name=character_id] option:selected').text();
         const msg = CHARA_DELETE_CONFIRM_MESSAGE.replace('___CHARA___', charaName);
-        if ($('.character_row').length > 1 && confirm(msg)) {
-            $self.closest('.character_row').remove();
-            updateLists();
+        if ($('.character_row').length > 1) {
+            const {result} = await myConfirm(msg);
+            if (result == 'ok') {
+                $self.closest('.character_row').remove();
+                updateLists();
+            }
         }
     });
     $('.scenario_character_list').on('click change', 'select[data-key_name=character_id]', function() {
         updateLists();
     });
+    $('.scenario_character_list').on('change', '.character_row select[data-key_name=character_id]', function() {
+        $(this).closest('.character_row').removeClass('is-error');
+    });
     $('.js-chara_add_button').on('click', function() {
         const $dom = $('.character_row:last').clone();
+        $dom.removeClass('is-error');
         $('.scenario_character_list').append($dom);
         updateLists();
     });

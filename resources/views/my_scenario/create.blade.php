@@ -28,7 +28,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
     <div class="error_summary">
         <b>@lang('入力内容にエラーがありました。以下の点をご確認ください。')</b>
         <ul>
-        @foreach($errors->all() as $message)
+        @foreach(collect($errors->all())->unique() as $message)
             <li>{{ $message }}</li>
         @endforeach
         </ul>
@@ -84,13 +84,12 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                 <ul class="scenario_character_list">
                     @foreach($helper->inputVal('scenario_chara') ?? $scenario->characters as $ch)
                     <?php if(is_array($ch)) $ch = (object)$ch; ?>
-                    <li class="character_row {{ $helper->errClass('scenario_chara.'.$loop->iteration) }}" data-index="{{ $loop->iteration }}">
+                    <li class="character_row {{ $helper->errClass('scenario_chara.'.$loop->iteration.'.*') }}" data-index="{{ $loop->iteration }}">
                         <div>
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_chara[][character_id]', $charaSelect, $ch->character_id, [
                                     'data-list_name' => 'scenario_chara',
-                                    'data-key_name' => 'character_id'
-                                ]) }}
+                                    'data-key_name' => 'character_id']) }}
                             </span>
                             <span class="select_wrapper">
                                 {{ Form::select('scenario_chara[][role_id]', $roleSelect, $ch->role_id, [
@@ -107,6 +106,9 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                     @endforeach
                 </ul>
                 <div class="button js-chara_add_button">@lang('キャラ追加')</div>
+                @foreach($errors->get('scenario_chara.*.*') as $err)
+                <p class="error_text">{{ $err }}</p>
+                @endforeach
             </dd>
             <dt>@lang('事件')</dt>
             <dd>
@@ -130,16 +132,20 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                     @endfor
                 </ul>
             </dd>
+            <dt>@lang('脚本タイトル')</dt>
+            <dd class="scenario_title">
+                {{ Form::text('title', $helper->inputVal('title') ?? $scenario->title) }}
+            </dd>
             <dt>@lang('脚本の特徴')</dt>
             <dd class="scenario_text">
                 <div class="input_wrapper">
-                    <textarea name="feature">{{ $scenario->feature }}</textarea>
+                    <textarea name="feature">{{ $helper->inputVal('feature') ?? $scenario->feature }}</textarea>
                 </div>
             </dd>
             <dt>@lang('脚本家への指針')</dt>
             <dd class="scenario_text">
                 <div class="input_wrapper">
-                    <textarea name="advice">{{ $scenario->advice }}</textarea>
+                    <textarea name="advice">{{ $helper->inputVal('advice') ?? $scenario->advice }}</textarea>
                 </div>
             </dd>
         </dl>

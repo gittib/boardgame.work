@@ -20,8 +20,8 @@ class TragedyRole extends Model
         'name',
     ];
 
-    private const DIA_HTML = '<span class="dia">♢</span>';
-    private const BLACK_DIA_HTML = '<span class="dia black">♦</span>';
+    private const DIA_HTML = '<span class="dia">◇</span>';
+    private const BLACK_DIA_HTML = '<span class="dia black">◆</span>';
     private const HEART_HTML = '<i class="fa-regular fa-heart"></i>';
     private const BREAK_HEART_HTML = '<i class="fas fa-heart-broken"></i>';
     private const STAR_HTML = '<i class="fa-regular fa-star"></i>';

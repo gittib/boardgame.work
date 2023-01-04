@@ -21,7 +21,7 @@ class Scenario extends Model
 
     // relations
     public function writer() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function set() {

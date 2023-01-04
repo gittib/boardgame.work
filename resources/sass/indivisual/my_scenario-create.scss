@@ -4,8 +4,10 @@ body.my_scenario-create {
     dl.summary_setting {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
         align-items: center;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
 
         dt {
             width: 25%;
@@ -19,6 +21,17 @@ body.my_scenario-create {
 
     .character_row {
         margin-bottom: 24px;
+        border-bottom: 3px double;
+
+        &.is-error {
+            $borderStyle: 3px solid red;
+            border: $borderStyle;
+        }
+
+        > div {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
         .note_wrapper {
             > span {
@@ -40,6 +53,12 @@ body.my_scenario-create {
         }
     }
 
+    .scenario_title {
+        input {
+            width: 90%;
+        }
+    }
+
     .scenario_text {
         .input_wrapper {
             margin-left: auto;
@@ -54,5 +73,9 @@ body.my_scenario-create {
 
     .submit_button_wrapper {
         margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 }

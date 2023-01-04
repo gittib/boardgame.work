@@ -132,7 +132,7 @@
     </div>
 
     @if($scenario->user_id == Auth::id())
-    <div class="mt-40">
+    <div class="mt-40 mb-40">
         <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
             <p class="button">@lang('脚本を編集する')</p>
         </a>
@@ -143,8 +143,9 @@
 
 @section('additional_scripts')
 <script>
-$('.js-show_private_sheet').on('click', () => {
-    if (confirm("@lang('非公開シートを表示します。よろしいですか？')")) {
+$('.js-show_private_sheet').on('click', async () => {
+    const {result} = await myConfirm("@lang('非公開シートを表示します。<br>よろしいですか？')");
+    if (result == 'ok') {
         $('.private_sheet_wrapper').show();
         $('.js-hide_private_sheet').show();
         $('.js-show_private_sheet').hide();

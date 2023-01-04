@@ -7,7 +7,7 @@
 @section('body_class', 'user-mypage')
 
 @section('contents')
-    <a href="{{ route('tragedy-set.index') }}">惨劇セット一覧</a>
+    <a href="{{ route('top.index') }}">TOPページ</a><br>
 
     <div class="button_wrapper">
         <div class="button js-create_scenario_button">

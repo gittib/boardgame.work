@@ -8,6 +8,7 @@ use App\Models\Character;
 use App\Models\Scenario;
 use App\Models\ScenarioCharacter;
 use App\Models\ScenarioIncident;
+use App\Http\Requests\PostScenario;
 use Auth;
 use DB;
 
@@ -48,12 +49,8 @@ class MyScenarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostScenario $request)
     {
-        $request->validate([
-            'rule_x2_id' => 'different:rule_x1_id',
-        ]);
-
         $scenario = new Scenario;
 
         $this->storeScenario($scenario, $request);
@@ -95,7 +92,7 @@ class MyScenarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostScenario $request, $id)
     {
         $request->validate([
             'rule_x2_id' => 'different:rule_x1_id',
@@ -131,6 +128,7 @@ class MyScenarioController extends Controller
             $scenario->loops = $request->loops;
             $scenario->days = $request->days;
             $scenario->difficulty = $request->difficulty;
+            $scenario->title = $request->title;
             $scenario->feature = $request->feature;
             $scenario->advice = $request->advice;
             $scenario->is_open = isset($request->is_open);

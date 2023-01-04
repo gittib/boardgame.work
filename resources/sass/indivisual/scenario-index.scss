@@ -1,0 +1,14 @@
+.scenario-index {
+
+    .button {
+        &.js-hide_title {
+            display: none;
+        }
+    }
+
+    .scenario_list {
+        .title {
+            display: none;
+        }
+    }
+}
