@@ -2,6 +2,9 @@
 $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
 
 .scenario-show {
+    main {
+        width: 100%;
+    }
 
     th {
         font-family: $tragedy_font;

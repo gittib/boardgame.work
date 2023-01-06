@@ -94,10 +94,6 @@ class MyScenarioController extends Controller
      */
     public function update(PostScenario $request, $id)
     {
-        $request->validate([
-            'rule_x2_id' => 'different:rule_x1_id',
-        ]);
-
         $scenario = Scenario::where('user_id', Auth::id())->findOrFail($id);
 
         $this->storeScenario($scenario, $request);

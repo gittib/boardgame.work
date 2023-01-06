@@ -27,8 +27,8 @@ header {
 }
 
 main {
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0;
 
@@ -91,4 +91,20 @@ table {
     color: white;
     padding: 0 8px;
     border-radius: 8px;
+}
+
+.set_name {
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    padding: 0 4px;
+
+    &.FS { background-color: darkturquoise; }
+    &.BTX { background-color: blue; }
+    &.MZ { background-color: purple; }
+    &.MCX { background-color: red; }
+    &.HSA { background-color: darkblue; }
+    &.WM { background-color: darkgreen; }
+    &.LL { background-color: lightsteelblue; }
+    &.AHR { background-color: orange; }
 }

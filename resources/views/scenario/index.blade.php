@@ -19,10 +19,22 @@
     <ul class="scenario_list">
         @foreach($scenarios as $scenario)
         <li>
-            <div class="id">[{{ $scenario->id }}]</div>
-            <div class="set {{ optional($scenario->set)->abbr }}">{{ optional($scenario->set)->abbr }}</div>
-            <div class="title">{{ $scenario->title }}</div>
-            <div class="writer">@lang('作者：:writer', ['writer' => e(optional($scenario->writer)->name)])</div>
+            <div class="row id_wrapper">
+                <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
+                    @lang('脚本')[{{ $scenario->id }}]
+                </a>
+                <span class="writer">@lang('作者：:writer', ['writer' => e(optional($scenario->writer)->name)])</span>
+            </div>
+            <div class="title">
+                <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
+                    {{ $scenario->title }}
+                </a>
+            </div>
+            <div class="row summary_wrapper">
+                <span class="set_name {{ optional($scenario->set)->abbr }}">{{ optional($scenario->set)->abbr }}</span>
+                <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
+                <span class="difficult">@lang('難易度'):<span>{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
+            </div>
         </li>
         @endforeach
     </ul>

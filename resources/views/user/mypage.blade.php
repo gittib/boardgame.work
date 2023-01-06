@@ -9,7 +9,7 @@
 @section('contents')
     <a href="{{ route('top.index') }}">TOPページ</a><br>
 
-    <div class="button_wrapper">
+    <div class="header_console button_wrapper">
         <div class="button js-create_scenario_button">
             @lang('脚本作成開始')
         </div>
