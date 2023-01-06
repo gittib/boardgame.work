@@ -146,11 +146,12 @@ class MyScenarioController extends Controller
             if (!empty($incident['incident_id']) && !empty($incident['character_id'])) {
                 $scenarioChara = $scenario->characters->firstWhere('character_id', $incident['character_id']);
                 if (!empty($scenarioChara)) {
-                    $scenario->incidents[] = new ScenarioIncident([
+                    $tmp = new ScenarioIncident([
                         'day' => $day,
                         'incident_id' => $incident['incident_id'],
-                        'scenario_character_id' => $scenarioChara->id,
                     ]);
+                    $tmp->criminal_name = Character::find($incident['character_id'])?->name;
+                    $scenario->incidents[] = $tmp;
                 }
             }
         }

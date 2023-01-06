@@ -117,7 +117,7 @@ $isPreview ??= false;
                     <tr>
                         <td class="day">{{ $incident->day }}</td>
                         <td class="name">{{ $incident->name }}</td>
-                        <td class="criminal">{{ optional($incident->criminal)->name }}</td>
+                        <td class="criminal">{{ $incident->criminal?->name ?? $incident->criminal_name }}</td>
                     </tr>
                     @endforeach
                 </table>
@@ -157,5 +157,9 @@ $('.js-hide_private_sheet').on('click', () => {
     $('.js-hide_private_sheet').hide();
     $('.js-show_private_sheet').show();
 });
+
+@if($isPreview)
+$('a').attr('href', 'javascript:void(0);');
+@endif
 </script>
 @endsection
