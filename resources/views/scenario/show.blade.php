@@ -48,7 +48,7 @@
         </table>
     </div>
 
-    <div class="button_wrapper mt-24">
+    <div class="button_wrapper private_toggle_button_wrapper">
         <div class="button js-show_private_sheet">@lang('非公開シートを表示')</div>
         <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
     </div>
@@ -131,13 +131,13 @@
         </dl>
     </div>
 
-    @if($scenario->user_id == Auth::id())
     <div class="mt-40 mb-40">
+        @if($scenario->user_id == Auth::id())
         <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
             <p class="button">@lang('脚本を編集する')</p>
         </a>
+        @endif
     </div>
-    @endif
 </div>
 @endsection
 

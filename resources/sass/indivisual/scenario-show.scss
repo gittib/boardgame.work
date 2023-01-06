@@ -30,12 +30,20 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
         display: none;
     }
 
+    .private_toggle_button_wrapper {
+        margin: 24px auto 0;
+        width: fit-content;
+    }
+
     .private_sheet_wrapper {
         display: none;
 
         .private_sheet {
+            margin: 0 auto;
             border: solid 1px;
-            padding: 4px 4px 12px;
+            padding: 4px 12px 12px;
+            width: fit-content;
+            max-width: 95%;
 
             .scenario_title {
                 text-align: center;

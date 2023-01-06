@@ -40,6 +40,5 @@ Route::namespace('App\Http\Controllers')->group(function() {
 });
 
 Route::fallback(function() {
-    return response()->view('parts.are_you_writer', [], 404);
     return response()->view('errors.404', [], 404);
 });
