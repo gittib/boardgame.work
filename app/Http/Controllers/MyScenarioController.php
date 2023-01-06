@@ -114,6 +114,51 @@ class MyScenarioController extends Controller
         //
     }
 
+    public function preview(Request $request)
+    {
+        $scenario = new Scenario();
+        $scenario->user_id = Auth::id();
+        $scenario->set_id = $request->set_id;
+        $scenario->rule_y_id = $request->rule_y_id;
+        $scenario->rule_x1_id = $request->rule_x1_id;
+        $scenario->rule_x2_id = $request->rule_x2_id;
+        $scenario->loops = $request->loops;
+        $scenario->days = $request->days;
+        $scenario->difficulty = $request->difficulty;
+        $scenario->title = $request->title;
+        $scenario->feature = $request->feature;
+        $scenario->advice = $request->advice;
+        $scenario->is_open = isset($request->is_open);
+
+        $scenario->characters = collect();
+        foreach ($request->scenario_chara as $chara) {
+            $scenario->characters[] = new ScenarioCharacter([
+                'character_id' => $chara['character_id'] ?? null,
+                'role_id' => $chara['role_id'] ?? null,
+                'the_name' => $chara['the_name'] ?? null,
+                'special_note' => $chara['special_note'] ?? null,
+                'note' => $chara['note'] ?? null,
+            ]);
+        }
+
+        $scenario->incidents = collect();
+        foreach ($request->scenario_incident as $day => $incident) {
+            if (!empty($incident['incident_id']) && !empty($incident['character_id'])) {
+                $scenarioChara = $scenario->characters->firstWhere('character_id', $incident['character_id']);
+                if (!empty($scenarioChara)) {
+                    $scenario->incidents[] = new ScenarioIncident([
+                        'day' => $day,
+                        'incident_id' => $incident['incident_id'],
+                        'scenario_character_id' => $scenarioChara->id,
+                    ]);
+                }
+            }
+        }
+
+        $isPreview = true;
+        return view('scenario.show', compact('scenario', 'isPreview'));
+    }
+
     private function storeScenario(Scenario $scenario, Request $request) {
         DB::transaction(function() use($scenario, $request) {
             $scenario->user_id = Auth::id();

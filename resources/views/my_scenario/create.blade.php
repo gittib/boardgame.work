@@ -34,7 +34,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
         </ul>
     </div>
     @endif
-    <form action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}" method="post">
+    <form method="post">
         @csrf
         @if($isEdit) @method('put') @endif
         {{ Form::hidden('set_id', $set->id) }}
@@ -154,7 +154,10 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                 {{ Form::checkbox('is_open', 1, $helper->inputVal('is_open') ?? $scenario->is_open) }}
                 @lang('脚本を公開する')
             </label>
-            <div class="button submit_button">
+            <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
+                @lang('プレビュー')
+            </div>
+            <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
                 @lang('登録')
             </div>
         </div>

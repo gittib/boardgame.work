@@ -10,7 +10,23 @@ window.setIndexNameToListItems = () => {
 };
 
 $('form .submit_button').on('click', function() {
-    $(this).closest('form').submit();
+    const $self = $(this);
+    const $form = $self.closest('form');
+    const originalTarget = $form.attr('target');
+
+    if ($self.attr('data-target')) {
+        $form.attr('target', $self.attr('data-target'));
+    }
+    if ($self.attr('data-action')) {
+        $form.attr('action', $self.attr('data-action'));
+    }
+    $form.submit();
+
+    if (originalTarget) {
+        $form.attr('target', originalTarget);
+    } else {
+        $form.removeAttr('target');
+    }
 });
 
 window.addEventListener("DOMContentLoaded", () => {

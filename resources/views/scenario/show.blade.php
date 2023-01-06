@@ -1,4 +1,5 @@
 <?php
+$isPreview ??= false;
 ?>
 @extends('layouts.layout')
 
@@ -132,7 +133,7 @@
     </div>
 
     <div class="mt-40 mb-40">
-        @if($scenario->user_id == Auth::id())
+        @if(!$isPreview && $scenario->user_id == Auth::id())
         <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
             <p class="button">@lang('脚本を編集する')</p>
         </a>
