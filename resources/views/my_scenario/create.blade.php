@@ -106,9 +106,6 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                     @endforeach
                 </ul>
                 <div class="button js-chara_add_button">@lang('キャラ追加')</div>
-                @foreach($errors->get('scenario_chara.*.*') as $err)
-                <p class="error_text">{{ $err }}</p>
-                @endforeach
             </dd>
             <dt>@lang('事件')</dt>
             <dd>

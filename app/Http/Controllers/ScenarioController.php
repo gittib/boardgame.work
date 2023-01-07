@@ -15,7 +15,13 @@ class ScenarioController extends Controller
      */
     public function index()
     {
-        $query = Scenario::where('is_open', 1);
+        $query = Scenario::with([
+            'writer',
+            'set',
+        ])->where('is_open', 1)
+            ->orderBy('set_id')
+            ->orderBy('difficulty')
+            ->orderBy('id');
 
         // TODO: 検索条件指定
 

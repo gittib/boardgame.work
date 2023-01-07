@@ -40,12 +40,15 @@
     </ul>
 
 </div>
+<div style="display:none;">
+    <p id="js-show_title_confirm_message">@lang('脚本名を表示します。<br>脚本名を見るとネタバレになるかも知れませんが、よろしいですか？')</p>
+</div>
 @endsection
 
 @section('additional_scripts')
 <script>
 $('.js-show_title').on('click', async () => {
-    const {result} = await myConfirm("@lang('脚本名を表示します。よろしいですか？')");
+    const {result} = await myConfirm($('#js-show_title_confirm_message').html());
     if (result == 'ok') {
         $('ul.scenario_list .title').show();
         $('.js-hide_title').show();
