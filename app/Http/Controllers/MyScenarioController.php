@@ -135,8 +135,6 @@ class MyScenarioController extends Controller
             $scenario->characters[] = new ScenarioCharacter([
                 'character_id' => $chara['character_id'] ?? null,
                 'role_id' => $chara['role_id'] ?? null,
-                'the_name' => $chara['the_name'] ?? null,
-                'special_note' => $chara['special_note'] ?? null,
                 'note' => $chara['note'] ?? null,
             ]);
         }
@@ -182,8 +180,7 @@ class MyScenarioController extends Controller
                     'character_id' => $chara['character_id'],
                     'role_id' => $chara['role_id'],
                     //'the_name' => $chara['the_name'],
-                    'special_note' => $chara['special_note'],
-                    'note' => $chara['note'],
+                    'note' => $chara['note'] ?? null,
                 ]));
             }
 

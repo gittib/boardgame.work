@@ -23,6 +23,10 @@ body.my_scenario-create {
         margin-bottom: 24px;
         border-bottom: 3px double;
 
+        &:first-child {
+            border-top: 3px double;
+        }
+
         &.is-error {
             $borderStyle: 3px solid red;
             border: $borderStyle;
@@ -30,6 +34,8 @@ body.my_scenario-create {
 
         > div {
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
         }
 

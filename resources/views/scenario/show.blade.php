@@ -96,10 +96,7 @@ $isPreview ??= false;
                             </span>
                         </td>
                         <td class="note">
-                            <span>
-                                <span class="inline_block">{{ $chara->special_note }}</span>
-                                <span class="inline_block">{{ $chara->note }}</span>
-                            </span>
+                            <span>{{ $chara->note }}</span>
                         </td>
                     </tr>
                     @endforeach

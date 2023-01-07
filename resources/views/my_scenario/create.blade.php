@@ -96,12 +96,9 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
                                     'data-list_name' => 'scenario_chara',
                                     'data-key_name' => 'role_id']) }}
                             </span>
+                            <span>@lang('特記事項')<input value="{{ $ch->note }}" data-list_name="scenario_chara" data-key_name="note"></span>
+                            <div class="button js-chara_delete_button">@lang('このキャラを削除')</div>
                         </div>
-                        <div class="note_wrapper inline_block_wrapper">
-                            <span>@lang('キャラ固有の特記事項')<input value="{{ $ch->special_note }}" data-list_name="scenario_chara" data-key_name="special_note" placeholder="@lang('大物のテリトリーなど')"></span>
-                            <span>@lang('その他特記事項')<input value="{{ $ch->note }}" data-list_name="scenario_chara" data-key_name="note"></span>
-                        </div>
-                        <div class="button js-chara_delete_button">@lang('このキャラを削除')</div>
                     </li>
                     @endforeach
                 </ul>
