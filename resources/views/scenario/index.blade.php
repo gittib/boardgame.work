@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="row summary_wrapper">
-                <span class="set_name {{ optional($scenario->set)->abbr }}">{{ optional($scenario->set)->abbr }}</span>
+                <span class="set_abbr {{ optional($scenario->set)->abbr }}">{{ optional($scenario->set)->abbr }}</span>
                 <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
                 <span class="difficult">@lang('難易度'):<span>{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
             </div>

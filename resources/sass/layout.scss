@@ -100,18 +100,42 @@ table {
     border-radius: 8px;
 }
 
-.set_name {
+.set_abbr {
     border-radius: 4px;
     background-color: black;
     color: white;
     padding: 0 4px;
 
-    &.FS { background-color: darkturquoise; }
-    &.BTX { background-color: blue; }
-    &.MZ { background-color: purple; }
-    &.MCX { background-color: red; }
-    &.HSA { background-color: darkblue; }
-    &.WM { background-color: darkgreen; }
-    &.LL { background-color: lightsteelblue; }
-    &.AHR { background-color: orange; }
+    &.FS {
+        background-color: darkturquoise;
+        text-decoration: underline darkturquoise;
+    }
+    &.BTX {
+        background-color: blue;
+        text-decoration: underline blue;
+    }
+    &.MZ {
+        background-color: purple;
+        text-decoration: underline purple;
+    }
+    &.MCX {
+        background-color: red;
+        text-decoration: underline red;
+    }
+    &.HSA {
+        background-color: darkblue;
+        text-decoration: underline darkblue;
+    }
+    &.WM {
+        background-color: darkgreen;
+        text-decoration: underline darkgreen;
+    }
+    &.LL {
+        background-color: lightsteelblue;
+        text-decoration: underline lightsteelblue;
+    }
+    &.AHR {
+        background-color: orange;
+        text-decoration: underline orange;
+    }
 }

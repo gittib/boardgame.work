@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <ul>
+    <ul class="my_scenario_list">
     @foreach(Auth::user()->scenarios as $scenario)
         <li>
             <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">

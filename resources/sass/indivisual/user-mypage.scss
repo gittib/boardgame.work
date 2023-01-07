@@ -9,5 +9,11 @@
                 margin: 8px auto;
             }
         }
+
+        .my_scenario_list {
+            > li {
+                margin: 10px;
+            }
+        }
     }
 }
