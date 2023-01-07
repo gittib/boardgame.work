@@ -3,7 +3,7 @@ $isPreview ??= false;
 ?>
 @extends('layouts.layout')
 
-@section('title', __('惨劇脚本 :set', ['set' => $scenario->set->name]))
+@section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->set->name]))
 
 @section('body_class', 'scenario-show')
 
@@ -97,8 +97,8 @@ $isPreview ??= false;
                         </td>
                         <td class="note">
                             <span>
-                                <span>{{ $chara->special_note }}</span>
-                                <span>{{ $chara->note }}</span>
+                                <span class="inline_block">{{ $chara->special_note }}</span>
+                                <span class="inline_block">{{ $chara->note }}</span>
                             </span>
                         </td>
                     </tr>
@@ -140,6 +140,13 @@ $isPreview ??= false;
         @endif
     </div>
 </div>
+
+@if($isPreview)
+<div class="preview_close">
+    <p onclick="window.close();">@lang('プレビューを閉じる')</p>
+</div>
+@endif
+
 @endsection
 
 @section('additional_scripts')

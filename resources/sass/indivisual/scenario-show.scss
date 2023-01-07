@@ -97,4 +97,17 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
             }
         }
     }
+
+    .preview_close {
+        background-color: white;
+        margin: 0 auto 40px;
+        width: fit-content;
+
+        p {
+            margin: 8px;
+            background-color: black;
+            color: white;
+            padding: 2px 6px;
+        }
+    }
 }

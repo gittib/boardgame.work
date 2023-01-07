@@ -85,6 +85,13 @@ table {
     }
 }
 
+.inline_block_wrapper > span {
+    display: inline-block;
+}
+.inline_block {
+    display: inline-block;
+}
+
 .difficult_name {
     font-weight: bold;
     background: black;
