@@ -56,6 +56,11 @@ $isPreview ??= false;
 
     <div class="private_sheet_wrapper">
         <h2>@lang('非公開シート')</h2>
+
+        @if(!empty($scenario->writer))
+        <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
+        @endif
+
         <div class="private_sheet">
 
             <h3 class="scenario_title">{{ $scenario->title }}</h3>
