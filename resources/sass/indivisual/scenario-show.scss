@@ -38,67 +38,73 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
     .private_sheet_wrapper {
         display: none;
 
-        .writer {
-            font-size: 12px;
-            text-align: right;
-        }
-
-        .private_sheet {
-            margin: 0 auto;
-            border: solid 1px;
-            padding: 4px 12px 12px;
+        .writer_wrapper {
             width: fit-content;
-            max-width: 95%;
+            margin: 0 auto;
 
-            .scenario_title {
-                text-align: center;
-                width: auto;
-                border-bottom: 3px double;
-                margin: 0 8px 12px;
-            }
-            .difficulty {
-                text-align: center;
-            }
+            .private_sheet {
+                margin: 0 auto;
+                border: solid 1px;
+                padding: 4px 12px 12px;
+                width: fit-content;
+                max-width: 95%;
 
-            .character_list_wrapper {
-
-                .character_list {
-                    width: 98%;
-                    margin: 0 auto;
-                    font-size: 0.75rem;
-
-                    * {
-                        word-break: keep-all;
-                        white-space: nowrap;
-                    }
-
-                    td {
-                        color: black;
-
-                        &.not-person {
-                            font-weight: bold;
-                        }
-
-                        &.note {
-                            * {
-                                word-break: initial;
-                                white-space: initial;
-                            }
-                        }
-
-                        > span {
-                            display: table-row;
-                        }
-                    }
+                .scenario_title {
+                    text-align: center;
+                    width: auto;
+                    border-bottom: 3px double;
+                    margin: 0 8px 12px;
                 }
-            }
-
-            .incident_list {
-                font-size: 0.9rem;
-
-                td.day {
+                .difficulty {
                     text-align: center;
                 }
+
+                .character_list_wrapper {
+
+                    .character_list {
+                        width: 98%;
+                        margin: 0 auto;
+                        font-size: 0.75rem;
+
+                        * {
+                            word-break: keep-all;
+                            white-space: nowrap;
+                        }
+
+                        td {
+                            color: black;
+
+                            &.not-person {
+                                font-weight: bold;
+                            }
+
+                            &.note {
+                                * {
+                                    word-break: initial;
+                                    white-space: initial;
+                                }
+                            }
+
+                            > span {
+                                display: table-row;
+                            }
+                        }
+                    }
+                }
+
+                .incident_list {
+                    font-size: 0.9rem;
+
+                    td.day {
+                        text-align: center;
+                    }
+                }
+            }
+
+            .writer {
+                margin-top: 4px;
+                font-size: 12px;
+                text-align: right;
             }
         }
     }

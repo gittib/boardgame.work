@@ -57,72 +57,75 @@ $isPreview ??= false;
     <div class="private_sheet_wrapper">
         <h2>@lang('非公開シート')</h2>
 
-        @if(!empty($scenario->writer))
-        <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
-        @endif
+        <div class="writer_wrapper">
 
-        <div class="private_sheet">
+            @if(!empty($scenario->writer))
+            <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
+            @endif
 
-            <h3 class="scenario_title">{{ $scenario->title }}</h3>
-            <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span>{{ $scenario->difficultStar }}</div>
+            <div class="private_sheet">
 
-            <table class="summary mx-center mt-16 mb-16">
-                <tr>
-                    <th>@lang('ルールY')</th>
-                    <td>{{ $scenario->ruleY->name }}</td>
-                </tr>
-                <tr>
-                    <th>@lang('ルールX1')</th>
-                    <td>{{ $scenario->ruleX1->name }}</td>
-                </tr>
-                @if($scenario->set->hasRuleX2)
-                <tr>
-                    <th>@lang('ルールX2')</th>
-                    <td>{{ $scenario->ruleX2->name }}</td>
-                </tr>
-                @endif
-            </table>
+                <h3 class="scenario_title">{{ $scenario->title }}</h3>
+                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span>{{ $scenario->difficultStar }}</div>
 
-            <div class="character_list_wrapper">
-                <table class="character_list">
+                <table class="summary mx-center mt-16 mb-16">
                     <tr>
-                        <th>@lang('キャラクター')</th>
-                        <th>@lang('役職')</th>
-                        <th>@lang('特記')</th>
+                        <th>@lang('ルールY')</th>
+                        <td>{{ $scenario->ruleY->name }}</td>
                     </tr>
-                    @foreach($scenario->characters as $chara)
                     <tr>
-                        <td class="name">{{ $chara->character->name }}</td>
-                        <td class="role @if(!$chara->role->isPerson) not-person @endif">
-                            <span>
-                                {!! $chara->role->hostility_type_html !!}
-                                {!! $chara->role->immortality_html !!}
-                                {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
-                            </span>
-                        </td>
-                        <td class="note">
-                            <span>{{ $chara->note }}</span>
-                        </td>
+                        <th>@lang('ルールX1')</th>
+                        <td>{{ $scenario->ruleX1->name }}</td>
                     </tr>
-                    @endforeach
+                    @if($scenario->set->hasRuleX2)
+                    <tr>
+                        <th>@lang('ルールX2')</th>
+                        <td>{{ $scenario->ruleX2->name }}</td>
+                    </tr>
+                    @endif
                 </table>
-            </div>
 
-            <div class="incident_list_wrapper mt-16">
-                <table class="incident_list mx-center">
-                    <tr>
-                        <th>@lang('日数')</th>
-                        <th>@lang('事件')</th>
-                        <th>@lang('犯人')</th>
-                    </tr>
-                    @foreach($scenario->incidents as $incident)
-                    <tr>
-                        <td class="day">{{ $incident->day }}</td>
-                        <td class="name">{{ $incident->name }}</td>
-                        <td class="criminal">{{ $incident->criminal?->name ?? $incident->criminal_name }}</td>
-                    </tr>
-                    @endforeach
-                </table>
+                <div class="character_list_wrapper">
+                    <table class="character_list">
+                        <tr>
+                            <th>@lang('キャラクター')</th>
+                            <th>@lang('役職')</th>
+                            <th>@lang('特記')</th>
+                        </tr>
+                        @foreach($scenario->characters as $chara)
+                        <tr>
+                            <td class="name">{{ $chara->character->name }}</td>
+                            <td class="role @if(!$chara->role->isPerson) not-person @endif">
+                                <span>
+                                    {!! $chara->role->hostility_type_html !!}
+                                    {!! $chara->role->immortality_html !!}
+                                    {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
+                                </span>
+                            </td>
+                            <td class="note">
+                                <span>{{ $chara->note }}</span>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+
+                <div class="incident_list_wrapper mt-16">
+                    <table class="incident_list mx-center">
+                        <tr>
+                            <th>@lang('日数')</th>
+                            <th>@lang('事件')</th>
+                            <th>@lang('犯人')</th>
+                        </tr>
+                        @foreach($scenario->incidents as $incident)
+                        <tr>
+                            <td class="day">{{ $incident->day }}</td>
+                            <td class="name">{{ $incident->name }}</td>
+                            <td class="criminal">{{ $incident->criminal?->name ?? $incident->criminal_name }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
 
