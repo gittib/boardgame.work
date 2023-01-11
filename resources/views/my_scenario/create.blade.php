@@ -22,6 +22,19 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
 
 @section('body_class', 'my_scenario-create')
 
+@section('bread')
+@if($isEdit)
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
+<li><a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</a></li>
+<li>@lang('脚本作成')</li>
+@else
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li><a href="{{ route('my_page') }}">@lang('マイページ')</a></li>
+<li>@lang('脚本作成')</li>
+@endif
+@endsection
+
 @section('contents')
 <h2>@lang(':set 脚本作成', ['set' => $set->name])</h2>
 
@@ -81,6 +94,12 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
             </dd>
         </dl>
         <dl>
+            <dt>@lang('特殊ルール')</dt>
+            <dd class="scenario_text">
+                <div class="input_wrapper">
+                    <textarea name="special_rule">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
+                </div>
+            </dd>
             <dt>@lang('キャラクター')</dt>
             <dd>
                 <ul class="scenario_character_list">

@@ -127,6 +127,7 @@ class MyScenarioController extends Controller
         $scenario->loops = $request->loops;
         $scenario->days = $request->days;
         $scenario->difficulty = $request->difficulty;
+        $scenario->special_rule = $request->special_rule;
         $scenario->title = $request->title;
         $scenario->feature = $request->feature;
         $scenario->advice = $request->advice;
@@ -172,6 +173,7 @@ class MyScenarioController extends Controller
             $scenario->loops = $request->loops;
             $scenario->days = $request->days;
             $scenario->difficulty = $request->difficulty;
+            $scenario->special_rule = $request->special_rule;
             $scenario->title = $request->title;
             $scenario->feature = $request->feature;
             $scenario->advice = $request->advice;

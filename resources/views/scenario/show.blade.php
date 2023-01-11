@@ -34,6 +34,11 @@ $isPreview ??= false;
             </tr>
         </table>
 
+        <h3 class="mt-20">@lang('特殊ルール')</h3>
+        <div class="special_rule_wrapper">
+            {!! nl2br(e($scenario->special_rule ?? __('特になし'))) !!}
+        </div>
+
         <h3 class="mt-20">@lang('事件')</h3>
         <table class="incident_list mx-center">
             <tr>

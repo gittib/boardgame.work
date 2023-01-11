@@ -15,6 +15,12 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
         margin: 0 auto;
         text-align: center;
 
+        .special_rule_wrapper {
+            border: double 3px;
+            text-align: start;
+            padding: 2px;
+        }
+
         .incident_list {
             th {
                 text-align: center;
