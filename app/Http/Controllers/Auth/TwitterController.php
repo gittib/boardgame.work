@@ -31,7 +31,7 @@ class TwitterController extends Controller
         $user->profile_img_url = $twitterUser->avatar;
         $user->save();
 
-        Auth::login($user);
+        Auth::login($user, true);
 
         $url = session()->pull('intended_url');
         if (!empty($url)) {
