@@ -21,6 +21,10 @@
     <body class="@yield('body_class')">
         @include('layouts.header')
 
+        <ul class="breadcrumb">
+            @yield('bread')
+        </ul>
+
         <main>
             @yield('contents')
         </main>

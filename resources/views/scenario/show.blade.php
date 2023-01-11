@@ -7,6 +7,12 @@ $isPreview ??= false;
 
 @section('body_class', 'scenario-show')
 
+@section('bread')
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
+<li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@endsection
+
 @section('contents')
 <h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
 

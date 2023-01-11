@@ -6,6 +6,11 @@
 
 @section('body_class', 'scenario-index')
 
+@section('bread')
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li>@lang('脚本一覧')</li>
+@endsection
+
 @section('contents')
 <h1>@lang('惨劇脚本一覧')</h1>
 

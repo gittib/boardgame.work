@@ -6,9 +6,12 @@
 
 @section('body_class', 'user-mypage')
 
-@section('contents')
-    <a href="{{ route('top.index') }}">TOPページ</a><br>
+@section('bread')
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li>@lang('マイページ')</li>
+@endsection
 
+@section('contents')
     <div class="header_console button_wrapper">
         <div class="button js-create_scenario_button">
             @lang('脚本作成開始')
