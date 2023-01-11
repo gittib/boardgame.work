@@ -1,8 +1,10 @@
+@use 'parts';
+
 $input_margin: 8px;
 
 .error_summary {
     margin: 16px;
-    background-color: #f004;
+    background-color: parts.$error_background_color;
 
     ul {
         padding-left: 28px;

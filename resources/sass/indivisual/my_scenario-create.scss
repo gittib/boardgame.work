@@ -1,3 +1,5 @@
+@use '../parts';
+
 body.my_scenario-create {
     padding-bottom: 32px;
 
@@ -55,6 +57,12 @@ body.my_scenario-create {
 
             &:first-child {
                 border-top: none;
+            }
+
+            .is-error {
+                background-color: parts.$error_background_color;
+                padding: 0 4px;
+                margin-bottom: 4px;
             }
         }
     }

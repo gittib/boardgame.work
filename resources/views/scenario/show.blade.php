@@ -121,7 +121,7 @@ $isPreview ??= false;
                         <tr>
                             <td class="day">{{ $incident->day }}</td>
                             <td class="name">{{ $incident->name }}</td>
-                            <td class="criminal">{{ $incident->criminal?->name ?? $incident->criminal_name }}</td>
+                            <td class="criminal">{{ $incident->criminal_name_str }}</td>
                         </tr>
                         @endforeach
                     </table>

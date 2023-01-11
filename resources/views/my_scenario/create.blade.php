@@ -13,6 +13,8 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
     }
     return [$key => $star.' '.$d];
 });
+
+$isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')));
 ?>
 @extends('layouts.layout')
 
@@ -108,20 +110,27 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
             <dd>
                 <ul class="scenario_incident_list">
                     @for($i = 1 ; $i <= 8 ; $i++)
-                    <?php $incidentOnDb = optional($scenario->incidents->firstWhere('day', $i)); ?>
-                    <li class="inline_block_wrapper" data-day="{{ $i }}">
+                    <?php
+                        $incidentOnDb = optional($scenario->incidents->firstWhere('day', $i));
+                        $selectedIncidentId = $helper->inputVal("scenario_incident.$i.incident_id") ?? $incidentOnDb->incident_id;
+                        $criminalCharacterId = $helper->inputVal("scenario_incident.$i.character_id") ?? $incidentOnDb->criminal?->character_id ?? $incidentOnDb->scenario_character_id;
+                    ?>
+                    <li class="inline_block_wrapper incident_wrapper" data-day="{{ $i }}">
                         <span>@lang(':day日目', ['day' => $i])</span>
                         <span class="select_wrapper">
-                            {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $helper->inputVal("scenario_incident.$i.incident_id") ?? $incidentOnDb->incident_id, ['placeholder' => '']) }}
+                            {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
+                                ['placeholder' => '', 'class' => 'incident']) }}
                         </span>
                         <span>
                             @lang('犯人')：
                             <span class="select_wrapper">
-                                {{ Form::select('scenario_incident['.$i.'][character_id]', $charaSelect,
-                                    $helper->inputVal("scenario_incident.$i.character_id") ?? optional($incidentOnDb->criminal)->character_id,
-                                ['placeholder' => '', 'class' => 'criminal']) }}
+                                {{ Form::select('scenario_incident['.$i.'][character_id]', $isBoard($criminalCharacterId) ? __('tragedy_master.board_name') : $charaSelect,
+                                    $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
                             </span>
                         </span>
+                        @error("scenario_incident.$i.*")
+                        <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
+                        @enderror
                     </li>
                     @endfor
                 </ul>
@@ -157,10 +166,17 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
         </div>
     </form>
 </div>
+<div class="clone_base" style="display:none;">
+    <option class="js-crowd_criminal_list_html"></option>
+    @foreach(__('tragedy_master.board_name') as $key => $boardName)
+    <option class="js-crowd_criminal_list_html" value="{{ $key }}">@lang(':boardの群像', ['board' => $boardName])</option>
+    @endforeach
+</div>
 @endsection
 
 @section('additional_scripts')
 <script>
 const CHARA_DELETE_CONFIRM_MESSAGE = "@lang('___CHARA___を削除します。よろしいですか？')";
+const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id') }};
 </script>
 @endsection

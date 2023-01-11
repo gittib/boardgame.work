@@ -2,6 +2,7 @@ if ($('body').hasClass('my_scenario-create')) {
     function updateLists() {
         setIndexNameToListItems();
 
+        const crowdCriminalListHtml = $('.clone_base .js-crowd_criminal_list_html');
         let criminalListHtml = '<option></option>';
         $('select[data-key_name=character_id] option:selected').each(function() {
             const $option = $(this);
@@ -9,13 +10,23 @@ if ($('body').hasClass('my_scenario-create')) {
         });
         $('select.criminal').each(function() {
             const $select = $(this);
+            const $selectIncident = $select.closest('.incident_wrapper').find('select.incident');
+            const incidentId = Number($selectIncident.val());
+
             const charaId = $select.val();
-            $select.html(criminalListHtml);
+            if (CROWD_INCIDENT_IDS.includes(incidentId)) {
+                $select.html(crowdCriminalListHtml.clone());
+            } else {
+                $select.html(criminalListHtml);
+            }
             $select.val(charaId);
         });
     }
 
-    updateLists();
+    $(() => {
+        $('[name=days]').click();
+        updateLists();
+    });
 
     $('[name=days]').on('change click', function() {
         const d = $(this).val();
@@ -28,7 +39,6 @@ if ($('body').hasClass('my_scenario-create')) {
             }
         });
     });
-    $('[name=days]').click();
 
     $('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', async function() {
         const $self = $(this);
@@ -43,6 +53,9 @@ if ($('body').hasClass('my_scenario-create')) {
         }
     });
     $('.scenario_character_list').on('click change', 'select[data-key_name=character_id]', function() {
+        updateLists();
+    });
+    $('.scenario_incident_list select.incident').on('click change', function() {
         updateLists();
     });
     $('.scenario_character_list').on('change', '.character_row select[data-key_name=character_id]', function() {

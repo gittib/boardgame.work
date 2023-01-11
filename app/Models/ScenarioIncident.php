@@ -46,4 +46,19 @@ class ScenarioIncident extends Model
         }
         return $this->name;
     }
+
+    /**
+     * 犯人名を返す
+     * 群像事件の場合を考慮する
+     */
+    public function getcriminalNameStrAttribute(): string {
+        if (!empty($this->criminal_name)) {
+            return $this->criminal_name;
+        }
+        if (!empty($this->criminal?->name)) {
+            return $this->criminal?->name;
+        }
+        $boardName = __('tragedy_master.board_name.'.$this->scenario_character_id);
+        return __(':boardの群像', ['board' => $boardName]);
+    }
 }
