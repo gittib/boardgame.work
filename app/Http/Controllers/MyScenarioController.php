@@ -150,6 +150,7 @@ class MyScenarioController extends Controller
                     $tmp = new ScenarioIncident([
                         'day' => $day,
                         'incident_id' => $incident['incident_id'],
+                        'special_note' => $incident['special_note'] ?? null,
                     ]);
                     $tmp->criminal_name = Character::find($incident['character_id'])?->name ?? __(':boardの群像', ['board' => __('tragedy_master.board_name.'.$incident['character_id'])]);
                     $scenario->incidents[] = $tmp;
@@ -185,7 +186,6 @@ class MyScenarioController extends Controller
                 $scenario->characters()->save(new ScenarioCharacter([
                     'character_id' => $chara['character_id'],
                     'role_id' => $chara['role_id'],
-                    //'the_name' => $chara['the_name'],
                     'note' => $chara['note'] ?? null,
                 ]));
             }
@@ -196,6 +196,18 @@ class MyScenarioController extends Controller
                 if ($day > $request->days) break;
 
                 if (!empty($incident['incident_id']) && !empty($incident['character_id'])) {
+
+                    if (!empty($incident['special_note'])) {
+                        // 偽装事件公開名の入力内容をコードに変換し、多言語対応できるようにする
+                        $aIncidents = __('tragedy_master.incident');
+                        foreach ($aIncidents as $code => $aIncident) {
+                            if ($aIncident['name'] == $incident['special_note']) {
+                                $incident['special_note'] = $code;
+                                break;
+                            }
+                        }
+                    }
+
                     if ($this->isCrowd($incident['incident_id'])) {
                         // 群像事件はボードが犯人
                         if (in_array($incident['character_id'], $this->boardIds)) {
@@ -203,6 +215,8 @@ class MyScenarioController extends Controller
                                 'day' => $day,
                                 'incident_id' => $incident['incident_id'],
                                 'scenario_character_id' => $incident['character_id'],
+                                'special_note' => $incident['special_note'] ?? null,
+                                'note' => $incident['note'] ?? null,
                             ]));
                         } else {
                             assert(false, '群像事件だけど犯人設定がおかしい');
@@ -215,6 +229,8 @@ class MyScenarioController extends Controller
                                 'day' => $day,
                                 'incident_id' => $incident['incident_id'],
                                 'scenario_character_id' => $scenarioChara->id,
+                                'special_note' => $incident['special_note'] ?? null,
+                                'note' => $incident['note'] ?? null,
                             ]));
                         } else {
                             assert(false, '通常の事件だけど犯人設定がおかしい');
