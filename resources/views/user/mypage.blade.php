@@ -24,6 +24,9 @@
             <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
                 [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span> {{$scenario->title}}
             </a>
+            @if($scenario->is_open)
+                <span class="open">@lang('公開中')</span>
+            @endif
         </li>
     @endforeach
     </ul>

@@ -13,6 +13,16 @@
         .my_scenario_list {
             > li {
                 margin: 10px;
+                border-bottom: 1px solid black;
+                padding-bottom: 2px;
+
+                .open {
+                    margin-left: 4px;
+                    padding: 0 4px;
+                    background: gold;
+                    font-weight: bold;
+                    display: inline-block;
+                }
             }
         }
     }
