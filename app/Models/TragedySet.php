@@ -48,7 +48,12 @@ class TragedySet extends Model
     }
 
     public function getRolesAttribute() {
-        return $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
+        $roles = $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
+        $fragments = TragedyRole::where('code', 'Fragments')->firstOrFail();
+        if (empty($roles->first(fn($r) => $r->id == $fragments->id))) {
+            $roles[] = $fragments;
+        }
+        return $roles;
     }
 
     public function getRuleYsAttribute() {

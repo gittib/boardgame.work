@@ -102,7 +102,7 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
             <dt>@lang('特殊ルール')</dt>
             <dd class="scenario_text">
                 <div class="input_wrapper">
-                    <textarea name="special_rule">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
+                    <textarea name="special_rule" placeholder="@lang('messages.special_rule_placeholder')">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
                 </div>
             </dd>
             <dt>@lang('キャラクター')</dt>
