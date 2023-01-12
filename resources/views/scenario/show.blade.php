@@ -43,18 +43,13 @@ $isPreview ??= false;
         <table class="incident_list mx-center">
             <tr>
                 <th>@lang('日数')</th>
-                <th>@lang('事件')</th>
+                <th>@lang('事件予定')</th>
             </tr>
             @for($d = 1 ; $d <= $scenario->days ; $d++)
             <?php $incident = $scenario->incidents->firstWhere('day', $d); ?>
             <tr>
                 <td class="day">{{ $d }}</td>
-                <td>
-                @if(!empty($incident))
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    {{ $incident->publicName }}
-                @endif
-                </td>
+                <td class="name">{{ $incident?->publicName ?? '' }}</td>
             </tr>
             @endfor
         </table>

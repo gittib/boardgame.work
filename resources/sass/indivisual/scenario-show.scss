@@ -28,6 +28,11 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
 
             td.day {
                 text-align: center;
+                font-weight: bold;
+            }
+            td.name {
+                min-width: 200px;
+                text-align: start;
             }
         }
     }

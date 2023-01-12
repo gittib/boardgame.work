@@ -26,13 +26,17 @@ class PostScenario extends FormRequest
             'title' => 'required_with:is_open',
             'rule_x2_id' => 'different:rule_x1_id',
             'scenario_chara.*.character_id' => 'distinct',
+            'feature' => 'required_with:is_open',
+            'advice' => 'required_with:is_open',
         ];
     }
 
     public function messages() {
         return [
             'scenario_chara.*.character_id.distinct' => __(':attributeに重複があります。'),
-            'title.required_with' => __('公開する場合は:attributeをつけてください。'),
+            'title.required_with' => __('公開する場合は:attributeを設定してください。'),
+            'feature.required_with' => __('公開する場合は:attributeを設定してください。'),
+            'advice.required_with' => __('公開する場合は:attributeを設定してください。'),
         ];
     }
 
@@ -40,6 +44,8 @@ class PostScenario extends FormRequest
         return [
             'title' => __('脚本タイトル'),
             'scenario_chara.*.character_id' => __('登場人物'),
+            'feature' => __('脚本の特徴'),
+            'advice' => __('脚本家への指針'),
         ];
     }
 }

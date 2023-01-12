@@ -154,17 +154,25 @@ class MyScenarioController extends Controller
                     }
 
                     // ルールの紐づけ
+
+                    // とりあえずバグらないように適当なルールIDで初期化しておく
+                    $scenario->rule_y_id = $set->ruleYs->first()->id;
+                    $scenario->rule_x1_id = $set->ruleXs->first()->id;
+                    if ($set->hasRuleX2) {
+                        $scenario->rule_x2_id = $set->ruleXs->first()->id;
+                    }
+
                     foreach($set->rules as $rule) {
                         $ruleName = trim($rule->name);
-                        if ($data->ruleY == $ruleName) {
+                        if (trim($data->ruleY) == $ruleName) {
                             $scenario->rule_y_id = $rule->id;
                         }
 
-                        if ($data->ruleX1 == $ruleName) {
+                        if (trim($data->ruleX1) == $ruleName) {
                             $scenario->rule_x1_id = $rule->id;
                         }
 
-                        if (($data->ruleX2 ?? null) == $ruleName) {
+                        if (trim($data->ruleX2 ?? '') == $ruleName) {
                             $scenario->rule_x2_id = $rule->id;
                         }
                     }
@@ -175,7 +183,7 @@ class MyScenarioController extends Controller
                         } else {
                             $scenario->rule_x1_id = $set->rules->where('code', 'Indefinite-Factor-kai-kai')->first()->id;
                         }
-                    } else if (Str::startsWith($data->ruleX1 ?? null, '世界線を')) {
+                    } else if (Str::startsWith($data->ruleX1, '世界線を')) {
                         $scenario->rule_x1_id = TragedyRule::where('code', 'Beyond-the-World-Line')->first()->id;
                     }
 
@@ -189,20 +197,11 @@ class MyScenarioController extends Controller
                         $scenario->rule_x2_id = TragedyRule::where('code', 'Beyond-the-World-Line')->first()->id;
                     }
 
-                    if (empty($scenario->rule_x1_id)) {
-                        // TODO: ほんとはバグらないようによしなに登録させたい
-                        throw new Exception('rule x1 is invalid');
-                    }
-                    if (empty($scenario->rule_x2_id) && $set->hasRuleX2) {
-                        // TODO: ほんとはバグらないようによしなに登録させたい
-                        throw new Exception('rule x2 is invalid');
-                    }
-
                     $scenario->save();
 
                     // キャラの登録
-                    $charaNames = collect(__('tragedy_master.chara_name'))->mapWithKeys(fn($name, $code) => [$name => $code]);
-                    $roleNames = collect(__('tragedy_master.role'))->mapWithKeys(fn($val, $code) => [$val['name'] => $code]);
+                    $charaNames = collect(__('tragedy_master.chara_name'))->mapWithKeys(fn($name, $code) => [trim($name) => $code]);
+                    $roleNames = collect(__('tragedy_master.role'))->mapWithKeys(fn($val, $code) => [trim($val['name']) => $code]);
                     $scenarioCharas = collect();
                     foreach($data->characters as $chara) {
                         if (empty($chara->name) || !isset($chara->role) || !isset($chara->note)) {
@@ -232,7 +231,7 @@ class MyScenarioController extends Controller
                     }
 
                     //  事件の登録
-                    $incidentNames = collect(__('tragedy_master.incident'))->mapWithKeys(fn($val, $code) => [$val['name'] => $code]);
+                    $incidentNames = collect(__('tragedy_master.incident'))->mapWithKeys(fn($val, $code) => [trim($val['name']) => $code]);
                     foreach($data->incidents as $inc) {
                         if (empty($inc->day) || empty($inc->name) || empty($inc->criminal)) {
                             throw new Exception('invalid incident data');
