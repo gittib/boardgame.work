@@ -99,7 +99,7 @@ $isPreview ??= false;
                 <div class="character_list_wrapper">
                     <table class="character_list">
                         <tr>
-                            <th>@lang('キャラクター')</th>
+                            <th>@lang('人物')</th>
                             <th>@lang('役職')</th>
                             <th>@lang('特記')</th>
                         </tr>
@@ -124,7 +124,7 @@ $isPreview ??= false;
                 <div class="incident_list_wrapper mt-16">
                     <table class="incident_list mx-center">
                         <tr>
-                            <th>@lang('日数')</th>
+                            <th>@lang('日付')</th>
                             <th>@lang('事件')</th>
                             <th>@lang('犯人')</th>
                         </tr>

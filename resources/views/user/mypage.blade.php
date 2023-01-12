@@ -27,6 +27,13 @@
         </li>
     @endforeach
     </ul>
+
+    <form action="{{ route('my-scenario.store_from_json') }}" enctype="multipart/form-data" method="post" class="mt-60">
+        @csrf
+        @lang('ペンスキーの惨劇RoopeR脚本部屋から自作脚本データを登録')
+        <input type="file" name="scenario_json">
+        <input type="submit" value="@lang('脚本データを送信')" class="button">
+    </form>
 @endsection
 
 @section('popups')

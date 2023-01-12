@@ -23,6 +23,7 @@ class PostScenario extends FormRequest
      */
     public function rules() {
         return [
+            'title' => 'required_with:is_open',
             'rule_x2_id' => 'different:rule_x1_id',
             'scenario_chara.*.character_id' => 'distinct',
         ];
@@ -31,11 +32,13 @@ class PostScenario extends FormRequest
     public function messages() {
         return [
             'scenario_chara.*.character_id.distinct' => __(':attributeに重複があります。'),
+            'title.required_with' => __('公開する場合は:attributeをつけてください。'),
         ];
     }
 
     public function attributes() {
         return [
+            'title' => __('脚本タイトル'),
             'scenario_chara.*.character_id' => __('登場人物'),
         ];
     }

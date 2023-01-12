@@ -162,10 +162,6 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
                             <input name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
                         </span>
                         @endif
-                        <span class="label_and_input_wrapper">
-                            <span class="label_name">@lang('特記事項')</span>
-                            <input name="scenario_incident[{{$i}}][note]" value="{{ $helper->inputVal("scenario_incident.$i.note") ?? $incidentOnDb->note }}">
-                        </span>
                         @error("scenario_incident.$i.*")
                         <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
                         @enderror

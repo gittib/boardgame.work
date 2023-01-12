@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\TragedySet;
+use App\Models\TragedyRule;
+use App\Models\TragedyRole;
 use App\Models\Character;
 use App\Models\Incident;
 use App\Models\Scenario;
@@ -13,6 +15,9 @@ use App\Models\ScenarioIncident;
 use App\Http\Requests\PostScenario;
 use Auth;
 use DB;
+use Exception;
+use Throwable;
+use Str;
 
 class MyScenarioController extends Controller
 {
@@ -63,17 +68,6 @@ class MyScenarioController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -114,6 +108,161 @@ class MyScenarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * ペンスキーの惨劇RoopeR脚本部屋に登録した自作脚本データをこちらのサイトへインポートする
+     */
+    public function storeFromJson(Request $request)
+    {
+        $request->validate([
+            'scenario_json' => 'required|file',
+        ]);
+
+        $jsonData = json_decode($request->scenario_json->get());
+        if ($jsonData->thisIs != 'sangekiRoopeR') return back();
+
+        try {
+            DB::transaction(function() use($jsonData) {
+                foreach($jsonData->scenarioList as $data) {
+
+                    // ハッシュ値が重複する脚本を削除
+                    $oldScenarios = Scenario::where('import_hash', $data->hash)
+                        ->where('user_id', Auth::id())
+                        ->get();
+                    foreach($oldScenarios as $scenario) {
+                        $scenario->characters()->delete();
+                        $scenario->incidents()->delete();
+                        $scenario->delete();
+                    }
+
+                    // jsonデータから脚本を登録
+                    $set = TragedySet::where('abbreviation', $data->set)->firstOrFail();
+                    $scenario = new Scenario([
+                        'set_id' => $set->id,
+                        'user_id' => Auth::id(),
+                        'loops' => $data->loop,
+                        'days' => $data->day,
+                        'difficulty' => $data->difficulty ?: 0,
+                        'title' => $data->title,
+                        'advice' => $data->advice,
+                        'feature' => $data->note,
+                        'import_hash' => $data->hash,
+                    ]);
+                    if (!empty($data->specialRule)) {
+                        $scenario->special_rule = $data->specialRule;
+                    }
+
+                    // ルールの紐づけ
+                    foreach($set->rules as $rule) {
+                        $ruleName = trim($rule->name);
+                        if ($data->ruleY == $ruleName) {
+                            $scenario->rule_y_id = $rule->id;
+                        }
+
+                        if ($data->ruleX1 == $ruleName) {
+                            $scenario->rule_x1_id = $rule->id;
+                        }
+
+                        if (($data->ruleX2 ?? null) == $ruleName) {
+                            $scenario->rule_x2_id = $rule->id;
+                        }
+                    }
+
+                    if (Str::startsWith($data->ruleX1, '不定因子')) {
+                        if ($data->set == 'BTX') {
+                            $scenario->rule_x1_id = $set->rules->where('code', 'indefinite-factor-kai')->first()->id;
+                        } else {
+                            $scenario->rule_x1_id = $set->rules->where('code', 'Indefinite-Factor-kai-kai')->first()->id;
+                        }
+                    } else if (Str::startsWith($data->ruleX1 ?? null, '世界線を')) {
+                        $scenario->rule_x1_id = TragedyRule::where('code', 'Beyond-the-World-Line')->first()->id;
+                    }
+
+                    if (Str::startsWith($data->ruleX2 ?? null, '不定因子')) {
+                        if ($data->set == 'BTX') {
+                            $scenario->rule_x2_id = $set->rules->where('code', 'indefinite-factor-kai')->first()->id;
+                        } else {
+                            $scenario->rule_x2_id = $set->rules->where('code', 'Indefinite-Factor-kai-kai')->first()->id;
+                        }
+                    } else if (Str::startsWith($data->ruleX2 ?? null, '世界線を')) {
+                        $scenario->rule_x2_id = TragedyRule::where('code', 'Beyond-the-World-Line')->first()->id;
+                    }
+
+                    if (empty($scenario->rule_x1_id)) {
+                        // TODO: ほんとはバグらないようによしなに登録させたい
+                        throw new Exception('rule x1 is invalid');
+                    }
+                    if (empty($scenario->rule_x2_id) && $set->hasRuleX2) {
+                        // TODO: ほんとはバグらないようによしなに登録させたい
+                        throw new Exception('rule x2 is invalid');
+                    }
+
+                    $scenario->save();
+
+                    // キャラの登録
+                    $charaNames = collect(__('tragedy_master.chara_name'))->mapWithKeys(fn($name, $code) => [$name => $code]);
+                    $roleNames = collect(__('tragedy_master.role'))->mapWithKeys(fn($val, $code) => [$val['name'] => $code]);
+                    $scenarioCharas = collect();
+                    foreach($data->characters as $chara) {
+                        if (empty($chara->name) || !isset($chara->role) || !isset($chara->note)) {
+                            throw new Exception('invalid chara data');
+                        }
+
+                        $name = strtoupper(trim($chara->name));
+                        $name = str_replace([' ', '　', ], '', $name);
+                        $name = preg_replace('/A.?I.?/', 'A.I.', $name);
+                        $name = str_replace('?', '？', $name);
+                        $charaCode = $charaNames[$name] ?? null;
+
+                        $role = trim($chara->role) ?: __('tragedy_master.role.Person.name');
+                        $role = str_replace([' ', '　', ], '', $role);
+                        $role = str_replace('/', '／', $role);
+                        $roleCode = $roleNames[$role] ?? null;
+
+                        if (!empty($charaCode) && !empty($roleCode)) {
+                            $sch = ScenarioCharacter::create([
+                                'scenario_id' => $scenario->id,
+                                'character_id' => Character::where('code', $charaCode)->first()->id,
+                                'role_id' => TragedyRole::where('code', $roleCode)->first()->id,
+                                'note' => $chara->note,
+                            ]);
+                            $scenarioCharas[] = $sch;
+                        }
+                    }
+
+                    //  事件の登録
+                    $incidentNames = collect(__('tragedy_master.incident'))->mapWithKeys(fn($val, $code) => [$val['name'] => $code]);
+                    foreach($data->incidents as $inc) {
+                        if (empty($inc->day) || empty($inc->name) || empty($inc->criminal)) {
+                            throw new Exception('invalid incident data');
+                        }
+
+                        $name = trim($inc->name);
+                        $name = str_replace([' ', '　', ], '', $name);
+                        $incCode = $incidentNames[$name] ?? null;
+
+                        $criminal = trim($inc->criminal);
+                        $criminal = str_replace([' ', '　', ], '', $criminal);
+                        $scenario_character_id = $scenarioCharas->filter(fn($c) => $c->name == $criminal)?->first()?->id;
+
+                        if (!empty($incCode) && !empty($scenario_character_id)) {
+                            ScenarioIncident::create([
+                                'scenario_id' => $scenario->id,
+                                'day' => $inc->day,
+                                'incident_id' => Incident::where('code', $incCode)->first()->id,
+                                'scenario_character_id' => $scenario_character_id,
+                            ]);
+                        }
+                    }
+                }
+            });
+        } catch(Throwable $ignore) {
+            // 想定外のファイルを投げられたら、一切処理せずに戻る
+            return back();
+        }
+
+        return back();
     }
 
     public function preview(Request $request)
@@ -216,7 +365,6 @@ class MyScenarioController extends Controller
                                 'incident_id' => $incident['incident_id'],
                                 'scenario_character_id' => $incident['character_id'],
                                 'special_note' => $incident['special_note'] ?? null,
-                                'note' => $incident['note'] ?? null,
                             ]));
                         } else {
                             assert(false, '群像事件だけど犯人設定がおかしい');
@@ -230,7 +378,6 @@ class MyScenarioController extends Controller
                                 'incident_id' => $incident['incident_id'],
                                 'scenario_character_id' => $scenarioChara->id,
                                 'special_note' => $incident['special_note'] ?? null,
-                                'note' => $incident['note'] ?? null,
                             ]));
                         } else {
                             assert(false, '通常の事件だけど犯人設定がおかしい');

@@ -34,6 +34,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::get('home', 'UserController@mypage')->name('my_page');
         Route::resource('my-scenario', 'MyScenarioController', ['except' => ['show']]);
         Route::match(['post', 'put'], 'my-scenario/creating/preview', 'MyScenarioController@preview')->name('my-scenario.preview');
+        Route::post('my-scenario/upload/json', 'MyScenarioController@storeFromJson')->name('my-scenario.store_from_json');
     });
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
