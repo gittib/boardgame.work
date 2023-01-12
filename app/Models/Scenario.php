@@ -28,18 +28,6 @@ class Scenario extends Model
         return $this->belongsTo(TragedySet::class, 'set_id');
     }
 
-    public function ruleY() {
-        return $this->belongsTo(TragedyRule::class, 'rule_y_id');
-    }
-
-    public function ruleX1() {
-        return $this->belongsTo(TragedyRule::class, 'rule_x1_id');
-    }
-
-    public function ruleX2() {
-        return $this->belongsTo(TragedyRule::class, 'rule_x2_id');
-    }
-
     public function characters() {
         return $this->hasMany(ScenarioCharacter::class);
     }
@@ -58,5 +46,15 @@ class Scenario extends Model
             $s .= $i <= $this->difficulty ? '★' : '☆';
         }
         return $s;
+    }
+
+    public function getRuleYAttribute(): ?TragedyRule {
+        return $this->set->rules->firstWhere('id', $this->rule_y_id);
+    }
+    public function getRuleX1Attribute(): ?TragedyRule {
+        return $this->set->rules->firstWhere('id', $this->rule_x1_id);
+    }
+    public function getRuleX2Attribute(): ?TragedyRule {
+        return $this->set->rules->firstWhere('id', $this->rule_x2_id);
     }
 }
