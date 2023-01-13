@@ -13,7 +13,7 @@ class ScenarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $query = Scenario::with([
             'writer',
@@ -23,7 +23,12 @@ class ScenarioController extends Controller
             ->orderBy('difficulty')
             ->orderBy('id');
 
-        // TODO: 検索条件指定
+        // 検索条件指定
+        if (!empty($request->set_abbr)) {
+            $query->whereHas('set', function($q) use($request) {
+                $q->where('tragedy_sets.abbreviation', $request->set_abbr);
+            });
+        }
 
         $scenarios = $query->paginate(100);
         return view('scenario.index', compact('scenarios'));

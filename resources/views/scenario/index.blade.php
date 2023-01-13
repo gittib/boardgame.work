@@ -16,7 +16,13 @@
 
 <div class="">
 
-    <div class="button_wrapper mt-24">
+<!-- TODO: 検索条件を表示 -->
+
+    <div class="button_wrapper">
+        <p class="button js-narrow_set">@lang('惨劇セットで絞り込む')</p>
+    </div>
+
+    <div class="button_wrapper">
         <div class="button js-show_title">@lang('脚本名を表示')</div>
         <div class="button js-hide_title">@lang('脚本名を隠す')</div>
     </div>
@@ -28,7 +34,7 @@
                 <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
                     @lang('脚本')[{{ $scenario->id }}]
                 </a>
-                <span class="writer">@lang('作者：:writer', ['writer' => e(optional($scenario->writer)->name)])</span>
+                <span class="writer">@lang('作者：:writer', ['writer' => e($scenario->writer?->name)])</span>
             </div>
             <div class="title">
                 <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
@@ -46,8 +52,16 @@
 
 </div>
 <div style="display:none;">
-    <p id="js-show_title_confirm_message">@lang('脚本名を表示します。<br>脚本名を見るとネタバレになるかも知れませんが、よろしいですか？')</p>
+    <p id="js-show_title_confirm_message">@lang('脚本名を見るとネタバレになるかも知れませんが、表示してもよろしいですか？')</p>
+    <form id="narrow_form">
+        {{ Form::hidden('page', 1) }}
+        {{ Form::hidden('set_abbr') }}
+    </form>
 </div>
+@endsection
+
+@section('popups')
+@include('parts.popups.select_set')
 @endsection
 
 @section('additional_scripts')
@@ -64,6 +78,11 @@ $('.js-hide_title').on('click', () => {
     $('ul.scenario_list .title').hide();
     $('.js-hide_title').hide();
     $('.js-show_title').show();
+});
+$('.js-narrow_set').on('click', async () => {
+    const res = await openPopup('js-popup-select_set');
+    $('[name=set_abbr]').val(res.info);
+    $('#narrow_form').submit();
 });
 </script>
 @endsection
