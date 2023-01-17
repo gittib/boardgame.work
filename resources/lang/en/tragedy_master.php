@@ -3,13 +3,13 @@
 return [
     'set_name' => [
         'FS' => 'First Steps',
-        'BTX' => 'Basic Tragedy Χ',
+        'BTX' => 'Basic Tragedy',
         'MZ' => 'Midnight Zone',
         'MC' => 'Mistery Circle',
-        'MCX' => 'Mistery Circle Χ',
+        'MCX' => 'Mistery Circle',
         'HS' => 'Haunted Stage',
-        'HSA' => 'Haunted Stage Again',
-        'WM' => 'Weird Mythology',
+        'HSA' => 'Prime Evil',
+        'WM' => 'Cosmic Mythology',
         'LL' => 'Last Liar',
         'AH' => 'Another Horizon',
         'AHR' => 'Another Horizon Revised',
@@ -17,73 +17,73 @@ return [
     ],
 
     'board_name' => [
-        1001 => '神社',
-        1002 => '病院',
-        1003 => '都市',
-        1004 => '学校',
-        1099 => 'その他',
+        1001 => 'Shrine',
+        1002 => 'Hospital',
+        1003 => 'City',
+        1004 => 'School',
+        1099 => 'Other',
     ],
 
     'rule_name' => [
-        'Murder-Plot' => '殺人計画',
-        'Avengers-Torch' => '復讐者の灯火',
-        'place-To-Protect' => '守るべき場所',
-        'Shadow-Of-The-Ripper' => '切り裂き魔の影',
-        'Disturbing-Rumors' => '不穏な噂',
-        'The-Worst-Retired-Book' => '最低の却本',
-        'The-Sealed-Thing' => '封印されしもの',
-        'Sign-me-up' => '僕と契約しようよ！',
-        'Future-Alteration-Plan' => '未来改変プラン',
-        'The-Existence-of-a-Giant-Time-Bomb-X' => '巨大時限爆弾Xの存在',
-        'Friendship-Circle' => '友情サークル',
-        'Delusion-Expanding-Virus' => '妄想拡大ウイルス',
-        'Thread-of-Causality' => '因果の糸',
-        'Lurking-Killer' => '潜む殺人鬼',
-        'Love-Landscape' => '恋愛風景',
-        'indefinite-factor-kai' => '不定因子χ ',
-        'Secret-Record' => 'シークレットレコード',
-        'Battle-of-the-Han' => '漢の戦い',
-        'Creeping-Demon-Hand' => '忍び寄る魔手',
-        'Bond-of-Causes-and-Effects' => '因果の絆',
-        'Hatred-Love-Spiral' => '憎愛スパイラル',
-        'Gods-Dice' => '神のサイコロ',
-        'Indefinite-Factor-kai-kai' => '不定因子χ 怪',
-        'Showtime-of-Death' => '死のショウタイム',
-        'Uncommunicating-Heart' => '通わぬ心',
-        'Witchs-Tea-Party' => '魔女のお茶会',
-        'The-one-that-proclaims-destruction' => '滅亡を謳うもの',
-        'Kumiai-Jiken-Quilt' => '組み重なり事件キルト',
-        'Plans-on-a-Tight-Rope' => 'タイトロープ上の計画',
-        'The-Black-School' => '黒の学園',
-        'Strychnine-drops' => 'ストリキニーネの雫',
-        'Isolation-Ward-Psycho' => '隔離病棟サイコ',
-        'I-am-a-great-detective' => '私は名探偵',
-        'Dance-of-Fools' => '愚者のダンス',
-        'The-Scent-of-Gunpowder' => '火薬の香り',
-        'Absolute-Will' => '絶対の意思',
-        'Twins-Trick' => '双子のトリック',
-        'Noble-Blood' => '高貴なる血族',
-        'Beasts-of-the-Moonlit-Night' => '月夜の獣',
-        'Nightmare-of-the-Night-Mist' => '夜霧の悪夢',
-        'He-Who-Rises-from-the-Grave' => '墓所より出でし者',
-        'Land-of-the-Damned' => '呪われし地',
-        'Those-who-have-a-peculiarity' => '一癖あるヤツラ',
-        'The-Witchs-Curse' => '魔女の呪い',
-        'The-Girl-with-the-Key' => '鍵たる少女',
-        'Fear-and-Delusion' => '恐慌と妄執と',
-        'People-who-wont-listen' => '話を聞かない人々',
-        'Monsters-in-the-Dark' => '怪物の暗躍',
-        'The-Chorus-to-the-Outer-God' => '外なる神への大合唱',
-        'The-Word-of-Dagon-sama' => 'だごん様の御言葉',
-        'The-King-in-Yellow' => '黄衣の王',
+        'Murder-Plot' => 'Murder Plan',
+        'Avengers-Torch' => 'Light of the Avenger',
+        'place-To-Protect' => 'A Place to Protect',
+        'Shadow-Of-The-Ripper' => 'Shadow of the Ripper',
+        'Disturbing-Rumors' => 'An Unsettling Rumour',
+        'The-Worst-Retired-Book' => 'A Hideous Script',
+        'The-Sealed-Thing' => 'The Sealed Item',
+        'Sign-me-up' => 'Sign With Me',
+        'Future-Alteration-Plan' => 'Change of Future',
+        'The-Existence-of-a-Giant-Time-Bomb-X' => 'Giant Time Bomb',
+        'Friendship-Circle' => 'Circle of Friends',
+        'Delusion-Expanding-Virus' => 'Paranoia Virus',
+        'Thread-of-Causality' => 'Threads of Fate',
+        'Lurking-Killer' => 'The Hidden Freak',
+        'Love-Landscape' => 'A Love Affair',
+        'indefinite-factor-kai' => 'Unknown Factor X',
+        'Secret-Record' => 'Secret Record',
+        'Battle-of-the-Han' => 'Male Confrontation',
+        'Creeping-Demon-Hand' => 'The Devil\'s Hand',
+        'Bond-of-Causes-and-Effects' => 'Fated Connections',
+        'Hatred-Love-Spiral' => 'Love-Hate Spiral',
+        'Gods-Dice' => 'Dice of the Gods',
+        'Indefinite-Factor-kai-kai' => 'Unsafe Trigger',
+        'Showtime-of-Death' => 'Showtime ofDeath',
+        'Uncommunicating-Heart' => 'Unanswered Heart',
+        'Witchs-Tea-Party' => 'Witches Tea Time',
+        'The-one-that-proclaims-destruction' => 'Worshippers of the Apocalypse',
+        'Kumiai-Jiken-Quilt' => 'A Quilt of Incidents',
+        'Plans-on-a-Tight-Rope' => 'Tightrope Plan',
+        'The-Black-School' => 'The Black School',
+        'Strychnine-drops' => 'A Drop of Strychnine',
+        'Isolation-Ward-Psycho' => 'Isolated Institution Psyco',
+        'I-am-a-great-detective' => 'I am a Master Detective',
+        'Dance-of-Fools' => 'Dance of Fools',
+        'The-Scent-of-Gunpowder' => 'Smell of Gunpowder',
+        'Absolute-Will' => 'An Absolute Will',
+        'Twins-Trick' => 'Tricky Twins',
+        'Noble-Blood' => 'The Noble Bloodline',
+        'Beasts-of-the-Moonlit-Night' => 'Moonlight Beast',
+        'Nightmare-of-the-Night-Mist' => 'Night Mist Nightmare',
+        'He-Who-Rises-from-the-Grave' => 'The Ones from the Grave',
+        'Land-of-the-Damned' => 'The Cursed Land',
+        'Those-who-have-a-peculiarity' => 'Those with Habits',
+        'The-Witchs-Curse' => 'Witch\'s Curse',
+        'The-Girl-with-the-Key' => 'The Key Girl',
+        'Fear-and-Delusion' => 'Panic and Obsession',
+        'People-who-wont-listen' => 'People Who Don\'t Listen',
+        'Monsters-in-the-Dark' => 'Monster Intrigue',
+        'The-Chorus-to-the-Outer-God' => 'Choir to the Outside God',
+        'The-Word-of-Dagon-sama' => 'The Sacred Words of Dagon',
+        'The-King-in-Yellow' => 'The King in Yellow',
         'The-Existence-of-the-Giant-Time-Bomb-Y' => '巨大時限爆弾Yの存在',
-        'The-bloody-ritual' => '血塗られた儀式',
-        'Those-who-resist' => '抗うものたち',
-        'The-People-Who-Have-Seen' => '見てしまった人々',
-        'The-Great-Race' => '偉大なる種族',
-        'Whispers-of-the-Deep-City' => '深き都の囁き',
-        'The-god-of-the-faceless' => '無貌の神',
-        'Crazy-Truth' => '狂った真実',
+        'The-bloody-ritual' => 'Bloody Rites',
+        'Those-who-resist' => 'The Resistance',
+        'The-People-Who-Have-Seen' => 'People Who Saw',
+        'The-Great-Race' => 'The Profound Race',
+        'Whispers-of-the-Deep-City' => 'Whispers from the Deep',
+        'The-god-of-the-faceless' => 'The Faceless God',
+        'Crazy-Truth' => 'Twisted Truth',
         'The-Closed-World' => '閉ざされた世界',
         'Fairy-Tale-Killers' => '御伽噺の殺人鬼',
         'Mother-Goose-Mystery' => 'マザーグースミステリー',
@@ -119,31 +119,31 @@ return [
 
     'role' => [
         'Person' => [
-            'name' => 'パーソン',
+            'name' => 'Person',
             'note' => '',
         ],
         'Person-SerialKiller' => [
-            'name' => 'パーソン／シリアルキラー',
+            'name' => 'Person / Serial Killer',
             'note' => '',
         ],
         'PiedPiper-Gossip' => [
-            'name' => 'パイドパイパー／ゴシップ',
+            'name' => 'パイドパイパー / ゴシップ',
             'note' => '',
         ],
         'KeyPerson-Kromak' => [
-            'name' => 'キーパーソン／クロマク',
+            'name' => 'Key Person / Brain',
             'note' => '',
         ],
         'KeyPerson-Zettisha' => [
-            'name' => 'キーパーソン／ゼッタイシャ',
+            'name' => 'Key Person / Obstinate',
             'note' => '',
         ],
         'MissLeader-SerialKiller' => [
-            'name' => 'ミスリーダー／シリアルキラー',
+            'name' => 'Conspiracy Theorist / Serial Killer',
             'note' => '',
         ],
         'MissLeader-Zettisha' => [
-            'name' => 'ミスリーダー／ゼッタイシャ',
+            'name' => 'Conspiracy Theorist / Obstinate',
             'note' => '',
         ],
         'Avenger' => [
@@ -155,7 +155,7 @@ return [
             'note' => '',
         ],
         'Immortal' => [
-            'name' => 'イモータル',
+            'name' => 'Immortal',
             'note' => '',
         ],
         'Eraser' => [
@@ -167,15 +167,15 @@ return [
             'note' => '',
         ],
         'Wizard' => [
-            'name' => 'ウィザード',
+            'name' => 'Wizard',
             'note' => '',
         ],
         'Witch' => [
-            'name' => 'ウィッチ',
+            'name' => 'Witch',
             'note' => '',
         ],
         'Werewolf' => [
-            'name' => 'ウェアウルフ',
+            'name' => 'Werewolf',
             'note' => '',
         ],
         'Watcher' => [
@@ -187,23 +187,23 @@ return [
             'note' => '',
         ],
         'Cultist' => [
-            'name' => 'カルティスト',
+            'name' => 'Cultist',
             'note' => '',
         ],
         'SerialKiller' => [
-            'name' => 'シリアルキラー',
+            'name' => 'Serial Killer',
             'note' => '',
         ],
         'Killer' => [
-            'name' => 'キラー',
+            'name' => 'Killer',
             'note' => '',
         ],
         'KeyPerson' => [
-            'name' => 'キーパーソン',
+            'name' => 'Key Person',
             'note' => '',
         ],
         'Kromak' => [
-            'name' => 'クロマク',
+            'name' => 'Brain',
             'note' => '',
         ],
         'Gossip' => [
@@ -211,7 +211,7 @@ return [
             'note' => '',
         ],
         'Ghost' => [
-            'name' => 'ゴースト',
+            'name' => 'Ghost',
             'note' => '',
         ],
         'Secret' => [
@@ -227,7 +227,7 @@ return [
             'note' => '',
         ],
         'Therapist' => [
-            'name' => 'セラピスト',
+            'name' => 'Therapist',
             'note' => '',
         ],
         'Sendousha' => [
@@ -235,23 +235,23 @@ return [
             'note' => '',
         ],
         'Zettisha' => [
-            'name' => 'ゼッタイシャ',
+            'name' => 'Obstinate',
             'note' => '',
         ],
         'TimeTraveler' => [
-            'name' => 'タイムトラベラー',
+            'name' => 'Time Traveler',
             'note' => '',
         ],
         'ChickenHeart' => [
-            'name' => 'チキンハート',
+            'name' => 'Coward',
             'note' => '',
         ],
         'Twin' => [
-            'name' => 'ツイン',
+            'name' => 'Twin',
             'note' => '',
         ],
         'DeepOne' => [
-            'name' => 'ディープワン',
+            'name' => 'Deep One',
             'note' => '',
         ],
         'Troublemaker' => [
@@ -259,11 +259,11 @@ return [
             'note' => '',
         ],
         'Dripper' => [
-            'name' => 'ドリッパー',
+            'name' => 'Poisoner',
             'note' => '',
         ],
         'Nightmare' => [
-            'name' => 'ナイトメア',
+            'name' => 'Nightmare',
             'note' => '',
         ],
         'NurseryLime' => [
@@ -271,7 +271,7 @@ return [
             'note' => '',
         ],
         'Ninja' => [
-            'name' => 'ニンジャ',
+            'name' => 'Ninja',
             'note' => '',
         ],
         'PiedPiper' => [
@@ -279,19 +279,19 @@ return [
             'note' => '',
         ],
         'Paranoia' => [
-            'name' => 'パラノイア',
+            'name' => 'Paranoiac',
             'note' => '',
         ],
         'Hitohashira' => [
-            'name' => 'ヒトハシラ',
+            'name' => 'Sacrifice',
             'note' => '',
         ],
         'Factor' => [
-            'name' => 'ファクター',
+            'name' => 'Factor',
             'note' => '',
         ],
         'Faceless' => [
-            'name' => 'フェイスレス',
+            'name' => 'Faceless',
             'note' => '',
         ],
         'Fragments' => [
@@ -299,11 +299,11 @@ return [
             'note' => '',
         ],
         'Friend' => [
-            'name' => 'フレンド',
+            'name' => 'Friend',
             'note' => '',
         ],
         'Fool' => [
-            'name' => 'フール',
+            'name' => 'Fool',
             'note' => '',
         ],
         'PlainShifter' => [
@@ -311,15 +311,15 @@ return [
             'note' => '',
         ],
         'Prophecy' => [
-            'name' => 'プロフェシー',
+            'name' => 'Prophet',
             'note' => '',
         ],
         'Minus' => [
-            'name' => 'マイナス',
+            'name' => 'Cumudgeon',
             'note' => '',
         ],
         'Magician' => [
-            'name' => 'マジシャン',
+            'name' => 'Magician',
             'note' => '',
         ],
         'Marionette' => [
@@ -327,46 +327,46 @@ return [
             'note' => '',
         ],
         'Mikakedaoshi' => [
-            'name' => 'ミカケダオシ',
+            'name' => 'Show-Off',
             'note' => '',
         ],
         'Misleader' => [
-            'name' => 'ミスリーダー',
+            'name' => 'Conspiracy Theorist',
             'note' => '',
         ],
         'Maytantei' => [
-            'name' => 'メイタンテイ',
+            'name' => 'Private Investigator',
             'note' => '',
         ],
         'MaineLovers' => [
-            'name' => 'メインラバーズ',
+            'name' => 'Loved One',
             'note' => '',
         ],
         'Mokugekisha' => [
-            'name' => 'モクゲキシャ',
+            'name' => 'Witness',
             'note' => '',
         ],
         'Lovers' => [
-            'name' => 'ラバーズ',
+            'name' => 'Lover',
             'note' => '',
         ],
         'Vampire' => [
-            'name' => 'ヴァンパイア',
+            'name' => 'Vampire',
             'note' => '',
         ],
         'Zombie' => [
-            'name' => 'ゾンビ',
+            'name' => 'Zombie',
             'note' => '',
         ],
     ],
 
     'incident' => [
         'ClosedCircle' => [
-            'name' => 'クローズドサークル',
+            'name' => 'Closed Circle',
             'note' => '',
         ],
         'ApocalypseOfTheDead' => [
-            'name' => '死者の黙示録',
+            'name' => 'Evangelium of the Dead',
             'note' => '',
         ],
         'TheScreamOfTheVindictive' => [
@@ -378,19 +378,19 @@ return [
             'note' => '',
         ],
         'AwakeningOfTheCurse' => [
-            'name' => '呪いの目覚め',
+            'name' => 'Awakened Curse',
             'note' => '',
         ],
         'FlutteringOfTheButterfly' => [
-            'name' => '蝶の羽ばたき',
+            'name' => 'Butterfly Effect',
             'note' => '',
         ],
         'Terrorism' => [
-            'name' => 'テロリズム',
+            'name' => 'Terrorism',
             'note' => '',
         ],
         'SuspiciousLetter' => [
-            'name' => '不審な手紙',
+            'name' => 'A Suspicious Letter',
             'note' => '',
         ],
         'TheOxsPilgrimage' => [
@@ -398,7 +398,7 @@ return [
             'note' => '',
         ],
         'RumorOfCurse' => [
-            'name' => '噂の御呪い',
+            'name' => 'Dark Rumor',
             'note' => '',
         ],
         'TheSunlightBetween' => [
@@ -406,35 +406,35 @@ return [
             'note' => '',
         ],
         'TheHoundsSenseOfSmell' => [
-            'name' => '猟犬の嗅覚',
+            'name' => 'Hound Dog Scent',
             'note' => '',
         ],
         'TheCaseOfTheHospital' => [
-            'name' => '病院の事件',
+            'name' => 'Hospital Incident',
             'note' => '',
         ],
         'SpewingOfFilth' => [
-            'name' => '穢れの噴出',
+            'name' => 'Fountain of Filth',
             'note' => '',
         ],
         'TheHolocaust' => [
-            'name' => '立てこもり',
+            'name' => 'Barricade',
             'note' => '',
         ],
         'ThePollutionOfEvil' => [
-            'name' => '邪気の汚染',
+            'name' => 'Foul Evil',
             'note' => '',
         ],
         'MadnessMurder' => [
-            'name' => '狂気殺人',
+            'name' => 'Insane Murder',
             'note' => '',
         ],
         'FreakMurder' => [
-            'name' => '猟奇殺人',
+            'name' => 'Bestial Murder',
             'note' => '',
         ],
         'UnrestSpreading' => [
-            'name' => '不安拡大',
+            'name' => 'Increasing Unease',
             'note' => '',
         ],
         'IllegalDumping' => [
@@ -442,15 +442,15 @@ return [
             'note' => '',
         ],
         'FalsifiedIncidents' => [
-            'name' => '偽装事件',
+            'name' => 'Fake Incident',
             'note' => '',
         ],
         'FakedSuicide' => [
-            'name' => '偽装自殺',
+            'name' => 'Faked Suicide',
             'note' => '',
         ],
         'BlasphemyMurder' => [
-            'name' => '冒涜殺人',
+            'name' => 'Sacrilegious Murder',
             'note' => '',
         ],
         'HopeForTheFuture' => [
@@ -470,15 +470,15 @@ return [
             'note' => '',
         ],
         'Murder' => [
-            'name' => '殺人事件',
+            'name' => 'Murder',
             'note' => '',
         ],
         'FireOfDoom' => [
-            'name' => '滅びの火',
+            'name' => 'Fire of Demise',
             'note' => '',
         ],
         'TheNightOfMadness' => [
-            'name' => '狂気の夜',
+            'name' => 'Night of Madness',
             'note' => '',
         ],
         'ImaginaryIncident' => [
@@ -490,7 +490,7 @@ return [
             'note' => '',
         ],
         'Missing' => [
-            'name' => '行方不明',
+            'name' => 'Missing Person',
             'note' => '',
         ],
         'ImpulseMurder' => [
@@ -498,31 +498,31 @@ return [
             'note' => '',
         ],
         'SerialMurder' => [
-            'name' => '連続殺人',
+            'name' => 'Serial Murder',
             'note' => '',
         ],
         'RemoteMurder' => [
-            'name' => '遠隔殺人',
+            'name' => 'Faraway Murder',
             'note' => '',
         ],
         'SilverBullet' => [
-            'name' => '銀の銃弾',
+            'name' => 'The Silver Bullet',
             'note' => '',
         ],
         'Conspiracy' => [
-            'name' => '陰謀工作',
+            'name' => 'Conspiracies',
             'note' => '',
         ],
         'MassSuicide' => [
-            'name' => '集団自殺',
+            'name' => 'Mass Suicide',
             'note' => '',
         ],
         'Executioners' => [
-            'name' => '遂行者',
+            'name' => 'The Executioner',
             'note' => '',
         ],
         'Riots' => [
-            'name' => '大暴動',
+            'name' => 'Uproar',
             'note' => '',
         ],
         'Perpetrators' => [
@@ -542,7 +542,7 @@ return [
             'note' => '',
         ],
         'Omen' => [
-            'name' => '前兆',
+            'name' => 'Portent',
             'note' => '',
         ],
         'accusation' => [
@@ -550,11 +550,11 @@ return [
             'note' => '',
         ],
         'confession' => [
-            'name' => '告白',
+            'name' => 'Confession',
             'note' => '',
         ],
         'breakthrough' => [
-            'name' => '打開',
+            'name' => 'Breakthrough',
             'note' => '',
         ],
         'testament' => [
@@ -562,15 +562,15 @@ return [
             'note' => '',
         ],
         'discovery' => [
-            'name' => '発見',
+            'name' => 'Discovery',
             'note' => '',
         ],
         'suicide' => [
-            'name' => '自殺',
+            'name' => 'Suicide',
             'note' => '',
         ],
         'Dissemination' => [
-            'name' => '流布',
+            'name' => 'Spreading',
             'note' => '',
         ],
         'change' => [
@@ -580,32 +580,32 @@ return [
     ],
 
     'chara_name' => [
-        'MaleStudent' => '男子学生',
-        'FemaleStudent' => '女子学生',
-        'Lady' => 'お嬢様',
-        'ShrineMaiden' => '巫女',
-        'Detective' => '刑事',
-        'OfficeWorker' => 'サラリーマン',
-        'Informant' => '情報屋',
-        'Doctor' => '医者',
-        'HospitalizedPatient' => '入院患者',
-        'Chairman' => '委員長',
-        'Irregular' => 'イレギュラー',
-        'Otherworlder' => '異世界人',
-        'Divinity' => '神格',
-        'Idol' => 'アイドル',
-        'MassMedia' => 'マスコミ',
-        'Bigwig' => '大物',
-        'Nurse' => 'ナース',
-        'Pawns' => '手先',
-        'Scholar' => '学者',
-        'Fantasy' => '幻想',
-        'ForensicOfficer' => '鑑識官',
+        'MaleStudent' => 'Boy Student',
+        'FemaleStudent' => 'Girl Student',
+        'Lady' => 'Rich Man\'s Daughter',
+        'ShrineMaiden' => 'Shrine Maiden',
+        'Detective' => 'Police Officer',
+        'OfficeWorker' => 'office Worker',
+        'Informant' => 'Informer',
+        'Doctor' => 'Doctor',
+        'HospitalizedPatient' => 'Patient',
+        'Chairman' => 'Class Rep',
+        'Irregular' => 'Mystery Boy',
+        'Otherworlder' => 'Alien',
+        'Divinity' => 'Godly Being',
+        'Idol' => 'Pop Idol',
+        'MassMedia' => 'Journalist',
+        'Bigwig' => 'Boss',
+        'Nurse' => 'Nurse',
+        'Pawns' => 'Henchman',
+        'Scholar' => 'Scientist',
+        'Fantasy' => 'Illusion',
+        'ForensicOfficer' => 'Forensic Specialist',
         'AI' => 'A.I.',
-        'Teacher' => '教師',
-        'TransferStudent' => '転校生',
-        'Soldier' => '軍人',
-        'BlackCat' => '黒猫',
+        'Teacher' => 'Teacher',
+        'TransferStudent' => 'Transfer Student',
+        'Soldier' => 'Soldier',
+        'BlackCat' => 'Black Cat',
         'Girl' => '女の子',
         'Guru' => '教祖',
         'CopyCat' => 'コピーキャット',
