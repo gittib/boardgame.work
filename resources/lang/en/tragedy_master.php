@@ -127,7 +127,7 @@ return [
             'note' => '',
         ],
         'PiedPiper-Gossip' => [
-            'name' => 'パイドパイパー / ゴシップ',
+            'name' => 'Pied Piper / ゴシップ',
             'note' => '',
         ],
         'KeyPerson-Kromak' => [
@@ -163,7 +163,7 @@ return [
             'note' => '',
         ],
         'Influencer' => [
-            'name' => 'インフルエンサー',
+            'name' => 'Influencer',
             'note' => '',
         ],
         'Wizard' => [
@@ -223,7 +223,7 @@ return [
             'note' => '',
         ],
         'Sniper' => [
-            'name' => 'スナイパー',
+            'name' => 'Sniper',
             'note' => '',
         ],
         'Therapist' => [
@@ -255,7 +255,7 @@ return [
             'note' => '',
         ],
         'Troublemaker' => [
-            'name' => 'トラブルメイカー',
+            'name' => 'Troublemaker',
             'note' => '',
         ],
         'Dripper' => [
@@ -267,7 +267,7 @@ return [
             'note' => '',
         ],
         'NurseryLime' => [
-            'name' => 'ナーサリーライム',
+            'name' => 'nursery rhymes',
             'note' => '',
         ],
         'Ninja' => [
@@ -275,7 +275,7 @@ return [
             'note' => '',
         ],
         'PiedPiper' => [
-            'name' => 'パイドパイパー',
+            'name' => 'Pied Piper',
             'note' => '',
         ],
         'Paranoia' => [
@@ -295,7 +295,7 @@ return [
             'note' => '',
         ],
         'Fragments' => [
-            'name' => 'フラグメント',
+            'name' => 'Fragments',
             'note' => '',
         ],
         'Friend' => [
@@ -323,7 +323,7 @@ return [
             'note' => '',
         ],
         'Marionette' => [
-            'name' => 'マリオネット',
+            'name' => 'Marionette',
             'note' => '',
         ],
         'Mikakedaoshi' => [
@@ -546,7 +546,7 @@ return [
             'note' => '',
         ],
         'accusation' => [
-            'name' => '告発',
+            'name' => 'Accusation',
             'note' => '',
         ],
         'confession' => [
@@ -608,7 +608,7 @@ return [
         'BlackCat' => 'Black Cat',
         'Girl' => '女の子',
         'Guru' => '教祖',
-        'CopyCat' => 'コピーキャット',
+        'CopyCat' => 'Copycat',
         'SacredTree' => 'ご神木',
         'Sister' => '妹',
         'Part-timeJob' => 'アルバイト',
