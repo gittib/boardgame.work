@@ -126,29 +126,20 @@ class MyScenarioController extends Controller
             DB::transaction(function() use($jsonData) {
                 foreach($jsonData->scenarioList as $data) {
 
-                    // ハッシュ値が重複する脚本を削除
-                    $oldScenarios = Scenario::where('import_hash', $data->hash)
-                        ->where('user_id', Auth::id())
-                        ->get();
-                    foreach($oldScenarios as $scenario) {
-                        $scenario->characters()->delete();
-                        $scenario->incidents()->delete();
-                        $scenario->delete();
-                    }
-
                     // jsonデータから脚本を登録
                     $set = TragedySet::where('abbreviation', $data->set)->firstOrFail();
-                    $scenario = new Scenario([
-                        'set_id' => $set->id,
+                    $scenario = Scenario::firstOrNew([
                         'user_id' => Auth::id(),
-                        'loops' => $data->loop,
-                        'days' => $data->day,
-                        'difficulty' => $data->difficulty ?: 0,
-                        'title' => $data->title,
-                        'advice' => $data->advice,
-                        'feature' => $data->note,
                         'import_hash' => $data->hash,
                     ]);
+                    $scenario->set_id = $set->id;
+                    $scenario->loops = $data->loop;
+                    $scenario->days = $data->day;
+                    $scenario->difficulty = $data->difficulty ?: 0;
+                    $scenario->title = $data->title;
+                    $scenario->advice = $data->advice;
+                    $scenario->feature = $data->note;
+                    $scenario->is_open = false;
                     if (!empty($data->specialRule)) {
                         $scenario->special_rule = $data->specialRule;
                     }
