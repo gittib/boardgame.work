@@ -29,6 +29,10 @@ $('form .submit_button').on('click', function() {
     }
 });
 
+$('.js-language_setting').on('change', function() {
+    $(this).closest('form').submit();
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   // textareaタグを全て取得
   const textareaEls = document.querySelectorAll("textarea");

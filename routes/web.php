@@ -19,7 +19,7 @@ if(config('app.debug')) {
 
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::any('/', 'TopController@index')->name('top.index');
-    Route::any('language/setting/to/{lang}', 'LanguageController@trans')->name('language.trans');
+    Route::any('language/setting/to', 'LanguageController@trans')->name('language.trans');
     Route::resource('tragedy-set', 'TragedySetController', ['only' => ['index', 'show']]);
     Route::resource('scenario', 'ScenarioController', ['only' => ['index', 'show']]);
 
