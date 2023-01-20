@@ -179,6 +179,12 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
                     <textarea name="feature">{{ $helper->inputVal('feature') ?? $scenario->feature }}</textarea>
                 </div>
             </dd>
+            <dt>@lang('ストーリー')</dt>
+            <dd class="scenario_text">
+                <div class="input_wrapper">
+                    <textarea name="story">{{ $helper->inputVal('story') ?? $scenario->story }}</textarea>
+                </div>
+            </dd>
             <dt>@lang('脚本家への指針')</dt>
             <dd class="scenario_text">
                 <div class="input_wrapper">

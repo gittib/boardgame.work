@@ -138,6 +138,12 @@ $isPreview ??= false;
         <dl>
             <dt>@lang('脚本の特徴')</dt>
             <dd>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</dd>
+
+            @if(!empty($scenario->story))
+            <dt>@lang('ストーリー')</dt>
+            <dd>{!! nl2br(e($scenario->story)) !!}</dd>
+            @endif
+
             <dt>@lang('脚本家への指針')</dt>
             <dd>{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</dd>
         </dl>

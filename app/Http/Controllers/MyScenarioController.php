@@ -269,6 +269,7 @@ class MyScenarioController extends Controller
         $scenario->special_rule = $request->special_rule;
         $scenario->title = $request->title;
         $scenario->feature = $request->feature;
+        $scenario->story = $request->story;
         $scenario->advice = $request->advice;
         $scenario->is_open = isset($request->is_open);
 
@@ -316,6 +317,7 @@ class MyScenarioController extends Controller
             $scenario->special_rule = $request->special_rule;
             $scenario->title = $request->title;
             $scenario->feature = $request->feature;
+            $scenario->story = $request->story;
             $scenario->advice = $request->advice;
             $scenario->is_open = isset($request->is_open);
             $scenario->save();
