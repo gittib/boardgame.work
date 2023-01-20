@@ -1,0 +1,115 @@
+@use '../parts';
+
+body.my_scenario-create {
+    padding-bottom: 32px;
+
+    dl.summary_setting {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+
+        dt {
+            width: 25%;
+            text-align: center;
+            margin-top: 0;
+        }
+        dd {
+            width: 75%;
+        }
+    }
+
+    dd {
+
+        .label_and_input_wrapper {
+            position: relative;
+            padding: 8px 0 0;
+
+            .label_name {
+                position: absolute;
+                background-color: white;
+                top: 2px;
+                left: 14px;
+                font-size: 10px;
+                line-height: 10px;
+                padding-right: 4px;
+            }
+        }
+    }
+
+    .character_row {
+        margin-bottom: 24px;
+        border-bottom: 3px double;
+
+        &:first-child {
+            border-top: 3px double;
+        }
+
+        &.is-error {
+            $borderStyle: 3px solid red;
+            border: $borderStyle;
+        }
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .note_wrapper {
+            > span {
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+    ul.scenario_incident_list {
+        > li {
+            $border_style: double 3px;
+            border-bottom: $border_style;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 8px 0;
+
+            &:first-child {
+                border-top: $border_style;
+            }
+
+            .is-error {
+                background-color: parts.$error_background_color;
+                padding: 0 4px;
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+    .scenario_title {
+        input {
+            width: 90%;
+        }
+    }
+
+    .scenario_text {
+        .input_wrapper {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+
+    .submit_button_wrapper {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}

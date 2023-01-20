@@ -1,0 +1,1759 @@
+{
+    "setMaster": [
+        {
+            "setName": "FS",
+            "rules": [
+                {
+                    "ruleName": "Murder-Plot",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Kromak",
+                        "Killer"
+                    ]
+                },
+                {
+                    "ruleName": "Avengers-Torch",
+                    "isRuleY": true,
+                    "roles": [
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "place-To-Protect",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Cultist"
+                    ]
+                },
+                {
+                    "ruleName": "Shadow-Of-The-Ripper",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Disturbing-Rumors",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "The-Worst-Retired-Book",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "Minus",
+                        "Minus",
+                        "Friend"
+                    ]
+                }
+            ],
+            "incidents": [
+                "Murder",
+                "UnrestSpreading",
+                "suicide",
+                "TheCaseOfTheHospital",
+                "RemoteMurder",
+                "Missing",
+                "Dissemination"
+            ]
+        },
+        {
+            "setName": "BTX",
+            "rules": [
+                {
+                    "ruleName": "Murder-Plot",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Kromak",
+                        "Killer"
+                    ]
+                },
+                {
+                    "ruleName": "The-Sealed-Thing",
+                    "isRuleY": true,
+                    "roles": [
+                        "Cultist",
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "Sign-me-up",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson"
+                    ]
+                },
+                {
+                    "ruleName": "Future-Alteration-Plan",
+                    "isRuleY": true,
+                    "roles": [
+                        "TimeTraveler",
+                        "Cultist"
+                    ]
+                },
+                {
+                    "ruleName": "The-Existence-of-a-Giant-Time-Bomb-X",
+                    "isRuleY": true,
+                    "roles": [
+                        "Witch"
+                    ]
+                },
+                {
+                    "ruleName": "Friendship-Circle",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "Friend",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Delusion-Expanding-Virus",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Thread-of-Causality",
+                    "isRuleY": false,
+                    "roles": []
+                },
+                {
+                    "ruleName": "Disturbing-Rumors",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Lurking-Killer",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Love-Landscape",
+                    "isRuleY": false,
+                    "roles": [
+                        "MaineLovers",
+                        "Lovers"
+                    ]
+                },
+                {
+                    "ruleName": "indefinite-factor-kai",
+                    "isRuleY": false,
+                    "roles": [
+                        "Factor"
+                    ]
+                }
+            ],
+            "incidents": [
+                "Murder",
+                "UnrestSpreading",
+                "ThePollutionOfEvil",
+                "suicide",
+                "TheCaseOfTheHospital",
+                "RemoteMurder",
+                "Missing",
+                "Dissemination",
+                "FlutteringOfTheButterfly"
+            ]
+        },
+        {
+            "setName": "MZ",
+            "rules": [
+                {
+                    "ruleName": "The-Sealed-Thing",
+                    "isRuleY": true,
+                    "roles": [
+                        "Cultist",
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "Secret-Record",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Kromak",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Battle-of-the-Han",
+                    "isRuleY": true,
+                    "roles": [
+                        "Ninja"
+                    ]
+                },
+                {
+                    "ruleName": "Creeping-Demon-Hand",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Ninja",
+                        "Cultist"
+                    ]
+                },
+                {
+                    "ruleName": "Bond-of-Causes-and-Effects",
+                    "isRuleY": true,
+                    "roles": [
+                        "SerialKiller",
+                        "Friend",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Hatred-Love-Spiral",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "Zettisha"
+                    ]
+                },
+                {
+                    "ruleName": "Gods-Dice",
+                    "isRuleY": false,
+                    "roles": [
+                        "Zettisha",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Indefinite-Factor-kai-kai",
+                    "isRuleY": false,
+                    "roles": [
+                        "Factor"
+                    ]
+                },
+                {
+                    "ruleName": "Showtime-of-Death",
+                    "isRuleY": false,
+                    "roles": [
+                        "Magician",
+                        "Immortal"
+                    ]
+                },
+                {
+                    "ruleName": "Uncommunicating-Heart",
+                    "isRuleY": false,
+                    "roles": [
+                        "Magician",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Witchs-Tea-Party",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "Friend",
+                        "Witch",
+                        "Witch"
+                    ]
+                },
+                {
+                    "ruleName": "The-one-that-proclaims-destruction",
+                    "isRuleY": false,
+                    "roles": [
+                        "Prophecy"
+                    ]
+                }
+            ],
+            "incidents": [
+                "SerialMurder",
+                "suicide",
+                "UnrestSpreading",
+                "Missing",
+                "Conspiracy",
+                "TheCaseOfTheHospital",
+                "Riots",
+                "confession",
+                "breakthrough",
+                "FakedSuicide",
+                "FalsifiedIncidents"
+            ]
+        },
+        {
+            "setName": "MCX",
+            "rules": [
+                {
+                    "ruleName": "Murder-Plot",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Kromak",
+                        "Killer"
+                    ]
+                },
+                {
+                    "ruleName": "Kumiai-Jiken-Quilt",
+                    "isRuleY": true,
+                    "roles": [
+                        "Misleader",
+                        "Fool"
+                    ]
+                },
+                {
+                    "ruleName": "Plans-on-a-Tight-Rope",
+                    "isRuleY": true,
+                    "roles": [
+                        "Kromak",
+                        "Killer"
+                    ]
+                },
+                {
+                    "ruleName": "The-Black-School",
+                    "isRuleY": true,
+                    "roles": [
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "Strychnine-drops",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Fool",
+                        "Dripper"
+                    ]
+                },
+                {
+                    "ruleName": "Lurking-Killer",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Isolation-Ward-Psycho",
+                    "isRuleY": false,
+                    "roles": [
+                        "Paranoia",
+                        "Misleader",
+                        "Therapist"
+                    ]
+                },
+                {
+                    "ruleName": "I-am-a-great-detective",
+                    "isRuleY": false,
+                    "roles": [
+                        "Maytantei",
+                        "Misleader",
+                        "Friend"
+                    ]
+                },
+                {
+                    "ruleName": "Dance-of-Fools",
+                    "isRuleY": false,
+                    "roles": [
+                        "Fool",
+                        "Friend"
+                    ]
+                },
+                {
+                    "ruleName": "The-Scent-of-Gunpowder",
+                    "isRuleY": false,
+                    "roles": [
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Absolute-Will",
+                    "isRuleY": false,
+                    "roles": [
+                        "Zettisha"
+                    ]
+                },
+                {
+                    "ruleName": "Twins-Trick",
+                    "isRuleY": false,
+                    "roles": [
+                        "Paranoia",
+                        "Twin"
+                    ]
+                }
+            ],
+            "incidents": [
+                "SerialMurder",
+                "Terrorism",
+                "TheCaseOfTheHospital",
+                "suicide",
+                "UnrestSpreading",
+                "Omen",
+                "FreakMurder",
+                "FakedSuicide",
+                "SuspiciousLetter",
+                "ClosedCircle",
+                "SilverBullet"
+            ]
+        },
+        {
+            "setName": "HSA",
+            "rules": [
+                {
+                    "ruleName": "Noble-Blood",
+                    "isRuleY": true,
+                    "roles": [
+                        "Vampire",
+                        "KeyPerson"
+                    ]
+                },
+                {
+                    "ruleName": "Beasts-of-the-Moonlit-Night",
+                    "isRuleY": true,
+                    "roles": [
+                        "Werewolf"
+                    ]
+                },
+                {
+                    "ruleName": "Nightmare-of-the-Night-Mist",
+                    "isRuleY": true,
+                    "roles": [
+                        "Nightmare"
+                    ]
+                },
+                {
+                    "ruleName": "He-Who-Rises-from-the-Grave",
+                    "isRuleY": true,
+                    "roles": []
+                },
+                {
+                    "ruleName": "Land-of-the-Damned",
+                    "isRuleY": true,
+                    "roles": [
+                        "Mikakedaoshi",
+                        "Ghost"
+                    ]
+                },
+                {
+                    "ruleName": "Those-who-have-a-peculiarity",
+                    "isRuleY": false,
+                    "roles": [
+                        "Ghost",
+                        "SerialKiller",
+                        "MaineLovers"
+                    ]
+                },
+                {
+                    "ruleName": "Love-Landscape",
+                    "isRuleY": false,
+                    "roles": [
+                        "MaineLovers",
+                        "Lovers"
+                    ]
+                },
+                {
+                    "ruleName": "The-Witchs-Curse",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "Witch"
+                    ]
+                },
+                {
+                    "ruleName": "The-Girl-with-the-Key",
+                    "isRuleY": false,
+                    "roles": [
+                        "KeyPerson"
+                    ]
+                },
+                {
+                    "ruleName": "Fear-and-Delusion",
+                    "isRuleY": false,
+                    "roles": [
+                        "SerialKiller",
+                        "Witch",
+                        "ChickenHeart"
+                    ]
+                },
+                {
+                    "ruleName": "People-who-wont-listen",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "ChickenHeart",
+                        "Mikakedaoshi"
+                    ]
+                },
+                {
+                    "ruleName": "Monsters-in-the-Dark",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                }
+            ],
+            "incidents": [
+                "BlasphemyMurder",
+                "UnrestSpreading",
+                "Missing",
+                "ThePollutionOfEvil",
+                "Executioners",
+                "RumorOfCurse",
+                "TheHolocaust",
+                "TheNightOfMadness",
+                "AwakeningOfTheCurse",
+                "SpewingOfFilth",
+                "ApocalypseOfTheDead"
+            ]
+        },
+        {
+            "setName": "WM",
+            "rules": [
+                {
+                    "ruleName": "The-Chorus-to-the-Outer-God",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Hitohashira",
+                        "Immortal"
+                    ]
+                },
+                {
+                    "ruleName": "The-Word-of-Dagon-sama",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "DeepOne",
+                        "Cultist"
+                    ]
+                },
+                {
+                    "ruleName": "The-King-in-Yellow",
+                    "isRuleY": true,
+                    "roles": [
+                        "Cultist",
+                        "Hitohashira"
+                    ]
+                },
+                {
+                    "ruleName": "The-Existence-of-the-Giant-Time-Bomb-Y",
+                    "isRuleY": true,
+                    "roles": [
+                        "Witch",
+                        "DeepOne"
+                    ]
+                },
+                {
+                    "ruleName": "The-bloody-ritual",
+                    "isRuleY": true,
+                    "roles": [
+                        "Immortal",
+                        "Witch"
+                    ]
+                },
+                {
+                    "ruleName": "Those-who-resist",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "SerialKiller",
+                        "Wizard"
+                    ]
+                },
+                {
+                    "ruleName": "The-People-Who-Have-Seen",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "Mokugekisha"
+                    ]
+                },
+                {
+                    "ruleName": "The-Great-Race",
+                    "isRuleY": false,
+                    "roles": [
+                        "TimeTraveler",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Whispers-of-the-Deep-City",
+                    "isRuleY": false,
+                    "roles": [
+                        "DeepOne",
+                        "Paranoia"
+                    ]
+                },
+                {
+                    "ruleName": "The-god-of-the-faceless",
+                    "isRuleY": false,
+                    "roles": [
+                        "Faceless",
+                        "Wizard"
+                    ]
+                },
+                {
+                    "ruleName": "Crazy-Truth",
+                    "isRuleY": false,
+                    "roles": [
+                        "Paranoia"
+                    ]
+                },
+                {
+                    "ruleName": "Disturbing-Rumors",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                }
+            ],
+            "incidents": [
+                "MadnessMurder",
+                "MassSuicide",
+                "UnrestSpreading",
+                "Missing",
+                "ThePollutionOfEvil",
+                "TheCaseOfTheHospital",
+                "Riots",
+                "FireOfDoom",
+                "TheHoundsSenseOfSmell",
+                "discovery",
+                "Executioners"
+            ]
+        },
+        {
+            "setName": "AHR",
+            "rules": [
+                {
+                    "ruleName": "The-Closed-World",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson-Zettisha",
+                        "Marionette",
+                        "Catalibe"
+                    ]
+                },
+                {
+                    "ruleName": "Fairy-Tale-Killers",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "NurseryLime",
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "Mother-Goose-Mystery",
+                    "isRuleY": true,
+                    "roles": [
+                        "Marionette",
+                        "Catalibe"
+                    ]
+                },
+                {
+                    "ruleName": "Plan-for-dimensional-merger",
+                    "isRuleY": true,
+                    "roles": [
+                        "Catalibe",
+                        "PlainShifter",
+                        "Fragments"
+                    ]
+                },
+                {
+                    "ruleName": "The-Emptiness-of-the-World",
+                    "isRuleY": true,
+                    "roles": [
+                        "Zettisha",
+                        "Marionette",
+                        "Kromak"
+                    ]
+                },
+                {
+                    "ruleName": "Jekyll-and-Hyde",
+                    "isRuleY": false,
+                    "roles": [
+                        "KeyPerson-Kromak",
+                        "Marionette"
+                    ]
+                },
+                {
+                    "ruleName": "The-Bringer-of-Maladies",
+                    "isRuleY": false,
+                    "roles": [
+                        "PiedPiper-Gossip"
+                    ]
+                },
+                {
+                    "ruleName": "The-Thread-of-Manipulation",
+                    "isRuleY": false,
+                    "roles": [
+                        "Fragments",
+                        "Gossip",
+                        "Person-SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Alice-in-Mirrorland",
+                    "isRuleY": false,
+                    "roles": [
+                        "MissLeader-SerialKiller",
+                        "Alice"
+                    ]
+                },
+                {
+                    "ruleName": "Beyond-the-World-Line",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "The-Unspeakable-Monster",
+                    "isRuleY": false,
+                    "roles": [
+                        "MissLeader-Zettisha",
+                        "Gossip"
+                    ]
+                },
+                {
+                    "ruleName": "Virus-of-Imaginary-Expansion",
+                    "isRuleY": false,
+                    "roles": [
+                        "Fragments",
+                        "Misleader",
+                        "Gossip"
+                    ]
+                }
+            ],
+            "incidents": [
+                "ImpulseMurder",
+                "DimensionalTransformation",
+                "DimensionalDistortion",
+                "DimensionalFault",
+                "LostAndFound",
+                "ImaginaryIncident",
+                "TheCaseOfTheHospital",
+                "testament",
+                "singularity",
+                "TheSunlightBetween",
+                "TheDarknessOfDespair"
+            ]
+        },
+        {
+            "setName": "LL",
+            "rules": [
+                {
+                    "ruleName": "The-Final-Plan",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Kromak",
+                        "Killer"
+                    ]
+                },
+                {
+                    "ruleName": "The-Sealed-End",
+                    "isRuleY": true,
+                    "roles": [
+                        "Fragments",
+                        "Factor"
+                    ]
+                },
+                {
+                    "ruleName": "World-of-Rebellion",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Fragments"
+                    ]
+                },
+                {
+                    "ruleName": "The-Devils-Script",
+                    "isRuleY": true,
+                    "roles": [
+                        "SerialKiller",
+                        "Watcher"
+                    ]
+                },
+                {
+                    "ruleName": "Existence-of-the-giant-time-bomb-Z",
+                    "isRuleY": true,
+                    "roles": [
+                        "Kromak",
+                        "Witch"
+                    ]
+                },
+                {
+                    "ruleName": "the-real-monster",
+                    "isRuleY": false,
+                    "roles": [
+                        "Secret",
+                        "Joker",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Myth-Collector",
+                    "isRuleY": false,
+                    "roles": [
+                        "Secret",
+                        "Joker",
+                        "Influencer"
+                    ]
+                },
+                {
+                    "ruleName": "I-Am-the-Great-Detective",
+                    "isRuleY": false,
+                    "roles": [
+                        "Secret",
+                        "Joker",
+                        "Watcher"
+                    ]
+                },
+                {
+                    "ruleName": "Beyond-the-World-Line",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Indefinite-Factor-kai-kai",
+                    "isRuleY": false,
+                    "roles": [
+                        "Factor"
+                    ]
+                },
+                {
+                    "ruleName": "SNS-Paranoia",
+                    "isRuleY": false,
+                    "roles": [
+                        "SerialKiller",
+                        "Influencer",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "The-Secret-of-Lying-Possession",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader"
+                    ]
+                }
+            ],
+            "incidents": [
+                "Murder",
+                "UnrestSpreading",
+                "Missing",
+                "TheCaseOfTheHospital",
+                "Perpetrators",
+                "change",
+                "testament",
+                "confession",
+                "Dissemination",
+                "HopeForTheFuture",
+                "TheDarknessOfDespair"
+            ]
+        },
+        {
+            "setName": "UM",
+            "rules": [
+                {
+                    "ruleName": "Erased-Memory",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Eraser"
+                    ]
+                },
+                {
+                    "ruleName": "Countdown-to-Despair",
+                    "isRuleY": true,
+                    "roles": [
+                        "Eraser",
+                        "Cultist",
+                        "Sendousha"
+                    ]
+                },
+                {
+                    "ruleName": "place-To-Protect",
+                    "isRuleY": true,
+                    "roles": [
+                        "KeyPerson",
+                        "Cultist"
+                    ]
+                },
+                {
+                    "ruleName": "The-End-of-Oblivion",
+                    "isRuleY": true,
+                    "roles": [
+                        "Avenger",
+                        "Therapist",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "Avengers-Oath",
+                    "isRuleY": true,
+                    "roles": [
+                        "Avenger",
+                        "Friend"
+                    ]
+                },
+                {
+                    "ruleName": "Anguish-of-a-Troubled-Child",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "Troublemaker",
+                        "Misleader"
+                    ]
+                },
+                {
+                    "ruleName": "Lurking-Killer",
+                    "isRuleY": false,
+                    "roles": [
+                        "Friend",
+                        "SerialKiller"
+                    ]
+                },
+                {
+                    "ruleName": "The-Door-That-Must-Not-Be-Opened",
+                    "isRuleY": false,
+                    "roles": [
+                        "Troublemaker"
+                    ]
+                },
+                {
+                    "ruleName": "Isolation-Ward-Psycho",
+                    "isRuleY": false,
+                    "roles": [
+                        "Misleader",
+                        "Therapist",
+                        "Paranoia"
+                    ]
+                },
+                {
+                    "ruleName": "The-signal-of-the-mashupnos",
+                    "isRuleY": false,
+                    "roles": [
+                        "Sendousha"
+                    ]
+                },
+                {
+                    "ruleName": "He-who-calms-the-mob",
+                    "isRuleY": false,
+                    "roles": [
+                        "Sendousha",
+                        "Sniper"
+                    ]
+                },
+                {
+                    "ruleName": "The-children-who-will-not-return",
+                    "isRuleY": false,
+                    "roles": [
+                        "Sendousha",
+                        "PiedPiper"
+                    ]
+                }
+            ],
+            "incidents": [
+                "SerialMurder",
+                "UnrestSpreading",
+                "suicide",
+                "IllegalDumping",
+                "TheCaseOfTheHospital",
+                "TheOxsPilgrimage",
+                "TheScreamOfTheVindictive",
+                "Executioners",
+                "CovenantWithTheDevil",
+                "accusation",
+                "Copycat"
+            ]
+        }
+    ],
+    "roleMaster": {
+        "Avenger": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Alice": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Immortal": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "Eraser": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Influencer": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Wizard": {
+            "max_count": 1,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Witch": {
+            "hostility_type": 2,
+            "is_immortality": false
+        },
+        "Werewolf": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Watcher": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Catalibe": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "Cultist": {
+            "hostility_type": 2,
+            "is_immortality": false
+        },
+        "Killer": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "KeyPerson": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "KeyPerson-Kromak": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "KeyPerson-Zettisha": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Kromak": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Gossip": {
+            "max_count": 1,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Ghost": {
+            "max_count":1,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "SerialKiller": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Secret": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Joker": {
+            "max_count":1,
+            "hostility_type": 2,
+            "is_immortality": true
+        },
+        "Sniper": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Therapist": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Sendousha": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Zettisha": {
+            "hostility_type": 2,
+            "is_immortality": false
+        },
+        "TimeTraveler": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "ChickenHeart": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Twin": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "DeepOne": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Troublemaker": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Dripper": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Nightmare": {
+            "hostility_type": 1,
+            "is_immortality": true
+        },
+        "NurseryLime": {
+            "hostility_type": 3,
+            "is_immortality": false
+        },
+        "Ninja": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "PiedPiper": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "PiedPiper-Gossip": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Paranoia": {
+            "hostility_type": 2,
+            "is_immortality": false
+        },
+        "Person-SerialKiller": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Hitohashira": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "Factor": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Faceless": {
+            "hostility_type": 1,
+            "is_immortality": true
+        },
+        "Fragments": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Friend": {
+            "max_count": 2,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Fool": {
+            "max_count": 1,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "PlainShifter": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "Prophecy": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Minus": {
+            "hostility_type": 1,
+            "is_immortality": false
+        },
+        "Magician": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Marionette": {
+            "hostility_type": 3,
+            "is_immortality": false
+        },
+        "Mikakedaoshi": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Misleader": {
+            "max_count":1,
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "MissLeader-SerialKiller": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "MissLeader-Zettisha": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Maytantei": {
+            "hostility_type": 0,
+            "is_immortality": true
+        },
+        "MaineLovers": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Mokugekisha": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Lovers": {
+            "hostility_type": 0,
+            "is_immortality": false
+        },
+        "Vampire": {
+            "hostility_type": 1,
+            "is_immortality": true
+        }
+    },
+    "charaMaster": {
+        "MaleStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "boy,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "FemaleStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Lady": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "ShrineMaiden": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "3",
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Detective": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "OfficeWorker": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "4",
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Informant": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Doctor": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "HospitalizedPatient": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "1,2,4",
+            "chara_attrs": "boy",
+            "anxiety_critical": 2,
+            "abilities": []
+        },
+        "Chairman": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }
+            ]
+        },
+        "Irregular": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "boy,student",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Otherworlder": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "2",
+            "chara_attrs": "girl",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Divinity": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 5
+                }
+            ]
+        },
+        "Idol": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 4
+                }
+            ]
+        },
+        "MassMedia": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Bigwig": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "Nurse": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Pawns": {
+            "start_board_id": 99,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Scholar": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Fantasy": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "fiction,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 4
+                }
+            ]
+        },
+        "ForensicOfficer": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "AI": {
+            "start_board_id": 3,
+            "keep_out_board_ids": "1,2,4",
+            "chara_attrs": "artifact",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "Teacher": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "female,adult",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "TransferStudent": {
+            "start_board_id": 4,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 2
+                }
+            ]
+        },
+        "Soldier": {
+            "start_board_id": 2,
+            "keep_out_board_ids": null,
+            "chara_attrs": "male,adult",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 2
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 5
+                }
+            ]
+        },
+        "BlackCat": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "animal",
+            "anxiety_critical": 0,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Girl": {
+            "start_board_id": 4,
+            "keep_out_board_ids": "1,2,3",
+            "chara_attrs": "girl,student",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 1
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        },
+        "Guru": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "CopyCat": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "student,boy",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 3
+                }
+            ]
+        },
+        "SacredTree": {
+            "start_board_id": 1,
+            "keep_out_board_ids": "2,3,4",
+            "chara_attrs": "tree",
+            "anxiety_critical": 4,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Sister": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl,sister",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": false,
+                    "heart": 5
+                }
+            ]
+        },
+        "Part-timeJob": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,male",
+            "anxiety_critical": 1,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }
+            ]
+        },
+        "Part-timeJob-q": {
+            "start_board_id": 3,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        },
+        "Follower": {
+            "start_board_id": 99,
+            "keep_out_board_ids": null,
+            "chara_attrs": "adult,female",
+            "anxiety_critical": 3,
+            "abilities": [
+                {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": true
+                }, {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 4
+                }
+            ]
+        },
+        "SuperiorExistence": {
+            "start_board_id": 1,
+            "keep_out_board_ids": null,
+            "chara_attrs": "girl",
+            "anxiety_critical": 2,
+            "abilities": [
+                {
+                    "is_ability": false,
+                    "is_one_time_only": true,
+                    "heart": 3
+                }
+            ]
+        }
+    }
+}

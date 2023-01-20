@@ -158,6 +158,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'rule_y_id' => 'Main Plot',
+        'rule_x1_id' => 'Subplot 1',
+        'rule_x2_id' => 'Subplot 2',
+    ],
 
 ];

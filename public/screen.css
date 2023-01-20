@@ -1,0 +1,90 @@
+header {
+    background-color: blueviolet;
+}
+header .my-link {
+    float: right;
+    margin: 4px;
+    display: flex;
+}
+header .icon_wrapper {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+header .icon_wrapper img {
+}
+header:after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+main {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0 8px;
+}
+
+dt {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* 入力要素の基底スタイル **************************************************************/
+input:not([type]), input[type=text] {
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0 4px;
+}
+
+.select_wrapper {
+    border: solid 1px;
+    width: fit-content;
+    border-radius: 100px;
+    padding: 0 12px;
+    position: relative;
+}
+.select_wrapper:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top: 8px solid #000000;
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    z-index: 1;
+    cursor: pointer;
+    pointer-events: none;
+}
+.select_wrapper select {
+    min-width: 60px;
+    position: relative;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 12px;
+    padding-bottom: 4px;
+}
+/* 入力要素の基底スタイル ここまで **************************************************************/
+
+.button {
+    margin: 2px;
+    width: fit-content;
+    padding: 1px 12px;
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+
+.inline_block {
+    display: inline-block;
+}
+.inline_block_wrapper > span {
+    display: inline-block;
+}
+
+.character_row {
+    margin-bottom: 24px;
+}

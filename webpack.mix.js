@@ -12,6 +12,24 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+.sass('resources/sass/app.scss', 'public/css', {
+    sassOptions: {
+        outputStyle: "compressed",
+    }
+})
+.options({
+    autoprefixer: {
+        options: {
+            grid: true,
+        },
+    },
+})
+.autoload({
+    "jquery": ['$', 'window.jQuery'],
+})
+.version();
+
+if (!mix.inProduction()) {
+    mix.sourceMaps(true, 'inline-source-map');
+}
+mix.extract();

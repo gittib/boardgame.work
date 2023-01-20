@@ -1,0 +1,86 @@
+@use 'parts';
+
+$input_margin: 8px;
+
+.error_summary {
+    margin: 16px;
+    background-color: parts.$error_background_color;
+
+    ul {
+        padding-left: 28px;
+
+        li {
+            list-style: disc;
+        }
+    }
+}
+
+input:not([type]), input[type=text] {
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0 4px;
+}
+
+.input_wrapper {
+    border: solid 1px;
+    width: fit-content;
+    border-radius: 8px;
+    position: relative;
+    margin: $input_margin;
+
+    textarea {
+        padding: 6px;
+    }
+}
+
+.select_wrapper {
+    border: solid 1px;
+    width: fit-content;
+    border-radius: 100px;
+    position: relative;
+    margin: $input_margin;
+
+    &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-top: 8px solid #000000;
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        z-index: 1;
+        cursor: pointer;
+        pointer-events: none;
+    }
+
+    &.is-error {
+        border-color: red;
+        border-width: 2px;
+    }
+
+    select {
+        min-width: 60px;
+        position: relative;
+        padding-top: 4px;
+        padding-left: 8px;
+        padding-right: 30px;
+        padding-bottom: 4px;
+    }
+}
+
+.button {
+    margin: $input_margin;
+    width: fit-content;
+    padding: 1px 12px;
+    color: white;
+    background: black;
+    cursor: pointer;
+}
+
+.inline_block {
+    display: inline-block;
+}
+.inline_block_wrapper > span {
+    display: inline-block;
+}

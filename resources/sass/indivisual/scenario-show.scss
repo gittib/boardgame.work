@@ -1,0 +1,147 @@
+
+$tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
+.scenario-show {
+    main {
+        width: 100%;
+    }
+
+    th {
+        font-family: $tragedy_font;
+    }
+
+    .public_sheet {
+        width: fit-content;
+        margin: 0 auto;
+        text-align: center;
+
+        .special_rule_wrapper {
+            border: double 3px;
+            text-align: start;
+            padding: 2px;
+        }
+
+        .incident_list {
+            th {
+                text-align: center;
+            }
+
+            td.day {
+                text-align: center;
+                font-weight: bold;
+            }
+            td.name {
+                min-width: 200px;
+                text-align: start;
+            }
+        }
+    }
+
+    .js-hide_private_sheet {
+        display: none;
+    }
+
+    .private_toggle_button_wrapper {
+        margin: 24px auto 0;
+        width: fit-content;
+    }
+
+    .private_sheet_wrapper {
+        display: none;
+
+        .writer_wrapper {
+            width: fit-content;
+            margin: 0 auto;
+            max-width: 95%;
+
+            .private_sheet {
+                margin: 0 auto;
+                border: solid 1px;
+                padding: 8px;
+                width: fit-content;
+
+                .scenario_title {
+                    text-align: center;
+                    width: auto;
+                    border-bottom: 3px double;
+                    margin: 0 8px 12px;
+                }
+                .difficulty {
+                    text-align: center;
+                }
+
+                .character_list_wrapper {
+
+                    .character_list {
+                        width: fit-content;
+                        max-width: 99%;
+                        margin: 0 auto;
+                        font-size: 0.75rem;
+
+                        * {
+                            word-break: keep-all;
+                            white-space: nowrap;
+                        }
+
+                        td {
+                            color: black;
+
+                            &.not-person {
+                                font-weight: bold;
+                            }
+
+                            &.note {
+                                * {
+                                    word-break: initial;
+                                    white-space: initial;
+                                }
+                            }
+
+                            > span {
+                                display: table-row;
+                            }
+                        }
+                    }
+                }
+
+                .incident_list {
+                    font-size: 0.9rem;
+
+                    th,td {
+                        word-break: keep-all;
+                        white-space: nowrap;
+
+                        &.day {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+
+            .writer {
+                margin: 4px 0;
+                font-size: 12px;
+                text-align: right;
+            }
+        }
+
+        dl {
+            dt {
+                margin-top: 40px;
+            }
+        }
+    }
+
+    .preview_close {
+        background-color: white;
+        margin: 0 auto 40px;
+        width: fit-content;
+
+        p {
+            margin: 8px;
+            background-color: black;
+            color: white;
+            padding: 2px 6px;
+        }
+    }
+}

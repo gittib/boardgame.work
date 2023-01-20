@@ -1,0 +1,16 @@
+@use 'margin-padding';
+@use 'layout';
+@use 'input';
+@use 'popup';
+
+// 以下、個別ページのSASS
+@use 'indivisual/my_scenario-create';
+@use 'indivisual/scenario-index';
+@use 'indivisual/scenario-show';
+@use 'indivisual/user-mypage';
+
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';

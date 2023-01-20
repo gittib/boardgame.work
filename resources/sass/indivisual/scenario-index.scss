@@ -1,0 +1,74 @@
+.scenario-index {
+    main {
+        width: 100%;
+    }
+
+    .button_wrapper {
+        width: fit-content;
+        margin: 24px auto;
+
+        .button {
+            &.js-hide_title {
+                display: none;
+            }
+        }
+    }
+
+    .scenario_list {
+        width: 95%;
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 0 8px;
+
+        > li {
+            $scenario_border: solid 1px black;
+            border-bottom: $scenario_border;
+            padding: 8px;
+
+            &:first-child {
+                border-top: $scenario_border;
+            }
+
+            .row {
+                display: flex;
+                align-items: baseline;
+
+                &.id_wrapper {
+                    justify-content: space-between;
+                }
+                &.summary_wrapper {
+                    flex-wrap: wrap;
+                }
+
+                .writer {
+                    font-size: 0.8em;
+                }
+
+                .set_name {
+                    margin-right: 4px;
+                }
+
+                .loop_day_summary {
+                    font-size: 0.9em;
+                    margin: 0 2px;
+
+                    > span {
+                        font-size: 1.5em;
+                        font-weight: bold;
+                    }
+                }
+
+                .difficult > span {
+                    color: white;
+                    background-color: black;
+                    padding: 0 6px;
+                    border-radius: 8px;
+                }
+            }
+
+            .title {
+                display: none;
+            }
+        }
+    }
+}
