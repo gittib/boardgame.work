@@ -1,5 +1,18 @@
 @use 'parts';
 
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    > .contents_wrapper {
+        flex: 1;
+    }
+}
+
 header {
     background-color: parts.$theme_color;
 
@@ -53,6 +66,11 @@ main {
         margin-left: 8px;
         margin-right: 8px;
     }
+}
+
+footer {
+    margin-top: 60px;
+    font-size: 10px;
 }
 
 dt {

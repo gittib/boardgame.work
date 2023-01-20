@@ -19,15 +19,19 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     </head>
     <body class="@yield('body_class')">
-        @include('layouts.header')
+        <div class="contents_wrapper">
+            @include('layouts.header')
 
-        <ul class="breadcrumb">
-            @yield('bread')
-        </ul>
+            <ul class="breadcrumb">
+                @yield('bread')
+            </ul>
 
-        <main>
-            @yield('contents')
-        </main>
+            <main>
+                @yield('contents')
+            </main>
+        </div>
+
+        @include('layouts.footer')
 
         @yield('popups')
         @include('parts.popups.my_confirm')
