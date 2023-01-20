@@ -21,7 +21,7 @@ class LoginController extends Controller
     public function logout(Request $request) {
         Auth::logout();
         return redirect()->route('top.index')->with([
-            'flush_message' => 'ログアウトしました',
+            'flush_message' => __('ログアウトしました'),
         ]);
     }
 }

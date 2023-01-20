@@ -16,7 +16,7 @@ $user = Auth::user() ?? null;
         </a>
     @else
         <a class="my-link" href="{{ route('auth.twitter.login') }}">
-            Twitterでログイン
+            @lang('Twitterでログイン')
         </a>
     @endauth
 </header>

@@ -62,8 +62,8 @@ class MyScenarioController extends Controller
 
         $this->storeScenario($scenario, $request);
 
-        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->withMessage([
-            'alert_message' => __('messages.alert.scenario.store'),
+        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->with([
+            'flush_message' => __('messages.alert.scenario.store'),
         ]);
     }
 
@@ -78,6 +78,11 @@ class MyScenarioController extends Controller
         $scenario = Scenario::where('user_id', Auth::id())->findOrFail($id);
         $set = $scenario->set;
         $charas = Character::get();
+        if ($scenario->characters->isEmpty()) {
+            $scenario->characters = collect([
+                new ScenarioCharacter
+            ]);
+        }
         return view('my_scenario.create', compact('set', 'charas', 'scenario'));
     }
 
@@ -94,8 +99,8 @@ class MyScenarioController extends Controller
 
         $this->storeScenario($scenario, $request);
 
-        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->withMessage([
-            'alert_message' => __('messages.alert.scenario.store'),
+        return redirect()->route('scenario.show', ['scenario' => $scenario->id])->with([
+            'flush_message' => __('messages.alert.scenario.update'),
         ]);
     }
 

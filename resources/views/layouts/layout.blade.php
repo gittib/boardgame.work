@@ -40,6 +40,12 @@
         <script src="{{ mix('/js/manifest.js') }}"></script>
         <script src="{{ mix('/js/vendor.js') }}"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
+
+        <?php $flushMessage = session()->pull('flush_message'); ?>
+        @if(!empty($flushMessage))
+        <script>myAlert("{{ $flushMessage }}");</script>
+        @endif
+
         @yield('additional_scripts')
     </body>
 </html>

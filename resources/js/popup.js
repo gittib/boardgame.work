@@ -28,7 +28,15 @@ window.openPopup = className => {
     });
 };
 
+window.myAlert = (msg, title = '') => {
+    $('.c-popup.js-popup-my_confirm .button_wrapper [data-result=cancel]').hide();
+    $('.c-popup.js-popup-my_confirm .message').html(msg.replace("\\n", '<br>'));
+    $('.c-popup.js-popup-my_confirm .title').text(title);
+    return openPopup('js-popup-my_confirm');
+};
+
 window.myConfirm = (msg, title = '') => {
+    $('.c-popup.js-popup-my_confirm .button_wrapper [data-result=cancel]').show();
     $('.c-popup.js-popup-my_confirm .message').html(msg.replace("\\n", '<br>'));
     $('.c-popup.js-popup-my_confirm .title').text(title);
     return openPopup('js-popup-my_confirm');

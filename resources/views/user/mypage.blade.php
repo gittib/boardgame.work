@@ -37,6 +37,10 @@
         <input type="file" name="scenario_json">
         <input type="submit" value="@lang('脚本データを送信')" class="button">
     </form>
+
+    <div class="button_wrapper mt-40 mb-40">
+        <div class="button mx-center js-logout_button" data-url="{{ route('auth.logout') }}" data-message="@lang('ログアウトします。よろしいですか？')">@lang('ログアウト')</div>
+    </div>
 @endsection
 
 @section('popups')
@@ -50,6 +54,13 @@ $('.js-create_scenario_button').on('click', async () => {
     const res = await openPopup('js-popup-select_set');
     if (res.result == 'ok' && res.info) {
         location.href = scenarioCreateUrl.replace('___SET___', res.info);
+    }
+});
+$('.js-logout_button[data-message][data-url]').on('click', async function() {
+    const $self = $(this);
+    const res = await myConfirm($self.attr('data-message'));
+    if (res.result == 'ok') {
+        location.href = $self.attr('data-url');
     }
 });
 </script>
