@@ -1,10 +1,13 @@
 <?php
 $user = Auth::user() ?? null;
+$bodyClass ??= '';
 ?>
 <header>
     @auth
         <a class="my-link" href="{{ route('my_page') }}">
-            <span>マイページへ</span>
+            @if($bodyClass != 'user-mypage')
+                <span>@lang('マイページへ')</span>
+            @endif
             @if(!empty($user->profile_img_url))
             <div class="icon_wrapper">
                 <img src="{{ $user->profile_img_url }}" alt="{{ $user->name }}">

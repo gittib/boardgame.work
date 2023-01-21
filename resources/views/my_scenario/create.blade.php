@@ -3,6 +3,8 @@ assert(!empty($scenario));
 assert(!empty($set));
 assert(!empty($charas));
 
+$bodyClass = 'my_scenario-create';
+
 $isEdit = isset($scenario->id);
 $helper = new App\Utils\InputHelper($errors);
 $ruleYs = $set->ruleYs->mapWithKeys(fn($r) => [$r->id => $r->name]);
@@ -25,7 +27,7 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
 
 @section('title', __('惨劇脚本作成 :set', ['set' => $set->name]))
 
-@section('body_class', 'my_scenario-create')
+@section('body_class', $bodyClass)
 
 @section('bread')
 @if($isEdit)

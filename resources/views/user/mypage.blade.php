@@ -1,10 +1,11 @@
 <?php
+$bodyClass = 'user-mypage';
 ?>
 @extends('layouts.layout')
 
 @section('title', __('マイページ'))
 
-@section('body_class', 'user-mypage')
+@section('body_class', $bodyClass)
 
 @section('bread')
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>

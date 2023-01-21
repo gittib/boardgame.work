@@ -1,11 +1,12 @@
 <?php
 $isPreview ??= false;
+$bodyClass = 'scenario-show';
 ?>
 @extends('layouts.layout')
 
 @section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->set->name]))
 
-@section('body_class', 'scenario-show')
+@section('body_class', $bodyClass)
 
 @section('bread')
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
@@ -42,7 +43,7 @@ $isPreview ??= false;
         <h3 class="mt-20">@lang('事件')</h3>
         <table class="incident_list mx-center">
             <tr>
-                <th>@lang('日数')</th>
+                <th>@lang('日付')</th>
                 <th>@lang('事件予定')</th>
             </tr>
             @for($d = 1 ; $d <= $scenario->days ; $d++)

@@ -38,6 +38,10 @@
                 }
                 &.summary_wrapper {
                     flex-wrap: wrap;
+
+                    .abbr_wrapper {
+                        width: 42px;
+                    }
                 }
 
                 .writer {
@@ -50,7 +54,7 @@
 
                 .loop_day_summary {
                     font-size: 0.9em;
-                    margin: 0 2px;
+                    margin: 0 12px 0 2px;
 
                     > span {
                         font-size: 1.5em;
