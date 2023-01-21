@@ -4,7 +4,7 @@ $user = Auth::user() ?? null;
 <header>
     @auth
         <a class="my-link" href="{{ route('my_page') }}">
-            <span>マイページへ</span>
+            <span>@lang('マイページへ')</span>
             @if(!empty($user->profile_img_url))
             <div class="icon_wrapper">
                 <img src="{{ $user->profile_img_url }}" alt="{{ $user->name }}">
