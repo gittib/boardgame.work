@@ -71,6 +71,11 @@ main {
 footer {
     margin-top: 60px;
     font-size: 10px;
+
+    > div {
+        width: fit-content;
+        margin: auto;
+    }
 }
 
 dt {
