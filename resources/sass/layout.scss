@@ -26,6 +26,11 @@ header {
         float: right;
         margin: 4px;
         display: flex;
+        color: white;
+
+        span {
+            margin-right: 4px;
+        }
     }
     .icon_wrapper {
         display: inline-flex;
@@ -75,6 +80,7 @@ footer {
     > div {
         width: fit-content;
         margin: auto;
+        padding-bottom: 8px;
     }
 }
 
