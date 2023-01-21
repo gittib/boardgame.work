@@ -1,10 +1,11 @@
 <?php
+$bodyClass = 'scenario-index';
 ?>
 @extends('layouts.layout')
 
 @section('title', __('惨劇脚本一覧'))
 
-@section('body_class', 'scenario-index')
+@section('body_class', $bodyClass)
 
 @section('bread')
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
