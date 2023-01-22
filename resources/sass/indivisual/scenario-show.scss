@@ -49,6 +49,30 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
     .private_sheet_wrapper {
         display: none;
 
+        .invalid_conditions_wrapper {
+            width: fit-content;
+            margin: 10px auto;
+            border: 2px solid red;
+            padding: 4px;
+
+            > div {
+                width: fit-content;
+                margin: 0 auto;
+                color: red;
+            }
+
+            ul {
+                width: fit-content;
+                margin: 12px auto 0;
+                padding-inline-start: 28px;
+                font-size: 0.9em;
+
+                > li {
+                    list-style: disc;
+                }
+            }
+        }
+
         .writer_wrapper {
             width: fit-content;
             margin: 0 auto;

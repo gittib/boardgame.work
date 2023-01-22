@@ -62,6 +62,17 @@ $bodyClass = 'scenario-show';
     </div>
 
     <div class="private_sheet_wrapper">
+        @if(!empty($scenario->invalidConditions))
+        <div class="invalid_conditions_wrapper">
+            <div>@lang('messages.invalid_conditions')</div>
+            <ul>
+                @foreach($scenario->invalidConditions as $condition)
+                <li>{{ $condition }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <h2>@lang('非公開シート')</h2>
 
         <div class="writer_wrapper">
