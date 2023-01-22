@@ -12,4 +12,5 @@ return [
     'footer' => '本サイトはBakaFire Partyのゲーム「:trlink」のファンサイトです。本サイトについてのお問い合わせは、:managerまでご連絡ください。',
     'loop_day_summary' => '<span class="loop">:loops</span>ループ<span class="day">:days</span>日',
     'special_rule_placeholder' => '＋対応の場合、特殊ルールにその旨を記載してください',
+    'invalid_conditions' => '役職の配役がおかしいようです。<br>特殊ルールによっては問題ない場合もあるため、確認した上でご利用ください。',
 ];
