@@ -47,6 +47,11 @@ class TragedySet extends Model
         }
     }
 
+    /** 偽装事件を含むかどうか */
+    public function getHasFalsifiedIncidentsAttribute():bool {
+        return !empty($this->incidents->first(fn($i) => $i->code == 'FalsifiedIncidents'));
+    }
+
     public function getRolesAttribute() {
         $roles = $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
         $fragments = TragedyRole::where('code', 'Fragments')->firstOrFail();

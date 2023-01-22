@@ -12,7 +12,6 @@ $ruleXs = $set->ruleXs->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $charaSelect = $charas->mapWithKeys(fn($c) => [$c->id => $c->name]);
 $roleSelect = App\Models\TragedyRole::where('code', 'Person')->get()->concat($set->roles)->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $incidentSelect = $set->incidents->mapWithKeys(fn($i) => [$i->id => $i->name]);
-$hasFalsifiedIncidents = !empty($set->incidents->first(fn($i) => $i->code == 'FalsifiedIncidents'));
 $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d, $key) {
     $star = '';
     for ($i = 1 ; $i <= 8 ; $i++) {
@@ -158,7 +157,7 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
                                     $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
                             </span>
                         </span>
-                        @if($hasFalsifiedIncidents)
+                        @if($set->hasFalsifiedIncidents)
                         <span class="label_and_input_wrapper">
                             <span class="label_name">@lang('偽装事件の公開名')</span>
                             <input name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
