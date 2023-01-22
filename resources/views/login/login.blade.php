@@ -3,7 +3,10 @@
 @section('contents')
     <div class="centering_wrapper">
         <div class="centering_frame">
-            <p>右上のリンクからログインしてください。</p>
+            <p>@lang('右上のリンクからログインしてください。')</p>
+        </div>
+        <div>
+            <a href="{{ route('top.index') }}">@lang('TOPへ')</a>
         </div>
     </div>
 @endsection
