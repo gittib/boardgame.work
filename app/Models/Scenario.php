@@ -58,6 +58,7 @@ class Scenario extends Model
         return $this->set->rules->firstWhere('id', $this->rule_x2_id);
     }
 
+    /** 脚本の役職構成にエラーがないか確認する */
     public function getInvalidConditionsAttribute():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
 
@@ -110,7 +111,11 @@ class Scenario extends Model
             if ($val->picked < $val->count) {
                 $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
             } else if ($val->picked > $val->count) {
-                $errors[] = __(':roleが:diff人多すぎます。', ['role' => $val->name, 'diff' => $val->picked - $val->count]);
+                if ($val->code == 'Fragments' && $this->set->isPlusSupport && $val->picked == 1) {
+                    // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
+                } else {
+                    $errors[] = __(':roleが:diff人多すぎます。', ['role' => $val->name, 'diff' => $val->picked - $val->count]);
+                }
             }
         }
 

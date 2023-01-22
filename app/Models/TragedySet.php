@@ -38,9 +38,20 @@ class TragedySet extends Model
         return __('tragedy_master.set_name.' . $this->abbr);
     }
 
-    public function getHasRuleX2Attribute() {
+    public function getHasRuleX2Attribute(): bool {
         switch($this->abbr) {
         case 'FS':
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    /** 大型拡張「レイ」で追加された拡張ルールが対応しているかどうか */
+    public function getIsPlusSupportAttribute(): bool {
+        switch($this->abbr) {
+        case 'LL':
+        case 'AHR':
             return false;
         default:
             return true;
