@@ -121,7 +121,7 @@ $bodyClass = 'scenario-show';
                                 </span>
                             </td>
                             <td class="note">
-                                <span>{{ $chara->note }}</span>
+                                <span>{{ __($chara->note) }}</span>
                             </td>
                         </tr>
                         @endforeach

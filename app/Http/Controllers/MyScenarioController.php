@@ -327,8 +327,23 @@ class MyScenarioController extends Controller
             $scenario->is_open = isset($request->is_open);
             $scenario->save();
 
+            // キャラの特記にテリトリーとか手先の初期配置を入れられたとき、多言語対応できるようにする
+            $lang = session('applocale') ?: config('app.fallback_locale');
+            $transFilePath = resource_path("lang/$lang.json");
+            if (file_exists($transFilePath)) {
+                $aTrans = collect(json_decode(file_get_contents($transFilePath), true))
+                    ->mapWithKeys(fn($val, $key) => [strtolower($val) => $key])
+                    ->toArray();
+            } else {
+                $aTrans = [];
+            }
+
             $scenario->characters()->delete();
             foreach ($request->scenario_chara as $chara) {
+                if (!empty($aTrans[strtolower($chara['note'])])) {
+                    $chara['note'] = $aTrans[$chara['note']];
+                }
+
                 $scenario->characters()->save(new ScenarioCharacter([
                     'character_id' => $chara['character_id'],
                     'role_id' => $chara['role_id'],
