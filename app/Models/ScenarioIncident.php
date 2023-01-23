@@ -80,7 +80,7 @@ class ScenarioIncident extends Model
             $boardName = __('tragedy_master.board_name.'.$this->scenario_character_id);
             return __(':boardの群像', ['board' => $boardName]);
         } else {
-            return $this->criminal?->name;
+            return $this->criminal?->name ?? '？？？？';
         }
     }
 }
