@@ -1,6 +1,7 @@
 {
     ":attributeに重複があります。": "There are duplicate :attribute.",
-    ":boardの群像": ":boardの群像",
+    ":boardの群像": "Mob of :board",
+    "群像事件": "Mob Incident",
     ":days日": ":days days",
     ":day日目": "Day :day",
     ":loopsループ": ":loops loops",
