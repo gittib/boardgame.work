@@ -1,6 +1,7 @@
 {
     ":attributeに重複があります。": "There are duplicate :attribute.",
-    ":boardの群像": ":boardの群像",
+    ":boardの群像": "Mob of :board",
+    "群像事件": "Mob Incident",
     ":days日": ":days days",
     ":day日目": "Day :day",
     ":loopsループ": ":loops loops",
@@ -25,7 +26,7 @@
     "キャラクター": "Character",
     "キャラ追加": "Add Character",
     "キャンセル": "cancel",
-    "ストーリー": "ストーリー",
+    "ストーリー": "Story",
     "プレビュー": "preview",
     "プレビューを閉じる": "close preview",
     "ペンスキーの惨劇RoopeR脚本部屋から自作脚本データを登録": "Import my Scripts from \"ペンスキーの惨劇RoopeR脚本部屋\"",
@@ -72,7 +73,7 @@
     "登場人物": "Cast",
     "登録": "register",
     "脚本": "Script",
-    "脚本の特徴": "脚本の特徴",
+    "脚本の特徴": "Specifics",
     "脚本を作る": "Create a new Script",
     "脚本を公開する": "Publish this Script",
     "脚本を編集する": "Edit this Script",
@@ -84,7 +85,7 @@
     "脚本名を表示": "Show Script titles",
     "脚本名を見るとネタバレになるかも知れませんが、表示してもよろしいですか？": "Seeing the Script name can lead to spoilers. Are you sure?",
     "脚本名を隠す": "Hide Script titles",
-    "脚本家への指針": "脚本家への指針",
+    "脚本家への指針": "Hints for the Mastermind",
     "言語設定": "Language",
     "難易度": "Difficulty",
     "非公開シート": "Secret card",
@@ -96,5 +97,15 @@
     ":nameに通常の役職が配役されています": ":name is assigned normal Role.",
     ":roleが:diff人足りません。": "This Script is short of :diff :role.",
     ":roleが:diff人多すぎます。": "This Script has :diff :role in excess.",
-    ":nameが他の登場人物の役職をコピーしていません。": "The :name does not imitate other characters' Roles."
+    ":nameが他の登場人物の役職をコピーしていません。": "The :name does not imitate other characters' Roles.",
+
+    "不安": "Paranoia",
+    "友好": "Goodwill",
+    "暗躍": "Intrigue",
+    "死亡": "死亡",
+    "死体": "corpses",
+    "病院": "Hostpital",
+    "神社": "Shrine",
+    "都市": "City",
+    "学校": "School"
 }

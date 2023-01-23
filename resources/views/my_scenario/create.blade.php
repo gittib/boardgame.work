@@ -125,7 +125,7 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
                             </span>
                             <span class="label_and_input_wrapper">
                                 <span class="label_name">@lang('特記事項')</span>
-                                <input value="{{ $ch->note }}" data-list_name="scenario_chara" data-key_name="note">
+                                <input value="{{ __($ch->note) }}" data-list_name="scenario_chara" data-key_name="note">
                             </span>
                             <div class="button js-chara_delete_button">@lang('このキャラを削除')</div>
                         </div>
