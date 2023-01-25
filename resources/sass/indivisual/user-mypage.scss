@@ -1,3 +1,4 @@
+@use '../parts';
 
 .user-mypage {
     main {
@@ -19,7 +20,7 @@
                 .open {
                     margin-left: 4px;
                     padding: 0 4px;
-                    background: gold;
+                    background: parts.$public_status_background;
                     font-weight: bold;
                     display: inline-block;
                 }

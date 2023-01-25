@@ -163,9 +163,22 @@ $bodyClass = 'scenario-show';
 
     <div class="mt-40 mb-40">
         @if(!$isPreview && $scenario->user_id == Auth::id())
-        <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
-            <p class="button">@lang('脚本を編集する')</p>
-        </a>
+        <div class="writer_menu">
+            <p class="title">@lang('製作者専用欄')</p>
+            <p>@lang('この枠内は、脚本の製作者本人だけに表示されます。')</p>
+            <div class="open_status">
+            @if($scenario->is_open)
+                <p class="title public">@lang('公開状態：公開中')</p>
+                <p>@lang('この脚本は誰でも見ることができます。')</p>
+            @else
+                <p class="title private">@lang('公開状態：非公開')</p>
+                <p>@lang('この脚本は製作者本人しか見ることができません。')</p>
+            @endif
+            </div>
+            <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
+                <p class="button">@lang('脚本を編集する')</p>
+            </a>
+        </div>
         @endif
     </div>
 </div>
@@ -181,7 +194,7 @@ $bodyClass = 'scenario-show';
 @section('additional_scripts')
 <script>
 $('.js-show_private_sheet').on('click', async () => {
-    const {result} = await myConfirm("@lang('非公開シートを表示します。<br>よろしいですか？')");
+    const {result} = await myConfirm("@lang('非公開シートを表示します。よろしいですか？')");
     if (result == 'ok') {
         $('.private_sheet_wrapper').show();
         $('.js-hide_private_sheet').show();
