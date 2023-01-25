@@ -1,5 +1,4 @@
-
-$tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+@use '../parts';
 
 .scenario-show {
     main {
@@ -7,7 +6,7 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
     }
 
     th {
-        font-family: $tragedy_font;
+        font-family: parts.$tragedy_font;
     }
 
     .public_sheet {
@@ -154,6 +153,40 @@ $tragedy_font: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mi
             dt {
                 margin-top: 40px;
             }
+        }
+    }
+
+    .writer_menu {
+        width: fit-content;
+        margin: 120px auto 0;
+        border: 1px dashed;
+        padding: 8px;
+        font-size: 0.9em;
+
+        > .title {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .open_status {
+            margin: 8px 0;
+
+            .title {
+                font-weight: bold;
+                width: fit-content;
+                padding: 0 4px;
+
+                &.public {
+                    background-color: parts.$public_status_background;
+                }
+                &.private {
+                    background-color: lightgray;
+                }
+            }
+        }
+
+        .button {
+            margin: 8px auto;
         }
     }
 

@@ -16,7 +16,7 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale(session('applocale'));
+        app()->setLocale(session('applocale') ?? config('app.fallback_locale'));
         return $next($request);
     }
 }
