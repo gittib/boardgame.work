@@ -6,6 +6,8 @@
         <meta name="chunk_upload_url" content="{{ route('file.upload.chunk.first') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="shortcut icon" href="/images/favicon.png">
+
         @hasSection('title')
             <title>@yield('title') - @lang('惨劇RoopeR 脚本データベース')</title>
         @else
