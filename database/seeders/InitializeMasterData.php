@@ -98,5 +98,12 @@ class InitializeMasterData extends Seeder
                 $set->incidents()->attach($incident->id);
             }
         }
+
+        Incident::whereIn('code', [
+            'AwakeningOfTheCurse',
+            'TheNightOfMadness',
+            'ApocalypseOfTheDead',
+            'SpewingOfFilth',
+        ])->update(['is_crowd' => 1]);
     }
 }
