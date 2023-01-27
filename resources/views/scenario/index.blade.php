@@ -47,7 +47,7 @@ $bodyClass = 'scenario-index';
                     <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->set?->abbr }}</span>
                 </span>
                 <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
-                <span class="difficult">@lang('難易度'):<span>{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
+                <span class="difficult">@lang('難易度'):<span class="difficult_name">{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
             </div>
         </li>
         @endforeach

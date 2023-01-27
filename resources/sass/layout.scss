@@ -149,6 +149,11 @@ table {
     padding: 0 8px;
     border-radius: 8px;
 }
+html[lang=en] {
+    .difficult_name {
+        display: none;
+    }
+}
 
 .set_abbr {
     border-radius: 4px;

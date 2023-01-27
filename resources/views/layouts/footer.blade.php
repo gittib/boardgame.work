@@ -1,5 +1,5 @@
 <?php
-$trLink = '<a href="http://bakafire.main.jp/rooper/sr_top.htm" target="_blank">'.__('惨劇RoopeR').'</a>';
+$trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨劇RoopeR').'</a>';
 $webManagerLink = '<a href="https://twitter.com/gittib_gittib" target="_blank">ペンスキー</a>';
 $aLang = [
     'ja' => '日本語',
@@ -10,7 +10,7 @@ $aLang = [
     <div>
         <form action="{{route('language.trans') }}">
             <div class="select_wrapper">
-                {{ Form::select('lang', $aLang, null, ['placeholder' => __('言語設定'), 'class' => 'js-language_setting']) }}
+                {{ Form::select('lang', $aLang, null, ['placeholder' => 'Language', 'class' => 'js-language_setting']) }}
             </div>
         </form>
         @lang('messages.footer', ['trlink' => $trLink, 'manager' => $webManagerLink])<br>
