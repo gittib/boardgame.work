@@ -617,6 +617,20 @@ return [
         'SuperiorExistence' => '上位存在',
     ],
 
+    'chara_attr' => [
+        'boy' => '少年',
+        'student' => '学生',
+        'girl' => '少女',
+        'male' => '男性',
+        'adult' => '大人',
+        'female' => '女性',
+        'fiction' => '虚構',
+        'artifact' => '造物',
+        'animal' => '動物',
+        'tree' => '樹木',
+        'sister' => '妹',
+    ],
+
     'difficulty' => [
         0 => '特殊',
         1 => '練習用',
