@@ -76,8 +76,10 @@ class Scenario extends Model
         ])->toArray();
 
         // 脚本で実際に採用されてる人数をカウント
-        $irregularRoleId = null;
-        $copyCatRoleId = null;
+        $irregularRoleId = null; // イレギュラーの役職
+        $copyCatRoleId = null; // コピーキャットの役職
+        $vampSex = null; // ヴァンパイアの性別
+        $keySex = null; // キーパーソンの性別
         foreach($this->characters as $chara) {
             if ($chara->character->code == 'Irregular') {
                 // イレギュラーは判定ロジックが全然別
@@ -102,6 +104,41 @@ class Scenario extends Model
                     ];
                 }
             }
+
+            // ルールによる役職の縛り違反をチェック
+            if ($chara->role?->code == 'KeyPerson') {
+                if ($this->ruleY?->code == 'Sign-me-up' || $this->ruleX1?->code == 'The-Girl-with-the-Key' || $this->ruleX2?->code == 'The-Girl-with-the-Key') {
+                    // 「僕と契約しようよ！」「鍵たる少女」が採用されている場合、少女でないキーパーソンはNG
+                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                        if ($this->ruleY?->code == 'Sign-me-up') $rule = $this->ruleY;
+                        else if ($this->ruleX1?->code == 'The-Girl-with-the-Key') $rule = $this->ruleX1;
+                        else $rule = $this->ruleX2;
+                        $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
+                            'rule' => $rule->name,
+                            'role' => __('tragedy_master.role.KeyPerson.name'),
+                            'attr' => __('tragedy_master.chara_attr.girl'),
+                        ]);
+                    }
+                }
+                if ($this->ruleY?->code == 'Noble-Blood') {
+                    $keySex = $chara->character->sex;
+                }
+            } else if ($chara->role?->code == 'Vampire') {
+                if ($this->ruleY?->code == 'Noble-Blood') {
+                    $vampSex = $chara->character->sex;
+                }
+            } else if ($chara->role?->code == 'Ninja') {
+                if ($this->ruleY?->code == 'Battle-of-the-Han') {
+                    // 「漢の戦い」が採用されている場合、男性でないニンジャはNG
+                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'male'))) {
+                        $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
+                            'rule' => $this->ruleY?->name,
+                            'role' => __('tragedy_master.role.Ninja.name'),
+                            'attr' => __('tragedy_master.chara_attr.male'),
+                        ]);
+                    }
+                }
+            }
         }
 
         // 過不足のある役職を確認
@@ -109,7 +146,11 @@ class Scenario extends Model
             $val = (object)$val;
             if ($val->code == 'Person') continue;
             if ($val->picked < $val->count) {
-                $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
+                if ($val->code == 'Minus' && $this->ruleX1?->code == 'The-Worst-Retired-Book') {
+                    // 最低の却本が採用されている場合、マイナスは足りなくてもいい
+                } else {
+                    $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
+                }
             } else if ($val->picked > $val->count) {
                 if ($val->code == 'Fragments' && $this->set->isPlusSupport && $val->picked == 1) {
                     // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
@@ -124,6 +165,29 @@ class Scenario extends Model
             $othersCnt = ($roleCounter[$copyCatRoleId] ?? ['picked' => 0])['picked'];
             if ($othersCnt <= 0 && $copyCatRoleId != $irregularRoleId) {
                 $errors[] = __(':nameが他の登場人物の役職をコピーしていません。', ['name' => __('tragedy_master.chara_name.CopyCat')]);
+            }
+        }
+
+        if ($vampSex && $keySex) {
+            // ヴァンパイアとキーパーソンが異性かどうか確認
+            if ($vampSex == 'x') {
+                $errors[] = __('「:rule」が採用されていますが、:roleの性別が不正です。', [
+                    'rule' => __('tragedy_master.rule_name.Noble-Blood'),
+                    'role' => __('tragedy_master.role.Vampire.name'),
+                ]);
+            }
+            if ($keySex == 'x') {
+                $errors[] = __('「:rule」が採用されていますが、:roleの性別が不正です。', [
+                    'rule' => __('tragedy_master.rule_name.Noble-Blood'),
+                    'role' => __('tragedy_master.role.KeyPerson.name'),
+                ]);
+            }
+            if ($vampSex == $keySex) {
+                $errors[] = __('「:rule」が採用されていますが、:rolevと:rolekが同性です。', [
+                    'rule' => __('tragedy_master.rule_name.Noble-Blood'),
+                    'rolev' => __('tragedy_master.role.Vampire.name'),
+                    'rolek' => __('tragedy_master.role.KeyPerson.name'),
+                ]);
             }
         }
 

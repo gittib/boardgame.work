@@ -39,4 +39,19 @@ class Character extends Model
     public function getCharaAttrNamesArrayAttribute(): Collection {
         return $this->charaAttrsArray->map(fn($i) => __("tragedy_master.chara_attr.$i"));
     }
+
+    /** m:男、 f:女、 x:どちらでもない、 b:どちらでもある */
+    public function getSexAttribute(): string {
+        $isMale = false;
+        $isFemale = false;
+        foreach($this->charaAttrsArray as $val) {
+            if ($val == 'male' || $val == 'boy') $isMale = true;
+            if ($val == 'female' || $val == 'girl') $isFemale = true;
+        }
+
+        if ($isMale && $isFemale) return 'b';
+        else if ($isMale) return 'm';
+        else if ($isFemale) return 'f';
+        else return 'x';
+    }
 }
