@@ -53,6 +53,8 @@ $bodyClass = 'scenario-index';
         @endforeach
     </ul>
 
+    @include('parts.paginator', ['items' => $scenarios])
+
 </div>
 <div style="display:none;">
     <p id="js-show_title_confirm_message">@lang('脚本名を見るとネタバレになるかも知れませんが、表示してもよろしいですか？')</p>

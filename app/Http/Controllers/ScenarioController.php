@@ -30,7 +30,7 @@ class ScenarioController extends Controller
             });
         }
 
-        $scenarios = $query->paginate(100);
+        $scenarios = $query->paginate(30);
         return view('scenario.index', compact('scenarios'));
     }
 
