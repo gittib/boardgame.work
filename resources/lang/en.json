@@ -97,9 +97,9 @@
     ":roleが:diff人足りません。": "This Script is short of :diff :role.",
     ":roleが:diff人多すぎます。": "This Script has :diff :role in excess.",
     ":nameが他の登場人物の役職をコピーしていません。": "The :name does not imitate other characters' Roles.",
-    "「:rule」が採用されていますが、:roleが:attrではありません。": "「:rule」が採用されていますが、:roleが:attrではありません。",
-    "「:rule」が採用されていますが、:roleの性別が不正です。": "「:rule」が採用されていますが、:roleの性別が不正です。",
-    "「:rule」が採用されていますが、:rolevと:rolekが同性です。": "「:rule」が採用されていますが、:rolevと:rolekが同性です。",
+    "「:rule」が採用されていますが、:roleが:attrではありません。": "The \":rule\" is adopted, but the :role is not a :attr.",
+    "「:rule」が採用されていますが、:roleの性別が不正です。": "The \":rule\" is adopted, but the :role's gender is wrong.",
+    "「:rule」が採用されていますが、:rolevと:rolekが同性です。": "The \":rule\" is adopted, but the :rolev and :rolek are of the same sex.",
 
     "製作者専用欄": "Auther only",
     "この枠内は、脚本の製作者本人だけに表示されます。": "This frame is only visible to the author himself/herself.",
