@@ -585,7 +585,7 @@ return [
         'Lady' => 'Rich Man\'s Daughter',
         'ShrineMaiden' => 'Shrine Maiden',
         'Detective' => 'Police Officer',
-        'OfficeWorker' => 'office Worker',
+        'OfficeWorker' => 'Office Worker',
         'Informant' => 'Informer',
         'Doctor' => 'Doctor',
         'HospitalizedPatient' => 'Patient',
@@ -615,6 +615,20 @@ return [
         'Part-timeJob-q' => 'アルバイト？',
         'Follower' => '従者',
         'SuperiorExistence' => '上位存在',
+    ],
+
+    'chara_attr' => [
+        'boy' => 'Boy',
+        'student' => 'Student',
+        'girl' => 'Girl',
+        'male' => 'Man',
+        'adult' => 'Adult',
+        'female' => 'Woman',
+        'fiction' => '虚構',
+        'artifact' => 'Construct',
+        'animal' => 'Animal',
+        'tree' => 'Tree',
+        'sister' => 'Sister',
     ],
 
     'difficulty' => [
