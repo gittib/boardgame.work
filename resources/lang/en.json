@@ -100,6 +100,9 @@
     "「:rule」が採用されていますが、:roleが:attrではありません。": "The \":rule\" is adopted, but the :role is not a :attr.",
     "「:rule」が採用されていますが、:roleの性別が不正です。": "The \":rule\" is adopted, but the :role's gender is wrong.",
     "「:rule」が採用されていますが、:rolevと:rolekが同性です。": "The \":rule\" is adopted, but the :rolev and :rolek are of the same sex.",
+    ":charaに:roleが配役されていますが、事件の犯人になっていません。": ":charaに:roleが配役されていますが、事件の犯人になっていません。",
+    ":charaに:roleが配役されていますが、:roleは事件の犯人になれません。": ":charaに:roleが配役されていますが、:roleは事件の犯人になれません。",
+    "「:rule」が採用されていますが、:elementが採用されていません。": "「:rule」が採用されていますが、:elementが採用されていません。",
 
     "製作者専用欄": "Auther only",
     "この枠内は、脚本の製作者本人だけに表示されます。": "This frame is only visible to the author himself/herself.",

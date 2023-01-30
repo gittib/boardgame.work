@@ -75,7 +75,9 @@ class Scenario extends Model
             ]
         ])->toArray();
 
-        // 脚本で実際に採用されてる人数をカウント
+        // 脚本で実際に採用されてる人数をカウント。ついでに個別で判定できるものもチェックする
+        $criminalRoles = ['Fool', 'Twin', 'Zettisha', 'Hitohashira', ]; // 犯人にならなければならない役職
+        $notCriminalRoles = ['Maytantei', ]; // 犯人にならない役職
         $irregularRoleId = null; // イレギュラーの役職
         $copyCatRoleId = null; // コピーキャットの役職
         $vampSex = null; // ヴァンパイアの性別
@@ -139,6 +141,37 @@ class Scenario extends Model
                     }
                 }
             }
+
+            // 役職による事件の犯人設定が正しいか確認
+            if (in_array($chara->role?->code, $criminalRoles)) {
+                $i = $this->incidents->first(function($i) use($chara) {
+                    if (!empty($i->scenario_character_id)) {
+                        return $i->scenario_character_id == $chara->id;
+                    } else {
+                        return $i->criminal_name == $chara->name;
+                    }
+                });
+                if (empty($i)) {
+                    $errors[] = __(':charaに:roleが配役されていますが、事件の犯人になっていません。', [
+                        'chara' => $chara->character?->name,
+                        'role' => $chara->role?->name,
+                    ]);
+                }
+            } else if (in_array($chara->role?->code, $notCriminalRoles)) {
+                $i = $this->incidents->first(function($i) use($chara) {
+                    if (!empty($i->scenario_character_id)) {
+                        return $i->scenario_character_id == $chara->id;
+                    } else {
+                        return $i->criminal_name == $chara->name;
+                    }
+                });
+                if (!empty($i)) {
+                    $errors[] = __(':charaに:roleが配役されていますが、:roleは事件の犯人になれません。', [
+                        'chara' => $chara->character?->name,
+                        'role' => $chara->role?->name,
+                    ]);
+                }
+            }
         }
 
         // 過不足のある役職を確認
@@ -187,6 +220,26 @@ class Scenario extends Model
                     'rule' => __('tragedy_master.rule_name.Noble-Blood'),
                     'rolev' => __('tragedy_master.role.Vampire.name'),
                     'rolek' => __('tragedy_master.role.KeyPerson.name'),
+                ]);
+            }
+        }
+
+        if ($this->ruleX1?->code == 'The-one-that-proclaims-destruction' || $this->ruleX2?->code == 'The-one-that-proclaims-destruction') {
+            // 滅亡を謳うものがあったら、自殺を採用してるかチェック
+            $i = $this->incidents->first(fn($i) => $i->code == 'suicide');
+            if (empty($i)) {
+                $errors[] = __('「:rule」が採用されていますが、:elementが採用されていません。', [
+                    'rule' => __('tragedy_master.rule_name.The-one-that-proclaims-destruction'),
+                    'element' => __('tragedy_master.incident.suicide.name'),
+                ]);
+            }
+        } else if ($this->ruleX1?->code == 'Crazy-Truth' || $this->ruleX2?->code == 'Crazy-Truth') {
+            // 狂った真実があったら、情報屋を採用してるかチェック
+            $c = $this->characters->first(fn($c) => $c->character->code == 'Informant');
+            if (empty($c)) {
+                $errors[] = __('「:rule」が採用されていますが、:elementが採用されていません。', [
+                    'rule' => __('tragedy_master.rule_name.Crazy-Truth'),
+                    'element' => __('tragedy_master.chara_name.Informant'),
                 ]);
             }
         }
