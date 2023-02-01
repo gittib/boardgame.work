@@ -58,6 +58,21 @@ class Scenario extends Model
         return $this->set->rules->firstWhere('id', $this->rule_x2_id);
     }
 
+    /** キーパーソンを少女にしなければならないルールが採用されていれば、それを返す */
+    public function getGirlKeyRuleAttribute(): ?TragedyRule {
+        $aRuleY = ['Sign-me-up', 'World-of-Rebellion'];
+        $aRuleX = ['The-Girl-with-the-Key'];
+        if (in_array($this->ruleY?->code, $aRuleY)) {
+            return $this->ruleY;
+        }
+        if (in_array($this->ruleX1?->code, $aRuleX)) {
+            return $this->ruleX1;
+        }
+        if (in_array($this->ruleX2?->code, $aRuleX)) {
+            return $this->ruleX2;
+        }
+    }
+
     /** 脚本の役職構成にエラーがないか確認する */
     public function getInvalidConditionsAttribute():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
@@ -76,7 +91,7 @@ class Scenario extends Model
         ])->toArray();
 
         // 脚本で実際に採用されてる人数をカウント。ついでに個別で判定できるものもチェックする
-        $criminalRoles = ['Fool', 'Twin', 'Zettisha', 'Hitohashira', ]; // 犯人にならなければならない役職
+        $criminalRoles = ['Fool', 'Twin', 'Zettisha', 'Hitohashira', 'Joker', ]; // 犯人にならなければならない役職
         $notCriminalRoles = ['Maytantei', ]; // 犯人にならない役職
         $irregularRoleId = null; // イレギュラーの役職
         $copyCatRoleId = null; // コピーキャットの役職
@@ -109,14 +124,11 @@ class Scenario extends Model
 
             // ルールによる役職の縛り違反をチェック
             if ($chara->role?->code == 'KeyPerson') {
-                if ($this->ruleY?->code == 'Sign-me-up' || $this->ruleX1?->code == 'The-Girl-with-the-Key' || $this->ruleX2?->code == 'The-Girl-with-the-Key') {
-                    // 「僕と契約しようよ！」「鍵たる少女」が採用されている場合、少女でないキーパーソンはNG
+                if (!empty($this->girl_key_rule)) {
+                    // キーパーソンを少女にしなければならないルールが採用されている場合、少女でないキーパーソンはNG
                     if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
-                        if ($this->ruleY?->code == 'Sign-me-up') $rule = $this->ruleY;
-                        else if ($this->ruleX1?->code == 'The-Girl-with-the-Key') $rule = $this->ruleX1;
-                        else $rule = $this->ruleX2;
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
-                            'rule' => $rule->name,
+                            'rule' => $this->girl_key_rule->name,
                             'role' => __('tragedy_master.role.KeyPerson.name'),
                             'attr' => __('tragedy_master.chara_attr.girl'),
                         ]);
@@ -137,6 +149,29 @@ class Scenario extends Model
                             'rule' => $this->ruleY?->name,
                             'role' => __('tragedy_master.role.Ninja.name'),
                             'attr' => __('tragedy_master.chara_attr.male'),
+                        ]);
+                    }
+                }
+            } else if ($chara->role?->code == 'Fragments') {
+                if ($this->ruleY?->code == 'World-of-Rebellion') {
+                    // 「叛逆の世界」が採用されている場合、少女でないフラグメントはNG
+                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                        $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
+                            'rule' => $this->ruleY?->name,
+                            'role' => __('tragedy_master.role.KeyPerson.name'),
+                            'attr' => __('tragedy_master.chara_attr.girl'),
+                        ]);
+                    }
+                }
+            } else if ($chara->role?->code == 'Alice') {
+                if ($this->ruleX1?->code == 'Alice-in-Mirrorland' || $this->ruleX2?->code == 'Alice-in-Mirrorland') {
+                    // 「鏡の国のアリス」が採用されている場合、少女でないアリスはNG
+                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                        $rule = ($this->ruleX1?->code == 'Alice-in-Mirrorland') ? $this->ruleX1 : $this->ruleX2;
+                        $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
+                            'rule' => $rule->name,
+                            'role' => __('tragedy_master.role.Alice.name'),
+                            'attr' => __('tragedy_master.chara_attr.girl'),
                         ]);
                     }
                 }
@@ -185,6 +220,9 @@ class Scenario extends Model
                     $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
                 }
             } else if ($val->picked > $val->count) {
+
+                // TODO: 嘘憑きの秘密が採用されててシークレットがいない場合の判定
+
                 if ($val->code == 'Fragments' && $this->set->isPlusSupport && $val->picked == 1) {
                     // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
                 } else {

@@ -25,7 +25,7 @@ $aRequest = request()->all();
         @if($i <= $items->lastPage())
             <li class="@if($i == $items->currentPage()) current @endif">
                 <form action="{{ $items->url(1) }}">
-                    <a href="javascript:void(0);" class="submit_button">
+                    <a href="javascript:void(0);" class="@if($i != $items->currentPage()) submit_button @endif">
                         {{ $i }}
                     </a>
                     <?php $aRequest['page'] = $i; ?>
