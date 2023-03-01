@@ -258,3 +258,58 @@ npm install
 npm i jquery
 npm run dev
 
+
+## supervisorインストール
+sudo yum install -y supervisor
+supervisord -v
+### 4.2.2
+
+# ログローテート設定を確認
+sudo cat /etc/logrotate.d/supervisor
+### /var/log/supervisor/*.log {
+###        missingok
+###        weekly
+###        notifempty
+###        nocompress
+### }
+
+## 自動起動設定
+sudo systemctl enable supervisord
+
+sudo systemctl is-enabled supervisord
+### enabled
+
+# LaravelのJobワーカーをsupervisorに登録
+sudo vim /etc/supervisord.d/sangeki-laravel-worker.ini
+sudo cat /etc/supervisord.d/sangeki-laravel-worker.ini
+### [program:sangeki-laravel-dev]
+### process_name=%(program_name)s_%(process_num)02d
+### command=php <PATH_TO_DEV>/artisan queue:work --once --queue=default --delay=0 --memory=128 --sleep=5 --tries=1
+### autostart=true
+### autorestart=true
+### startsecs = 0
+### stopasgroup=true
+### killasgroup=true
+### user=<USER_NAME>
+### numprocs=1
+### redirect_stderr=true
+### stdout_logfile=/var/log/supervisor/<DEV>-worker.log
+###
+### [program:sangeki-laravel-prd]
+### process_name=%(program_name)s_%(process_num)02d
+### command=php <PATH_TO_PRD>/artisan queue:work --once --queue=default --delay=0 --memory=128 --sleep=5 --tries=1
+### autostart=true
+### autorestart=true
+### startsecs = 0
+### stopasgroup=true
+### killasgroup=true
+### user=<USER_NAME>
+### numprocs=1
+### redirect_stderr=true
+### stdout_logfile=/var/log/supervisor/<PRD>-worker.log
+
+# supervisor起動
+sudo systemctl start supervisord
+# supervisor起動確認
+ps auxf | grep artisan | grep queue
+
