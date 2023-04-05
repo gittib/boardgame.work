@@ -104,6 +104,7 @@ $bodyClass = 'scenario-show';
                 </table>
 
                 <div class="character_list_wrapper">
+                    <p class="item_name">@lang('登場人物')<span class="people_count">@lang('(:n人)', ['n' => $scenario->characters->count()])</span></p>
                     <table class="character_list">
                         <tr>
                             <th>@lang('人物')</th>
@@ -128,7 +129,8 @@ $bodyClass = 'scenario-show';
                     </table>
                 </div>
 
-                <div class="incident_list_wrapper mt-16">
+                <div class="incident_list_wrapper">
+                    <p class="item_name">@lang('事件一覧')</p>
                     <table class="incident_list mx-center">
                         <tr>
                             <th>@lang('日付')</th>

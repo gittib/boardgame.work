@@ -92,6 +92,14 @@
                 .difficulty {
                     text-align: center;
                 }
+                p.item_name {
+                    font-weight: bold;
+
+                    .people_count {
+                        font-weight: normal;
+                        font-size: 0.8em;
+                    }
+                }
 
                 .character_list_wrapper {
 
@@ -128,15 +136,20 @@
                     }
                 }
 
-                .incident_list {
-                    font-size: 0.9rem;
+                .incident_list_wrapper {
+                    margin: 16px auto 0;
+                    width: fit-content;
 
-                    th,td {
-                        word-break: keep-all;
-                        white-space: nowrap;
+                    .incident_list {
+                        font-size: 0.9rem;
 
-                        &.day {
-                            text-align: center;
+                        th,td {
+                            word-break: keep-all;
+                            white-space: nowrap;
+
+                            &.day {
+                                text-align: center;
+                            }
                         }
                     }
                 }
