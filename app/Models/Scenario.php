@@ -71,6 +71,7 @@ class Scenario extends Model
         if (in_array($this->ruleX2?->code, $aRuleX)) {
             return $this->ruleX2;
         }
+        return null;
     }
 
     /** 脚本の役職構成にエラーがないか確認する */

@@ -42,6 +42,7 @@
     "事件": "Incident",
     "事件と犯人はセットで指定してください": "Please select both or neither Incident and Culprit.",
     "事件予定": "Incident",
+    "事件一覧": "Incident list",
     "人物": "Cast",
     "作者： :writer": "created by :writer",
     "作者：:writer": "created by :writer",
@@ -91,6 +92,7 @@
     "非公開シートを表示": "Show Secret card",
     "非公開シートを表示します。よろしいですか？": "Are you sure you want to show the Secret card?",
     "非公開シートを隠す": "Hide Secret card",
+    "(:n人)": " (:n people)",
 
     ":nameに:roleが配役されています": ":role is cast to :name.",
     ":nameに通常の役職が配役されています": ":name is assigned a normal Role.",

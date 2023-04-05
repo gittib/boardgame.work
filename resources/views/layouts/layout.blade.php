@@ -19,6 +19,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+
+        @hasSection('canonical_url')
+            <link rel="canonical" href="@yield('canonical_url')">
+        @endif
     </head>
     <body class="@yield('body_class')">
         <div class="contents_wrapper">
