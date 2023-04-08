@@ -23,6 +23,18 @@
         @hasSection('canonical_url')
             <link rel="canonical" href="@yield('canonical_url')">
         @endif
+
+        @if(config('app.env') == 'production')
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP74G1ZWM5"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-GP74G1ZWM5');
+        </script>
+        @endif
     </head>
     <body class="@yield('body_class')">
         <div class="contents_wrapper">
