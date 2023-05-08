@@ -94,6 +94,7 @@
     "非公開シートを隠す": "Hide Secret card",
     "(:n人)": " (:n people)",
 
+    "ルールXが重複しています。": "Rule X is duplicated.",
     ":nameに:roleが配役されています": ":role is cast to :name.",
     ":nameに通常の役職が配役されています": ":name is assigned a normal Role.",
     ":roleが:diff人足りません。": "This Script is short of :diff :role.",
