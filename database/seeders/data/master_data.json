@@ -1337,8 +1337,8 @@
             ]
         },
         "HospitalizedPatient": {
-            "start_board_id": 3,
-            "keep_out_board_ids": "1,2,4",
+            "start_board_id": 2,
+            "keep_out_board_ids": "1,3,4",
             "chara_attrs": "boy",
             "anxiety_critical": 2,
             "abilities": []
@@ -1487,7 +1487,7 @@
             ]
         },
         "Scholar": {
-            "start_board_id": 3,
+            "start_board_id": 2,
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 2,

@@ -34,6 +34,10 @@
 
           gtag('config', 'G-GP74G1ZWM5');
         </script>
+        @else
+        <script>
+          function gtag(){console.log(arguments);}
+        </script>
         @endif
     </head>
     <body class="@yield('body_class')">

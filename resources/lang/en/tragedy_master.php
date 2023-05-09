@@ -76,7 +76,7 @@ return [
         'The-Chorus-to-the-Outer-God' => 'Choir to the Outside God',
         'The-Word-of-Dagon-sama' => 'The Sacred Words of Dagon',
         'The-King-in-Yellow' => 'The King in Yellow',
-        'The-Existence-of-the-Giant-Time-Bomb-Y' => '巨大時限爆弾Yの存在',
+        'The-Existence-of-the-Giant-Time-Bomb-Y' => 'Giant Time Bomb Y', // TODO: 公式訳未確認
         'The-bloody-ritual' => 'Bloody Rites',
         'Those-who-resist' => 'The Resistance',
         'The-People-Who-Have-Seen' => 'People Who Saw',
@@ -100,11 +100,11 @@ return [
         'The-Sealed-End' => '封印されし終末',
         'World-of-Rebellion' => '叛逆の世界',
         'The-Devils-Script' => '悪魔の脚本',
-        'Existence-of-the-giant-time-bomb-Z' => '巨大時限爆弾Zの存在',
-        'the-real-monster' => '本当のかいぶつ',
-        'Myth-Collector' => '神話蒐集者',
+        'Existence-of-the-giant-time-bomb-Z' => 'Giant Time Bomb Z', // TODO: 公式訳未確認
+        'the-real-monster' => 'The Real Monster', // TODO: 公式訳未確認
+        'Myth-Collector' => 'Mythology Collector', // TODO: 公式訳未確認
         'I-Am-the-Great-Detective' => '私こそが名探偵',
-        'SNS-Paranoia' => 'SNSパラノイア',
+        'SNS-Paranoia' => 'SNS Paranoia', // TODO: 公式訳未確認
         'The-Secret-of-Lying-Possession' => '嘘憑きの秘密',
         'Erased-Memory' => '消された記憶',
         'Countdown-to-Despair' => '絶望のカウントダウン',
@@ -606,14 +606,14 @@ return [
         'TransferStudent' => 'Transfer Student',
         'Soldier' => 'Soldier',
         'BlackCat' => 'Black Cat',
-        'Girl' => '女の子',
-        'Guru' => '教祖',
+        'Girl' => 'Little Girl', // TODO: 公式訳未確認
+        'Guru' => 'Guru', // TODO: 公式訳未確認
         'CopyCat' => 'Copycat',
-        'SacredTree' => 'ご神木',
-        'Sister' => '妹',
-        'Part-timeJob' => 'アルバイト',
-        'Part-timeJob-q' => 'アルバイト？',
-        'Follower' => '従者',
+        'SacredTree' => 'Sacred Tree', // TODO: 公式訳未確認
+        'Sister' => 'Sister', // TODO: 公式訳未確認
+        'Part-timeJob' => 'Part Timer', // TODO: 公式訳未確認
+        'Part-timeJob-q' => 'Part Timer?', // TODO: 公式訳未確認
+        'Follower' => 'Servant', // TODO: 公式訳未確認
         'SuperiorExistence' => '上位存在',
     ],
 

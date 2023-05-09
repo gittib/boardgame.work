@@ -78,6 +78,10 @@ class Scenario extends Model
     public function getInvalidConditionsAttribute():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
 
+        if ($this->rule_x1_id == $this->rule_x2_id) {
+            $errors[] = __('ルールXが重複しています。');
+        }
+
         // 脚本で採用すべき役職の人数を確認
         $roles = $this->ruleY?->roles ?? collect();
         $roles = $roles->concat($this->ruleX1?->roles ?? collect());
@@ -111,6 +115,13 @@ class Scenario extends Model
                 // コピーキャットはあとから判定する
                 $copyCatRoleId = $chara->role_id;
             } else {
+                if ($chara->character->code == 'AI') {
+                    // AIがパーソンは禁止
+                    if ($chara->role->code == 'Person') {
+                        $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.AI'), 'role' => __('tragedy_master.role.Person.name')]);
+                    }
+                }
+
                 if (!empty($roleCounter[$chara->role_id])) {
                     $roleCounter[$chara->role_id]['picked']++;
                 } else {

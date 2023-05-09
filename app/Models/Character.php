@@ -32,6 +32,23 @@ class Character extends Model
         return __("tragedy_master.chara_name.${code}");
     }
 
+    public function getInitialBoardCodeAttribute():int {
+        if (in_array($this->code, ['Divinity', 'TransferStudent',])) {
+            // 神格と転校生は初期状態で盤面にいないので特殊扱い
+            return 1099;
+        }
+        switch($this->start_board_id) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 99:
+                return 1000+$this->start_board_id;
+        }
+        assert(false, 'ここには来ないはず');
+        return 1099;
+    }
+
     public function getCharaAttrsArrayAttribute(): Collection {
         return collect(explode(',', $this->chara_attrs));
     }
