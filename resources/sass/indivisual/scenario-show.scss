@@ -265,6 +265,12 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
 
             dt {
                 margin-top: 40px;
+
+                &:first-child {
+                    @media screen and (min-width: $wide_screen_min_width) {
+                        margin-top: 0;
+                    }
+                }
             }
         }
     }
