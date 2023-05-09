@@ -1,5 +1,8 @@
 @use '../parts';
 
+$wide_screen_min_width: 800px;
+$narrow_screen_min_width: $wide_screen_min_width - 1px;
+
 .scenario-show {
     main {
         width: 100%;
@@ -48,8 +51,23 @@
     .private_sheet_wrapper {
         display: none;
 
+        &.showing {
+            @media screen and (max-width: $narrow_screen_min_width) {
+                display: block;
+            }
+            @media screen and (min-width: $wide_screen_min_width) {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row-reverse;
+                width: fit-content;
+                justify-content: center;
+                margin: 0 auto;
+            }
+        }
+
         .invalid_conditions_wrapper {
             width: fit-content;
+            height: fit-content;
             margin: 10px auto;
             border: 2px solid red;
             padding: 4px;
@@ -72,16 +90,30 @@
             }
         }
 
+        h2 {
+            @media screen and (min-width: $wide_screen_min_width) {
+                width: 100%;
+                padding-left: 50%;
+            }
+        }
+
         .writer_wrapper {
             width: fit-content;
             margin: 0 auto;
             max-width: 95%;
+            @media screen and (min-width: $wide_screen_min_width) {
+                margin-left: 16px;
+                max-width: 48%;
+            }
 
             .private_sheet {
                 margin: 0 auto;
                 border: solid 1px;
                 padding: 8px;
                 width: fit-content;
+                @media screen and (min-width: $wide_screen_min_width) {
+                    min-width: 340px;
+                }
 
                 .scenario_title {
                     text-align: center;
@@ -102,6 +134,10 @@
                 }
 
                 .character_list_wrapper {
+                    @media screen and (min-width: $wide_screen_min_width) {
+                        width: fit-content;
+                        margin: 0 auto;
+                    }
 
                     .character_list {
                         width: fit-content;
@@ -166,6 +202,9 @@
             margin: 36px auto;
             width: fit-content;
             display: none;
+            @media screen and (min-width: $wide_screen_min_width) {
+                width: 340px;
+            }
 
             table {
                 min-width: 320px;
@@ -218,6 +257,12 @@
         }
 
         dl {
+            margin-bottom: 40px;
+
+            @media screen and (min-width: $wide_screen_min_width) {
+                width: 48%;
+            }
+
             dt {
                 margin-top: 40px;
             }

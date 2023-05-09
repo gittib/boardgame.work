@@ -65,7 +65,7 @@ $charasInBoard = [
     </div>
 
     <div class="button_wrapper private_toggle_button_wrapper">
-        <div class="button js-show_private_sheet">@lang('非公開シートを表示')</div>
+        <div class="button js-show_private_sheet" data-dialog_message="@lang('非公開シートを表示します。よろしいですか？')">@lang('非公開シートを表示')</div>
         <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
     </div>
 
@@ -156,56 +156,56 @@ $charasInBoard = [
                     </table>
                 </div>
             </div>
-        </div>
 
-        <div class="initial_board_wrapper">
-            <h3>@lang('キャラクター初期配置')</h3>
-            <table>
-                <tr>
-                    <td><p>@lang('tragedy_master.board_name.1002')</p>
-                        <span class="inline_block_wrapper charas_in_board_wrapper">
-                        @foreach($charasInBoard[1002] as $charaName)
-                            <span>{{ $charaName }}</span>
-                        @endforeach
-                        </span>
-                    </td>
-                    <td><p>@lang('tragedy_master.board_name.1001')</p>
-                        <span class="inline_block_wrapper charas_in_board_wrapper">
-                        @foreach($charasInBoard[1001] as $charaName)
-                            <span>{{ $charaName }}</span>
-                        @endforeach
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p>@lang('tragedy_master.board_name.1003')</p>
-                        <span class="inline_block_wrapper charas_in_board_wrapper">
-                        @foreach($charasInBoard[1003] as $charaName)
-                            <span>{{ $charaName }}</span>
-                        @endforeach
-                        </span>
-                    </td>
-                    <td><p>@lang('tragedy_master.board_name.1004')</p>
-                        <span class="inline_block_wrapper charas_in_board_wrapper">
-                        @foreach($charasInBoard[1004] as $charaName)
-                            <span>{{ $charaName }}</span>
-                        @endforeach
-                        </span>
-                    </td>
-                </tr>
-            </table>
-            @if(!empty($charasInBoard[1099]))
-            <div class="others"><p>@lang('tragedy_master.board_name.1099')</p>
-                <span class="inline_block_wrapper charas_in_board_wrapper">
-                @foreach($charasInBoard[1099] as $charaName)
-                    <span>{{ $charaName }}</span>
-                @endforeach
-                </span>
+            <div class="initial_board_wrapper">
+                <h3>@lang('キャラクター初期配置')</h3>
+                <table>
+                    <tr>
+                        <td><p>@lang('tragedy_master.board_name.1002')</p>
+                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            @foreach($charasInBoard[1002] as $charaName)
+                                <span>{{ $charaName }}</span>
+                            @endforeach
+                            </span>
+                        </td>
+                        <td><p>@lang('tragedy_master.board_name.1001')</p>
+                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            @foreach($charasInBoard[1001] as $charaName)
+                                <span>{{ $charaName }}</span>
+                            @endforeach
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p>@lang('tragedy_master.board_name.1003')</p>
+                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            @foreach($charasInBoard[1003] as $charaName)
+                                <span>{{ $charaName }}</span>
+                            @endforeach
+                            </span>
+                        </td>
+                        <td><p>@lang('tragedy_master.board_name.1004')</p>
+                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            @foreach($charasInBoard[1004] as $charaName)
+                                <span>{{ $charaName }}</span>
+                            @endforeach
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                @if(!empty($charasInBoard[1099]))
+                <div class="others"><p>@lang('tragedy_master.board_name.1099')</p>
+                    <span class="inline_block_wrapper charas_in_board_wrapper">
+                    @foreach($charasInBoard[1099] as $charaName)
+                        <span>{{ $charaName }}</span>
+                    @endforeach
+                    </span>
+                </div>
+                @endif
+                <a class="hide_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を隠す')</a>
             </div>
-            @endif
-            <a class="hide_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を隠す')</a>
+            <a class="show_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を表示')</a>
         </div>
-        <a class="show_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を表示')</a>
 
         <dl>
             <dt>@lang('脚本の特徴')</dt>
@@ -221,7 +221,7 @@ $charasInBoard = [
         </dl>
     </div>
 
-    <div class="mt-40 mb-40">
+    <div class="mb-40">
         @if(!$isPreview && $scenario->user_id == Auth::id())
         <div class="writer_menu">
             <p class="title">@lang('製作者専用欄')</p>
@@ -253,29 +253,6 @@ $charasInBoard = [
 
 @section('additional_scripts')
 <script>
-$('.js-show_private_sheet').on('click', async () => {
-    const {result} = await myConfirm("@lang('非公開シートを表示します。よろしいですか？')");
-    if (result == 'ok') {
-        $('.private_sheet_wrapper').show();
-        $('.js-hide_private_sheet').show();
-        $('.js-show_private_sheet').hide();
-    }
-});
-$('.js-hide_private_sheet').on('click', () => {
-    $('.private_sheet_wrapper').hide();
-    $('.js-hide_private_sheet').hide();
-    $('.js-show_private_sheet').show();
-});
-
-$('.show_initial_board_wrapper').on('click', () => {
-    $('.initial_board_wrapper').show();
-    $('.show_initial_board_wrapper').hide();
-});
-$('.hide_initial_board_wrapper').on('click', () => {
-    $('.initial_board_wrapper').hide();
-    $('.show_initial_board_wrapper').show();
-});
-
 @if($isPreview)
 $('a').attr('href', 'javascript:void(0);');
 @endif
