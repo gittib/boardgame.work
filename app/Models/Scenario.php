@@ -115,6 +115,13 @@ class Scenario extends Model
                 // コピーキャットはあとから判定する
                 $copyCatRoleId = $chara->role_id;
             } else {
+                if ($chara->character->code == 'AI') {
+                    // AIがパーソンは禁止
+                    if ($chara->role->code == 'Person') {
+                        $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.AI'), 'role' => __('tragedy_master.role.Person.name')]);
+                    }
+                }
+
                 if (!empty($roleCounter[$chara->role_id])) {
                     $roleCounter[$chara->role_id]['picked']++;
                 } else {
