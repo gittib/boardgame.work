@@ -276,7 +276,7 @@ class Scenario extends Model
 
         if ($this->ruleX1?->code == 'The-one-that-proclaims-destruction' || $this->ruleX2?->code == 'The-one-that-proclaims-destruction') {
             // 滅亡を謳うものがあったら、自殺を採用してるかチェック
-            $i = $this->incidents->first(fn($i) => $i->code == 'suicide');
+            $i = $this->incidents->first(fn($i) => $i->incident->code == 'suicide');
             if (empty($i)) {
                 $errors[] = __('「:rule」が採用されていますが、:elementが採用されていません。', [
                     'rule' => __('tragedy_master.rule_name.The-one-that-proclaims-destruction'),
