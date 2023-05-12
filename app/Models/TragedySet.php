@@ -78,4 +78,20 @@ class TragedySet extends Model
     public function getRuleXsAttribute() {
         return $this->rules->filter(fn($r) => !$r->is_y);
     }
+
+    public function getSummaryQrUrlAttribute():?string {
+        switch($this->abbr) {
+        case 'FS':
+        case 'BTX':
+        case 'MZ':
+        case 'MCX':
+        case 'HSA':
+        case 'WM':
+        case 'LL':
+        case 'AHR':
+            return '/images/qr/'.$this->abbr.'.jpg';
+        default:
+            return null;
+        }
+    }
 }

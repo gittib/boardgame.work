@@ -23,7 +23,16 @@ $charasInBoard = [
 @endsection
 
 @section('contents')
-<h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
+<div class="title_wrapper">
+    <h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
+
+    @if(!empty($scenario->set->summary_qr_url))
+    <div class="summary_qr">
+        <img src="{{ $scenario->set->summary_qr_url }}">
+        <span>Summary</span>
+    </div>
+    @endif
+</div>
 
 <div class="">
     <div class="public_sheet">

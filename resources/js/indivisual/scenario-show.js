@@ -1,4 +1,8 @@
 if ($('body').hasClass('scenario-show')) {
+    $('.summary_qr img').on('click', function() {
+        $(this).toggleClass('scaled');
+    });
+
     $('.js-show_private_sheet').on('click', async function() {
         const dialogMessage = $(this).attr('data-dialog_message');
         const {result} = await myConfirm(dialogMessage);

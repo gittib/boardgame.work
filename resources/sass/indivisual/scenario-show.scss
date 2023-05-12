@@ -12,6 +12,39 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         font-family: parts.$tragedy_font;
     }
 
+    .title_wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        h1 {
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .summary_qr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+
+            img {
+                width: 32px;
+                height: 32px;
+
+                &.scaled {
+                    position: fixed;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+
     .public_sheet {
         width: fit-content;
         margin: 0 auto;
