@@ -1,5 +1,6 @@
 <?php
 $bodyClass = 'scenario-index';
+$myLikeIds = Auth::user()?->likeScenarios?->map(fn($s) => $s->id) ?? collect();
 ?>
 @extends('layouts.layout')
 
@@ -49,6 +50,14 @@ $bodyClass = 'scenario-index';
                 </span>
                 <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
                 <span class="difficult">@lang('難易度'):<span class="difficult_name">{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
+                <span class="like">
+                    @if($myLikeIds->contains($scenario->id))
+                    <img src="{{ Res::ver('/images/red_heart.png') }}">
+                    @else
+                    <img src="{{ Res::ver('/images/heart.png') }}">
+                    @endif
+                    {{ $scenario->likes->count() }}
+                </span>
             </div>
         </li>
         @endforeach

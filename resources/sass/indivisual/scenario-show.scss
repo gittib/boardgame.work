@@ -309,7 +309,8 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
     }
 
     .reaction_wrapper {
-        margin: 8px;
+        margin: 20px 8px;
+        text-align: right;
 
         .like_button {
             img {
@@ -327,6 +328,8 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         }
 
         .bookmark_button {
+            margin-top: 12px;
+
             a {
                 display: none;
             }

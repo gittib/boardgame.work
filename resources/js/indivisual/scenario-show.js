@@ -29,24 +29,22 @@ if ($('body').hasClass('scenario-show')) {
     });
 
     $('.js-like_button').on('click', async function() {
-        const $self = $(this);
-        $self.toggleClass('liked');
+        const $p = $(this).closest('p');
+        $p.toggleClass('liked');
         try {
-            const res = await ajaxSubmit($self.closest('form'));
-            $self.find('.js-count').text(res.likes);
+            const res = await ajaxSubmit($p.closest('form'));
+            $p.find('.js-count').text(res.likes);
         } catch (e) {
-            $self.toggleClass('liked');
+            $p.toggleClass('liked');
         }
     });
 
     $('.js-bookmark_button').on('click', async function() {
-        const $self = $(this);
+        const $p = $(this).closest('p');
         try {
-            const res = await ajaxSubmit($self.closest('form'));
-            $self.toggleClass('bookmarked');
-            if (res.bookmarked) {
-                myAlert(res.message);
-            }
+            const res = await ajaxSubmit($p.closest('form'));
+            $p.toggleClass('bookmarked');
+            myAlert(res.message);
         } catch (e) {
         }
     });

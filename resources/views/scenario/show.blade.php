@@ -234,16 +234,16 @@ $charasInBoard = [
     @auth
     <div class="reaction_wrapper">
         <form action="{{ route('scenario.like', $scenario->id) }}" method="post">
-            <p class="like_button js-like_button @if($scenario->likes->contains(Auth::user())) liked @endif">
-                <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}">
-                <img class="liked" src="{{ Res::ver('/images/red_heart.png') }}">
+            <p class="like_button @if($scenario->likes->contains(Auth::user())) liked @endif">
+                <img class="not_liked js-like_button" src="{{ Res::ver('/images/heart.png') }}">
+                <img class="liked js-like_button" src="{{ Res::ver('/images/red_heart.png') }}">
                 <span class="js-count">{{ $scenario->likes->count() }}</span>
             </p>
         </form>
         <form action="{{ route('scenario.bookmark', $scenario->id) }}" method="post">
-            <p class="bookmark_button js-bookmark_button @if($scenario->bookmarks->contains(Auth::user())) bookmarked @endif">
-                <a class="bookmarked" href="javascript:void(0);">@lang('ブックマーク解除')</a>
-                <a class="not_bookmarked" href="javascript:void(0);">@lang('ブックマークする')</a>
+            <p class="bookmark_button @if($scenario->bookmarks->contains(Auth::user())) bookmarked @endif">
+                <a class="bookmarked js-bookmark_button" href="javascript:void(0);">@lang('ブックマーク済み')</a>
+                <a class="not_bookmarked js-bookmark_button" href="javascript:void(0);">@lang('ブックマークする')</a>
             </p>
         </form>
     </div>
