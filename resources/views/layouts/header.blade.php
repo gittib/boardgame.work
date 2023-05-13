@@ -5,7 +5,7 @@ $bodyClass ??= '';
 <header>
     @auth
         <a class="my-link" href="{{ route('my_page') }}">
-            @if($bodyClass != 'user-mypage')
+            @if(!in_array($bodyClass, ['my_scenario-bookmarks', 'my_scenario-index',]))
                 <span>@lang('マイページへ')</span>
             @endif
             @if(!empty($user->profile_img_url))

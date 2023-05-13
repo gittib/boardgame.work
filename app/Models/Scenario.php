@@ -35,6 +35,13 @@ class Scenario extends Model
         return $this->hasMany(ScenarioIncident::class);
     }
 
+    public function likes() {
+        return $this->belongsToMany(User::class, 'like_scenario');
+    }
+    public function bookmarks() {
+        return $this->belongsToMany(User::class, 'bookmark_scenario');
+    }
+
     // attribute
     public function getDifficultNameAttribute():string {
         return __('tragedy_master.difficulty.'.$this->difficulty);

@@ -308,6 +308,38 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         }
     }
 
+    .reaction_wrapper {
+        margin: 8px;
+
+        .like_button {
+            img {
+                display: none;
+                width: 1.3rem;
+                height: 1.3rem;
+            }
+
+            &.liked img.liked {
+                display: initial;
+            }
+            &:not(.liked) img.not_liked {
+                display: initial;
+            }
+        }
+
+        .bookmark_button {
+            a {
+                display: none;
+            }
+
+            &.bookmarked a.bookmarked {
+                display: initial;
+            }
+            &:not(.bookmarked) a.not_bookmarked {
+                display: initial;
+            }
+        }
+    }
+
     .writer_menu {
         width: fit-content;
         margin: 120px auto 0;

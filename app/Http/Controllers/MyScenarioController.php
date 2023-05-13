@@ -28,8 +28,9 @@ class MyScenarioController extends Controller
      */
     public function index()
     {
+        $sets = TragedySet::get();
         $scenarios = Auth::user()->scenarios()->paginate(100);
-        return view('my_scenario.index', compact('scenarios'));
+        return view('my_scenario.index', compact('sets', 'scenarios'));
     }
 
     /**
@@ -305,6 +306,11 @@ class MyScenarioController extends Controller
 
         $isPreview = true;
         return view('scenario.show', compact('scenario', 'isPreview'));
+    }
+
+    public function bookmarks() {
+        $sets = TragedySet::get();
+        return view('my_scenario.bookmarks', compact('sets'));
     }
 
     private function storeScenario(Scenario $scenario, Request $request) {

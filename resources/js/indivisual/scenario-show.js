@@ -27,4 +27,31 @@ if ($('body').hasClass('scenario-show')) {
         $('.initial_board_wrapper').hide();
         $('.show_initial_board_wrapper').show();
     });
+
+    $('.js-like_button').on('click', async function() {
+        const $self = $(this);
+        $self.toggleClass('liked');
+        try {
+            const res = await ajaxSubmit($self.closest('form'));
+            $self.find('.js-count').text(res.likes);
+        } catch (e) {
+            $self.toggleClass('liked');
+        }
+    });
+
+    $('.js-bookmark_button').on('click', async function() {
+        const $self = $(this);
+        try {
+            const res = await ajaxSubmit($self.closest('form'));
+            $self.toggleClass('bookmarked');
+            if (res.bookmarked) {
+                myAlert(res.message);
+            }
+        } catch (e) {
+        }
+    });
+
+    $('.js-please_login').on('click', function() {
+        myAlert($(this).attr('data-msg'));
+    });
 }

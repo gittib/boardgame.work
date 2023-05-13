@@ -230,6 +230,36 @@ $charasInBoard = [
         </dl>
     </div>
 
+    @if(!$isPreview)
+    @auth
+    <div class="reaction_wrapper">
+        <form action="{{ route('scenario.like', $scenario->id) }}" method="post">
+            <p class="like_button js-like_button @if($scenario->likes->contains(Auth::user())) liked @endif">
+                <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}">
+                <img class="liked" src="{{ Res::ver('/images/red_heart.png') }}">
+                <span class="js-count">{{ $scenario->likes->count() }}</span>
+            </p>
+        </form>
+        <form action="{{ route('scenario.bookmark', $scenario->id) }}" method="post">
+            <p class="bookmark_button js-bookmark_button @if($scenario->bookmarks->contains(Auth::user())) bookmarked @endif">
+                <a class="bookmarked" href="javascript:void(0);">@lang('ブックマーク解除')</a>
+                <a class="not_bookmarked" href="javascript:void(0);">@lang('ブックマークする')</a>
+            </p>
+        </form>
+    </div>
+    @else
+    <div class="reaction_wrapper">
+        <p class="like_button js-please_login" data-msg="@lang('いいねをつけるには、まずログインしてください。')">
+            <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}">
+            <span class="js-count">{{ $scenario->likes->count() }}</span>
+        </p>
+        <p class="bookmark_button js-please_login" data-msg="@lang('ブックマークするには、まずログインしてください。')">
+            <a class="not_bookmarked" href="javascript:void(0);">@lang('ブックマークする')</a>
+        </p>
+    </div>
+    @endauth
+    @endif
+
     <div class="mb-40">
         @if(!$isPreview && $scenario->user_id == Auth::id())
         <div class="writer_menu">
