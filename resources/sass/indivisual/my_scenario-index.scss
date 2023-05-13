@@ -24,6 +24,16 @@
                     font-weight: bold;
                     display: inline-block;
                 }
+
+                .like {
+                    display: inline-block;
+                    font-size: 0.8em;
+
+                    img {
+                        height: 1em;
+                        width: 1em;
+                    }
+                }
             }
         }
     }

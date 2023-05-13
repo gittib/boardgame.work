@@ -32,6 +32,14 @@ $bodyClass = 'my_scenario-index';
             @if($scenario->is_open)
                 <span class="open">@lang('公開中')</span>
             @endif
+            <span class="like">
+                @if($scenario->likes->contains(Auth::id()))
+                <img src="{{ Res::ver('/images/red_heart.png') }}">
+                @else
+                <img src="{{ Res::ver('/images/heart.png') }}">
+                @endif
+                {{ $scenario->likes->count() }}
+            </span>
         </li>
     @endforeach
     </ul>
