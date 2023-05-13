@@ -18,6 +18,7 @@ class ScenarioController extends Controller
         $query = Scenario::with([
             'writer',
             'set',
+            'likes',
         ])->where('is_open', 1)
             ->orderBy('set_id')
             ->orderBy('difficulty')
@@ -56,5 +57,25 @@ class ScenarioController extends Controller
         }
 
         return view('scenario.show', compact('scenario'));
+    }
+
+    public function bookmark(Request $request, $id) {
+        Scenario::where('is_open', 1)->findOrFail($id);
+        Auth::user()->bookmarkScenarios()->toggle([$id]);
+        $bookmarked = !empty(Scenario::find($id)->bookmarks()->find(Auth::id()));
+        return [
+            'result' => 'OK',
+            'bookmarked' => $bookmarked,
+            'message' => $bookmarked ? __('ブックマークしました') : __('ブックマークを解除しました'),
+        ];
+    }
+
+    public function like(Request $request, $id) {
+        Scenario::where('is_open', 1)->findOrFail($id);
+        Auth::user()->likeScenarios()->toggle([$id]);
+        return [
+            'result' => 'OK',
+            'likes' => Scenario::find($id)->likes()->count(),
+        ];
     }
 }

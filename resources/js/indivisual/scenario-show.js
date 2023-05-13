@@ -1,4 +1,8 @@
 if ($('body').hasClass('scenario-show')) {
+    $('.summary_qr img').on('click', function() {
+        $(this).toggleClass('scaled');
+    });
+
     $('.js-show_private_sheet').on('click', async function() {
         const dialogMessage = $(this).attr('data-dialog_message');
         const {result} = await myConfirm(dialogMessage);
@@ -22,5 +26,30 @@ if ($('body').hasClass('scenario-show')) {
     $('.hide_initial_board_wrapper').on('click', () => {
         $('.initial_board_wrapper').hide();
         $('.show_initial_board_wrapper').show();
+    });
+
+    $('.js-like_button').on('click', async function() {
+        const $p = $(this).closest('p');
+        $p.toggleClass('liked');
+        try {
+            const res = await ajaxSubmit($p.closest('form'));
+            $p.find('.js-count').text(res.likes);
+        } catch (e) {
+            $p.toggleClass('liked');
+        }
+    });
+
+    $('.js-bookmark_button').on('click', async function() {
+        const $p = $(this).closest('p');
+        try {
+            const res = await ajaxSubmit($p.closest('form'));
+            $p.toggleClass('bookmarked');
+            myAlert(res.message);
+        } catch (e) {
+        }
+    });
+
+    $('.js-please_login').on('click', function() {
+        myAlert($(this).attr('data-msg'));
     });
 }

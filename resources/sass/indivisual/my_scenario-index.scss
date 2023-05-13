@@ -1,6 +1,6 @@
 @use '../parts';
 
-.user-mypage {
+.my_scenario-index {
     main {
         width: fit-content;
 
@@ -23,6 +23,16 @@
                     background: parts.$public_status_background;
                     font-weight: bold;
                     display: inline-block;
+                }
+
+                .like {
+                    display: inline-block;
+                    font-size: 0.8em;
+
+                    img {
+                        height: 1em;
+                        width: 1em;
+                    }
                 }
             }
         }

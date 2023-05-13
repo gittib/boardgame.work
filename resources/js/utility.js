@@ -50,3 +50,14 @@ window.addEventListener("DOMContentLoaded", () => {
     this.style.height = `${this.scrollHeight}px`;
   }
 });
+
+window.ajaxSubmit = async $form => {
+    return await $.ajax({
+        url: $form.attr('action'),
+        type: $form.attr('method'),
+        headers: {
+            'X-CSRF-TOKEN': $('[name=csrf-token]').attr('content'),
+        },
+        data: $form.serialize(),
+    });
+};

@@ -23,7 +23,16 @@ $charasInBoard = [
 @endsection
 
 @section('contents')
-<h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
+<div class="title_wrapper">
+    <h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
+
+    @if(!empty($scenario->set->summary_qr_url))
+    <div class="summary_qr">
+        <img src="{{ $scenario->set->summary_qr_url }}">
+        <span>Summary</span>
+    </div>
+    @endif
+</div>
 
 <div class="">
     <div class="public_sheet">
@@ -220,6 +229,36 @@ $charasInBoard = [
             <dd>{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</dd>
         </dl>
     </div>
+
+    @if(!$isPreview)
+    @auth
+    <div class="reaction_wrapper">
+        <form action="{{ route('scenario.like', $scenario->id) }}" method="post">
+            <p class="like_button @if($scenario->likes->contains(Auth::user())) liked @endif">
+                <img class="not_liked js-like_button" src="{{ Res::ver('/images/heart.png') }}">
+                <img class="liked js-like_button" src="{{ Res::ver('/images/red_heart.png') }}">
+                <span class="js-count">{{ $scenario->likes->count() }}</span>
+            </p>
+        </form>
+        <form action="{{ route('scenario.bookmark', $scenario->id) }}" method="post">
+            <p class="bookmark_button @if($scenario->bookmarks->contains(Auth::user())) bookmarked @endif">
+                <a class="bookmarked js-bookmark_button" href="javascript:void(0);">@lang('ブックマーク済み')</a>
+                <a class="not_bookmarked js-bookmark_button" href="javascript:void(0);">@lang('ブックマークする')</a>
+            </p>
+        </form>
+    </div>
+    @else
+    <div class="reaction_wrapper">
+        <p class="like_button js-please_login" data-msg="@lang('いいねをつけるには、まずログインしてください。')">
+            <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}">
+            <span class="js-count">{{ $scenario->likes->count() }}</span>
+        </p>
+        <p class="bookmark_button js-please_login" data-msg="@lang('ブックマークするには、まずログインしてください。')">
+            <a class="not_bookmarked" href="javascript:void(0);">@lang('ブックマークする')</a>
+        </p>
+    </div>
+    @endauth
+    @endif
 
     <div class="mb-40">
         @if(!$isPreview && $scenario->user_id == Auth::id())

@@ -22,6 +22,10 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::any('language/setting/to', 'LanguageController@trans')->name('language.trans');
     Route::resource('tragedy-set', 'TragedySetController', ['only' => ['index', 'show']]);
     Route::resource('scenario', 'ScenarioController', ['only' => ['index', 'show']]);
+    Route::middleware('json')->group(function() {
+        Route::post('scenario/{scenario}/bookmark', 'ScenarioController@bookmark')->name('scenario.bookmark');
+        Route::post('scenario/{scenario}/like', 'ScenarioController@like')->name('scenario.like');
+    });
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('login', 'LoginController@login')->name('login');
@@ -32,9 +36,10 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('auth/logout', 'Auth\LoginController@logout')->name('auth.logout');
 
     Route::middleware('auth')->group(function() {
-        Route::get('home', 'UserController@mypage')->name('my_page');
+        Route::any('home', fn() => redirect()->route('my-scenario.index'))->name('my_page');
         Route::resource('my-scenario', 'MyScenarioController', ['except' => ['show']]);
         Route::match(['post', 'put'], 'my-scenario/creating/preview', 'MyScenarioController@preview')->name('my-scenario.preview');
+        Route::get('my-scenario/bookmark/list', 'MyScenarioController@bookmarks')->name('my-scenario.bookmarks');
         Route::post('my-scenario/upload/json', 'MyScenarioController@storeFromJson')->name('my-scenario.store_from_json');
     });
 
@@ -42,6 +47,4 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::post('file/file/upload/chunk/{media}', 'FileController@uploadChunk')->name('file.upload.chunk.add');
 });
 
-Route::fallback(function() {
-    return response()->view('errors.404', [], 404);
-});
+Route::fallback(fn() => response()->view('errors.404', [], 404));

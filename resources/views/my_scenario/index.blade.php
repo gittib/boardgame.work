@@ -1,5 +1,5 @@
 <?php
-$bodyClass = 'user-mypage';
+$bodyClass = 'my_scenario-index';
 ?>
 @extends('layouts.layout')
 
@@ -13,14 +13,18 @@ $bodyClass = 'user-mypage';
 @endsection
 
 @section('contents')
+    <ul class="links_wrapper">
+        <li><a href="{{ route('my-scenario.bookmarks') }}">@lang('ブックマーク一覧')</a></li>
+    </ul>
+
     <div class="header_console button_wrapper">
-        <div class="button js-create_scenario_button">
+        <div class="button js-create_scenario_button" data-scenario_create_url="{{ route('my-scenario.create', ['set' => '___SET___']) }}">
             @lang('脚本作成開始')
         </div>
     </div>
 
     <ul class="my_scenario_list">
-    @foreach(Auth::user()->scenarios as $scenario)
+    @foreach($scenarios as $scenario)
         <li>
             <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
                 [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span> {{$scenario->title}}
@@ -28,6 +32,14 @@ $bodyClass = 'user-mypage';
             @if($scenario->is_open)
                 <span class="open">@lang('公開中')</span>
             @endif
+            <span class="like">
+                @if($scenario->likes->contains(Auth::id()))
+                <img src="{{ Res::ver('/images/red_heart.png') }}">
+                @else
+                <img src="{{ Res::ver('/images/heart.png') }}">
+                @endif
+                {{ $scenario->likes->count() }}
+            </span>
         </li>
     @endforeach
     </ul>
@@ -50,13 +62,14 @@ $bodyClass = 'user-mypage';
 
 @section('additional_scripts')
 <script>
-const scenarioCreateUrl = "{{ route('my-scenario.create', ['set' => '___SET___']) }}";
+const scenarioCreateUrl = $('[data-scenario_create_url]').attr('data-scenario_create_url');
 $('.js-create_scenario_button').on('click', async () => {
     const res = await openPopup('js-popup-select_set');
     if (res.result == 'ok' && res.info) {
         location.href = scenarioCreateUrl.replace('___SET___', res.info);
     }
 });
+
 $('.js-logout_button[data-message][data-url]').on('click', async function() {
     const $self = $(this);
     const res = await myConfirm($self.attr('data-message'));

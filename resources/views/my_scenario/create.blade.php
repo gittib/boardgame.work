@@ -36,7 +36,8 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
 <li>@lang('脚本作成')</li>
 @else
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
+<li><a href="{{ route('my_page') }}">@lang('マイページ')</a></li>
+<li><a href="{{ route('my_scenario.index') }}">@lang('自作脚本一覧')</a></li>
 <li>@lang('脚本作成')</li>
 @endif
 @endsection
