@@ -1,6 +1,6 @@
 @once
 <?php
-$sets = $sets ?? App\Models\TragedySet::get();
+$sets ??= App\Models\TragedySet::get();
 ?>
 <section class="c-popup js-popup-select_set">
     <div class="filter-area"></div>
