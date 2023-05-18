@@ -27,19 +27,23 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
             align-items: center;
             font-size: 10px;
 
-            img {
+            .img_wrapper {
                 width: 32px;
                 height: 32px;
+                border: solid 1px lightgray;
 
-                &.scaled {
-                    position: fixed;
+                img {
                     width: 100%;
                     height: 100%;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
                     object-fit: contain;
+
+                    &.scaled {
+                        position: fixed;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                    }
                 }
             }
         }
