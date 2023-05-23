@@ -65,6 +65,14 @@
                 }
             }
 
+            .difficult_setting {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                font-size: 0.8rem;
+            }
+
             .close_button {
                 $bar_length: 30px;
                 $bar_width: 5px;
@@ -115,10 +123,6 @@
                     color: white;
                 }
             }
-        }
-
-        .difficult_setting {
-            font-size: 0.8rem;
         }
     }
 }
