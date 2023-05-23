@@ -49,16 +49,18 @@ $bodyClass = 'scenario-index';
                 </span>
                 <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
                 <span class="difficult">@lang('難易度'):<span class="difficult_name">{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
-                @if($scenario->likes->isNotEmpty())
                 <span class="like">
                     @if($scenario->likes->contains(Auth::id()))
                     <img src="{{ Res::ver('/images/red_heart.png') }}">
                     @else
                     <img src="{{ Res::ver('/images/heart.png') }}">
                     @endif
-                    {{ $scenario->likes->count() }}
+                    <span class="like_count">
+                    @if($scenario->likes->isNotEmpty())
+                        {{ $scenario->likes->count() }}
+                    @endif
+                    </span>
                 </span>
-                @endif
             </div>
         </li>
         @endforeach
@@ -77,7 +79,7 @@ $bodyClass = 'scenario-index';
 @endsection
 
 @section('popups')
-@include('parts.popups.select_set')
+@include('parts.popups.search_scenario')
 @endsection
 
 @section('additional_scripts')
@@ -96,9 +98,7 @@ $('.js-hide_title').on('click', () => {
     $('.js-show_title').show();
 });
 $('.js-narrow_set').on('click', async () => {
-    const res = await openPopup('js-popup-select_set');
-    $('[name=set_abbr]').val(res.info);
-    $('#narrow_form').submit();
+    const res = await openPopup('js-popup-search_scenario');
 });
 </script>
 @endsection
