@@ -27,7 +27,7 @@
 
         .popup-area-inner {
             width: max-content;
-            max-width: 90vw;
+            max-width: 95vw;
             min-width: 30vw;
             min-height: 10vh;
             max-height: 90vh;
@@ -47,12 +47,15 @@
             }
 
             .popup-header {
-                position: relative;
                 margin-bottom: 8px;
                 min-height: 30px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
 
                 .title {
-                    padding-right: 30px;
+                    margin: 0 auto;
+                    text-align: center;
                 }
             }
 
@@ -62,14 +65,20 @@
                 }
             }
 
+            .difficult_setting {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-start;
+                font-size: 0.8rem;
+            }
+
             .close_button {
                 $bar_length: 30px;
                 $bar_width: 5px;
 
                 display: block;
-                position: absolute;
-                top: 0;
-                right: 0;
+                position: relative;
                 width: 30px;
                 height: 30px;
                 cursor: pointer;
@@ -107,6 +116,10 @@
                 }
 
                 a {
+                    color: white;
+                }
+
+                input {
                     color: white;
                 }
             }

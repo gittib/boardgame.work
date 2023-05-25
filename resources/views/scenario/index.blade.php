@@ -55,7 +55,11 @@ $bodyClass = 'scenario-index';
                     @else
                     <img src="{{ Res::ver('/images/heart.png') }}">
                     @endif
-                    {{ $scenario->likes->count() }}
+                    <span class="like_count">
+                    @if($scenario->likes->isNotEmpty())
+                        {{ $scenario->likes->count() }}
+                    @endif
+                    </span>
                 </span>
             </div>
         </li>
@@ -75,7 +79,7 @@ $bodyClass = 'scenario-index';
 @endsection
 
 @section('popups')
-@include('parts.popups.select_set')
+@include('parts.popups.search_scenario')
 @endsection
 
 @section('additional_scripts')
@@ -94,9 +98,7 @@ $('.js-hide_title').on('click', () => {
     $('.js-show_title').show();
 });
 $('.js-narrow_set').on('click', async () => {
-    const res = await openPopup('js-popup-select_set');
-    $('[name=set_abbr]').val(res.info);
-    $('#narrow_form').submit();
+    const res = await openPopup('js-popup-search_scenario');
 });
 </script>
 @endsection

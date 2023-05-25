@@ -28,7 +28,9 @@ $charasInBoard = [
 
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
-        <img src="{{ $scenario->set->summary_qr_url }}">
+        <div class="img_wrapper">
+            <img src="{{ $scenario->set->summary_qr_url }}">
+        </div>
         <span>Summary</span>
     </div>
     @endif

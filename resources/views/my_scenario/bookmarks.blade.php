@@ -18,14 +18,39 @@ $bookmarks = Auth::user()->bookmarkScenarios;
 <h1>@lang('ブックマークした脚本')</h1>
 <div class="frame">
     @if($bookmarks->isEmpty())
-    <p>@lang('ブックマークした脚本はまだありません。')</p>
+    <p class="no_bookmarks">@lang('ブックマークした脚本はまだありません。')</p>
     @else
     <ul class="bookmark_scenario_list">
     @foreach($bookmarks as $scenario)
         <li>
-            <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
-                [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span> {{$scenario->title}}
-            </a>
+            <div class="row id_wrapper">
+                <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
+                    @lang('脚本')[{{ $scenario->id }}]
+                </a>
+                <span class="writer">@lang('作者：:writer', ['writer' => e($scenario->writer?->name)])</span>
+            </div>
+            <div class="title">
+                <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
+                    {{ $scenario->title }}
+                </a>
+            </div>
+            <div class="row summary_wrapper">
+                <span class="abbr_wrapper">
+                    <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->set?->abbr }}</span>
+                </span>
+                <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
+                <span class="difficult">@lang('難易度'):<span class="difficult_name">{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
+                @if($scenario->likes->isNotEmpty())
+                <span class="like">
+                    @if($scenario->likes->contains(Auth::id()))
+                    <img src="{{ Res::ver('/images/red_heart.png') }}">
+                    @else
+                    <img src="{{ Res::ver('/images/heart.png') }}">
+                    @endif
+                    {{ $scenario->likes->count() }}
+                </span>
+                @endif
+            </div>
         </li>
     @endforeach
     </ul>

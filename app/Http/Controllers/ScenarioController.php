@@ -25,10 +25,16 @@ class ScenarioController extends Controller
             ->orderBy('id');
 
         // 検索条件指定
-        if (!empty($request->set_abbr)) {
+        if (!empty($request->set)) {
             $query->whereHas('set', function($q) use($request) {
-                $q->where('tragedy_sets.abbreviation', $request->set_abbr);
+                $q->where('tragedy_sets.abbreviation', $request->set);
             });
+        }
+        if (!empty($request->dif_min)) {
+            $query->where('difficulty', '>=', $request->dif_min);
+        }
+        if (!empty($request->dif_max)) {
+            $query->where('difficulty', '<=', $request->dif_max);
         }
 
         $scenarios = $query->paginate(30);

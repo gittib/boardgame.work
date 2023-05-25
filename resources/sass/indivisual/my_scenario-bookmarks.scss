@@ -10,25 +10,67 @@
             width: fit-content;
             margin: auto;
 
-            .header_console {
-
-                .button {
-                    margin: 8px auto;
-                }
+            .no_bookmarks {
+                margin: 24px auto;
             }
 
             .bookmark_scenario_list {
-                > li {
-                    margin: 10px;
-                    border-bottom: 1px solid black;
-                    padding-bottom: 2px;
+                width: 95%;
+                max-width: 520px;
+                margin: 20px auto;
+                padding: 0 8px;
 
-                    .open {
-                        margin-left: 4px;
-                        padding: 0 4px;
-                        background: parts.$public_status_background;
-                        font-weight: bold;
-                        display: inline-block;
+                > li {
+                    $scenario_border: solid 1px black;
+                    border-bottom: $scenario_border;
+                    padding: 8px;
+
+                    &:first-child {
+                        border-top: $scenario_border;
+                    }
+
+                    .row {
+                        display: flex;
+                        align-items: baseline;
+
+                        &.id_wrapper {
+                            justify-content: space-between;
+                        }
+                        &.summary_wrapper {
+                            flex-wrap: wrap;
+
+                            .abbr_wrapper {
+                                width: 42px;
+                            }
+                        }
+
+                        .writer {
+                            font-size: 0.8em;
+                        }
+
+                        .set_name {
+                            margin-right: 4px;
+                        }
+
+                        .loop_day_summary {
+                            font-size: 0.9em;
+                            margin: 0 12px 0 2px;
+
+                            > span {
+                                font-size: 1.5em;
+                                font-weight: bold;
+                            }
+                        }
+
+                        .like {
+                            margin-left: auto;
+                            font-size: 0.75em;
+
+                            img {
+                                width: 1em;
+                                height: 1em;
+                            }
+                        }
                     }
                 }
             }

@@ -3,30 +3,30 @@
     margin-right: auto !important;
 }
 
-@for $i from 1 through 100 {
+@for $i from 1 through 50 {
     .mt-#{$i} {
-        margin-top: #{$i}px;
+        margin-top: #{$i}px !important;
     }
     .ml-#{$i} {
-        margin-left: #{$i}px;
+        margin-left: #{$i}px !important;
     }
     .mr-#{$i} {
-        margin-right: #{$i}px;
+        margin-right: #{$i}px !important;
     }
     .mb-#{$i} {
-        margin-bottom: #{$i}px;
+        margin-bottom: #{$i}px !important;
     }
 
     .pt-#{$i} {
-        padding-top: #{$i}px;
+        padding-top: #{$i}px !important;
     }
     .pl-#{$i} {
-        padding-left: #{$i}px;
+        padding-left: #{$i}px !important;
     }
     .pr-#{$i} {
-        padding-right: #{$i}px;
+        padding-right: #{$i}px !important;
     }
     .pb-#{$i} {
-        padding-bottom: #{$i}px;
+        padding-bottom: #{$i}px !important;
     }
 }
