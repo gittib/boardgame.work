@@ -29,6 +29,12 @@
                 border-top: $scenario_border;
             }
 
+            &.not_found {
+                border-top: none;
+                border-bottom: none;
+                text-align: center;
+            }
+
             .row {
                 display: flex;
                 align-items: baseline;
