@@ -21,6 +21,8 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 });
 
 $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')));
+
+$crazyTruthId = $set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')?->id;
 ?>
 @extends('layouts.layout')
 
@@ -69,14 +71,22 @@ $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')))
             <dt>@lang('ルールX1')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_x1_id') }}">
-                    {{ Form::select('rule_x1_id', $ruleXs, $helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id) }}
+                    {{ Form::select('rule_x1_id', $ruleXs, $helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id, ['class' => 'rule_x']) }}
                 </div>
             </dd>
             @if($set->hasRuleX2)
             <dt>@lang('ルールX2')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_x2_id') }}">
-                    {{ Form::select('rule_x2_id', $ruleXs, $helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id) }}
+                    {{ Form::select('rule_x2_id', $ruleXs, $helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id, ['class' => 'rule_x']) }}
+                </div>
+            </dd>
+            @endif
+            @if(!empty($crazyTruthId))
+            <dt class="for_crazy_truth">@lang(':rule用ルールY', ['rule' => __('tragedy_master.rule_name.Crazy-Truth')])</dt>
+            <dd class="for_crazy_truth">
+                <div class="select_wrapper {{ $helper->errClass('crazy_rule_y_id') }}">
+                    {{ Form::select('crazy_rule_y_id', $ruleYs, $helper->inputVal('crazy_rule_y_id') ?? $scenario->crazy_rule_y_id) }}
                 </div>
             </dd>
             @endif
@@ -221,4 +231,18 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
 @endsection
 
 @section('additional_scripts')
+<script>
+function switchCrazyTruthSelect() {
+    $('.for_crazy_truth').hide();
+    $('select.rule_x').each(function() {
+        if ($(this).val() == {{ $crazyTruthId }}) {
+            $('.for_crazy_truth').show();
+        }
+    });
+}
+switchCrazyTruthSelect();
+$('select.rule_x').on('change', () => {
+    switchCrazyTruthSelect();
+});
+</script>
 @endsection

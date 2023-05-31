@@ -269,6 +269,7 @@ class MyScenarioController extends Controller
         $scenario->rule_y_id = $request->rule_y_id;
         $scenario->rule_x1_id = $request->rule_x1_id;
         $scenario->rule_x2_id = $request->rule_x2_id;
+        $scenario->crazy_rule_y_id = $request->crazy_rule_y_id;
         $scenario->loops = $request->loops;
         $scenario->days = $request->days;
         $scenario->difficulty = $request->difficulty;
@@ -322,6 +323,7 @@ class MyScenarioController extends Controller
             $scenario->rule_y_id = $request->rule_y_id;
             $scenario->rule_x1_id = $request->rule_x1_id;
             $scenario->rule_x2_id = $request->rule_x2_id;
+            $scenario->crazy_rule_y_id = $request->crazy_rule_y_id;
             $scenario->loops = $request->loops;
             $scenario->days = $request->days;
             $scenario->difficulty = $request->difficulty;

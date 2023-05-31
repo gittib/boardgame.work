@@ -112,12 +112,22 @@ $charasInBoard = [
                     </tr>
                     <tr>
                         <th>@lang('ルールX1')</th>
-                        <td>{{ $scenario->ruleX1->name }}</td>
+                        <td>
+                            <span>{{ $scenario->ruleX1->name }}</span>
+                            @if($scenario->ruleX1?->code == 'Crazy-Truth')
+                                <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
+                            @endif
+                        </td>
                     </tr>
                     @if($scenario->set->hasRuleX2)
                     <tr>
                         <th>@lang('ルールX2')</th>
-                        <td>{{ $scenario->ruleX2->name }}</td>
+                        <td>
+                            <span>{{ $scenario->ruleX2->name }}</span>
+                            @if($scenario->ruleX2?->code == 'Crazy-Truth')
+                                <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
+                            @endif
+                        </td>
                     </tr>
                     @endif
                 </table>
