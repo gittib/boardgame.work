@@ -161,6 +161,13 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
                 .difficulty {
                     text-align: center;
                 }
+
+                table.summary {
+                    span.crazy_rule_y {
+                        font-size: 0.8em;
+                    }
+                }
+
                 p.item_name {
                     font-weight: bold;
 

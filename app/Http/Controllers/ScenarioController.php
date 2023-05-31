@@ -30,10 +30,10 @@ class ScenarioController extends Controller
                 $q->where('tragedy_sets.abbreviation', $request->set);
             });
         }
-        if (!empty($request->dif_min)) {
+        if (isset($request->dif_min)) {
             $query->where('difficulty', '>=', $request->dif_min);
         }
-        if (!empty($request->dif_max)) {
+        if (isset($request->dif_max)) {
             $query->where('difficulty', '<=', $request->dif_max);
         }
 

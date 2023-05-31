@@ -65,6 +65,15 @@ class Scenario extends Model
         return $this->set->rules->firstWhere('id', $this->rule_x2_id);
     }
 
+    /** 狂った真実で指定されているルールY */
+    public function getCrazyRuleYAttribute(): ?TragedyRule {
+        if (empty($this->crazy_rule_y_id)) return null;
+        if (in_array('Crazy-Truth', [$this->ruleX1?->code, $this->ruleX2?->code])) {
+            return $this->set->rules->firstWhere('id', $this->crazy_rule_y_id);
+        }
+        return null;
+    }
+
     /** キーパーソンを少女にしなければならないルールが採用されていれば、それを返す */
     public function getGirlKeyRuleAttribute(): ?TragedyRule {
         $aRuleY = ['Sign-me-up', 'World-of-Rebellion'];

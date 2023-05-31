@@ -30,7 +30,7 @@ $bodyClass = 'scenario-index';
     </div>
 
     <ul class="scenario_list">
-        @foreach($scenarios as $scenario)
+        @forelse($scenarios as $scenario)
         <li>
             <div class="row id_wrapper">
                 <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
@@ -63,7 +63,9 @@ $bodyClass = 'scenario-index';
                 </span>
             </div>
         </li>
-        @endforeach
+        @empty
+        <li class="not_found">@lang('該当する脚本はありませんでした。')</li>
+        @endforelse
     </ul>
 
     @include('parts.paginator', ['items' => $scenarios])
