@@ -13,7 +13,7 @@ class AddCrazyRuleYIdToScenarios extends Migration
      */
     public function up()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->unsignedBigInteger('crazy_rule_y_id')->nullable()->after('feature')->comment('狂った真実用のルールY');
         });
     }
@@ -25,7 +25,7 @@ class AddCrazyRuleYIdToScenarios extends Migration
      */
     public function down()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->dropColumn('crazy_rule_y_id');
         });
     }

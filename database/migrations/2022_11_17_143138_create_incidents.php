@@ -13,7 +13,7 @@ class CreateIncidents extends Migration
      */
     public function up()
     {
-        Schema::create('incidents', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('incidents', function (Blueprint $table) {
             $table->id()->comment('事件マスタ');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -30,6 +30,6 @@ class CreateIncidents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incidents');
+        Schema::connection('mysql_for_migration')->dropIfExists('incidents');
     }
 }

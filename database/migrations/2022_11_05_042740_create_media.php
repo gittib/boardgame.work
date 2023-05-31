@@ -13,7 +13,7 @@ class CreateMedia extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('media', function (Blueprint $table) {
             $table->uuid('id')->comment('アップロードされたファイル');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -37,6 +37,6 @@ class CreateMedia extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::connection('mysql_for_migration')->dropIfExists('media');
     }
 }

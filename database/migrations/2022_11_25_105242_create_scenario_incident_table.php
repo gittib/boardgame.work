@@ -13,7 +13,7 @@ class CreateScenarioIncidentTable extends Migration
      */
     public function up()
     {
-        Schema::create('scenario_incidents', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('scenario_incidents', function (Blueprint $table) {
             $table->id()->comment('脚本-事件');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -34,6 +34,6 @@ class CreateScenarioIncidentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scenario_incidents');
+        Schema::connection('mysql_for_migration')->dropIfExists('scenario_incidents');
     }
 }

@@ -13,7 +13,7 @@ class CreateBookmarkScenarioTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookmark_scenario', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('bookmark_scenario', function (Blueprint $table) {
             $table->id()->comment('ブックマークした脚本');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -30,6 +30,6 @@ class CreateBookmarkScenarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookmark_scenario');
+        Schema::connection('mysql_for_migration')->dropIfExists('bookmark_scenario');
     }
 }

@@ -13,7 +13,7 @@ class CreateTragedyRuleRole extends Migration
      */
     public function up()
     {
-        Schema::create('tragedy_rule_role', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('tragedy_rule_role', function (Blueprint $table) {
             $table->id()->comment('惨劇ルール-役職人数');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -30,6 +30,6 @@ class CreateTragedyRuleRole extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tragedy_rule_role');
+        Schema::connection('mysql_for_migration')->dropIfExists('tragedy_rule_role');
     }
 }

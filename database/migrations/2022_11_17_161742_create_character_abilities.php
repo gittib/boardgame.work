@@ -13,7 +13,7 @@ class CreateCharacterAbilities extends Migration
      */
     public function up()
     {
-        Schema::create('character_abilities', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('character_abilities', function (Blueprint $table) {
             $table->id()->comment('キャラクター能力マスタ');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -34,6 +34,6 @@ class CreateCharacterAbilities extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('character_abilities');
+        Schema::connection('mysql_for_migration')->dropIfExists('character_abilities');
     }
 }

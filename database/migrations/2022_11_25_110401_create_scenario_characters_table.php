@@ -13,7 +13,7 @@ class CreateScenarioCharactersTable extends Migration
      */
     public function up()
     {
-        Schema::create('scenario_characters', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('scenario_characters', function (Blueprint $table) {
             $table->id()->comment('脚本-キャラクター');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -34,6 +34,6 @@ class CreateScenarioCharactersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scenario_characters');
+        Schema::connection('mysql_for_migration')->dropIfExists('scenario_characters');
     }
 }
