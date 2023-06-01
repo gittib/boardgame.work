@@ -248,6 +248,12 @@ class Scenario extends Model
         foreach ($roleCounter as $val) {
             $val = (object)$val;
             if ($val->code == 'Person') continue;
+
+            if ($val->code == 'SerialKiller' && $this->set?->abbr == 'LL') {
+                // Last Liarのみ、シリアルキラーは1人制限
+                if ($val->count > 1) $val->count = 1;
+            }
+
             if ($val->picked < $val->count) {
                 if ($val->code == 'Minus' && $this->ruleX1?->code == 'The-Worst-Retired-Book') {
                     // 最低の却本が採用されている場合、マイナスは足りなくてもいい
