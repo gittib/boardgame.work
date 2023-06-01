@@ -1094,6 +1094,7 @@
             "is_immortality": false
         },
         "DeepOne": {
+            "max_count": 1,
             "hostility_type": 1,
             "is_immortality": false
         },
