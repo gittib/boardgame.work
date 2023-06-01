@@ -92,6 +92,12 @@ class Scenario extends Model
 
     /** 脚本の役職構成にエラーがないか確認する */
     public function getInvalidConditionsAttribute():array {
+        if (empty($this->calcedInvalidConditions)) {
+            $this->calcedInvalidConditions = $this->getInvalidConditions();
+        }
+        return $this->calcedInvalidConditions;
+    }
+    private function getInvalidConditions():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
 
         if ($this->rule_x1_id == $this->rule_x2_id) {
@@ -238,19 +244,23 @@ class Scenario extends Model
         }
 
         // 過不足のある役職を確認
+        $roleCounter = $this->fixRoleCountByLyingSecret($roleCounter);
         foreach ($roleCounter as $val) {
             $val = (object)$val;
             if ($val->code == 'Person') continue;
             if ($val->picked < $val->count) {
                 if ($val->code == 'Minus' && $this->ruleX1?->code == 'The-Worst-Retired-Book') {
                     // 最低の却本が採用されている場合、マイナスは足りなくてもいい
+                } else if ($val->picked < 0) {
+                    // 嘘憑きの秘密入れてシークレットがいないのに、追加役職が設定されてない
+                    $errors[] = __('「:rule」が採用されていますが、:roleがいない場合の追加役職が採用されていません。', [
+                        'rule' => __('tragedy_master.rule_name.The-Secret-of-Lying-Possession'),
+                        'role' => __('tragedy_master.role.Secret.name'),
+                    ]);
                 } else {
                     $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
                 }
             } else if ($val->picked > $val->count) {
-
-                // TODO: 嘘憑きの秘密が採用されててシークレットがいない場合の判定
-
                 if ($val->code == 'Fragments' && $this->set->isPlusSupport && $val->picked == 1) {
                     // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
                 } else {
@@ -311,5 +321,40 @@ class Scenario extends Model
         }
 
         return $errors;
+    }
+
+    /** 嘘憑きの秘密による役職構成変更のチェック */
+    private function fixRoleCountByLyingSecret(array $roleCounter):array {
+        $roles = $this->set->roles;
+        $roleId = (object)[
+            'Secret' => $roles->firstWhere('code', 'Secret')?->id,
+            'Killer' => $roles->firstWhere('code', 'Killer')?->id,
+            'Kromak' => $roles->firstWhere('code', 'Kromak')?->id,
+            'Fragments' => $roles->firstWhere('code', 'Fragments')?->id,
+        ];
+
+        if (!in_array('The-Secret-of-Lying-Possession', [$this->ruleX1?->code, $this->ruleX2?->code])) return $roleCounter; // 嘘憑きの秘密が採用されてない
+        if (!empty($roleCounter[$roleId->Secret]) && !empty($roleCounter[$roleId->Secret]['count'])) return $roleCounter; // シークレットがいるなら役職構成に変更はない
+
+        if (!empty($roleCounter[$roleId->Killer]) && $roleCounter[$roleId->Killer]['picked'] > $roleCounter[$roleId->Killer]['count']) {
+            // キラーが追加されてる
+            $roleCounter[$roleId->Killer]['count']++;
+        } else if (!empty($roleCounter[$roleId->Kromak]) && $roleCounter[$roleId->Kromak]['picked'] > $roleCounter[$roleId->Kromak]['count']) {
+            // クロマクが追加されてる
+            $roleCounter[$roleId->Kromak]['count']++;
+        } else if (!empty($roleCounter[$roleId->Fragments]) && $roleCounter[$roleId->Fragments]['picked'] > $roleCounter[$roleId->Fragments]['count']) {
+            // フラグメントが追加されてる
+            $roleCounter[$roleId->Fragments]['count']++;
+        } else {
+            // 誰も追加されてないので、フラグメントが足りない事にする
+            $roleCounter[$roleId->Fragments] = [
+                'count' => 0,
+                'code' => 'Fragments',
+                'name' => __('tragedy_master.role.Fragments.name'),
+                'picked' => -1,
+            ];
+        }
+
+        return $roleCounter;
     }
 }
