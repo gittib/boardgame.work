@@ -18,8 +18,12 @@ if ($('body').hasClass('scenario-show')) {
         $('.js-show_private_sheet').show();
     });
 
+    var has_show_initial_board = false;
     $('.show_initial_board_wrapper').on('click', () => {
-        gtag('event', 'show_initial_board');
+        if (!has_show_initial_board) {
+            gtag('event', 'show_initial_board');
+            has_show_initial_board = true;
+        }
         $('.initial_board_wrapper').show();
         $('.show_initial_board_wrapper').hide();
     });
