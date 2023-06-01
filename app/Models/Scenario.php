@@ -192,7 +192,7 @@ class Scenario extends Model
                     if (empty($chara->character?->chara_attrs_array?->first(fn($i) => $i == 'girl'))) {
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
                             'rule' => $this->ruleY?->name,
-                            'role' => __('tragedy_master.role.KeyPerson.name'),
+                            'role' => __('tragedy_master.role.Fragments.name'),
                             'attr' => __('tragedy_master.chara_attr.girl'),
                         ]);
                     }
