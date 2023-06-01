@@ -13,7 +13,7 @@ class CreateLikeScenarioTable extends Migration
      */
     public function up()
     {
-        Schema::create('like_scenario', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('like_scenario', function (Blueprint $table) {
             $table->id()->comment('いいねした脚本');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -30,6 +30,6 @@ class CreateLikeScenarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('like_scenario');
+        Schema::connection('mysql_for_migration')->dropIfExists('like_scenario');
     }
 }

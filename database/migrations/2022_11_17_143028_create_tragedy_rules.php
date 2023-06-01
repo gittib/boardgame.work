@@ -13,7 +13,7 @@ class CreateTragedyRules extends Migration
      */
     public function up()
     {
-        Schema::create('tragedy_rules', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('tragedy_rules', function (Blueprint $table) {
             $table->id()->comment('惨劇ルールマスタ');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -31,6 +31,6 @@ class CreateTragedyRules extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tragedy_rules');
+        Schema::connection('mysql_for_migration')->dropIfExists('tragedy_rules');
     }
 }

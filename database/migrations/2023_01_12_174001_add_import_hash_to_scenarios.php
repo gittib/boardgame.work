@@ -13,7 +13,7 @@ class AddImportHashToScenarios extends Migration
      */
     public function up()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->string('import_hash')->nullable()->comment('JSONインポート識別用');
         });
     }
@@ -25,7 +25,7 @@ class AddImportHashToScenarios extends Migration
      */
     public function down()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->dropColumn('import_hash');
         });
     }

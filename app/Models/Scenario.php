@@ -56,20 +56,20 @@ class Scenario extends Model
     }
 
     public function getRuleYAttribute(): ?TragedyRule {
-        return $this->set->rules->firstWhere('id', $this->rule_y_id);
+        return $this->set?->rules?->firstWhere('id', $this->rule_y_id);
     }
     public function getRuleX1Attribute(): ?TragedyRule {
-        return $this->set->rules->firstWhere('id', $this->rule_x1_id);
+        return $this->set?->rules?->firstWhere('id', $this->rule_x1_id);
     }
     public function getRuleX2Attribute(): ?TragedyRule {
-        return $this->set->rules->firstWhere('id', $this->rule_x2_id);
+        return $this->set?->rules?->firstWhere('id', $this->rule_x2_id);
     }
 
     /** 狂った真実で指定されているルールY */
     public function getCrazyRuleYAttribute(): ?TragedyRule {
         if (empty($this->crazy_rule_y_id)) return null;
         if (in_array('Crazy-Truth', [$this->ruleX1?->code, $this->ruleX2?->code])) {
-            return $this->set->rules->firstWhere('id', $this->crazy_rule_y_id);
+            return $this->set?->rules?->firstWhere('id', $this->crazy_rule_y_id);
         }
         return null;
     }
@@ -92,6 +92,12 @@ class Scenario extends Model
 
     /** 脚本の役職構成にエラーがないか確認する */
     public function getInvalidConditionsAttribute():array {
+        if (empty($this->calcedInvalidConditions)) {
+            $this->calcedInvalidConditions = $this->getInvalidConditions();
+        }
+        return $this->calcedInvalidConditions;
+    }
+    private function getInvalidConditions():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
 
         if ($this->rule_x1_id == $this->rule_x2_id) {
@@ -119,21 +125,21 @@ class Scenario extends Model
         $vampSex = null; // ヴァンパイアの性別
         $keySex = null; // キーパーソンの性別
         foreach($this->characters as $chara) {
-            if ($chara->character->code == 'Irregular') {
+            if ($chara->character?->code == 'Irregular') {
                 // イレギュラーは判定ロジックが全然別
                 $irregularRoleId = $chara->role_id;
-                if ($chara->role->code == 'Person') {
+                if ($chara->role?->code == 'Person') {
                     $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.Irregular'), 'role' => __('tragedy_master.role.Person.name')]);
                 } else if (!empty($roleCounter[$chara->role_id])) {
                     $errors[] = __(':nameに通常の役職が配役されています', ['name' => __('tragedy_master.chara_name.Irregular')]);
                 }
-            } else if ($chara->character->code == 'CopyCat') {
+            } else if ($chara->character?->code == 'CopyCat') {
                 // コピーキャットはあとから判定する
                 $copyCatRoleId = $chara->role_id;
             } else {
-                if ($chara->character->code == 'AI') {
+                if ($chara->character?->code == 'AI') {
                     // AIがパーソンは禁止
-                    if ($chara->role->code == 'Person') {
+                    if ($chara->role?->code == 'Person') {
                         $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.AI'), 'role' => __('tragedy_master.role.Person.name')]);
                     }
                 }
@@ -143,8 +149,8 @@ class Scenario extends Model
                 } else {
                     $roleCounter[$chara->role_id] = [
                         'count' => 0,
-                        'code' => $chara->role->code,
-                        'name' => $chara->role->name,
+                        'code' => $chara->role?->code,
+                        'name' => $chara->role?->name,
                         'picked' => 1,
                     ];
                 }
@@ -154,25 +160,25 @@ class Scenario extends Model
             if ($chara->role?->code == 'KeyPerson') {
                 if (!empty($this->girl_key_rule)) {
                     // キーパーソンを少女にしなければならないルールが採用されている場合、少女でないキーパーソンはNG
-                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                    if (empty($chara->character?->chara_attrs_array?->first(fn($i) => $i == 'girl'))) {
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
-                            'rule' => $this->girl_key_rule->name,
+                            'rule' => $this->girl_key_rule?->name,
                             'role' => __('tragedy_master.role.KeyPerson.name'),
                             'attr' => __('tragedy_master.chara_attr.girl'),
                         ]);
                     }
                 }
                 if ($this->ruleY?->code == 'Noble-Blood') {
-                    $keySex = $chara->character->sex;
+                    $keySex = $chara->character?->sex;
                 }
             } else if ($chara->role?->code == 'Vampire') {
                 if ($this->ruleY?->code == 'Noble-Blood') {
-                    $vampSex = $chara->character->sex;
+                    $vampSex = $chara->character?->sex;
                 }
             } else if ($chara->role?->code == 'Ninja') {
                 if ($this->ruleY?->code == 'Battle-of-the-Han') {
                     // 「漢の戦い」が採用されている場合、男性でないニンジャはNG
-                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'male'))) {
+                    if (empty($chara->character?->chara_attrs_array?->first(fn($i) => $i == 'male'))) {
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
                             'rule' => $this->ruleY?->name,
                             'role' => __('tragedy_master.role.Ninja.name'),
@@ -183,10 +189,10 @@ class Scenario extends Model
             } else if ($chara->role?->code == 'Fragments') {
                 if ($this->ruleY?->code == 'World-of-Rebellion') {
                     // 「叛逆の世界」が採用されている場合、少女でないフラグメントはNG
-                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                    if (empty($chara->character?->chara_attrs_array?->first(fn($i) => $i == 'girl'))) {
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
                             'rule' => $this->ruleY?->name,
-                            'role' => __('tragedy_master.role.KeyPerson.name'),
+                            'role' => __('tragedy_master.role.Fragments.name'),
                             'attr' => __('tragedy_master.chara_attr.girl'),
                         ]);
                     }
@@ -194,7 +200,7 @@ class Scenario extends Model
             } else if ($chara->role?->code == 'Alice') {
                 if ($this->ruleX1?->code == 'Alice-in-Mirrorland' || $this->ruleX2?->code == 'Alice-in-Mirrorland') {
                     // 「鏡の国のアリス」が採用されている場合、少女でないアリスはNG
-                    if (empty($chara->character->chara_attrs_array->first(fn($i) => $i == 'girl'))) {
+                    if (empty($chara->character?->chara_attrs_array?->first(fn($i) => $i == 'girl'))) {
                         $rule = ($this->ruleX1?->code == 'Alice-in-Mirrorland') ? $this->ruleX1 : $this->ruleX2;
                         $errors[] = __('「:rule」が採用されていますが、:roleが:attrではありません。', [
                             'rule' => $rule->name,
@@ -238,20 +244,30 @@ class Scenario extends Model
         }
 
         // 過不足のある役職を確認
+        $roleCounter = $this->fixRoleCountByLyingSecret($roleCounter);
         foreach ($roleCounter as $val) {
             $val = (object)$val;
             if ($val->code == 'Person') continue;
-            if ($val->picked < $val->count) {
+
+            if ($val->code == 'SerialKiller' && $this->set?->abbr == 'LL') {
+                // Last Liarのみ、シリアルキラーは1人制限
+                if ($val->count > 1) $val->count = 1;
+            }
+
+            if (!empty($val->SecretLyingInvalid)) {
+                // 嘘憑きの秘密入れてシークレットがいないのに、追加役職が設定されてない
+                $errors[] = __('「:rule」が採用されていますが、:roleがいない場合の追加役職が採用されていません。', [
+                    'rule' => __('tragedy_master.rule_name.The-Secret-of-Lying-Possession'),
+                    'role' => __('tragedy_master.role.Secret.name'),
+                ]);
+            } else if ($val->picked < $val->count) {
                 if ($val->code == 'Minus' && $this->ruleX1?->code == 'The-Worst-Retired-Book') {
                     // 最低の却本が採用されている場合、マイナスは足りなくてもいい
                 } else {
                     $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
                 }
             } else if ($val->picked > $val->count) {
-
-                // TODO: 嘘憑きの秘密が採用されててシークレットがいない場合の判定
-
-                if ($val->code == 'Fragments' && $this->set->isPlusSupport && $val->picked == 1) {
+                if ($val->code == 'Fragments' && $this->set?->isPlusSupport && $val->picked == 1) {
                     // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
                 } else {
                     $errors[] = __(':roleが:diff人多すぎます。', ['role' => $val->name, 'diff' => $val->picked - $val->count]);
@@ -292,7 +308,7 @@ class Scenario extends Model
 
         if ($this->ruleX1?->code == 'The-one-that-proclaims-destruction' || $this->ruleX2?->code == 'The-one-that-proclaims-destruction') {
             // 滅亡を謳うものがあったら、自殺を採用してるかチェック
-            $i = $this->incidents->first(fn($i) => $i->incident->code == 'suicide');
+            $i = $this->incidents->first(fn($i) => $i->incident?->code == 'suicide');
             if (empty($i)) {
                 $errors[] = __('「:rule」が採用されていますが、:elementが採用されていません。', [
                     'rule' => __('tragedy_master.rule_name.The-one-that-proclaims-destruction'),
@@ -301,7 +317,7 @@ class Scenario extends Model
             }
         } else if ($this->ruleX1?->code == 'Crazy-Truth' || $this->ruleX2?->code == 'Crazy-Truth') {
             // 狂った真実があったら、情報屋を採用してるかチェック
-            $c = $this->characters->first(fn($c) => $c->character->code == 'Informant');
+            $c = $this->characters->first(fn($c) => $c->character?->code == 'Informant');
             if (empty($c)) {
                 $errors[] = __('「:rule」が採用されていますが、:elementが採用されていません。', [
                     'rule' => __('tragedy_master.rule_name.Crazy-Truth'),
@@ -311,5 +327,42 @@ class Scenario extends Model
         }
 
         return $errors;
+    }
+
+    /** 嘘憑きの秘密による役職構成変更のチェック */
+    private function fixRoleCountByLyingSecret(array $roleCounter):array {
+        if (!in_array('The-Secret-of-Lying-Possession', [$this->ruleX1?->code, $this->ruleX2?->code])) return $roleCounter; // 嘘憑きの秘密が採用されてない
+
+        $roles = $this->set?->roles;
+        $roleId = (object)[
+            'Secret' => $roles?->firstWhere('code', 'Secret')?->id,
+            'Killer' => $roles?->firstWhere('code', 'Killer')?->id,
+            'Kromak' => $roles?->firstWhere('code', 'Kromak')?->id,
+            'Fragments' => $roles?->firstWhere('code', 'Fragments')?->id,
+        ];
+
+        if (!empty($roleCounter[$roleId->Secret]['count'])) return $roleCounter; // シークレットがいるなら役職構成に変更はない
+
+        if (!empty($roleCounter[$roleId->Killer]) && $roleCounter[$roleId->Killer]['picked'] > $roleCounter[$roleId->Killer]['count']) {
+            // キラーが追加されてる
+            $roleCounter[$roleId->Killer]['count']++;
+        } else if (!empty($roleCounter[$roleId->Kromak]) && $roleCounter[$roleId->Kromak]['picked'] > $roleCounter[$roleId->Kromak]['count']) {
+            // クロマクが追加されてる
+            $roleCounter[$roleId->Kromak]['count']++;
+        } else if (!empty($roleCounter[$roleId->Fragments]) && $roleCounter[$roleId->Fragments]['picked'] > $roleCounter[$roleId->Fragments]['count']) {
+            // フラグメントが追加されてる
+            $roleCounter[$roleId->Fragments]['count']++;
+        } else {
+            // 誰も追加されてないので、嘘憑きの秘密に違反しているフラグを設定する
+            $roleCounter[$roleId->Fragments] ??= [
+                'count' => 0,
+                'code' => 'Fragments',
+                'name' => __('tragedy_master.role.Fragments.name'),
+                'picked' => 0,
+            ];
+            $roleCounter[$roleId->Fragments]['SecretLyingInvalid'] = true;
+        }
+
+        return $roleCounter;
     }
 }

@@ -13,7 +13,7 @@ class AddStoryToScearios extends Migration
      */
     public function up()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->text('story')->nullable()->after('feature')->comment('ストーリー');
         });
     }
@@ -25,7 +25,7 @@ class AddStoryToScearios extends Migration
      */
     public function down()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->dropColumn('story');
         });
     }

@@ -13,7 +13,7 @@ class CreateScenariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->create('scenarios', function (Blueprint $table) {
             $table->id()->comment('脚本');
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
@@ -46,6 +46,6 @@ class CreateScenariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scenarios');
+        Schema::connection('mysql_for_migration')->dropIfExists('scenarios');
     }
 }

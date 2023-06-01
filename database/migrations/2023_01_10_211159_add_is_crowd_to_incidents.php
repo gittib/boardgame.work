@@ -13,7 +13,7 @@ class AddIsCrowdToIncidents extends Migration
      */
     public function up()
     {
-        Schema::table('incidents', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('incidents', function (Blueprint $table) {
             $table->boolean('is_crowd')->default(false)->comment('true:群像事件');
         });
 
@@ -32,7 +32,7 @@ class AddIsCrowdToIncidents extends Migration
      */
     public function down()
     {
-        Schema::table('incidents', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('incidents', function (Blueprint $table) {
             $table->dropColumn('is_crowd');
         });
     }
