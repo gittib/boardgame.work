@@ -95,7 +95,7 @@ class Scenario extends Model
         if (empty($this->calcedInvalidConditions)) {
             $this->calcedInvalidConditions = $this->getInvalidConditions();
         }
-        return $this->calcedInvalidConditions;
+        return $this->calcedInvalidConditions['errors'];
     }
     private function getInvalidConditions():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
@@ -326,7 +326,10 @@ class Scenario extends Model
             }
         }
 
-        return $errors;
+        return [
+            'errors' => $errors,
+            'checked' => true,
+        ];
     }
 
     /** 嘘憑きの秘密による役職構成変更のチェック */
