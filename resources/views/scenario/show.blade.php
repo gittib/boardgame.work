@@ -1,5 +1,6 @@
 <?php
 $isPreview ??= false;
+$isQuiz ??= true; // TODO: クイズ用脚本かどうか判定
 $bodyClass = 'scenario-show';
 
 $charasInBoard = [
@@ -36,7 +37,7 @@ $charasInBoard = [
     @endif
 </div>
 
-<div class="">
+<div class="@if($isQuiz) scenario_quiz @endif">
     <div class="public_sheet">
         <h2>@lang('公開シート')</h2>
         <table class="summary mx-center">
@@ -102,8 +103,8 @@ $charasInBoard = [
 
             <div class="private_sheet">
 
-                <h3 class="scenario_title">{{ $scenario->title }}</h3>
-                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span>{{ $scenario->difficultStar }}</div>
+                <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
+                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
 
                 <table class="summary mx-center mt-16 mb-16">
                     <tr>
@@ -230,15 +231,15 @@ $charasInBoard = [
 
         <dl>
             <dt>@lang('脚本の特徴')</dt>
-            <dd>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</dd>
+            <dd class="feature"><div>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</div></dd>
 
             @if(!empty($scenario->story))
             <dt>@lang('ストーリー')</dt>
-            <dd>{!! nl2br(e($scenario->story)) !!}</dd>
+            <dd class="story"><div>{!! nl2br(e($scenario->story)) !!}</div></dd>
             @endif
 
             <dt>@lang('脚本家への指針')</dt>
-            <dd>{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</dd>
+            <dd class="advice"><div class="content">{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</div></dd>
         </dl>
     </div>
 
@@ -300,6 +301,20 @@ $charasInBoard = [
 </div>
 @endif
 
+@if($isQuiz)
+<div id="quiz-strings_wrapper" style="display:none;">
+    <p id="quiz-confirm_to_show_hint">@lang('ヒント：___LABEL___を表示しますか？')</p>
+    <p id="quiz-hint_label">@lang('ヒント：___LABEL___を表示')</p>
+    <p id="quiz-confirm_to_show_answer">@lang('答えを表示しますか？')</p>
+    <p id="quiz-answer_label">@lang('答えを表示')</p>
+
+    <p id="quiz-label_title">@lang('脚本タイトル')</p>
+    <p id="quiz-label_diff">@lang('難易度')</p>
+    <p id="quiz-label_feature">@lang('脚本の特徴')</p>
+    <p id="quiz-label_story">@lang('ストーリー')</p>
+</div>
+@endif
+
 @endsection
 
 @section('additional_scripts')
@@ -307,5 +322,57 @@ $charasInBoard = [
 @if($isPreview)
 $('a').attr('href', 'javascript:void(0);');
 @endif
+
+if($('#quiz-strings_wrapper').length > 0) {
+    window.confirmToShowHint = async s => {
+        if ($('dd.advice > .content').is(':visible')) {
+            return {result:'ok'};
+        } else {
+            return await myConfirm(s);
+        }
+    };
+
+    const sHintLabel = $('#quiz-hint_label').text();
+    const sConfirm = $('#quiz-confirm_to_show_hint').text();
+
+    [
+        ['.scenario_title', '#quiz-label_title'],
+        ['.private_sheet .difficulty', '#quiz-label_diff'],
+        ['dd.feature', '#quiz-label_feature'],
+        ['dd.story', '#quiz-label_story'],
+    ].forEach(it => {
+        let $dom = $(it[0]);
+        if ($dom.length <= 0) return;
+        let sLabel = $(it[1]).text();
+        $dom.children().hide();
+        let $tmp = $('<a href="javascript:void(0);">');
+        $dom.append($tmp);
+        $tmp.text(sHintLabel.replace('___LABEL___', sLabel));
+        $tmp.on('click', async function() {
+            const $self = $(this);
+            const theConfirm = sConfirm.replace('___LABEL___', sLabel);
+            const {result} = await confirmToShowHint(theConfirm);
+            if (result == 'ok') {
+                $self.parent().children().removeAttr('style');
+                $self.remove();
+            }
+        });
+    });
+
+    let $dom = $('dd.advice');
+    $dom.children().hide();
+    let $tmp = $('<a href="javascript:void(0);">');
+    $dom.append($tmp);
+    $tmp.text($('#quiz-answer_label').text());
+    $tmp.on('click', async function() {
+        const $self = $(this);
+        const {result} = await confirmToShowHint($('#quiz-confirm_to_show_answer').text());
+        if (result == 'ok') {
+            $self.parent().children().removeAttr('style');
+            $self.remove();
+        }
+    });
+
+}
 </script>
 @endsection
