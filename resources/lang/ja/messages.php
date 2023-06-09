@@ -15,4 +15,6 @@ return [
     'loop_day_summary' => '<span class="loop">:loops</span>ループ<span class="day">:days</span>日',
     'special_rule_placeholder' => '＋対応の場合、特殊ルールにその旨を記載してください',
     'invalid_conditions' => '役職の配役がおかしいようです。<br>特殊ルールによっては問題ない場合もあるため、確認した上でご利用ください。',
+
+    'what_is_advice_quiz' => '脚本家への指針クイズとは、公開シート・非公開シートを確認した上で脚本家への指針を言い当てるクイズゲームです。',
 ];

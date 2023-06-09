@@ -123,6 +123,11 @@
     "「:rule」が採用されていますが、:elementが採用されていません。": "\":rule\" is adopted, but the :element not found.",
     "「:rule」が採用されていますが、:roleがいない場合の追加役職が採用されていません。": "\":rule\" is adopted, but no additional roles are adopted in the absence of :role.",
 
+    "ヒント：___LABEL___を表示しますか？": "Hint： Show ___LABEL___?",
+    "ヒント：___LABEL___を表示": "Hint：___LABEL___",
+    "答えを表示しますか？": "Show answer?",
+    "答えを表示": "Show answer",
+
     "製作者専用欄": "Auther only",
     "この枠内は、脚本の製作者本人だけに表示されます。": "This frame is only visible to the author himself/herself.",
     "公開状態：公開中": "open status : now open",
