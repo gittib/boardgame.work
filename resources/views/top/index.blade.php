@@ -15,7 +15,7 @@ $trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨�
             <h3>@lang('脚本家への指針クイズ')</h3>
             <p>
                 @lang('messages.what_is_advice_quiz')<br>
-                <a href="">@lang('指針クイズで遊ぶ')</a>
+                <a href="{{ route('scenario.quiz-index') }}">@lang('指針クイズで遊ぶ')</a>
             </p>
         </li>
     </ul>

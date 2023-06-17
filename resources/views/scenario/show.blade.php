@@ -18,9 +18,15 @@ $charasInBoard = [
 @section('body_class', $bodyClass)
 
 @section('bread')
+@if($isQuiz)
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li><a href="{{ route('scenario.quiz-index') }}">@lang('指針クイズ一覧')</a></li>
+<li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@else
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
 <li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
 <li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@endif
 @endsection
 
 @section('contents')
