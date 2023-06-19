@@ -220,6 +220,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                 </li>
                 <li id="what_is_quiz" style="display:none;">
                     @lang('messages.what_is_advice_quiz')
+                    @lang('messages.show_only_quiz_list')
                 </li>
             </ul>
             <div class="fixed_footer_console">
