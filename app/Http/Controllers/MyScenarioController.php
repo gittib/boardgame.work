@@ -279,6 +279,7 @@ class MyScenarioController extends Controller
         $scenario->story = $request->story;
         $scenario->advice = $request->advice;
         $scenario->is_open = isset($request->is_open);
+        $scenario->is_quiz = isset($request->is_quiz);
 
         $scenario->characters = collect();
         foreach ($request->scenario_chara as $chara) {
@@ -333,6 +334,7 @@ class MyScenarioController extends Controller
             $scenario->story = $request->story;
             $scenario->advice = $request->advice;
             $scenario->is_open = isset($request->is_open);
+            $scenario->is_quiz = isset($request->is_quiz);
             $scenario->save();
 
             // キャラの特記にテリトリーとか手先の初期配置を入れられたとき、多言語対応できるようにする
