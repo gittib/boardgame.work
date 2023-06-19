@@ -20,6 +20,7 @@ class ScenarioController extends Controller
             'set',
             'likes',
         ])->where('is_open', 1)
+            ->where('is_quiz', 0)
             ->orderBy('set_id')
             ->orderBy('difficulty')
             ->orderBy('id');
@@ -39,6 +40,29 @@ class ScenarioController extends Controller
 
         $scenarios = $query->paginate(30);
         return view('scenario.index', compact('scenarios'));
+    }
+    public function quizIndex(Request $request)
+    {
+        $query = Scenario::with([
+            'writer',
+            'set',
+            'likes',
+        ])->where('is_open', 1)
+            ->where('is_quiz', 1)
+            ->orderBy('set_id')
+            ->orderBy('difficulty')
+            ->orderBy('id');
+
+        // 検索条件指定
+        if (!empty($request->set)) {
+            $query->whereHas('set', function($q) use($request) {
+                $q->where('tragedy_sets.abbreviation', $request->set);
+            });
+        }
+
+        $scenarios = $query->paginate(30);
+        $isQuiz = true;
+        return view('scenario.quiz_index', compact('scenarios', 'isQuiz'));
     }
 
     /**

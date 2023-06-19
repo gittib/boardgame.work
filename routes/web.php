@@ -26,6 +26,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('scenario/{scenario}/bookmark', 'ScenarioController@bookmark')->name('scenario.bookmark');
         Route::post('scenario/{scenario}/like', 'ScenarioController@like')->name('scenario.like');
     });
+    Route::get('scenario-quiz', 'ScenarioController@quizIndex')->name('scenario.quiz-index');
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('login', 'LoginController@login')->name('login');
