@@ -13,7 +13,7 @@ class AddIsQuizToScenarios extends Migration
      */
     public function up()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->boolean('is_quiz')->default(false)->comment('trueの場合、指針クイズ用の脚本');
         });
     }
@@ -25,7 +25,7 @@ class AddIsQuizToScenarios extends Migration
      */
     public function down()
     {
-        Schema::table('scenarios', function (Blueprint $table) {
+        Schema::connection('mysql_for_migration')->table('scenarios', function (Blueprint $table) {
             $table->dropColumn('is_quiz');
         });
     }
