@@ -29,5 +29,6 @@ $bodyClass ??= '';
             <li><a href="{{ route('auth.twitter.login') }}"><img src="/images/sign-in-with-twitter.png"></a></li>
             @endguest
         </ul>
+        <button class="menu_bg_filter" onclick="document.querySelector('.header_menu').classList.toggle('open');"></button>
     </div>
 </header>
