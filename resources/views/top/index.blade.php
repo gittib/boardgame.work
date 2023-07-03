@@ -18,5 +18,12 @@ $trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨�
                 <a href="{{ route('scenario.quiz-index') }}">@lang('指針クイズで遊ぶ')</a>
             </p>
         </li>
+        <li>
+            <h3>@lang('Androidアプリのご紹介')</h3>
+            <p class="inline_block_wrapper">
+                @lang('messages.now_on_display_app')<br>
+                <a href="{{ config('define.app_url.android') }}">@lang('Google Play を開く')</a>
+            </p>
+        </li>
     </ul>
 @endsection
