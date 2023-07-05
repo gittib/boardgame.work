@@ -1,0 +1,14 @@
+@use '../parts';
+
+.top-privacy {
+    ol {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding-inline-start: 30px;
+
+        li {
+            list-style: auto;
+            margin-bottom: 16px;
+        }
+    }
+}
