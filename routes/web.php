@@ -26,6 +26,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('scenario/{scenario}/bookmark', 'ScenarioController@bookmark')->name('scenario.bookmark');
         Route::post('scenario/{scenario}/like', 'ScenarioController@like')->name('scenario.like');
     });
+    Route::get('scenario-quiz', 'ScenarioController@quizIndex')->name('scenario.quiz-index');
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('login', 'LoginController@login')->name('login');
@@ -45,6 +46,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
     Route::post('file/file/upload/chunk/{media}', 'FileController@uploadChunk')->name('file.upload.chunk.add');
+
+    Route::view('privacy', 'top.privacy');
 });
 
 Route::fallback(fn() => response()->view('errors.404', [], 404));

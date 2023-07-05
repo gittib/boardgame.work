@@ -14,5 +14,11 @@ return [
     'footer' => 'This is a fan site for BakaFire Party\'s game ":trlink". If you have any questions about this site, please contact :manager.',
     'loop_day_summary' => '<span class="loop">:loops</span> loops <span class="day">:days</span> days',
     'special_rule_placeholder' => 'If this Script corresponds to plus, please indicate so in the special rules.',
-    'invalid_conditions' => 'This script seems to cast the roles incorrectly.<br>It may be normal depending on the special rules, so please check it before using.',
+    'invalid_conditions' => 'This Script seems to cast the roles incorrectly.<br>It may be normal depending on the special rules, so please check it before using.',
+
+    'what_is_advice_quiz' => 'Quiz for the Mastermind is quiz game that guesses the Hints for the Mastermind after checking the Open card and the Secret card.',
+    'what_is_advice_quiz_more' => 'When you open the Script, the Secret card will be displayed from the beginning, so please think about how to handle the Script.',
+    'show_only_quiz_list' => 'Scripts set to Quiz for the Mastermind will not appear in the normal list of Scripts.',
+
+    'now_on_display_app' => 'We have an Android application available to help you keep track of your game play. A summary of each set is also built in to accompany you as you think about your Script.',
 ];

@@ -57,3 +57,55 @@ if ($('body').hasClass('scenario-show')) {
         myAlert($(this).attr('data-msg'));
     });
 }
+
+if($('#quiz-strings_wrapper').length > 0) {
+    // 「脚本家への指針」当てクイズ
+    window.confirmToShowHint = async s => {
+        if ($('dd.advice > .content').is(':visible')) {
+            return {result:'ok'};
+        } else {
+            return await myConfirm(s);
+        }
+    };
+
+    const sHintLabel = $('#quiz-hint_label').text();
+    const sConfirm = $('#quiz-confirm_to_show_hint').text();
+
+    [
+        ['.scenario_title', '#quiz-label_title'],
+        ['.private_sheet .difficulty', '#quiz-label_diff'],
+        ['dd.feature', '#quiz-label_feature'],
+        ['dd.story', '#quiz-label_story'],
+    ].forEach(it => {
+        let $dom = $(it[0]);
+        if ($dom.length <= 0) return;
+        let sLabel = $(it[1]).text();
+        $dom.children().hide();
+        let $tmp = $('<a href="javascript:void(0);">');
+        $dom.append($tmp);
+        $tmp.text(sHintLabel.replace('___LABEL___', sLabel));
+        $tmp.on('click', async function() {
+            const $self = $(this);
+            const theConfirm = sConfirm.replace('___LABEL___', sLabel);
+            const {result} = await confirmToShowHint(theConfirm);
+            if (result == 'ok') {
+                $self.parent().children().removeAttr('style');
+                $self.remove();
+            }
+        });
+    });
+
+    let $dom = $('dd.advice');
+    $dom.children().hide();
+    let $tmp = $('<a href="javascript:void(0);">');
+    $dom.append($tmp);
+    $tmp.text($('#quiz-answer_label').text());
+    $tmp.on('click', async function() {
+        const $self = $(this);
+        const {result} = await confirmToShowHint($('#quiz-confirm_to_show_answer').text());
+        if (result == 'ok') {
+            $self.parent().children().removeAttr('style');
+            $self.remove();
+        }
+    });
+}

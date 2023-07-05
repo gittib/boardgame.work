@@ -17,4 +17,8 @@ return [
         'name' => env('BASIC_AUTH_NAME'),
         'password' => env('BASIC_AUTH_PASSWORD'),
     ],
+
+    'app_url' => [
+        'android' => 'https://play.google.com/store/apps/details?id=work.boardgame.sangeki_rooper',
+    ],
 ];

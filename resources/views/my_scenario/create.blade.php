@@ -22,7 +22,7 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 
 $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')));
 
-$crazyTruthId = $set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')?->id;
+$crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')?->id);
 ?>
 @extends('layouts.layout')
 
@@ -203,16 +203,35 @@ $crazyTruthId = $set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')?->id;
                 </div>
             </dd>
         </dl>
-        <div class="submit_button_wrapper">
-            <label class="checkbox_wrapper">
-                {{ Form::checkbox('is_open', 1, $helper->inputVal('is_open') ?? $scenario->is_open) }}
-                @lang('脚本を公開する')
-            </label>
-            <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
-                @lang('プレビュー')
-            </div>
-            <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
-                @lang('登録')
+        <div class="scenario_control_wrapper">
+            <ul>
+                <li>
+                    <label class="checkbox_wrapper">
+                        {{ Form::checkbox('is_open', 1, $helper->inputVal('is_open') ?? $scenario->is_open) }}
+                        @lang('脚本を公開する')
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox_wrapper">
+                        {{ Form::checkbox('is_quiz', 1, $helper->inputVal('is_quiz') ?? $scenario->is_quiz) }}
+                        @lang('脚本家への指針クイズにする')
+                    </label><br>
+                    <a href="javascript:void(0);" class="js-what_is_quiz">@lang('脚本家への指針クイズとは？')</a>
+                </li>
+                <li id="what_is_quiz" style="display:none;">
+                    @lang('messages.what_is_advice_quiz')
+                    @lang('messages.show_only_quiz_list')
+                </li>
+            </ul>
+            <div class="fixed_footer_console">
+                <div class="submit_button_wrapper">
+                    <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
+                        @lang('プレビュー')
+                    </div>
+                    <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
+                        @lang('登録')
+                    </div>
+                </div>
             </div>
         </div>
     </form>
@@ -243,6 +262,10 @@ function switchCrazyTruthSelect() {
 switchCrazyTruthSelect();
 $('select.rule_x').on('change', () => {
     switchCrazyTruthSelect();
+});
+$('.js-what_is_quiz').on('click', function() {
+    $('#what_is_quiz').show();
+    $(this).remove();
 });
 </script>
 @endsection

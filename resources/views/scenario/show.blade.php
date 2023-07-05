@@ -1,5 +1,6 @@
 <?php
 $isPreview ??= false;
+$isQuiz ??= $scenario->is_quiz;
 $bodyClass = 'scenario-show';
 
 $charasInBoard = [
@@ -17,9 +18,15 @@ $charasInBoard = [
 @section('body_class', $bodyClass)
 
 @section('bread')
+@if($isQuiz)
+<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
+<li><a href="{{ route('scenario.quiz-index') }}">@lang('指針クイズ一覧')</a></li>
+<li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@else
 <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
 <li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
 <li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@endif
 @endsection
 
 @section('contents')
@@ -36,7 +43,7 @@ $charasInBoard = [
     @endif
 </div>
 
-<div class="">
+<div class="@if($isQuiz) scenario_quiz @endif">
     <div class="public_sheet">
         <h2>@lang('公開シート')</h2>
         <table class="summary mx-center">
@@ -102,8 +109,8 @@ $charasInBoard = [
 
             <div class="private_sheet">
 
-                <h3 class="scenario_title">{{ $scenario->title }}</h3>
-                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span>{{ $scenario->difficultStar }}</div>
+                <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
+                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
 
                 <table class="summary mx-center mt-16 mb-16">
                     <tr>
@@ -230,15 +237,15 @@ $charasInBoard = [
 
         <dl>
             <dt>@lang('脚本の特徴')</dt>
-            <dd>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</dd>
+            <dd class="feature"><div>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</div></dd>
 
             @if(!empty($scenario->story))
             <dt>@lang('ストーリー')</dt>
-            <dd>{!! nl2br(e($scenario->story)) !!}</dd>
+            <dd class="story"><div>{!! nl2br(e($scenario->story)) !!}</div></dd>
             @endif
 
             <dt>@lang('脚本家への指針')</dt>
-            <dd>{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</dd>
+            <dd class="advice"><div class="content">{!! nl2br(e($scenario->advice ?: __('まだ記載がありません。'))) !!}</div></dd>
         </dl>
     </div>
 
@@ -300,12 +307,33 @@ $charasInBoard = [
 </div>
 @endif
 
+@if($isQuiz)
+<div id="quiz-strings_wrapper" style="display:none;">
+    <p id="quiz-confirm_to_show_hint">@lang('ヒント：___LABEL___を表示しますか？')</p>
+    <p id="quiz-hint_label">@lang('ヒント：___LABEL___を表示')</p>
+    <p id="quiz-confirm_to_show_answer">@lang('答えを表示しますか？')</p>
+    <p id="quiz-answer_label">@lang('答えを表示')</p>
+
+    <p id="quiz-label_title">@lang('脚本タイトル')</p>
+    <p id="quiz-label_diff">@lang('難易度')</p>
+    <p id="quiz-label_feature">@lang('脚本の特徴')</p>
+    <p id="quiz-label_story">@lang('ストーリー')</p>
+</div>
+@endif
+
 @endsection
 
 @section('additional_scripts')
 <script>
 @if($isPreview)
 $('a').attr('href', 'javascript:void(0);');
+@endif
+
+@if($isQuiz)
+{{-- 指針クイズの場合は最初から非公開シートを表示する --}}
+$('.private_sheet_wrapper').addClass('showing');
+$('.js-hide_private_sheet').show();
+$('.js-show_private_sheet').hide();
 @endif
 </script>
 @endsection
