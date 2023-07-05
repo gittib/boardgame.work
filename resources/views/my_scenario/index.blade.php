@@ -18,7 +18,7 @@ $bodyClass = 'my_scenario-index';
     <li><a href="{{ route('my-scenario.bookmarks') }}">@lang('ブックマーク一覧')</a></li>
 </ul>
 
-<div class="header_console button_wrapper">
+<div class="header_console button_wrapper mt-32 mb-16">
     <div class="button js-create_scenario_button" data-scenario_create_url="{{ route('my-scenario.create', ['set' => '___SET___']) }}">
         @lang('脚本作成開始')
     </div>
@@ -45,7 +45,7 @@ $bodyClass = 'my_scenario-index';
 @endforeach
 </ul>
 
-<form action="{{ route('my-scenario.store_from_json') }}" enctype="multipart/form-data" method="post" class="mt-60">
+<form action="{{ route('my-scenario.store_from_json') }}" enctype="multipart/form-data" method="post" class="mt-50">
     @csrf
     @lang('ペンスキーの惨劇RoopeR脚本部屋から自作脚本データを登録')<br>
     <input type="file" name="scenario_json">

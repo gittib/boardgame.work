@@ -23,7 +23,7 @@ class ScenarioController extends Controller
             ->where('is_quiz', 0)
             ->orderBy('set_id')
             ->orderBy('difficulty')
-            ->orderBy('id');
+            ->orderByDesc('id');
 
         // 検索条件指定
         if (!empty($request->set)) {
@@ -50,8 +50,7 @@ class ScenarioController extends Controller
         ])->where('is_open', 1)
             ->where('is_quiz', 1)
             ->orderBy('set_id')
-            ->orderBy('difficulty')
-            ->orderBy('id');
+            ->orderByDesc('id');
 
         // 検索条件指定
         if (!empty($request->set)) {
