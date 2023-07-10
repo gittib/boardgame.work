@@ -1,6 +1,6 @@
 <?php
 $trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨劇RoopeR').'</a>';
-$webManagerLink = '<a href="https://twitter.com/gittib_gittib" target="_blank">ペンスキー</a>';
+$webManagerLink = '<a href="https://twitter.com/gittib_gittib" target="_blank">'.__('ペンスキー').'</a>';
 $aLang = [
     'ja' => '日本語',
     'en' => 'English',
