@@ -16,6 +16,19 @@
                 margin: 10px;
                 border-bottom: 1px solid black;
                 padding-bottom: 2px;
+                margin-bottom: 16px;
+
+                .quiz {
+                    border-radius: 100em;
+                    background-color: black;
+                    display: inline-block;
+                    width: 1.4em;
+                    height: 1.4em;
+                    text-align: center;
+                    font-weight: bold;
+                    color: white;
+                    vertical-align: baseline;
+                }
 
                 .open {
                     margin-left: 4px;

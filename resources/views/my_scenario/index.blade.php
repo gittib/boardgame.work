@@ -18,7 +18,7 @@ $bodyClass = 'my_scenario-index';
     <li><a href="{{ route('my-scenario.bookmarks') }}">@lang('ブックマーク一覧')</a></li>
 </ul>
 
-<div class="header_console button_wrapper mt-32 mb-16">
+<div class="header_console button_wrapper mt-32 mb-32">
     <div class="button js-create_scenario_button" data-scenario_create_url="{{ route('my-scenario.create', ['set' => '___SET___']) }}">
         @lang('脚本作成開始')
     </div>
@@ -28,7 +28,9 @@ $bodyClass = 'my_scenario-index';
 @foreach($scenarios as $scenario)
     <li>
         <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
-            [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span> {{$scenario->title}}
+            [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span>
+            @if($scenario->is_quiz) <span class="quiz">Q</span> @endif
+            {{$scenario->title}}
         </a>
         @if($scenario->is_open)
             <span class="open">@lang('公開中')</span>
