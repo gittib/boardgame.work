@@ -1,5 +1,6 @@
 <?php
 $trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨劇RoopeR').'</a>';
+$oldSiteLink = '<a href="http://www.boardgame.work/sangeki/" target="_blank">'.__('こちら').'</a>';
 ?>
 @extends('layouts.layout')
 
@@ -24,6 +25,10 @@ $trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨�
                 @lang('messages.now_on_display_app')<br>
                 <a href="{{ config('define.app_url.android') }}">@lang('Google Play を開く')</a>
             </p>
+        </li>
+        <li>
+            <h4>@lang('旧脚本サイト')</h4>
+            @lang('旧サイトをご利用の方は:linkからどうぞ。', ['link' => $oldSiteLink])
         </li>
     </ul>
 @endsection

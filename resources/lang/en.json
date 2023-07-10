@@ -1,4 +1,5 @@
 {
+    "ペンスキー": "penski",
     ":attributeに重複があります。": "There are duplicate :attribute.",
     ":boardの群像": "Mob of :board",
     "群像事件": "Mob Incident",
@@ -144,6 +145,10 @@
     "指針クイズ一覧": "Quiz for the Mastermind",
     "指針クイズ": "Quiz",
     "Androidアプリのご紹介": "Android app",
+    "Google Play を開く": "go to Google Play",
+    "旧脚本サイト": "previous site",
+    "旧サイトをご利用の方は:linkからどうぞ。": "If you would like to visit the old site, please follow :link.",
+    "こちら": "this",
 
     "不安": "Paranoia",
     "友好": "Goodwill",
