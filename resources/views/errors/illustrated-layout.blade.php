@@ -454,6 +454,10 @@
                     background-position: center;
                 }
             }
+
+            header span.menu, header .menu_wrapper {
+                display: none;
+            }
         </style>
         <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
         <link rel="stylesheet" href="{{ Res::ver('/screen.css') }}">
