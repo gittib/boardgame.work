@@ -15,7 +15,7 @@ $bodyClass ??= '';
             </div>
             @endif
         @endauth
-        <span>MENU</span>
+        <span class="menu">MENU</span>
     </a>
     <div class="menu_wrapper">
         <ul class="header_menu">
