@@ -105,6 +105,10 @@ body.my_scenario-create {
 
             textarea {
                 width: 100%;
+
+                @media screen and (max-width: parts.$narrow_screen_max_width) {
+                    max-height: 35vh;
+                }
             }
         }
     }

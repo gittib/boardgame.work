@@ -154,28 +154,32 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                         $criminalCharacterId = $helper->inputVal("scenario_incident.$i.character_id") ?? $incidentOnDb->criminal?->character_id ?? $incidentOnDb->scenario_character_id;
                         $isCrowd = $set->incidents->firstWhere('id', $selectedIncidentId)?->is_crowd;
                     ?>
-                    <li class="inline_block_wrapper incident_wrapper" data-day="{{ $i }}">
-                        <span>@lang(':day日目', ['day' => $i])</span>
-                        <span class="select_wrapper">
-                            {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
-                                ['placeholder' => '', 'class' => 'incident']) }}
-                        </span>
-                        <span>
-                            @lang('犯人')：
+                    <li class="incident_wrapper" data-day="{{ $i }}">
+                        <div>
+                            <span>@lang(':day日目', ['day' => $i])</span>
                             <span class="select_wrapper">
-                                {{ Form::select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect,
-                                    $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
+                                {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
+                                    ['placeholder' => '', 'class' => 'incident']) }}
                             </span>
-                        </span>
-                        @if($set->hasFalsifiedIncidents)
-                        <span class="label_and_input_wrapper">
-                            <span class="label_name">@lang('偽装事件の公開名')</span>
-                            <input name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
-                        </span>
-                        @endif
-                        @error("scenario_incident.$i.*")
-                        <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
-                        @enderror
+                        </div>
+                        <div>
+                            <span>
+                                @lang('犯人')：
+                                <span class="select_wrapper">
+                                    {{ Form::select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect,
+                                        $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
+                                </span>
+                            </span>
+                            @if($set->hasFalsifiedIncidents)
+                            <span class="label_and_input_wrapper">
+                                <span class="label_name">@lang('偽装事件の公開名')</span>
+                                <input name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
+                            </span>
+                            @endif
+                            @error("scenario_incident.$i.*")
+                            <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
+                            @enderror
+                        <div>
                     </li>
                     @endfor
                 </ul>

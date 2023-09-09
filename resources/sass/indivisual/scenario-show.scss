@@ -1,8 +1,5 @@
 @use '../parts';
 
-$wide_screen_min_width: 800px;
-$narrow_screen_min_width: $wide_screen_min_width - 1px;
-
 .scenario-show {
     main {
         width: 100%;
@@ -89,10 +86,10 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         display: none;
 
         &.showing {
-            @media screen and (max-width: $narrow_screen_min_width) {
+            @media screen and (max-width: parts.$narrow_screen_max_width) {
                 display: block;
             }
-            @media screen and (min-width: $wide_screen_min_width) {
+            @media screen and (min-width: parts.$wide_screen_min_width) {
                 display: flex;
                 flex-wrap: wrap;
                 flex-direction: row-reverse;
@@ -128,7 +125,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         }
 
         h2 {
-            @media screen and (min-width: $wide_screen_min_width) {
+            @media screen and (min-width: parts.$wide_screen_min_width) {
                 width: 100%;
                 padding-left: 50%;
             }
@@ -138,7 +135,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
             width: fit-content;
             margin: 0 auto;
             max-width: 95%;
-            @media screen and (min-width: $wide_screen_min_width) {
+            @media screen and (min-width: parts.$wide_screen_min_width) {
                 margin-left: 16px;
                 max-width: 48%;
             }
@@ -148,7 +145,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
                 border: solid 1px;
                 padding: 8px;
                 width: fit-content;
-                @media screen and (min-width: $wide_screen_min_width) {
+                @media screen and (min-width: parts.$wide_screen_min_width) {
                     min-width: 340px;
                 }
 
@@ -178,7 +175,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
                 }
 
                 .character_list_wrapper {
-                    @media screen and (min-width: $wide_screen_min_width) {
+                    @media screen and (min-width: parts.$wide_screen_min_width) {
                         width: fit-content;
                         margin: 0 auto;
                     }
@@ -246,7 +243,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
             margin: 36px auto;
             width: fit-content;
             display: none;
-            @media screen and (min-width: $wide_screen_min_width) {
+            @media screen and (min-width: parts.$wide_screen_min_width) {
                 width: 340px;
             }
 
@@ -303,7 +300,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
         dl {
             margin-bottom: 40px;
 
-            @media screen and (min-width: $wide_screen_min_width) {
+            @media screen and (min-width: parts.$wide_screen_min_width) {
                 width: 48%;
             }
 
@@ -311,7 +308,7 @@ $narrow_screen_min_width: $wide_screen_min_width - 1px;
                 margin-top: 40px;
 
                 &:first-child {
-                    @media screen and (min-width: $wide_screen_min_width) {
+                    @media screen and (min-width: parts.$wide_screen_min_width) {
                         margin-top: 0;
                     }
                 }
