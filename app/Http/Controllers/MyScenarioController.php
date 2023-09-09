@@ -264,22 +264,7 @@ class MyScenarioController extends Controller
     public function preview(Request $request)
     {
         $scenario = new Scenario();
-        $scenario->user_id = Auth::id();
-        $scenario->set_id = $request->set_id;
-        $scenario->rule_y_id = $request->rule_y_id;
-        $scenario->rule_x1_id = $request->rule_x1_id;
-        $scenario->rule_x2_id = $request->rule_x2_id;
-        $scenario->crazy_rule_y_id = $request->crazy_rule_y_id;
-        $scenario->loops = $request->loops;
-        $scenario->days = $request->days;
-        $scenario->difficulty = $request->difficulty;
-        $scenario->special_rule = $request->special_rule;
-        $scenario->title = $request->title;
-        $scenario->feature = $request->feature;
-        $scenario->story = $request->story;
-        $scenario->advice = $request->advice;
-        $scenario->is_open = isset($request->is_open);
-        $scenario->is_quiz = isset($request->is_quiz);
+        $scenario = $this->setScenarioDataFromRequest($scenario, $request);
 
         $scenario->characters = collect();
         foreach ($request->scenario_chara as $chara) {
@@ -319,22 +304,7 @@ class MyScenarioController extends Controller
         DB::transaction(function() use($scenario, $request) {
             $errors = [];
 
-            $scenario->user_id = Auth::id();
-            $scenario->set_id = $request->set_id;
-            $scenario->rule_y_id = $request->rule_y_id;
-            $scenario->rule_x1_id = $request->rule_x1_id;
-            $scenario->rule_x2_id = $request->rule_x2_id;
-            $scenario->crazy_rule_y_id = $request->crazy_rule_y_id;
-            $scenario->loops = $request->loops;
-            $scenario->days = $request->days;
-            $scenario->difficulty = $request->difficulty;
-            $scenario->special_rule = $request->special_rule;
-            $scenario->title = $request->title;
-            $scenario->feature = $request->feature;
-            $scenario->story = $request->story;
-            $scenario->advice = $request->advice;
-            $scenario->is_open = isset($request->is_open);
-            $scenario->is_quiz = isset($request->is_quiz);
+            $scenario = $this->setScenarioDataFromRequest($scenario, $request);
             $scenario->save();
 
             // キャラの特記にテリトリーとか手先の初期配置を入れられたとき、多言語対応できるようにする
@@ -415,6 +385,26 @@ class MyScenarioController extends Controller
                 throw ValidationException::withMessages($errors);
             }
         });
+    }
+
+    private function setScenarioDataFromRequest(Scenario $scenario, Request $request): Scenario {
+        $scenario->user_id = Auth::id();
+        $scenario->set_id = $request->set_id;
+        $scenario->rule_y_id = $request->rule_y_id;
+        $scenario->rule_x1_id = $request->rule_x1_id;
+        $scenario->rule_x2_id = $request->rule_x2_id;
+        $scenario->crazy_rule_y_id = $request->crazy_rule_y_id;
+        $scenario->loops = $request->loops;
+        $scenario->days = $request->days;
+        $scenario->difficulty = $request->difficulty;
+        $scenario->special_rule = $request->special_rule;
+        $scenario->title = $request->title;
+        $scenario->feature = $request->feature;
+        $scenario->story = $request->story;
+        $scenario->advice = $request->advice;
+        $scenario->is_open = isset($request->is_open);
+        $scenario->is_quiz = isset($request->is_quiz);
+        return $scenario;
     }
 
     private $boardIds = [ 1001, 1002, 1003, 1004, 1099, ];
