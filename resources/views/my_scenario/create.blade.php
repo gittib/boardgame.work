@@ -9,6 +9,8 @@ $isEdit = isset($scenario->id);
 $helper = new App\Utils\InputHelper($errors);
 $ruleYs = $set->ruleYs->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $ruleXs = $set->ruleXs->mapWithKeys(fn($r) => [$r->id => $r->name]);
+$loopSelect = collect()->range(1, 8)->mapWithKeys(fn($it) => [$it => __(':loopsループ', ['loops' => $it])]);
+$daySelect = collect()->range(1, 8)->mapWithKeys(fn($it) => [$it => __(':days日', ['days' => $it])]);
 $charaSelect = $charas->mapWithKeys(fn($c) => [$c->id => $c->name]);
 $roleSelect = App\Models\TragedyRole::where('code', 'Person')->get()->concat($set->roles)->mapWithKeys(fn($r) => [$r->id => $r->name]);
 $incidentSelect = $set->incidents->mapWithKeys(fn($i) => [$i->id => $i->name]);
@@ -93,13 +95,13 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
             <dt>@lang('ループ数')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('loops') }}">
-                    {{ Form::selectRange('loops', 1, 8, $helper->inputVal('loops') ?? $scenario->loops) }}
+                    {{ Form::select('loops', $loopSelect, $helper->inputVal('loops') ?? $scenario->loops) }}
                 </div>
             </dd>
             <dt>@lang('日数')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('days') }}">
-                    {{ Form::selectRange('days', 1, 8, $helper->inputVal('days') ?? $scenario->days) }}
+                    {{ Form::select('days', $daySelect, $helper->inputVal('days') ?? $scenario->days) }}
                 </div>
             </dd>
             <dt>@lang('難易度')</dt>
