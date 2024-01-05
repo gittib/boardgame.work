@@ -33,6 +33,7 @@ header {
         display: flex;
         flex-direction: row-reverse;
         color: white;
+        cursor: pointer;
 
         span.menu {
             margin-right: 4px;
@@ -76,13 +77,18 @@ header {
             ~ .menu_bg_filter {
                 display: none;
             }
+        }
+        #menu_toggle{
+            display: none;
 
-            &.open {
-                margin: 0 4px;
-                z-index: 1001;
-                li {
-                    margin: 16px;
-                    height: 1.2rem;
+            &:checked {
+                ~ .header_menu {
+                    margin: 0 4px;
+                    z-index: 1001;
+                    li {
+                        margin: 16px;
+                        height: 1.2rem;
+                    }
                 }
 
                 ~ .menu_bg_filter {

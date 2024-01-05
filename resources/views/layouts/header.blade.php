@@ -3,7 +3,7 @@ $user = Auth::user() ?? null;
 $bodyClass ??= '';
 ?>
 <header>
-    <a class="my-link" href="javascript:document.querySelector('.header_menu').classList.toggle('open');">
+    <label class="my-link" for="menu_toggle">
         @auth
             @if(!empty($user->profile_img_url))
             <div class="icon_wrapper">
@@ -16,8 +16,9 @@ $bodyClass ??= '';
             @endif
         @endauth
         <span class="menu">MENU</span>
-    </a>
+    </label>
     <div class="menu_wrapper">
+        <input type="checkbox" id="menu_toggle">
         <ul class="header_menu">
             <li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
             @auth
@@ -29,6 +30,6 @@ $bodyClass ??= '';
             <li><a href="{{ route('auth.twitter.login') }}"><img src="/images/sign-in-with-twitter.png"></a></li>
             @endguest
         </ul>
-        <button class="menu_bg_filter" onclick="document.querySelector('.header_menu').classList.toggle('open');"></button>
+        <label for="menu_toggle" class="menu_bg_filter"></label>
     </div>
 </header>
