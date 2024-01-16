@@ -10,6 +10,12 @@ $charasInBoard = [
     1004 => [],
     1099 => [],
 ];
+
+if (!$isPreview) {
+    $thisUrl = route('scenario.show', ['scenario' => $scenario->id]);
+} else {
+    $thisUrl = route('my-scenario.preview');
+}
 ?>
 @extends('layouts.layout')
 
@@ -19,13 +25,17 @@ $charasInBoard = [
 
 @section('bread')
 @if($isQuiz)
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('scenario.quiz-index') }}">@lang('指針クイズ一覧')</a></li>
-<li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('指針クイズ一覧') => route('scenario.quiz-index'),
+    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => $thisUrl,
+]])
 @else
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
-<li>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('脚本一覧') => route('scenario.index'),
+    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => $thisUrl,
+]])
 @endif
 @endsection
 

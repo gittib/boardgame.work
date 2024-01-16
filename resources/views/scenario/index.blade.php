@@ -9,8 +9,10 @@ $bodyClass = 'scenario-index';
 @section('body_class', $bodyClass)
 
 @section('bread')
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li>@lang('脚本一覧')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('脚本一覧') => route('scenario.index'),
+]])
 @endsection
 
 @section('contents')
@@ -18,7 +20,7 @@ $bodyClass = 'scenario-index';
 
 <div class="">
 
-<!-- TODO: 検索条件を表示 -->
+{{-- TODO: 検索条件を表示 --}}
 
     <div class="button_wrapper">
         <p class="button js-narrow_set">@lang('惨劇セットで絞り込む')</p>

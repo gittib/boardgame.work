@@ -44,9 +44,7 @@
         <div class="contents_wrapper">
             @include('layouts.header')
 
-            <ul class="breadcrumb">
-                @yield('bread')
-            </ul>
+            @yield('bread')
 
             <main>
                 @yield('contents')

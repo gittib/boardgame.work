@@ -8,8 +8,10 @@ $bodyClass = 'my_scenario-index';
 @section('body_class', $bodyClass)
 
 @section('bread')
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li>@lang('マイページ')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('マイページ') => route('my-scenario.index'),
+]])
 @endsection
 
 @section('contents')
