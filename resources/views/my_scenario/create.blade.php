@@ -34,14 +34,18 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
 
 @section('bread')
 @if($isEdit)
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
-<li><a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</a></li>
-<li>@lang('脚本作成')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('脚本一覧') => route('scenario.index'),
+    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => route('scenario.show', ['scenario' => $scenario->id]),
+    __('脚本作成') => route('my-scenario.create'),
+]])
 @else
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('my-scenario.index') }}">@lang('マイページ')</a></li>
-<li>@lang('脚本作成')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('マイページ') => route('my-scenario.index'),
+    __('脚本作成') => route('my-scenario.create'),
+]])
 @endif
 @endsection
 

@@ -3,14 +3,16 @@ $bodyClass = 'scenario-index is_quiz';
 ?>
 @extends('layouts.layout')
 
-@section('title', __('惨劇脚本一覧'))
+@section('title', __('脚本家への指針クイズ一覧'))
 @section('canonical_url', route('scenario.index'))
 
 @section('body_class', $bodyClass)
 
 @section('bread')
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li>@lang('指針クイズ一覧')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('指針クイズ一覧') => route('scenario.quiz-index'),
+]])
 @endsection
 
 @section('contents')

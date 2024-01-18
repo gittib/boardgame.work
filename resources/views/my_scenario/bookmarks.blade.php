@@ -9,9 +9,11 @@ $bookmarks = Auth::user()->bookmarkScenarios;
 @section('body_class', $bodyClass)
 
 @section('bread')
-<li><a href="{{ route('top.index') }}">@lang('TOP')</a></li>
-<li><a href="{{ route('my-scenario.index') }}">@lang('マイページ')</a></li>
-<li>@lang('ブックマーク一覧')</li>
+@include('layouts.bread', ['breads' => [
+    __('TOP') => route('top.index'),
+    __('マイページ') => route('my-scenario.index'),
+    __('ブックマーク一覧') => route('my-scenario.bookmarks'),
+]])
 @endsection
 
 @section('contents')
