@@ -33,32 +33,7 @@ $bodyClass = 'scenario-index is_quiz';
 
     <ul class="scenario_list">
         @forelse($scenarios as $scenario)
-        <li>
-            <div class="row id_wrapper">
-                <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
-                    @lang('指針クイズ')[{{ $scenario->id }}]
-                </a>
-                <span class="writer">@lang('作者：:writer', ['writer' => e($scenario->writer?->name)])</span>
-            </div>
-            <div class="row summary_wrapper">
-                <span class="abbr_wrapper">
-                    <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->set?->abbr }}</span>
-                </span>
-                <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
-                <span class="like">
-                    @if($scenario->likes->contains(Auth::id()))
-                    <img src="{{ Res::ver('/images/red_heart.png') }}">
-                    @else
-                    <img src="{{ Res::ver('/images/heart.png') }}">
-                    @endif
-                    <span class="like_count">
-                    @if($scenario->likes->isNotEmpty())
-                        {{ $scenario->likes->count() }}
-                    @endif
-                    </span>
-                </span>
-            </div>
-        </li>
+        <x-list_item.script withTitle=false withDifficult=false :scenario="$scenario" />
         @empty
         <li class="not_found">@lang('該当する脚本はありませんでした。')</li>
         @endforelse
