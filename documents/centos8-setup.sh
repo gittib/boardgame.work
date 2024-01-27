@@ -46,19 +46,22 @@ sudo diff /etc/nginx/nginx.conf.org /etc/nginx/nginx.conf
 ### ---
 ### >     log_format main escape=json '{'
 ### >         '"time":"$time_local",'
-### >         '"client":"$remote_addr",'
-### >         '"status":"$status",'
-### >         '"method":"$request_method",'
+### >         '"cli":"$remote_addr",'
+### >         '"st":"$status",'
+### >         '"m":"$request_method",'
 ### >         '"url":"$scheme://$http_host$request_uri",'
 ### >         '"referer":"$http_referer",'
-### >         '"body_bytes_sent":$body_bytes_sent,'
-### >         '"user_agent":"$http_user_agent",'
+### >         '"res":$body_bytes_sent,'
+### >         '"ua":"$http_user_agent",'
 ### >         '"request_body":"$request_body",'
 ### >         '"request":"$request",'
 ### >         '"forwarded_for":"$http_x_forwarded_for",'
 ### >         '"authorization":"$http_authorization"}';
-### 37,57d46
-### <
+### 31c41
+### <     default_type        application/octet-stream;
+### ---
+### >     default_type        text/plain;
+### 38,57d47
 ### <     server {
 ### <         listen       80 default_server;
 ### <         listen       [::]:80 default_server;
@@ -116,19 +119,44 @@ sudo cat /etc/nginx/default.d/php.conf
 sudo vim /etc/nginx/conf.d/laravel-dev.boardgame.work.conf
 sudo cat /etc/nginx/conf.d/laravel-dev.boardgame.work.conf
 ### server {
-###     listen 80;
+### 
 ###     server_name laravel-dev.boardgame.work; # server_nameは環境に合わせて変えること
+###     if ($host != laravel-dev.boardgame.work) {
+###         return 403 o;
+###     }
+### 
 ###     root /srv/www/vhosts/laravel-dev.boardgame.work/public/;
 ###     include /etc/nginx/default.d/*.conf;
 ### 
-###     client_max_body_size 10M;
+###     client_max_body_size 128M;
 ### 
 ###     access_log /var/log/nginx/laravel-dev.boardgame.work.access.log main;
 ###     error_log /var/log/nginx/laravel-dev.boardgame.work.error.log;
 ### 
 ###     location / {
+###         client_max_body_size 1M;
 ###         try_files $uri $uri/ /index.php?$query_string;
 ###     }
+### 
+###     listen [::]:443 ssl ipv6only=on; # managed by Certbot
+###     listen 443 ssl; # managed by Certbot
+###     ssl_certificate /etc/letsencrypt/live/laravel-dev.boardgame.work/fullchain.pem; # managed by Certbot
+###     ssl_certificate_key /etc/letsencrypt/live/laravel-dev.boardgame.work/privkey.pem; # managed by Certbot
+###     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+###     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+### 
+### }
+### 
+### server {
+###     if ($host = laravel-dev.boardgame.work) {
+###         return 301 https://$host$request_uri;
+###     } # managed by Certbot
+### 
+###     listen 80;
+###     listen [::]:80;
+### 
+###     server_name laravel-dev.boardgame.work;
+###     return 404; # managed by Certbot
 ### }
 
 ## php-fpmの設定
