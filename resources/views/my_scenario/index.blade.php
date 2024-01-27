@@ -28,24 +28,7 @@ $bodyClass = 'my_scenario-index';
 
 <ul class="my_scenario_list">
 @foreach($scenarios as $scenario)
-    <li>
-        <a href="{{ route('scenario.show', ['scenario' => $scenario->id]) }}">
-            [{{ $scenario->id }}]<span class="set_abbr {{ $scenario->set->abbr }}">{{ $scenario->set->abbr }}</span>
-            @if($scenario->is_quiz) <span class="quiz">Q</span> @endif
-            {{$scenario->title}}
-        </a>
-        @if($scenario->is_open)
-            <span class="open">@lang('公開中')</span>
-        @endif
-        <span class="like">
-            @if($scenario->likes->contains(Auth::id()))
-            <img src="{{ Res::ver('/images/red_heart.png') }}">
-            @else
-            <img src="{{ Res::ver('/images/heart.png') }}">
-            @endif
-            {{ $scenario->likes->count() }}
-        </span>
-    </li>
+    <x-list_item.script isMyPage=true :scenario="$scenario" />
 @endforeach
 </ul>
 

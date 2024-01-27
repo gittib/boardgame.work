@@ -3,6 +3,9 @@
 @use 'input';
 @use 'popup';
 
+// 以下、コンポーネント用SASS
+@use 'component/list_item-script';
+
 // 以下、個別ページのSASS
 @use 'indivisual/top-index';
 @use 'indivisual/top-privacy';

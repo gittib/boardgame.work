@@ -39,13 +39,26 @@ sudo yum install -y nginx
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.org
 sudo vim /etc/nginx/nginx.conf
 sudo diff /etc/nginx/nginx.conf.org /etc/nginx/nginx.conf
-### 19,20c19,20
+### 18,20c18,30
+### <     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 ### <                       '$status $body_bytes_sent "$http_referer" '
 ### <                       '"$http_user_agent" "$http_x_forwarded_for"';
 ### ---
-### >                       '$status request:$request_length response:$body_bytes_sent $request_time '
-### >                       '"$http_referer" "$http_user_agent"';
-### 38,57c38,57
+### >     log_format main escape=json '{'
+### >         '"time":"$time_local",'
+### >         '"client":"$remote_addr",'
+### >         '"status":"$status",'
+### >         '"method":"$request_method",'
+### >         '"url":"$scheme://$http_host$request_uri",'
+### >         '"referer":"$http_referer",'
+### >         '"body_bytes_sent":$body_bytes_sent,'
+### >         '"user_agent":"$http_user_agent",'
+### >         '"request_body":"$request_body",'
+### >         '"request":"$request",'
+### >         '"forwarded_for":"$http_x_forwarded_for",'
+### >         '"authorization":"$http_authorization"}';
+### 37,57d46
+### <
 ### <     server {
 ### <         listen       80 default_server;
 ### <         listen       [::]:80 default_server;
@@ -66,27 +79,6 @@ sudo diff /etc/nginx/nginx.conf.org /etc/nginx/nginx.conf
 ### <             location = /50x.html {
 ### <         }
 ### <     }
-### ---
-### > #    server {
-### > #        listen       80 default_server;
-### > #        listen       [::]:80 default_server;
-### > #        server_name  _;
-### > #        root         /usr/share/nginx/html;
-### > #
-### > #        # Load configuration files for the default server block.
-### > #        include /etc/nginx/default.d/*.conf;
-### > #
-### > #        location / {
-### > #        }
-### > #
-### > #        error_page 404 /404.html;
-### > #            location = /40x.html {
-### > #        }
-### > #
-### > #        error_page 500 502 503 504 /50x.html;
-### > #            location = /50x.html {
-### > #        }
-### > #    }
 
 sudo vim /etc/nginx/default.d/php.conf
 sudo cat /etc/nginx/default.d/php.conf
