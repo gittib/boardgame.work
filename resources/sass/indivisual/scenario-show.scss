@@ -224,6 +224,10 @@
                             word-break: keep-all;
                             white-space: nowrap;
 
+                            &.name {
+                                min-width: 5em;
+                            }
+
                             &.day {
                                 text-align: center;
                             }
