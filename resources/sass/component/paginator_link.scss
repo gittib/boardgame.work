@@ -1,0 +1,18 @@
+@use '../parts';
+
+.paginator_link {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    .prev, .next {
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .current_page {
+        font-weight: bold;
+    }
+}

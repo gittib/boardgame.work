@@ -29,7 +29,10 @@ class MyScenarioController extends Controller
     public function index()
     {
         $sets = TragedySet::get();
-        $scenarios = Auth::user()->scenarios()->paginate(100);
+        $scenarios = Auth::user()->scenarios()
+            ->orderBy('set_id')
+            ->orderBy('id')
+            ->paginate(100);
         return view('my_scenario.index', compact('sets', 'scenarios'));
     }
 

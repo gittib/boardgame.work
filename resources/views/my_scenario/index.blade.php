@@ -31,6 +31,7 @@ $bodyClass = 'my_scenario-index';
     <x-list_item.script isMyPage=true :scenario="$scenario" />
 @endforeach
 </ul>
+<x-paginator_link :paginator="$scenarios" />
 
 <form action="{{ route('my-scenario.store_from_json') }}" enctype="multipart/form-data" method="post" class="mt-50">
     @csrf
