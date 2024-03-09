@@ -202,12 +202,16 @@ table {
     display: inline-block;
 }
 
+span.difficult_name {
+    display: inline-block;
+}
 .difficult_name {
     font-weight: bold;
     background: black;
     color: white;
-    padding: 0 8px;
     border-radius: 8px;
+    width: calc(3em + 16px);
+    text-align: center;
 }
 html[lang=en] {
     .difficult_name {
