@@ -82,8 +82,7 @@ if ($('body').hasClass('my_scenario-create')) {
     });
 
     $('.js-what_is_quiz').on('click', function() {
-        $('#what_is_quiz').show();
-        $(this).remove();
+        myAlert($('#what_is_quiz').html());
     });
 
     $('.js-what_is_plus').on('click', function() {

@@ -15,7 +15,7 @@ return [
     'loop_day_summary' => '<span class="loop">:loops</span>ループ<span class="day">:days</span>日',
     'invalid_conditions' => '役職の配役がおかしいようです。<br>特殊ルールによっては問題ない場合もあるため、確認した上でご利用ください。',
 
-    'what_is_plus' => ':plus_scriptとは、惨劇RoopeR 10周年で登場した大型拡張「<a href=":rei_url" target="_blank">:rei</a>」で追加された選択ルールです。<br>:plus_scriptでは:hope_cと:dispair_cを扱うことができます。これらを扱う「:sekaisen」「:flagment」「:hope」「:dispair」は:plus_scriptでのみ採用可能です。<br><br>なお、:ll と :ahr は元から:hope_cと:dispair_cを扱うため、:plus_scriptは作成できません。',
+    'what_is_plus' => ':plus_scriptとは、惨劇RoopeR 10周年で登場した大型拡張「<a href=":rei_url" target="_blank">:rei</a>」で追加された選択ルールです。<br>:plus_scriptでは:hope_cと:despair_cを扱うことができます。これらを扱う「:sekaisen」「:fragment」「:hope」「:despair」は:plus_scriptでのみ採用可能です。<br><br>なお、:ll と :ahr は元から:hope_cと:despair_cを扱うため、:plus_scriptは作成できません。',
     'expansion_rei' => 'レイ',
 
     'what_is_advice_quiz' => '脚本家への指針クイズとは、公開シート・非公開シートを確認した上で脚本家への指針を言い当てるクイズゲームです。',

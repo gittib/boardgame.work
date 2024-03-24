@@ -127,11 +127,11 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                     'rei_url' => config('define.rei_url'),
                     'rei' => __('messages.expansion_rei'),
                     'sekaisen' => __('tragedy_master.rule_name.Beyond-the-World-Line'),
-                    'flagment' => __('tragedy_master.role.Fragments.name'),
+                    'fragment' => __('tragedy_master.role.Fragments.name'),
                     'hope' => __('tragedy_master.incident.HopeForTheFuture.name'),
-                    'dispair' => __('tragedy_master.incident.TheDarknessOfDespair.name'),
+                    'despair' => __('tragedy_master.incident.TheDarknessOfDespair.name'),
                     'hope_c' => __('希望カウンター'),
-                    'dispair_c' => __('絶望カウンター'),
+                    'despair_c' => __('絶望カウンター'),
                     'll' => __('tragedy_master.set_name.LL'),
                     'ahr' => __('tragedy_master.set_name.AHR'),
                 ])</span>
@@ -249,10 +249,10 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                         @lang('脚本家への指針クイズにする')
                     </label><br>
                     <a href="javascript:void(0);" class="js-what_is_quiz">@lang('脚本家への指針クイズとは？')</a>
-                </li>
-                <li id="what_is_quiz" class="hidden">
-                    @lang('messages.what_is_advice_quiz')
-                    @lang('messages.show_only_quiz_list')
+                    <p id="what_is_quiz" class="hidden">
+                        @lang('messages.what_is_advice_quiz')<br>
+                        @lang('messages.show_only_quiz_list')
+                    </p>
                 </li>
             </ul>
             <div class="fixed_footer_console">

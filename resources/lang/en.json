@@ -111,6 +111,8 @@
     "非公開シートを表示": "Show Secret card",
     "非公開シートを表示します。よろしいですか？": "Are you sure you want to show the Secret card?",
     "非公開シートを隠す": "Hide Secret card",
+    "希望カウンター": "Hope counter",
+    "絶望カウンター": "Despair counter",
     "(:n人)": " (:n people)",
 
     "ルールXが重複しています。": "Rule X is duplicated.",

@@ -15,6 +15,10 @@ return [
     'loop_day_summary' => '<span class="loop">:loops</span> loops <span class="day">:days</span> days',
     'invalid_conditions' => 'This Script seems to cast the roles incorrectly.<br>It may be normal depending on the special rules, so please check it before using.',
 
+    'what_is_plus' => ':plus_script is a selection rule introduced in the large-scale expansion <a href=":rei_url">":rei"</a> in the 10th anniversary of the tragedy looper. In :plus_script, you can handle :hope_c and :despair_c. The concepts of ":sekaisen", ":fragment", ":hope," and ":despair" can only be adopted in :plus_script.
+Please note that ":ll" and ":ahr" already handle :hope_c and :despair_c, so :plus_script cannot be created for them.',
+    'expansion_rei' => 'レイ',
+
     'what_is_advice_quiz' => 'Quiz for the Mastermind is quiz game that guesses the Hints for the Mastermind after checking the Open card and the Secret card.',
     'what_is_advice_quiz_more' => 'When you open the Script, the Secret card will be displayed from the beginning, so please think about how to handle the Script.',
     'show_only_quiz_list' => 'Scripts set to Quiz for the Mastermind will not appear in the normal list of Scripts.',
