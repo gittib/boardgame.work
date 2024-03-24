@@ -4,20 +4,23 @@ body.my_scenario-create {
     padding-bottom: 32px;
 
     dl.summary_setting {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 25% 75%;
         align-items: center;
         width: 100%;
         max-width: 500px;
         margin: 0 auto;
 
         dt {
-            width: 25%;
             text-align: center;
             margin-top: 0;
         }
         dd {
-            width: 75%;
+            &.plus_setting {
+                a {
+                    display: inline-block;
+                }
+            }
         }
 
         .for_crazy_truth {

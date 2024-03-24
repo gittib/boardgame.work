@@ -43,6 +43,22 @@ class Scenario extends Model
     }
 
     // attribute
+    public function getSetNameAttribute():string {
+        if ($this->is_plus) {
+            return ($this->set?->name ?? '') . '＋';
+        } else {
+            return $this->set?->name;
+        }
+    }
+
+    public function getSetAbbrAttribute():string {
+        if ($this->is_plus) {
+            return ($this->set?->abbr ?? '') . '＋';
+        } else {
+            return $this->set?->abbr;
+        }
+    }
+
     public function getDifficultNameAttribute():string {
         return __('tragedy_master.difficulty.'.$this->difficulty);
     }

@@ -34,7 +34,7 @@
     @endif
     <div class="row summary_wrapper">
         <span class="abbr_wrapper">
-            <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->set?->abbr }}</span>
+            <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->setAbbr }}</span>
         </span>
         <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
         @if($withDifficult)

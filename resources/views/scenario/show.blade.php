@@ -19,7 +19,7 @@ if (!$isPreview) {
 ?>
 @extends('layouts.layout')
 
-@section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->set->name]))
+@section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->setName]))
 
 @section('body_class', $bodyClass)
 
@@ -28,20 +28,20 @@ if (!$isPreview) {
 @include('layouts.bread', ['breads' => [
     __('TOP') => route('top.index'),
     __('指針クイズ一覧') => route('scenario.quiz-index'),
-    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => $thisUrl,
+    __('惨劇脚本 :set', ['set' => $scenario->setName]) => $thisUrl,
 ]])
 @else
 @include('layouts.bread', ['breads' => [
     __('TOP') => route('top.index'),
     __('脚本一覧') => route('scenario.index'),
-    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => $thisUrl,
+    __('惨劇脚本 :set', ['set' => $scenario->setName]) => $thisUrl,
 ]])
 @endif
 @endsection
 
 @section('contents')
 <div class="title_wrapper">
-    <h1>@lang('惨劇脚本 :set', ['set' => $scenario->set->name])</h1>
+    <h1>@lang('惨劇脚本 :set', ['set' => $scenario->setName])</h1>
 
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
@@ -59,7 +59,7 @@ if (!$isPreview) {
         <table class="summary mx-center">
             <tr>
                 <th>@lang('惨劇セット')</th>
-                <td>{{ $scenario->set->name }}</td>
+                <td>{{ $scenario->setName }}</td>
             </tr>
             <tr>
                 <th>@lang('ループ数')</th>

@@ -21,4 +21,6 @@ return [
     'app_url' => [
         'android' => 'https://play.google.com/store/apps/details?id=work.boardgame.sangeki_rooper',
     ],
+
+    'rei_url' => 'https://main-bakafire.ssl-lolipop.jp/rooper/10th/rei.html',
 ];
