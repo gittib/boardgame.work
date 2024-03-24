@@ -94,6 +94,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                 <div class="select_wrapper {{ $helper->errClass('crazy_rule_y_id') }}">
                     {{ Form::select('crazy_rule_y_id', $ruleYs, $helper->inputVal('crazy_rule_y_id') ?? $scenario->crazy_rule_y_id) }}
                 </div>
+                <p id="crazy_truth_rule_id" class="hidden" data-rule_id="{{ $crazyTruthId }}"></p>
             </dd>
             @endif
             <dt>@lang('ループ数')</dt>
@@ -114,12 +115,33 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                     {{ Form::select('difficulty', $aDifficulty, $helper->inputVal('difficulty') ?? $scenario->difficulty) }}
                 </div>
             </dd>
+            <dt>@lang('プラス脚本')</dt>
+            <dd class="plus_setting">
+                <label class="checkbox_wrapper">
+                    {{ Form::checkbox('is_plus', 1, $helper->inputVal('is_plus') ?? $scenario->is_plus) }}
+                    @lang('プラス脚本にする')
+                </label>
+                <a href="javascript:void(0);" class="js-what_is_plus">@lang('プラス脚本とは？')</a>
+                <span id="what_is_plus_message" class="hidden">@lang('messages.what_is_plus', [
+                    'plus_script' => __('プラス脚本'),
+                    'rei_url' => config('define.rei_url'),
+                    'rei' => __('messages.expansion_rei'),
+                    'sekaisen' => __('tragedy_master.rule_name.Beyond-the-World-Line'),
+                    'fragment' => __('tragedy_master.role.Fragments.name'),
+                    'hope' => __('tragedy_master.incident.HopeForTheFuture.name'),
+                    'despair' => __('tragedy_master.incident.TheDarknessOfDespair.name'),
+                    'hope_c' => __('希望カウンター'),
+                    'despair_c' => __('絶望カウンター'),
+                    'll' => __('tragedy_master.set_name.LL'),
+                    'ahr' => __('tragedy_master.set_name.AHR'),
+                ])</span>
+            </dd>
         </dl>
         <dl>
             <dt>@lang('特殊ルール')</dt>
             <dd class="scenario_text">
                 <div class="input_wrapper">
-                    <textarea name="special_rule" placeholder="@lang('messages.special_rule_placeholder')">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
+                    <textarea name="special_rule">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
                 </div>
             </dd>
             <dt>@lang('キャラクター')</dt>
@@ -227,10 +249,10 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                         @lang('脚本家への指針クイズにする')
                     </label><br>
                     <a href="javascript:void(0);" class="js-what_is_quiz">@lang('脚本家への指針クイズとは？')</a>
-                </li>
-                <li id="what_is_quiz" style="display:none;">
-                    @lang('messages.what_is_advice_quiz')
-                    @lang('messages.show_only_quiz_list')
+                    <p id="what_is_quiz" class="hidden">
+                        @lang('messages.what_is_advice_quiz')<br>
+                        @lang('messages.show_only_quiz_list')
+                    </p>
                 </li>
             </ul>
             <div class="fixed_footer_console">
@@ -246,7 +268,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
         </div>
     </form>
 </div>
-<div class="clone_base" style="display:none;">
+<div class="clone_base hidden">
     <option class="js-crowd_criminal_list_html"></option>
     @foreach(__('tragedy_master.board_name') as $key => $boardName)
     <option class="js-crowd_criminal_list_html" value="{{ $key }}">@lang(':boardの群像', ['board' => $boardName])</option>
@@ -260,22 +282,4 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
 @endsection
 
 @section('additional_scripts')
-<script>
-function switchCrazyTruthSelect() {
-    $('.for_crazy_truth').hide();
-    $('select.rule_x').each(function() {
-        if ($(this).val() == {{ $crazyTruthId }}) {
-            $('.for_crazy_truth').show();
-        }
-    });
-}
-switchCrazyTruthSelect();
-$('select.rule_x').on('change', () => {
-    switchCrazyTruthSelect();
-});
-$('.js-what_is_quiz').on('click', function() {
-    $('#what_is_quiz').show();
-    $(this).remove();
-});
-</script>
 @endsection
