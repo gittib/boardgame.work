@@ -39,7 +39,7 @@ $bodyClass = 'scenario-index';
         @endforelse
     </ul>
 
-    @include('parts.paginator', ['items' => $scenarios])
+    <x-paginator_link :paginator="$scenarios" />
 
 </div>
 <div style="display:none;">

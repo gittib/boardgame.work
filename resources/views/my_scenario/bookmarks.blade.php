@@ -21,14 +21,13 @@ $bookmarks = Auth::user()->bookmarkScenarios;
 <div class="frame">
     @if($bookmarks->isEmpty())
     <p class="no_bookmarks">@lang('ブックマークした脚本はまだありません。')</p>
-    @else
+    @endif
     <ul class="bookmark_scenario_list">
     @foreach($bookmarks as $scenario)
         <x-list_item.script showTitle=true :scenario="$scenario" />
     @endforeach
     </ul>
 </div>
-@endif
 @endsection
 
 @section('popups')
