@@ -38,6 +38,9 @@
     "ブックマークを解除しました": "boolmark canceled.",
     "ブックマーク一覧": "bookmarked Scripts",
     "ブックマーク済み": "already bookmarked",
+    "プラス脚本": "プラス脚本",
+    "プラス脚本とは？": "What is \"プラス脚本\"?",
+    "プラス脚本にする": "プラス脚本にする",
     "プレビュー": "Preview",
     "プレビューを閉じる": "Close preview",
     "ペンスキーの惨劇RoopeR脚本部屋から自作脚本データを登録": "Import my Scripts from \"ペンスキーの惨劇RoopeR脚本部屋\"",
@@ -108,6 +111,8 @@
     "非公開シートを表示": "Show Secret card",
     "非公開シートを表示します。よろしいですか？": "Are you sure you want to show the Secret card?",
     "非公開シートを隠す": "Hide Secret card",
+    "希望カウンター": "Hope counter",
+    "絶望カウンター": "Despair counter",
     "(:n人)": " (:n people)",
 
     "ルールXが重複しています。": "Rule X is duplicated.",
