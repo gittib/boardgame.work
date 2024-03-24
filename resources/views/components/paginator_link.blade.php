@@ -3,7 +3,7 @@
 ])
 
 <?php
-$range = 3;
+$range = 2;
 $rangeStart = $paginator->currentPage() - $range;
 $rangeEnd = $paginator->currentPage() + $range;
 $lastPage = $paginator->lastPage();
@@ -11,6 +11,17 @@ $lastPage = $paginator->lastPage();
 if ($rangeStart < 1) $rangeStart = 1;
 if ($rangeEnd > $lastPage) $rangeEnd = $lastPage;
 $urls = $paginator->getUrlRange($rangeStart, $rangeEnd);
+
+if($rangeStart > 2) {
+    $startLeader = '…';
+} else {
+    $startLeader = '';
+}
+if($rangeEnd < $lastPage-1) {
+    $endLeader = '…';
+} else {
+    $endLeader = '';
+}
 ?>
 @if($lastPage > 1)
 <ul class="paginator_link">
@@ -21,8 +32,7 @@ $urls = $paginator->getUrlRange($rangeStart, $rangeEnd);
     @endif
     @if($rangeStart > 1)
     <li class="first">
-        <a href="{{ $paginator->url(1) }}">1</a>
-        @if($rangeStart > 2) … @endif
+        <a href="{{ $paginator->url(1) }}">1</a>{{ $startLeader }}
     </li>
     @endif
     @foreach($urls as $key => $url)
@@ -36,8 +46,7 @@ $urls = $paginator->getUrlRange($rangeStart, $rangeEnd);
     @endforeach
     @if($rangeEnd < $lastPage)
     <li class="last">
-        @if($rangeEnd < $lastPage-1) … @endif
-        <a href="{{ $paginator->url($lastPage) }}">{{ $lastPage }}</a>
+        {{ $endLeader }}<a href="{{ $paginator->url($lastPage) }}">{{ $lastPage }}</a>
     </li>
     @endif
     @if($paginator->currentPage() < $lastPage)

@@ -3,9 +3,8 @@
 .paginator_link {
     display: flex;
     justify-content: end;
-    gap: 8px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    gap: 16px;
+    margin: 16px 8px;
 
     .prev, .next {
         a {

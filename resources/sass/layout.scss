@@ -259,26 +259,6 @@ html[lang=en] {
     }
 }
 
-ul.page_link_wrapper {
-    margin: 12px;
-    display: flex;
-    justify-content: end;
-
-    > li {
-        border: 1px solid;
-        min-width: 32px;
-        display: flex;
-        justify-content: center;
-
-        &.current {
-            a {
-                color: black;
-                text-decoration-line: none;
-            }
-        }
-    }
-}
-
 .hidden {
     display: none;
 }

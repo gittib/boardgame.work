@@ -2,13 +2,15 @@
 
 .my_scenario-index {
     main {
-        width: fit-content;
-
         .header_console {
 
             .button {
                 margin: 8px auto;
             }
+        }
+
+        input {
+            max-width: 100%;
         }
     }
 }
