@@ -1012,7 +1012,7 @@
         },
         "Watcher": {
             "hostility_type": 0,
-            "is_immortality": false
+            "is_immortality": true
         },
         "Catalibe": {
             "hostility_type": 0,
