@@ -63,7 +63,7 @@
 
         <?php $flushMessage = session()->pull('flush_message'); ?>
         @if(!empty($flushMessage))
-        <script>myAlert("{{ $flushMessage }}");</script>
+        <script>myAlert("{{ $flushMessage }}", "", "{{ now()->format('YmdHis') }}");</script>
         @endif
 
         @yield('additional_scripts')

@@ -1,5 +1,14 @@
-window.openPopup = className => {
+window.openPopup = (className, preventHash) => {
     return new Promise((resolve, reject) => {
+        if (preventHash) {
+            if (localStorage.preventHash == preventHash) {
+                resolve({
+                    'result': 'close',
+                });
+            }
+            localStorage.preventHash = preventHash;
+        }
+
         const selector = '.c-popup.'+className;
         const $popup = $(selector);
 
@@ -28,11 +37,11 @@ window.openPopup = className => {
     });
 };
 
-window.myAlert = (msg, title = '') => {
+window.myAlert = (msg, title = '', preventHash = null) => {
     $('.c-popup.js-popup-my_confirm .button_wrapper [data-result=cancel]').hide();
     $('.c-popup.js-popup-my_confirm .message').html(msg.replace("\\n", '<br>'));
     $('.c-popup.js-popup-my_confirm .title').text(title);
-    return openPopup('js-popup-my_confirm');
+    return openPopup('js-popup-my_confirm', preventHash);
 };
 
 window.myConfirm = (msg, title = '') => {
