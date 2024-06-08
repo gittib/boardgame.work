@@ -33,7 +33,7 @@ $bodyClass = 'scenario-index is_quiz';
 
     <ul class="scenario_list">
         @forelse($scenarios as $scenario)
-        <x-list_item.script withTitle=false withDifficult=false :scenario="$scenario" />
+        <x-list_item.script :withTitle=false :withDifficult=false :scenario="$scenario" />
         @empty
         <li class="not_found">@lang('該当する脚本はありませんでした。')</li>
         @endforelse
