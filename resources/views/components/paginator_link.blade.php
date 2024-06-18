@@ -4,6 +4,7 @@
 
 <?php
 $range = 2;
+$paginator->appends(request()->query());
 $rangeStart = $paginator->currentPage() - $range;
 $rangeEnd = $paginator->currentPage() + $range;
 $lastPage = $paginator->lastPage();
