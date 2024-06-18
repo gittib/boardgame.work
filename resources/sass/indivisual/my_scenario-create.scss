@@ -31,6 +31,7 @@ body.my_scenario-create {
     dd {
 
         .label_and_input_wrapper {
+            display: inline-block;
             position: relative;
             padding: 8px 0 0;
 
@@ -77,24 +78,43 @@ body.my_scenario-create {
         > li {
             $border_style: double 3px;
             border-bottom: $border_style;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 8px 0;
 
             &:first-child {
                 border-top: $border_style;
             }
 
-            .is-error {
-                background-color: parts.$error_background_color;
-                padding: 0 4px;
-                margin-bottom: 4px;
+            > div {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: start;
+                align-items: baseline;
+                gap: 8px;
+                margin: 8px auto;
+                max-width: max-content;
+
+                .is-error {
+                    background-color: parts.$error_background_color;
+                    padding: 0 4px;
+                    margin-bottom: 4px;
+                }
+
+                .label {
+                    display: inline-block;
+                    width: fit-content;
+                    word-break: keep-all;
+                }
+
+                input.incident_note {
+                    width: 10em;
+                }
             }
         }
     }
 
     .scenario_title {
+        display: flex;
+        justify-content: center;
+
         input {
             width: 90%;
         }

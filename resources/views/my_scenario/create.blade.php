@@ -184,26 +184,30 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                     ?>
                     <li class="incident_wrapper" data-day="{{ $i }}">
                         <div>
-                            <span>@lang(':day日目', ['day' => $i])</span>
-                            <span class="select_wrapper">
-                                {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
-                                    ['placeholder' => '', 'class' => 'incident']) }}
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                @lang('犯人')：
+                            <div>
+                                <span class="label">@lang(':day日目', ['day' => $i])</span>
+                                <span class="select_wrapper">
+                                    {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
+                                        ['placeholder' => '', 'class' => 'incident']) }}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="label">@lang('犯人')：</span>
                                 <span class="select_wrapper">
                                     {{ Form::select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect,
                                         $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
                                 </span>
-                            </span>
+                            </div>
                             @if($set->hasFalsifiedIncidents)
-                            <span class="label_and_input_wrapper">
-                                <span class="label_name">@lang('偽装事件の公開名')</span>
-                                <input name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
-                            </span>
-                            @endif
+                            <div>
+                                <span class="label_and_input_wrapper">
+                                    <span class="label_name">@lang('偽装事件の公開名')</span>
+                                    <input class="incident_note" name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
+                                </span>
+                            </div>
+                        </div>
+                        @endif
+                        <div>
                             @error("scenario_incident.$i.*")
                             <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
                             @enderror
