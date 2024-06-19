@@ -143,6 +143,9 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                 <div class="input_wrapper">
                     <textarea name="special_rule">{{ $helper->inputVal('special_rule') ?? $scenario->special_rule }}</textarea>
                 </div>
+                @error('special_rule')
+                <p class="is-error">{{ $errors->first('special_rule') }}</p>
+                @enderror
             </dd>
             <dt>@lang('キャラクター')</dt>
             <dd>

@@ -17,6 +17,9 @@ body.my_scenario-create {
         }
         dd {
             &.plus_setting {
+                padding-top: 4px;
+                line-height: 2;
+
                 a {
                     display: inline-block;
                 }
@@ -133,6 +136,12 @@ body.my_scenario-create {
                     max-height: 35vh;
                 }
             }
+        }
+
+        .is-error {
+            background-color: parts.$error_background_color;
+            padding: 0 4px;
+            margin-bottom: 4px;
         }
     }
 
