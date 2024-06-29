@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Scenario extends Model
 {
@@ -40,6 +41,16 @@ class Scenario extends Model
     }
     public function bookmarks() {
         return $this->belongsToMany(User::class, 'bookmark_scenario');
+    }
+
+    // scope
+    public function scopeWhereVisible($query) {
+        return $query->where(function($q) {
+            $q->where('scenarios.is_open', 1);
+            if (Auth::check()) {
+                $q->orWhere('scenarios.user_id', Auth::id());
+            }
+        });
     }
 
     // attribute
