@@ -38,7 +38,7 @@ class ScenarioController extends Controller
             $query->where('difficulty', '<=', $request->dif_max);
         }
 
-        $scenarios = $query->paginate(30);
+        $scenarios = $query->paginate(30)->appends($request->query());
         return view('scenario.index', compact('scenarios'));
     }
     public function quizIndex(Request $request)
@@ -59,7 +59,7 @@ class ScenarioController extends Controller
             });
         }
 
-        $scenarios = $query->paginate(30);
+        $scenarios = $query->paginate(30)->appends($request->query());
         $isQuiz = true;
         return view('scenario.quiz_index', compact('scenarios', 'isQuiz'));
     }
