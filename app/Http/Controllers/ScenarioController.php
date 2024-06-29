@@ -89,7 +89,8 @@ class ScenarioController extends Controller
     }
 
     public function bookmark(Request $request, $id) {
-        Scenario::where('is_open', 1)->findOrFail($id);
+        $scenario = Scenario::whereVisible()->findOrFail($id);
+
         Auth::user()->bookmarkScenarios()->toggle([$id]);
         $bookmarked = !empty(Scenario::find($id)->bookmarks()->find(Auth::id()));
         return [

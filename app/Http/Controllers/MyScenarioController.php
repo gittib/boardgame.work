@@ -30,6 +30,7 @@ class MyScenarioController extends Controller
     {
         $sets = TragedySet::get();
         $scenarios = Auth::user()->scenarios()
+            ->with('likes')
             ->orderBy('set_id')
             ->orderBy('id')
             ->paginate(100);
@@ -300,7 +301,8 @@ class MyScenarioController extends Controller
 
     public function bookmarks() {
         $sets = TragedySet::get();
-        return view('my_scenario.bookmarks', compact('sets'));
+        $bookmarks = Auth::user()->bookmarkScenarios()->with('likes', 'writer')->get();
+        return view('my_scenario.bookmarks', compact('sets', 'bookmarks'));
     }
 
     private function storeScenario(Scenario $scenario, Request $request) {

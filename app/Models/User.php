@@ -38,10 +38,10 @@ class User extends Authenticatable
     }
 
     public function bookmarkScenarios() {
-        return $this->belongsToMany(Scenario::class, 'bookmark_scenario')->where('is_open', 1)->with('set');
+        return $this->belongsToMany(Scenario::class, 'bookmark_scenario')->whereVisible()->with('set');
     }
 
     public function likeScenarios() {
-        return $this->belongsToMany(Scenario::class, 'like_scenario')->where('is_open', 1)->with('set');
+        return $this->belongsToMany(Scenario::class, 'like_scenario')->whereVisible()->with('set');
     }
 }

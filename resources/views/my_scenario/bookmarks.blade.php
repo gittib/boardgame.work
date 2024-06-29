@@ -1,6 +1,6 @@
 <?php
+assert(!empty($bookmarks));
 $bodyClass = 'my_scenario-bookmarks';
-$bookmarks = Auth::user()->bookmarkScenarios;
 ?>
 @extends('layouts.layout')
 
