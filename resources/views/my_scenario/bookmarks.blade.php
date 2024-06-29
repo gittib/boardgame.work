@@ -27,6 +27,8 @@ $bodyClass = 'my_scenario-bookmarks';
         <x-list_item.script showTitle=true :scenario="$scenario" />
     @endforeach
     </ul>
+
+    <x-paginator_link :paginator="$bookmarks" />
 </div>
 @endsection
 

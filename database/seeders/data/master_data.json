@@ -1182,7 +1182,7 @@
         },
         "Mikakedaoshi": {
             "hostility_type": 0,
-            "is_immortality": false
+            "is_immortality": true
         },
         "Misleader": {
             "max_count":1,
