@@ -363,219 +363,219 @@ return [
     'incident' => [
         'ClosedCircle' => [
             'name' => 'Closed Circle',
-            'note' => '',
+            // 'note' => '',
         ],
         'ApocalypseOfTheDead' => [
             'name' => 'Evangelium of the Dead',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheScreamOfTheVindictive' => [
             'name' => '怨嗟の雄叫び',
-            'note' => '',
+            // 'note' => '',
         ],
         'CovenantWithTheDevil' => [
             'name' => '悪魔との契約',
-            'note' => '',
+            // 'note' => '',
         ],
         'AwakeningOfTheCurse' => [
             'name' => 'Awakened Curse',
-            'note' => '',
+            // 'note' => '',
         ],
         'FlutteringOfTheButterfly' => [
             'name' => 'Butterfly Effect',
-            'note' => '',
+            // 'note' => '',
         ],
         'Terrorism' => [
             'name' => 'Terrorism',
-            'note' => '',
+            // 'note' => '',
         ],
         'SuspiciousLetter' => [
             'name' => 'A Suspicious Letter',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheOxsPilgrimage' => [
             'name' => '丑の刻参り',
-            'note' => '',
+            // 'note' => '',
         ],
         'RumorOfCurse' => [
             'name' => 'Dark Rumor',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheSunlightBetween' => [
             'name' => '狭間の陽光',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheHoundsSenseOfSmell' => [
             'name' => 'Hound Dog Scent',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheCaseOfTheHospital' => [
             'name' => 'Hospital Incident',
-            'note' => '',
+            // 'note' => '',
         ],
         'SpewingOfFilth' => [
             'name' => 'Fountain of Filth',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheHolocaust' => [
             'name' => 'Barricade',
-            'note' => '',
+            // 'note' => '',
         ],
         'ThePollutionOfEvil' => [
             'name' => 'Foul Evil',
-            'note' => '',
+            // 'note' => '',
         ],
         'MadnessMurder' => [
             'name' => 'Insane Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'FreakMurder' => [
             'name' => 'Bestial Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'UnrestSpreading' => [
             'name' => 'Increasing Unease',
-            'note' => '',
+            // 'note' => '',
         ],
         'IllegalDumping' => [
             'name' => '不法投棄',
-            'note' => '',
+            // 'note' => '',
         ],
         'FalsifiedIncidents' => [
             'name' => 'Fake Incident',
-            'note' => '',
+            // 'note' => '',
         ],
         'FakedSuicide' => [
             'name' => 'Faked Suicide',
-            'note' => '',
+            // 'note' => '',
         ],
         'BlasphemyMurder' => [
             'name' => 'Sacrilegious Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'HopeForTheFuture' => [
             'name' => '希望の光',
-            'note' => '',
+            // 'note' => '',
         ],
         'DimensionalTransformation' => [
             'name' => '次元変貌',
-            'note' => '',
+            // 'note' => '',
         ],
         'DimensionalFault' => [
             'name' => '次元断層',
-            'note' => '',
+            // 'note' => '',
         ],
         'DimensionalDistortion' => [
             'name' => '次元歪曲',
-            'note' => '',
+            // 'note' => '',
         ],
         'Murder' => [
             'name' => 'Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'FireOfDoom' => [
             'name' => 'Fire of Demise',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheNightOfMadness' => [
             'name' => 'Night of Madness',
-            'note' => '',
+            // 'note' => '',
         ],
         'ImaginaryIncident' => [
             'name' => '空想事件',
-            'note' => '',
+            // 'note' => '',
         ],
         'TheDarknessOfDespair' => [
             'name' => '絶望の闇',
-            'note' => '',
+            // 'note' => '',
         ],
         'Missing' => [
             'name' => 'Missing Person',
-            'note' => '',
+            // 'note' => '',
         ],
         'ImpulseMurder' => [
             'name' => '衝動殺人',
-            'note' => '',
+            // 'note' => '',
         ],
         'SerialMurder' => [
             'name' => 'Serial Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'RemoteMurder' => [
             'name' => 'Faraway Murder',
-            'note' => '',
+            // 'note' => '',
         ],
         'SilverBullet' => [
             'name' => 'The Silver Bullet',
-            'note' => '',
+            // 'note' => '',
         ],
         'Conspiracy' => [
             'name' => 'Conspiracies',
-            'note' => '',
+            // 'note' => '',
         ],
         'MassSuicide' => [
             'name' => 'Mass Suicide',
-            'note' => '',
+            // 'note' => '',
         ],
         'Executioners' => [
             'name' => 'The Executioner',
-            'note' => '',
+            // 'note' => '',
         ],
         'Riots' => [
             'name' => 'Uproar',
-            'note' => '',
+            // 'note' => '',
         ],
         'Perpetrators' => [
             'name' => '実行者',
-            'note' => '',
+            // 'note' => '',
         ],
         'LostAndFound' => [
             'name' => '忘れ物',
-            'note' => '',
+            // 'note' => '',
         ],
         'Copycat' => [
             'name' => '模倣犯',
-            'note' => '',
+            // 'note' => '',
         ],
         'singularity' => [
             'name' => '特異点',
-            'note' => '',
+            // 'note' => '',
         ],
         'Omen' => [
             'name' => 'Portent',
-            'note' => '',
+            // 'note' => '',
         ],
         'accusation' => [
             'name' => 'Accusation',
-            'note' => '',
+            // 'note' => '',
         ],
         'confession' => [
             'name' => 'Confession',
-            'note' => '',
+            // 'note' => '',
         ],
         'breakthrough' => [
             'name' => 'Breakthrough',
-            'note' => '',
+            // 'note' => '',
         ],
         'testament' => [
             'name' => '遺言',
-            'note' => '',
+            // 'note' => '',
         ],
         'discovery' => [
             'name' => 'Discovery',
-            'note' => '',
+            // 'note' => '',
         ],
         'suicide' => [
             'name' => 'Suicide',
-            'note' => '',
+            // 'note' => '',
         ],
         'Dissemination' => [
             'name' => 'Spreading',
-            'note' => '',
+            // 'note' => '',
         ],
         'change' => [
             'name' => '豹変',
-            'note' => '',
+            // 'note' => '',
         ],
     ],
 
