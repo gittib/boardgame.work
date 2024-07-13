@@ -76,20 +76,24 @@ if (!$isPreview) {
             {!! nl2br(e($scenario->special_rule ?? __('特になし'))) !!}
         </div>
 
-        <h3 class="mt-20">@lang('事件')</h3>
-        <table class="incident_list mx-center">
-            <tr>
-                <th>@lang('日付')</th>
-                <th>@lang('事件予定')</th>
-            </tr>
-            @for($d = 1 ; $d <= $scenario->days ; $d++)
-            <?php $incident = $scenario->incidents->firstWhere('day', $d); ?>
-            <tr>
-                <td class="day">{{ $d }}</td>
-                <td class="name">{{ $incident?->publicName ?? '' }}</td>
-            </tr>
-            @endfor
-        </table>
+        <div class="incident_list_wrapper">
+            <h3 class="mt-20">@lang('事件')</h3>
+            <table class="incident_list mx-center">
+                <tr>
+                    <th>@lang('日付')</th>
+                    <th>@lang('事件予定')</th>
+                </tr>
+                @for($d = 1 ; $d <= $scenario->days ; $d++)
+                <?php $incident = $scenario->incidents->firstWhere('day', $d); ?>
+                <tr>
+                    <td class="day">{{ $d }}</td>
+                    <td class="name">{{ $incident?->publicName ?? '' }}</td>
+                </tr>
+                @endfor
+            </table>
+
+            <a class="incident_explain" href="javascript:void(0)">@lang('事件効果を確認')</a>
+        </div>
     </div>
 
     <div class="button_wrapper private_toggle_button_wrapper">
@@ -331,6 +335,10 @@ if (!$isPreview) {
 </div>
 @endif
 
+@endsection
+
+@section('popups')
+@include('parts.popups.incident_explain', ['incidents' => $incidentsData])
 @endsection
 
 @section('additional_scripts')
