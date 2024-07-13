@@ -50,26 +50,41 @@
         width: fit-content;
         margin: 0 auto;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .special_rule_wrapper {
+            width: 100%;
             border: double 3px;
             text-align: start;
             padding: 2px;
             overflow-wrap: anywhere;
         }
 
-        .incident_list {
-            th {
-                text-align: center;
+        .incident_list_wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            width: fit-content;
+
+            .incident_list {
+                th {
+                    text-align: center;
+                }
+
+                td.day {
+                    text-align: center;
+                    font-weight: bold;
+                }
+                td.name {
+                    min-width: 200px;
+                    text-align: start;
+                }
             }
 
-            td.day {
-                text-align: center;
-                font-weight: bold;
-            }
-            td.name {
-                min-width: 200px;
-                text-align: start;
+            a.incident_explain {
+                margin-top: 12px;
+                align-self: flex-end;
             }
         }
     }

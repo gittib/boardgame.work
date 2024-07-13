@@ -56,6 +56,15 @@ if ($('body').hasClass('scenario-show')) {
     $('.js-please_login').on('click', function() {
         myAlert($(this).attr('data-msg'));
     });
+
+    $('a.incident_explain').on('click', function() {
+        openPopup('js-popup-incident_explain');
+    });
+    $('.js-popup-incident_explain ul.incident_list > li').on('click', function() {
+        const $self = $(this);
+        console.log($self.find('p.note').text());
+        myAlert($self.find('p.note').html(), $self.find('a').text());
+    });
 }
 
 if($('#quiz-strings_wrapper').length > 0) {

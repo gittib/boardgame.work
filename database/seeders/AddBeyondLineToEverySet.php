@@ -18,10 +18,11 @@ class AddBeyondLineToEverySet extends Seeder
     public function run()
     {
         $ruleId = TragedyRule::where('code', 'Beyond-the-World-Line')->firstOrFail()->id;
-        $incidentIds = Incident::whereIn('code', ['HopeForTheFuture', 'TheDarknessOfDespair'])->pluck('id');
+        $incidents = Incident::whereIn('code', ['HopeForTheFuture', 'TheDarknessOfDespair'])->get();
 
-        $setIds = TragedySet::pluck('id');
-        foreach($setIds as $setId) {
+        $sets = TragedySet::get();
+        foreach($sets as $set) {
+            $setId = $set->id;
             $rel = DB::table('tragedy_set_rule')->where([
                 'tragedy_set_id' => $setId,
                 'tragedy_rule_id' => $ruleId,
@@ -37,15 +38,19 @@ class AddBeyondLineToEverySet extends Seeder
                 ]);
             }
 
-            foreach($incidentIds as $incidentId) {
+            foreach($incidents as $incident) {
+                if ($incident?->code == '' && $set?->abbr == 'AHR') {
+                    // AHRには希望の光は無い
+                    continue;
+                }
                 $rel = DB::table('tragedy_set_incident')->where([
                     'tragedy_set_id' => $setId,
-                    'incident_id' => $incidentId,
+                    'incident_id' => $incident->id,
                 ])->first();
                 if (empty($rel)) {
                     DB::table('tragedy_set_incident')->insert([
                         'tragedy_set_id' => $setId,
-                        'incident_id' => $incidentId,
+                        'incident_id' => $incident->id,
                     ]);
                 }
             }

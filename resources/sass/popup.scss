@@ -7,7 +7,7 @@
     z-index: 220;
     display: none;
 
-    &.open {
+    &[data-opened="1"] {
         display: block;
     }
 
@@ -52,16 +52,21 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
 
                 .title {
                     margin: 0 auto;
+                    padding-left: 30px;
                     text-align: center;
                 }
             }
 
             .popup-message {
                 .message {
-                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: fit-content;
+                    text-align: start;
                 }
             }
 
@@ -71,6 +76,19 @@
                 align-items: center;
                 justify-content: flex-start;
                 font-size: 0.8rem;
+            }
+
+            ul.incident_list {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+
+                li {
+                    .note {
+                        display: none;
+                    }
+                }
             }
 
             .close_button {

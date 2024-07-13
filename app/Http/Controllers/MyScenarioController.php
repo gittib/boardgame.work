@@ -296,8 +296,12 @@ class MyScenarioController extends Controller
             }
         }
 
+        $incidentsData = $scenario->incidents->map(fn($i) => $scenario->set->incidents->first(fn($data) => $data->name == $i->publicName))
+            ->filter(fn($it) => !empty($it))
+            ->unique();
+
         $isPreview = true;
-        return view('scenario.show', compact('scenario', 'isPreview'));
+        return view('scenario.show', compact('scenario', 'incidentsData', 'isPreview'));
     }
 
     public function bookmarks() {
