@@ -324,7 +324,7 @@ class MyScenarioController extends Controller
             $scenario->save();
 
             // キャラの特記にテリトリーとか手先の初期配置を入れられたとき、多言語対応できるようにする
-            $lang = session('applocale') ?: config('app.fallback_locale');
+            $lang = request()->cookie('applocale') ?: config('app.fallback_locale');
             $transFilePath = resource_path("lang/$lang.json");
             if (file_exists($transFilePath)) {
                 $aTrans = collect(json_decode(file_get_contents($transFilePath), true))
