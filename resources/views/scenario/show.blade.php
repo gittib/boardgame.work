@@ -40,6 +40,20 @@ if (!$isPreview) {
 @endsection
 
 @section('contents')
+<script id="initial_adjust_scenario_font_size">
+if (Number(localStorage.scenarioFontSize) > 0) {
+    const fontSize = Number(localStorage.scenarioFontSize);
+    const styleTag = document.createElement('style');
+    styleTag.setAttribute('data-appended_from', '#initial_adjust_scenario_font_size');
+    styleTag.innerHTML = '.public_sheet, .private_sheet { font-size: '+fontSize+'px; }';
+    document.head.appendChild(styleTag);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.js-font_size_adjust').forEach(dom => dom.value = fontSize);
+    });
+}
+</script>
+
 <div class="title_wrapper">
     <h1>@lang('惨劇脚本 :set', ['set' => $scenario->setName])</h1>
 
@@ -55,7 +69,7 @@ if (!$isPreview) {
 
 <div class="@if($isQuiz) scenario_quiz @endif">
     <div class="font_size_adjust">
-        <input class="js-font_size_adjust" type="range" min=10 max=100 value=16>
+        <input class="js-font_size_adjust" type="range" min=10 max=50 value=16>
         <button class="close">✕</button>
     </div>
 

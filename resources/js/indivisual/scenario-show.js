@@ -75,12 +75,6 @@ if ($('body').hasClass('scenario-show')) {
         $('.public_sheet').css({'font-size': $self.val()+'px'});
         $('.private_sheet').css({'font-size': $self.val()+'px'});
     });
-    if (Number(localStorage.scenarioFontSize) > 0) {
-        const fontSize = Number(localStorage.scenarioFontSize);
-        $('.js-font_size_adjust').val(fontSize);
-        $('.public_sheet').css({'font-size': fontSize+'px'});
-        $('.private_sheet').css({'font-size': fontSize+'px'});
-    }
 }
 
 if($('#quiz-strings_wrapper').length > 0) {
