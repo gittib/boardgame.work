@@ -66,8 +66,8 @@ if ($('body').hasClass('scenario-show')) {
         myAlert($self.find('p.note').html(), $self.find('a').text());
     });
 
-    $('.js-font_size_button').on('click', () => {
-        $('.font_size_adjust').toggle();
+    $('.font_size_adjust .close').on('click', function () {
+        $(this).closest('.font_size_adjust').hide();
     });
     $('.js-font_size_adjust').on('input', function() {
         const $self = $(this);

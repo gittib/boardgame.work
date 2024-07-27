@@ -12,15 +12,12 @@
     .title_wrapper {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         h1 {
+            margin-bottom: auto;
             width: fit-content;
             height: fit-content;
-        }
-
-        .font_size_button {
-            margin-left: auto;
-            margin-right: 4px;
         }
 
         .summary_qr {
@@ -53,9 +50,18 @@
 
     .font_size_adjust {
         display:none;
+        position: sticky;
+        top: 40px;
+        text-align: right;
 
         input {
             width: 100%;
+        }
+
+        button.close {
+            height: 32px;
+            width: 32px;
+            background: white;
         }
     }
 

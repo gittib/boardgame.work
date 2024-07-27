@@ -43,9 +43,6 @@ if (!$isPreview) {
 <div class="title_wrapper">
     <h1>@lang('惨劇脚本 :set', ['set' => $scenario->setName])</h1>
 
-    <div class="font_size_button js-font_size_button">
-        <img src="hosfdaho">
-    </div>
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
         <div class="img_wrapper">
@@ -56,11 +53,12 @@ if (!$isPreview) {
     @endif
 </div>
 
-<div class="font_size_adjust">
-    <input class="js-font_size_adjust" type="range" min=10 max=100 value=16>
-</div>
-
 <div class="@if($isQuiz) scenario_quiz @endif">
+    <div class="font_size_adjust">
+        <input class="js-font_size_adjust" type="range" min=10 max=100 value=16>
+        <button class="close">✕</button>
+    </div>
+
     <div class="public_sheet">
         <h2>@lang('公開シート')</h2>
         <table class="summary mx-center">
