@@ -18,6 +18,11 @@
             height: fit-content;
         }
 
+        .font_size_button {
+            margin-left: auto;
+            margin-right: 4px;
+        }
+
         .summary_qr {
             display: flex;
             flex-direction: column;
@@ -46,6 +51,14 @@
         }
     }
 
+    .font_size_adjust {
+        display:none;
+
+        input {
+            width: 100%;
+        }
+    }
+
     .public_sheet {
         width: fit-content;
         margin: 0 auto;
@@ -53,6 +66,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25em;
+        }
 
         .special_rule_wrapper {
             width: 100%;
@@ -85,6 +103,7 @@
             a.incident_explain {
                 margin-top: 12px;
                 align-self: flex-end;
+                font-size: 1rem;
             }
         }
     }
@@ -201,7 +220,7 @@
                         max-width: 99%;
                         min-width: 300px;
                         margin: 0 auto;
-                        font-size: 0.75rem;
+                        font-size: 0.75em;
 
                         * {
                             word-break: keep-all;
@@ -234,7 +253,7 @@
                     width: fit-content;
 
                     .incident_list {
-                        font-size: 0.9rem;
+                        font-size: 0.9em;
 
                         th,td {
                             word-break: keep-all;

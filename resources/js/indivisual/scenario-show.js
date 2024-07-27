@@ -65,6 +65,22 @@ if ($('body').hasClass('scenario-show')) {
         console.log($self.find('p.note').text());
         myAlert($self.find('p.note').html(), $self.find('a').text());
     });
+
+    $('.js-font_size_button').on('click', () => {
+        $('.font_size_adjust').toggle();
+    });
+    $('.js-font_size_adjust').on('input', function() {
+        const $self = $(this);
+        localStorage.scenarioFontSize = $self.val();
+        $('.public_sheet').css({'font-size': $self.val()+'px'});
+        $('.private_sheet').css({'font-size': $self.val()+'px'});
+    });
+    if (Number(localStorage.scenarioFontSize) > 0) {
+        const fontSize = Number(localStorage.scenarioFontSize);
+        $('.js-font_size_adjust').val(fontSize);
+        $('.public_sheet').css({'font-size': fontSize+'px'});
+        $('.private_sheet').css({'font-size': fontSize+'px'});
+    }
 }
 
 if($('#quiz-strings_wrapper').length > 0) {
