@@ -68,11 +68,6 @@ if (Number(localStorage.scenarioFontSize) > 0) {
 </div>
 
 <div class="@if($isQuiz) scenario_quiz @endif">
-    <div class="font_size_adjust">
-        <input class="js-font_size_adjust" type="range" min=10 max=50 value=16>
-        <button class="close">✕</button>
-    </div>
-
     <div class="public_sheet">
         <h2>@lang('公開シート')</h2>
         <table class="summary mx-center">
@@ -140,81 +135,82 @@ if (Number(localStorage.scenarioFontSize) > 0) {
             <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
             @endif
 
-            <div class="private_sheet">
+            <div class="private_scroll_wrapper">
+                <div class="private_sheet">
+                    <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
+                    <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
 
-                <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
-                <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
-
-                <table class="summary mx-center mt-16 mb-16">
-                    <tr>
-                        <th>@lang('ルールY')</th>
-                        <td>{{ $scenario->ruleY->name }}</td>
-                    </tr>
-                    <tr>
-                        <th>@lang('ルールX1')</th>
-                        <td>
-                            <span>{{ $scenario->ruleX1->name }}</span>
-                            @if($scenario->ruleX1?->code == 'Crazy-Truth')
-                                <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
-                            @endif
-                        </td>
-                    </tr>
-                    @if($scenario->set->hasRuleX2)
-                    <tr>
-                        <th>@lang('ルールX2')</th>
-                        <td>
-                            <span>{{ $scenario->ruleX2->name }}</span>
-                            @if($scenario->ruleX2?->code == 'Crazy-Truth')
-                                <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
-                            @endif
-                        </td>
-                    </tr>
-                    @endif
-                </table>
-
-                <div class="character_list_wrapper">
-                    <p class="item_name">@lang('登場人物')<span class="people_count">@lang('(:n人)', ['n' => $scenario->characters->count()])</span></p>
-                    <table class="character_list">
+                    <table class="summary mx-center mt-16 mb-16">
                         <tr>
-                            <th>@lang('人物')</th>
-                            <th>@lang('役職')</th>
-                            <th>@lang('特記')</th>
+                            <th>@lang('ルールY')</th>
+                            <td>{{ $scenario->ruleY->name }}</td>
                         </tr>
-                        @foreach($scenario->characters as $chara)
-                        <?php $charasInBoard[$chara->character->initial_board_code][] = $chara->character->name; ?>
                         <tr>
-                            <td class="name">{{ $chara->character->name }}</td>
-                            <td class="role @if(!$chara->role->isPerson) not-person @endif">
-                                <span>
-                                    {!! $chara->role->hostility_type_html !!}
-                                    {!! $chara->role->immortality_html !!}
-                                    {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
-                                </span>
-                            </td>
-                            <td class="note">
-                                <span>{{ __($chara->note) }}</span>
+                            <th>@lang('ルールX1')</th>
+                            <td>
+                                <span>{{ $scenario->ruleX1->name }}</span>
+                                @if($scenario->ruleX1?->code == 'Crazy-Truth')
+                                    <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
+                                @endif
                             </td>
                         </tr>
-                        @endforeach
+                        @if($scenario->set->hasRuleX2)
+                        <tr>
+                            <th>@lang('ルールX2')</th>
+                            <td>
+                                <span>{{ $scenario->ruleX2->name }}</span>
+                                @if($scenario->ruleX2?->code == 'Crazy-Truth')
+                                    <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @endif
                     </table>
-                </div>
 
-                <div class="incident_list_wrapper">
-                    <p class="item_name">@lang('事件一覧')</p>
-                    <table class="incident_list mx-center">
-                        <tr>
-                            <th>@lang('日付')</th>
-                            <th>@lang('事件')</th>
-                            <th>@lang('犯人')</th>
-                        </tr>
-                        @foreach($scenario->incidents as $incident)
-                        <tr>
-                            <td class="day">{{ $incident->day }}</td>
-                            <td class="name">{{ $incident->name }}</td>
-                            <td class="criminal">{{ $incident->criminal_name_str }}</td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <div class="character_list_wrapper">
+                        <p class="item_name">@lang('登場人物')<span class="people_count">@lang('(:n人)', ['n' => $scenario->characters->count()])</span></p>
+                        <table class="character_list">
+                            <tr>
+                                <th>@lang('人物')</th>
+                                <th>@lang('役職')</th>
+                                <th>@lang('特記')</th>
+                            </tr>
+                            @foreach($scenario->characters as $chara)
+                            <?php $charasInBoard[$chara->character->initial_board_code][] = $chara->character->name; ?>
+                            <tr>
+                                <td class="name">{{ $chara->character->name }}</td>
+                                <td class="role @if(!$chara->role->isPerson) not-person @endif">
+                                    <span>
+                                        {!! $chara->role->hostility_type_html !!}
+                                        {!! $chara->role->immortality_html !!}
+                                        {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
+                                    </span>
+                                </td>
+                                <td class="note">
+                                    <span>{{ __($chara->note) }}</span>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+
+                    <div class="incident_list_wrapper">
+                        <p class="item_name">@lang('事件一覧')</p>
+                        <table class="incident_list mx-center">
+                            <tr>
+                                <th>@lang('日付')</th>
+                                <th>@lang('事件')</th>
+                                <th>@lang('犯人')</th>
+                            </tr>
+                            @foreach($scenario->incidents as $incident)
+                            <tr>
+                                <td class="day">{{ $incident->day }}</td>
+                                <td class="name">{{ $incident->name }}</td>
+                                <td class="criminal">{{ $incident->criminal_name_str }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -311,6 +307,11 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     </div>
     @endauth
     @endif
+
+    <div class="font_size_adjust">
+        <button class="close">✕</button>
+        <input class="js-font_size_adjust" type="range" min=10 max=50 value=16>
+    </div>
 
     <div class="mb-40">
         @if(!$isPreview && $scenario->user_id == Auth::id())

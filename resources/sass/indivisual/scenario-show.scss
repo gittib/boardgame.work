@@ -50,10 +50,13 @@
 
     .font_size_adjust {
         display:none;
-        position: sticky;
-        top: 40px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 40px;
         text-align: right;
         padding: 0 40px;
+        background-color: lightblue;
 
         input {
             width: 100%;
@@ -62,7 +65,6 @@
         button.close {
             height: 32px;
             width: 32px;
-            background: white;
         }
     }
 
@@ -182,96 +184,104 @@
                 max-width: 48%;
             }
 
-            .private_sheet {
-                margin: 0 auto;
-                border: solid 1px;
-                padding: 8px;
-                width: fit-content;
+            .private_scroll_wrapper {
+                width: 100%;
+                overflow-x: scroll;
                 @media screen and (min-width: parts.$wide_screen_min_width) {
-                    min-width: 340px;
+                    overflow-x: visible;
                 }
 
-                .scenario_title {
-                    text-align: center;
-                    width: auto;
-                    border-bottom: 3px double;
-                    margin: 0 8px 12px;
-                }
-                .difficulty {
-                    text-align: center;
-                }
-
-                table.summary {
-                    span.crazy_rule_y {
-                        font-size: 0.8em;
-                    }
-                }
-
-                p.item_name {
-                    font-weight: bold;
-
-                    .people_count {
-                        font-weight: normal;
-                        font-size: 0.8em;
-                    }
-                }
-
-                .character_list_wrapper {
+                .private_sheet {
+                    margin: 0 auto;
+                    border: solid 1px;
+                    padding: 8px;
+                    width: fit-content;
                     @media screen and (min-width: parts.$wide_screen_min_width) {
-                        width: fit-content;
-                        margin: 0 auto;
+                        min-width: 340px;
                     }
 
-                    .character_list {
-                        width: fit-content;
-                        max-width: 99%;
-                        min-width: 300px;
-                        margin: 0 auto;
-                        font-size: 0.75em;
+                    .scenario_title {
+                        text-align: center;
+                        width: auto;
+                        border-bottom: 3px double;
+                        margin: 0 8px 12px;
+                    }
+                    .difficulty {
+                        text-align: center;
+                    }
 
-                        * {
-                            word-break: keep-all;
-                            white-space: nowrap;
+                    table.summary {
+                        span.crazy_rule_y {
+                            font-size: 0.8em;
+                        }
+                    }
+
+                    p.item_name {
+                        font-weight: bold;
+
+                        .people_count {
+                            font-weight: normal;
+                            font-size: 0.8em;
+                        }
+                    }
+
+                    .character_list_wrapper {
+                        @media screen and (min-width: parts.$wide_screen_min_width) {
+                            width: fit-content;
+                            margin: 0 auto;
                         }
 
-                        td {
-                            color: black;
+                        .character_list {
+                            width: fit-content;
+                            max-width: 99%;
+                            min-width: 300px;
+                            margin: 0 auto;
+                            font-size: 0.75em;
 
-                            &.not-person {
-                                font-weight: bold;
+                            * {
+                                word-break: keep-all;
+                                white-space: nowrap;
                             }
 
-                            &.note {
-                                * {
-                                    word-break: initial;
-                                    white-space: initial;
+                            td {
+                                color: black;
+
+                                &.not-person {
+                                    font-weight: bold;
+                                }
+
+                                &.note {
+                                    * {
+                                        word-break: initial;
+                                        white-space: initial;
+                                    }
+                                }
+
+                                > span {
+                                    display: table-row;
                                 }
                             }
-
-                            > span {
-                                display: table-row;
-                            }
                         }
                     }
-                }
 
-                .incident_list_wrapper {
-                    margin: 16px auto 0;
-                    width: fit-content;
+                    .incident_list_wrapper {
+                        margin: 16px auto 0;
+                        width: fit-content;
 
-                    .incident_list {
-                        font-size: 0.9em;
+                        .incident_list {
+                            font-size: 0.9em;
 
-                        th,td {
-                            word-break: keep-all;
-                            white-space: nowrap;
+                            th,td {
+                                word-break: keep-all;
+                                white-space: nowrap;
 
-                            &.name {
-                                min-width: 5em;
-                            }
+                                &.name {
+                                    min-width: 5em;
+                                }
 
-                            &.day {
-                                text-align: center;
+                                &.day {
+                                    text-align: center;
+                                }
                             }
                         }
                     }
