@@ -61,3 +61,13 @@ window.ajaxSubmit = async $form => {
         data: $form.serialize(),
     });
 };
+
+// 脚本画面のフォントサイズ調整機能
+$('.js-font_size_button').on('click', function () {
+    $('#menu_toggle').prop('checked', false);
+    if ($('.font_size_adjust').length > 0) {
+        $('.font_size_adjust').show();
+    } else {
+        myAlert($('[data-only_scenario_show]').attr('data-only_scenario_show'));
+    }
+});

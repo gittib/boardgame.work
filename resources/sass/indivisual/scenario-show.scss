@@ -12,8 +12,10 @@
     .title_wrapper {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         h1 {
+            margin-bottom: auto;
             width: fit-content;
             height: fit-content;
         }
@@ -46,6 +48,27 @@
         }
     }
 
+    .font_size_adjust {
+        display:none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 40px;
+        z-index: 2;
+        text-align: right;
+        padding: 0 40px;
+        background-color: lightblue;
+
+        input {
+            width: 100%;
+        }
+
+        button.close {
+            height: 32px;
+            width: 32px;
+        }
+    }
+
     .public_sheet {
         width: fit-content;
         margin: 0 auto;
@@ -53,6 +76,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25em;
+        }
 
         .special_rule_wrapper {
             width: 100%;
@@ -85,6 +113,7 @@
             a.incident_explain {
                 margin-top: 12px;
                 align-self: flex-end;
+                font-size: 1rem;
             }
         }
     }
@@ -102,17 +131,7 @@
         display: none;
 
         &.showing {
-            @media screen and (max-width: parts.$narrow_screen_max_width) {
-                display: block;
-            }
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row-reverse;
-                width: fit-content;
-                justify-content: center;
-                margin: 0 auto;
-            }
+            display: block;
         }
 
         .invalid_conditions_wrapper {
@@ -140,112 +159,116 @@
             }
         }
 
-        h2 {
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 100%;
-                padding-left: 50%;
-            }
-        }
-
         .writer_wrapper {
             width: fit-content;
             margin: 0 auto;
             max-width: 95%;
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                margin-left: 16px;
-                max-width: 48%;
+
+            h2 {
+                font-size: 1.25em;
             }
 
-            .private_sheet {
-                margin: 0 auto;
-                border: solid 1px;
-                padding: 8px;
-                width: fit-content;
-                @media screen and (min-width: parts.$wide_screen_min_width) {
-                    min-width: 340px;
+            .private_scroll_wrapper {
+                width: 100%;
+                overflow-x: scroll;
+
+                -ms-overflow-style: none;  /* IE、Edgeのための設定 */
+                scrollbar-width: none;  /* Firefox用 */
+                &::-webkit-scrollbar {
+                    display: none;  /* Chrome、Safari、新しいEdge用 */
                 }
 
-                .scenario_title {
-                    text-align: center;
-                    width: auto;
-                    border-bottom: 3px double;
-                    margin: 0 8px 12px;
-                }
-                .difficulty {
-                    text-align: center;
-                }
-
-                table.summary {
-                    span.crazy_rule_y {
-                        font-size: 0.8em;
-                    }
-                }
-
-                p.item_name {
-                    font-weight: bold;
-
-                    .people_count {
-                        font-weight: normal;
-                        font-size: 0.8em;
-                    }
-                }
-
-                .character_list_wrapper {
+                .private_sheet {
+                    margin: 0 auto;
+                    border: solid 1px;
+                    padding: 8px;
+                    width: fit-content;
                     @media screen and (min-width: parts.$wide_screen_min_width) {
-                        width: fit-content;
-                        margin: 0 auto;
+                        min-width: 340px;
                     }
 
-                    .character_list {
-                        width: fit-content;
-                        max-width: 99%;
-                        min-width: 300px;
-                        margin: 0 auto;
-                        font-size: 0.75rem;
+                    .scenario_title {
+                        text-align: center;
+                        width: auto;
+                        border-bottom: 3px double;
+                        margin: 0 8px 12px;
+                    }
+                    .difficulty {
+                        text-align: center;
+                    }
 
-                        * {
-                            word-break: keep-all;
-                            white-space: nowrap;
+                    table.summary {
+                        span.crazy_rule_y {
+                            font-size: 0.8em;
+                        }
+                    }
+
+                    p.item_name {
+                        font-weight: bold;
+
+                        .people_count {
+                            font-weight: normal;
+                            font-size: 0.8em;
+                        }
+                    }
+
+                    .character_list_wrapper {
+                        @media screen and (min-width: parts.$wide_screen_min_width) {
+                            width: fit-content;
+                            margin: 0 auto;
                         }
 
-                        td {
-                            color: black;
+                        .character_list {
+                            width: fit-content;
+                            max-width: 99%;
+                            min-width: 300px;
+                            margin: 0 auto;
+                            font-size: 0.75em;
 
-                            &.not-person {
-                                font-weight: bold;
+                            * {
+                                word-break: keep-all;
+                                white-space: nowrap;
                             }
 
-                            &.note {
-                                * {
-                                    word-break: initial;
-                                    white-space: initial;
+                            td {
+                                color: black;
+
+                                &.not-person {
+                                    font-weight: bold;
+                                }
+
+                                &.note {
+                                    * {
+                                        word-break: initial;
+                                        white-space: initial;
+                                    }
+                                }
+
+                                > span {
+                                    display: table-row;
                                 }
                             }
-
-                            > span {
-                                display: table-row;
-                            }
                         }
                     }
-                }
 
-                .incident_list_wrapper {
-                    margin: 16px auto 0;
-                    width: fit-content;
+                    .incident_list_wrapper {
+                        margin: 16px auto 0;
+                        width: fit-content;
 
-                    .incident_list {
-                        font-size: 0.9rem;
+                        .incident_list {
+                            font-size: 0.9em;
 
-                        th,td {
-                            word-break: keep-all;
-                            white-space: nowrap;
+                            th,td {
+                                word-break: keep-all;
+                                white-space: nowrap;
 
-                            &.name {
-                                min-width: 5em;
-                            }
+                                &.name {
+                                    min-width: 5em;
+                                }
 
-                            &.day {
-                                text-align: center;
+                                &.day {
+                                    text-align: center;
+                                }
                             }
                         }
                     }
@@ -263,9 +286,7 @@
             margin: 36px auto;
             width: fit-content;
             display: none;
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 340px;
-            }
+            font-size: 1rem;
 
             table {
                 min-width: 320px;
@@ -315,23 +336,14 @@
             margin: 8px auto;
             display: block;
             width: fit-content;
+            font-size: 1rem;
         }
 
         dl {
             margin-bottom: 40px;
 
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 48%;
-            }
-
             dt {
                 margin-top: 40px;
-
-                &:first-child {
-                    @media screen and (min-width: parts.$wide_screen_min_width) {
-                        margin-top: 0;
-                    }
-                }
             }
         }
     }

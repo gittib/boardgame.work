@@ -29,6 +29,9 @@ $bodyClass ??= '';
             @guest
             <li><a href="{{ route('auth.twitter.login') }}"><img src="/images/sign-in-with-twitter.png"></a></li>
             @endguest
+            <li data-only_scenario_show="@lang('この機能は、脚本詳細画面でのみご利用いただけます。')">
+                <button class="js-font_size_button">@lang('脚本 文字サイズ調整')</button>
+            </li>
         </ul>
         <label for="menu_toggle" class="menu_bg_filter"></label>
     </div>

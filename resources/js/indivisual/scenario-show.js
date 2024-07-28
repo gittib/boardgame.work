@@ -65,6 +65,16 @@ if ($('body').hasClass('scenario-show')) {
         console.log($self.find('p.note').text());
         myAlert($self.find('p.note').html(), $self.find('a').text());
     });
+
+    $('.font_size_adjust .close').on('click', function () {
+        $(this).closest('.font_size_adjust').hide();
+    });
+    $('.js-font_size_adjust').on('input', function() {
+        const $self = $(this);
+        localStorage.scenarioFontSize = $self.val();
+        $('.public_sheet').css({'font-size': $self.val()+'px'});
+        $('.writer_wrapper').css({'font-size': $self.val()+'px'});
+    });
 }
 
 if($('#quiz-strings_wrapper').length > 0) {
