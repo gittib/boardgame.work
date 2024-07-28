@@ -73,7 +73,7 @@ if ($('body').hasClass('scenario-show')) {
         const $self = $(this);
         localStorage.scenarioFontSize = $self.val();
         $('.public_sheet').css({'font-size': $self.val()+'px'});
-        $('.private_sheet').css({'font-size': $self.val()+'px'});
+        $('.writer_wrapper').css({'font-size': $self.val()+'px'});
     });
 }
 

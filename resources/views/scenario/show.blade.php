@@ -45,7 +45,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     const fontSize = Number(localStorage.scenarioFontSize);
     const styleTag = document.createElement('style');
     styleTag.setAttribute('data-appended_from', '#initial_adjust_scenario_font_size');
-    styleTag.innerHTML = '.public_sheet, .private_sheet { font-size: '+fontSize+'px; }';
+    styleTag.innerHTML = '.public_sheet, .writer_wrapper { font-size: '+fontSize+'px; }';
     document.head.appendChild(styleTag);
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -127,9 +127,8 @@ if (Number(localStorage.scenarioFontSize) > 0) {
         </div>
         @endif
 
-        <h2>@lang('非公開シート')</h2>
-
         <div class="writer_wrapper">
+            <h2>@lang('非公開シート')</h2>
 
             @if(!empty($scenario->writer))
             <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
@@ -310,7 +309,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
 
     <div class="font_size_adjust">
         <button class="close">✕</button>
-        <input class="js-font_size_adjust" type="range" min=10 max=50 value=16>
+        <input class="js-font_size_adjust" type="range" min=10 max=60 value=16>
     </div>
 
     <div class="mb-40">

@@ -54,6 +54,7 @@
         left: 0;
         right: 0;
         bottom: 40px;
+        z-index: 2;
         text-align: right;
         padding: 0 40px;
         background-color: lightblue;
@@ -130,17 +131,7 @@
         display: none;
 
         &.showing {
-            @media screen and (max-width: parts.$narrow_screen_max_width) {
-                display: block;
-            }
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row-reverse;
-                width: fit-content;
-                justify-content: center;
-                margin: 0 auto;
-            }
+            display: block;
         }
 
         .invalid_conditions_wrapper {
@@ -168,28 +159,18 @@
             }
         }
 
-        h2 {
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 100%;
-                padding-left: 50%;
-            }
-        }
-
         .writer_wrapper {
             width: fit-content;
             margin: 0 auto;
             max-width: 95%;
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                margin-left: 16px;
-                max-width: 48%;
+
+            h2 {
+                font-size: 1.25em;
             }
 
             .private_scroll_wrapper {
                 width: 100%;
                 overflow-x: scroll;
-                @media screen and (min-width: parts.$wide_screen_min_width) {
-                    overflow-x: visible;
-                }
 
                 .private_sheet {
                     margin: 0 auto;
@@ -299,9 +280,7 @@
             margin: 36px auto;
             width: fit-content;
             display: none;
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 340px;
-            }
+            font-size: 1rem;
 
             table {
                 min-width: 320px;
@@ -351,23 +330,14 @@
             margin: 8px auto;
             display: block;
             width: fit-content;
+            font-size: 1rem;
         }
 
         dl {
             margin-bottom: 40px;
 
-            @media screen and (min-width: parts.$wide_screen_min_width) {
-                width: 48%;
-            }
-
             dt {
                 margin-top: 40px;
-
-                &:first-child {
-                    @media screen and (min-width: parts.$wide_screen_min_width) {
-                        margin-top: 0;
-                    }
-                }
             }
         }
     }
