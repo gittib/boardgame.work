@@ -172,6 +172,12 @@
                 width: 100%;
                 overflow-x: scroll;
 
+                -ms-overflow-style: none;  /* IE、Edgeのための設定 */
+                scrollbar-width: none;  /* Firefox用 */
+                &::-webkit-scrollbar {
+                    display: none;  /* Chrome、Safari、新しいEdge用 */
+                }
+
                 .private_sheet {
                     margin: 0 auto;
                     border: solid 1px;
