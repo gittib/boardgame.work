@@ -77,11 +77,11 @@ if (Number(localStorage.scenarioFontSize) > 0) {
             </tr>
             <tr>
                 <th>@lang('ループ数')</th>
-                <td>@lang(':loopsループ', ['loops' => $scenario->loops])</td>
+                <td>{{ trans_choice(':countループ', $scenario->loops) }}</td>
             </tr>
             <tr>
                 <th>@lang('日数')</th>
-                <td>@lang(':days日', ['days' => $scenario->days])</td>
+                <td>{{ trans_choice(':count日', $scenario->days) }}</td>
             </tr>
         </table>
 
@@ -167,7 +167,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                     </table>
 
                     <div class="character_list_wrapper">
-                        <p class="item_name">@lang('登場人物')<span class="people_count">@lang('(:n人)', ['n' => $scenario->characters->count()])</span></p>
+                        <p class="item_name">@lang('登場人物')<span class="people_count">{{ trans_choice('(:n人)', $scenario->characters->count()) }}</span></p>
                         <table class="character_list">
                             <tr>
                                 <th>@lang('人物')</th>
