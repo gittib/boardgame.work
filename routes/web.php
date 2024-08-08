@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 if(config('app.debug')) {
     Route::view('url-list', 'url-list');
+    Route::get('phpinfo', fn() => phpinfo());
 }
 
 Route::namespace('App\Http\Controllers')->group(function() {
