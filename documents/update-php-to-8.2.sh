@@ -65,3 +65,5 @@ sudo systemctl list-unit-files -t service | grep php
 ### php80-php-fpm.service                      disabled
 ### php82-php-fpm.service                      enabled
 
+sudo systemctl restart supervisord
+
