@@ -12,7 +12,10 @@ return [
 
     'what_is_this' => 'This is a website where you can share your :trlink Scripts. Anyone can read the Script. If you have a Twitter account, you can also create and publish Scripts.',
     'footer' => 'This is a fan site for BakaFire Party\'s game ":trlink". If you have any questions about this site, please contact :manager.',
-    'loop_day_summary' => '<span class="loop">:loops</span> loops <span class="day">:days</span> days',
+    'loop_day_summary' => [
+        'loops' => '<span class="loop">:count</span> loop |<span class="loop">:count</span> loops ',
+        'days' => '<span class="day">:count</span> day|<span class="day">:count</span> days',
+    ],
     'invalid_conditions' => 'This Script seems to cast the roles incorrectly.<br>It may be normal depending on the special rules, so please check it before using.',
 
     'what_is_plus' => ':plus_script is a selection rule introduced in the large-scale expansion <a href=":rei_url">":rei"</a> in the 10th anniversary of the tragedy looper. In :plus_script, you can handle :hope_c and :despair_c. The concepts of ":sekaisen", ":fragment", ":hope," and ":despair" can only be adopted in :plus_script.

@@ -36,7 +36,7 @@
         <span class="abbr_wrapper">
             <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->setAbbr }}</span>
         </span>
-        <span class="loop_day_summary">@lang('messages.loop_day_summary', ['loops' => $scenario->loops, 'days' => $scenario->days])</span>
+        <span class="loop_day_summary">{!! trans_choice('messages.loop_day_summary.loops', $scenario->loops) . trans_choice('messages.loop_day_summary.days', $scenario->days) !!}</span>
         @if($withDifficult)
         <span class="difficult">@lang('難易度'):<span class="difficult_name">{{ $scenario->difficult_name }}</span> {{ $scenario->difficult_star }}</span>
         @endif
