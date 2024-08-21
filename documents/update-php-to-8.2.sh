@@ -67,3 +67,6 @@ sudo systemctl list-unit-files -t service | grep php
 
 sudo systemctl restart supervisord
 
+# laravelでなくphpのセッションを使う場合のために権限設定
+chgrp -R nginx /var/opt/remi/php82/lib/php/session/
+
