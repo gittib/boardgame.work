@@ -20,6 +20,9 @@ if (!$isPreview) {
 @extends('layouts.layout')
 
 @section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->setName]))
+@if(!$isPreview)
+@section('canonical_url', $thisUrl)
+@endif
 
 @section('body_class', $bodyClass)
 

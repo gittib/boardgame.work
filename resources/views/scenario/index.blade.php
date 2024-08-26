@@ -4,7 +4,7 @@ $bodyClass = 'scenario-index';
 @extends('layouts.layout')
 
 @section('title', __('惨劇脚本一覧'))
-@section('canonical_url', route('scenario.index'))
+@section('canonical_url', $canonicalUrl ?? route('scenario.index'))
 
 @section('body_class', $bodyClass)
 
