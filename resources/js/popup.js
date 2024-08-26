@@ -2,44 +2,41 @@ window.openPopup = async (className, preventHash) => {
     const selector = '.c-popup.'+className;
     const $popup = $(selector);
 
-    $('.c-popup[data-opened]').each(function() {
-        const $self = $(this);
-        $self.attr('data-opened', Number($self.attr('data-opened'))+1);
-    });
+    if (preventHash) {
+        if (localStorage.preventHash == preventHash) {
+            return {
+                'result': 'close',
+            };
+        }
+        localStorage.preventHash = preventHash;
+    }
 
-    const promise = new Promise((resolve, reject) => {
-        if (preventHash) {
-            if (localStorage.preventHash == preventHash) {
+    try {
+        $('.c-popup[data-opened]').each(function() {
+            const $self = $(this);
+            $self.attr('data-opened', Number($self.attr('data-opened'))+1);
+        });
+        $popup.attr('data-opened', 1)
+
+        return await new Promise((resolve, reject) => {
+            $popup.find('.filter-area').off('click.open_popup').on('click.open_popup', function() {
                 resolve({
                     'result': 'close',
                 });
-            }
-            localStorage.preventHash = preventHash;
-        }
-
-        $popup.attr('data-opened', 1)
-
-        $popup.find('.filter-area').off('click.open_popup').on('click.open_popup', function() {
-            resolve({
-                'result': 'close',
+            });
+            $popup.find('.close_button').off('click.open_popup').on('click.open_popup', function() {
+                resolve({
+                    'result': 'close',
+                });
+            });
+            $popup.find('[data-result]').off('click.open_popup').on('click.open_popup', function() {
+                const $self = $(this);
+                resolve({
+                    'result': $self.attr('data-result'),
+                    'info': $self.attr('data-info'),
+                });
             });
         });
-        $popup.find('.close_button').off('click.open_popup').on('click.open_popup', function() {
-            resolve({
-                'result': 'close',
-            });
-        });
-        $popup.find('[data-result]').off('click.open_popup').on('click.open_popup', function() {
-            const $self = $(this);
-            resolve({
-                'result': $self.attr('data-result'),
-                'info': $self.attr('data-info'),
-            });
-        });
-    });
-
-    try {
-        return await promise;
     } finally {
         $('.c-popup[data-opened]').each(function() {
             const $self = $(this);
