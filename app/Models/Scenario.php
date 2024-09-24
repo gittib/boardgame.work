@@ -15,9 +15,17 @@ class Scenario extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'rule_y_id',
+        'rule_x1_id',
+        'rule_x2_id',
+        'import_hash',
     ];
 
     protected $appends = [
+        'rule_y',
+        'rule_x1',
+        'rule_x2',
+        'crazy_rule_y',
     ];
 
     // relations
