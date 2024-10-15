@@ -38,8 +38,10 @@ class ScenarioController extends Controller
             $query->where('difficulty', '<=', $request->dif_max);
         }
 
+        $canonicalUrl = route('scenario.index', ['page' => $request->page == 1 ? null : $request->page]);
+
         $scenarios = $query->paginate(30)->appends($request->query());
-        return view('scenario.index', compact('scenarios'));
+        return view('scenario.index', compact('scenarios', 'canonicalUrl'));
     }
     public function quizIndex(Request $request)
     {

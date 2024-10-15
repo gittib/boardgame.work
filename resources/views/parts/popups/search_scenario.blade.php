@@ -27,7 +27,7 @@ for ($i = 0 ; $i <= 8 ; $i++) {
                 <dl>
                     <dt>@lang('惨劇セット')</dt>
                     <dd>
-                        <span class="select_wrapper">{{ Form::select('set', $setsForSel, request()->set, ['placeholder' => '']) }}</span>
+                        <span class="select_wrapper">{{ Form::select('set', $setsForSel, request()->set, ['placeholder' => '&nbsp;']) }}</span>
                     </dd>
                 </dl>
                 <dl>

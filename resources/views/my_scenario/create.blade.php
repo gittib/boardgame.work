@@ -214,7 +214,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                             @error("scenario_incident.$i.*")
                             <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
                             @enderror
-                        <div>
+                        </div>
                     </li>
                     @endfor
                 </ul>
@@ -276,10 +276,12 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
     </form>
 </div>
 <div class="clone_base hidden">
-    <option class="js-crowd_criminal_list_html"></option>
-    @foreach(__('tragedy_master.board_name') as $key => $boardName)
-    <option class="js-crowd_criminal_list_html" value="{{ $key }}">@lang(':boardの群像', ['board' => $boardName])</option>
-    @endforeach
+    <select>
+        <option class="js-crowd_criminal_list_html"></option>
+        @foreach(__('tragedy_master.board_name') as $key => $boardName)
+        <option class="js-crowd_criminal_list_html" value="{{ $key }}">@lang(':boardの群像', ['board' => $boardName])</option>
+        @endforeach
+    </select>
 </div>
 
 <script>

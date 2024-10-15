@@ -42,9 +42,9 @@
         @endif
         <span class="like">
             @if($scenario->likes->contains(Auth::id()))
-            <img src="{{ Res::ver('/images/red_heart.png') }}">
+            <img src="{{ Res::ver('/images/red_heart.png') }}" alt="">
             @else
-            <img src="{{ Res::ver('/images/heart.png') }}">
+            <img src="{{ Res::ver('/images/heart.png') }}" alt="">
             @endif
             <span class="like_count">
             @if($scenario->likes->isNotEmpty())

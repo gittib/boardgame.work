@@ -20,6 +20,9 @@ if (!$isPreview) {
 @extends('layouts.layout')
 
 @section('title', $isPreview ? __('プレビュー') : __('惨劇脚本 :set', ['set' => $scenario->setName]))
+@if(!$isPreview)
+@section('canonical_url', $thisUrl)
+@endif
 
 @section('body_class', $bodyClass)
 
@@ -60,7 +63,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
         <div class="img_wrapper">
-            <img src="{{ $scenario->set->summary_qr_url }}">
+            <img src="{{ $scenario->set->summary_qr_url }}" alt="summary sheet">
         </div>
         <span>Summary</span>
     </div>
@@ -282,8 +285,8 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     <div class="reaction_wrapper">
         <form action="{{ route('scenario.like', $scenario->id) }}" method="post">
             <p class="like_button @if($scenario->likes->contains(Auth::user())) liked @endif">
-                <img class="not_liked js-like_button" src="{{ Res::ver('/images/heart.png') }}">
-                <img class="liked js-like_button" src="{{ Res::ver('/images/red_heart.png') }}">
+                <img class="not_liked js-like_button" src="{{ Res::ver('/images/heart.png') }}" alt="">
+                <img class="liked js-like_button" src="{{ Res::ver('/images/red_heart.png') }}" alt="">
                 <span class="js-count">{{ $scenario->likes->count() }}</span>
             </p>
         </form>
@@ -297,7 +300,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     @else
     <div class="reaction_wrapper">
         <p class="like_button js-please_login" data-msg="@lang('いいねをつけるには、まずログインしてください。')">
-            <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}">
+            <img class="not_liked" src="{{ Res::ver('/images/heart.png') }}" alt="">
             <span class="js-count">{{ $scenario->likes->count() }}</span>
         </p>
         <p class="bookmark_button js-please_login" data-msg="@lang('ブックマークするには、まずログインしてください。')">

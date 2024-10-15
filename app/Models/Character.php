@@ -29,10 +29,10 @@ class Character extends Model
     // attribute
     public function getNameAttribute() {
         $code = $this->code;
-        return __("tragedy_master.chara_name.${code}");
+        return __("tragedy_master.chara_name.{$code}");
     }
 
-    public function getInitialBoardCodeAttribute():int {
+    public function getInitialBoardCodeAttribute(): int {
         if (in_array($this->code, ['Divinity', 'TransferStudent',])) {
             // 神格と転校生は初期状態で盤面にいないので特殊扱い
             return 1099;
@@ -50,11 +50,11 @@ class Character extends Model
     }
 
     public function getCharaAttrsArrayAttribute(): Collection {
-        return collect(explode(',', $this->chara_attrs));
+        return collect(explode(',', $this->chara_attrs))->map(fn($it) => trim($it));
     }
 
     public function getCharaAttrNamesArrayAttribute(): Collection {
-        return $this->charaAttrsArray->map(fn($i) => __("tragedy_master.chara_attr.$i"));
+        return $this->charaAttrsArray->map(fn($it) => __("tragedy_master.chara_attr.{$it}"));
     }
 
     /** m:男、 f:女、 x:どちらでもない、 b:どちらでもある */
@@ -70,5 +70,11 @@ class Character extends Model
         else if ($isMale) return 'm';
         else if ($isFemale) return 'f';
         else return 'x';
+    }
+
+    // functions
+    public function hasAttr(string $attr): bool {
+        $mine = $this->chara_attrs_array->first(fn($it) => $it == $attr);
+        return !empty($mine);
     }
 }

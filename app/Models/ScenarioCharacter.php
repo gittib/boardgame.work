@@ -36,7 +36,12 @@ class ScenarioCharacter extends Model
     }
 
     // attribute
-    public function getNameAttribute() {
-        return $this->character->name;
+    public function getNameAttribute(): ?string {
+        return $this->character?->name;
+    }
+
+    // functions
+    public function hasAttr(string $attr): bool {
+        return $this->character?->hasAttr($attr) ?? false;
     }
 }

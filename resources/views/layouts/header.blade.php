@@ -3,20 +3,20 @@ $user = Auth::user() ?? null;
 $bodyClass ??= '';
 ?>
 <header>
-    <label class="my-link" for="menu_toggle">
+    <div class="my-link">
         @auth
             @if(!empty($user->profile_img_url))
-            <div class="icon_wrapper">
+            <label class="icon_wrapper" for="menu_toggle">
                 <img src="{{ $user->profile_img_url }}" alt="{{ $user->name }}">
-            </div>
+            </label>
             @else
-            <div class="text_wrapper">
+            <label class="text_wrapper" for="menu_toggle">
                 <p>{{ __(':nameさん', ['name' => $user->name]) }}</p>
-            </div>
+            </label>
             @endif
         @endauth
-        <span class="menu">MENU</span>
-    </label>
+        <label for="menu_toggle" class="menu">MENU</label>
+    </div>
     <div class="menu_wrapper">
         <input type="checkbox" id="menu_toggle">
         <ul class="header_menu">
@@ -33,6 +33,6 @@ $bodyClass ??= '';
                 <button class="js-font_size_button">@lang('脚本 文字サイズ調整')</button>
             </li>
         </ul>
-        <label for="menu_toggle" class="menu_bg_filter"></label>
+        <label for="menu_toggle" class="menu_bg_filter">&nbsp;</label>
     </div>
 </header>

@@ -28,11 +28,11 @@ class Incident extends Model
     // attribute
     public function getNameAttribute() {
         $code = $this->attributes['code'];
-        return __("tragedy_master.incident.${code}.name");
+        return __("tragedy_master.incident.{$code}.name");
     }
 
     public function getNoteAttribute() {
         $code = $this->attributes['code'];
-        return __("tragedy_master.incident.${code}.note");
+        return __("tragedy_master.incident.{$code}.note");
     }
 }
