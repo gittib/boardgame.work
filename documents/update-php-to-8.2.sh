@@ -1,6 +1,6 @@
 sudo yum update
 
-sudo yum install -y php82 php82-php php82-php-fpm php82-php-mbstring php82-php-pdo php82-php-mysql php82-php-xml php82-php-zip
+sudo yum install -y php82 php82-php php82-php-fpm php82-php-mbstring php82-php-pdo php82-php-mysql php82-php-xml php82-php-zip php82-php-tidy
 
 sudo ln -sfn /usr/bin/php82 /usr/bin/php
 

@@ -18,12 +18,12 @@ if(config('app.debug')) {
     Route::get('phpinfo', fn() => phpinfo());
 }
 
-Route::namespace('App\Http\Controllers')->group(function() {
+Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(function() {
     Route::any('/', 'TopController@index')->name('top.index');
     Route::any('language/setting/to', 'LanguageController@trans')->name('language.trans');
     Route::resource('tragedy-set', 'TragedySetController', ['only' => ['index', 'show']]);
     Route::resource('scenario', 'ScenarioController', ['only' => ['index', 'show']]);
-    Route::middleware('json')->group(function() {
+    Route::middleware('json')->withoutMiddleware('parse_html')->group(function() {
         Route::post('scenario/{scenario}/bookmark', 'ScenarioController@bookmark')->name('scenario.bookmark');
         Route::post('scenario/{scenario}/like', 'ScenarioController@like')->name('scenario.like');
     });
