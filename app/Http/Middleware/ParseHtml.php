@@ -22,6 +22,7 @@ class ParseHtml
         $tidy->parseString($response->getContent(), [
             'indent' => true,
             'wrap' => 200,
+            'drop-empty-elements' => false,
             'mute-id' => true,
         ], 'utf8');
         $tidy->cleanRepair();
