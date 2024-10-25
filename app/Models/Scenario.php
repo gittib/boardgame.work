@@ -52,9 +52,14 @@ class Scenario extends Model
     }
 
     // scope
+    public function scopeWhereOpen($query) {
+        return $query->where('is_open', true)
+            ->where('is_preview', false);
+    }
+
     public function scopeWhereVisible($query) {
         return $query->where(function($q) {
-            $q->where('scenarios.is_open', 1);
+            $q->where('scenarios.is_open', true);
             if (Auth::check()) {
                 $q->orWhere('scenarios.user_id', Auth::id());
             }
