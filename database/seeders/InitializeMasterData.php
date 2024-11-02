@@ -22,80 +22,76 @@ class InitializeMasterData extends Seeder
     {
         $masterData = json_decode(file_get_contents(database_path('seeders/data/master_data.json')));
 
-        Character::truncate();
-        CharacterAbility::truncate();
         foreach($masterData->charaMaster as $code => $val) {
-            $chara = Character::create([
-                "code" => $code,
-                "start_board_id" => $val->start_board_id,
-                "keep_out_board_ids" => $val->keep_out_board_ids ?? '',
-                "chara_attrs" => $val->chara_attrs,
-                "anxiety_critical" => $val->anxiety_critical,
-            ]);
+            $chara = Character::firstOrNew(compact('code'));
+            $chara->code = $code;
+            $chara->start_board_id = $val->start_board_id;
+            $chara->keep_out_board_ids = $val->keep_out_board_ids ?? '';
+            $chara->chara_attrs = $val->chara_attrs;
+            $chara->anxiety_critical = $val->anxiety_critical;
+            $chara->save();
+
             $order = 1;
             foreach ($val->abilities as $ab) {
-                CharacterAbility::create([
+                $ability = CharacterAbility::firstOrNew([
                     "character_id" => $chara->id,
-                    "is_ability" => $ab->is_ability ?? false,
-                    "is_one_time_only" => $ab->is_one_time_only ?? false,
-                    "heart" => $ab->heart ?? null,
-                    "detail_code" => "${code}-${order}",
+                    "detail_code" => "{$code}-{$order}",
                 ]);
+                $ability->character_id = $chara->id;
+                $ability->detail_code = "{$code}-{$order}";
+                $ability->is_ability = $ab->is_ability ?? false;
+                $ability->is_one_time_only = $ab->is_one_time_only ?? false;
+                $ability->heart = $ab->heart ?? null;
+                $ability->save();
+
                 $order++;
             }
         }
 
-        TragedyRole::truncate();
-        TragedyRole::create([
+        $personRole = TragedyRole::firstOrNew([
             'code' => 'Person',
-            'hostility_type' => 0,
-            'is_immortality' => false,
-            'max_count' => null,
         ]);
+        $personRole->hostility_type = 0;
+        $personRole->is_immortality = false;
+        $personRole->max_count = null;
+        $personRole->save();
+
         foreach($masterData->roleMaster as $code => $val) {
-            $role = TragedyRole::create([
-                'code' => $code,
-                'hostility_type' => $val->hostility_type,
-                'is_immortality' => $val->is_immortality,
-                'max_count' => $val->max_count ?? null,
-            ]);
+            $role = TragedyRole::firstOrNew(compact('code'));
+            $role->code = $code;
+            $role->hostility_type = $val->hostility_type;
+            $role->is_immortality = $val->is_immortality;
+            $role->max_count = $val->max_count ?? null;
+            $role->save();
         }
 
-        DB::table('tragedy_set_rule')->truncate();
-        DB::table('tragedy_set_incident')->truncate();
-        DB::table('tragedy_rule_role')->truncate();
+        $allRoleIds = TragedyRole::get()->mapWithKeys(fn($it) => [$it->code => $it->id]);
 
-        TragedySet::truncate();
-        TragedyRule::truncate();
-        Incident::truncate();
         foreach($masterData->setMaster as $setData) {
-            $set = TragedySet::create([
+            $set = TragedySet::firstOrNew([
                 'abbreviation' => $setData->setName,
             ]);
+            $set->abbreviation = $setData->setName;
+            $set->save();
 
             $order = 1;
             foreach ($setData->rules as $ruleData) {
-                $rule = TragedyRule::where(['code' => $ruleData->ruleName])->first();
-                if (empty($rule)) {
-                    $rule = TragedyRule::create([
-                        'code' => $ruleData->ruleName,
-                        'is_y' => $ruleData->isRuleY,
-                    ]);
+                $rule = TragedyRule::firstOrNew(['code' => $ruleData->ruleName]);
+                $rule->code = $ruleData->ruleName;
+                $rule->is_y = $ruleData->isRuleY;
+                $rule->save();
+                $rule->refresh();
 
-                    foreach($ruleData->roles as $role) {
-                        $roleId = TragedyRole::where('code', $role)->pluck('id');
-                        $rule->roles()->attach($roleId);
-                    }
-                }
-
-                $set->rules()->attach($rule->id, compact('order'));
-
+                $set->rules()->syncWithPivotValues([$rule->id], compact('order'), false);
                 $order++;
+
+                $roleIds = collect($ruleData->roles)->map(fn($code) => $allRoleIds[$code] ?? null)->filter(fn($it) => isset($it));
+                $rule->roles()->sync($roleIds);
             }
 
-            foreach ($setData->incidents as $incidentName) {
-                $incident = Incident::firstOrCreate(['code' => $incidentName]);
-                $set->incidents()->attach($incident->id);
+            foreach ($setData->incidents as $incidentCode) {
+                $incident = Incident::firstOrCreate(['code' => $incidentCode]);
+                $set->incidents()->syncWithoutDetaching([$incident->id]);
             }
         }
 
