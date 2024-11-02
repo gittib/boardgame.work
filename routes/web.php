@@ -45,6 +45,11 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
         Route::post('my-scenario/upload/json', 'MyScenarioController@storeFromJson')->name('my-scenario.store_from_json');
     });
 
+    Route::prefix('game')->name('game.')->group(function() {
+        Route::get('/{year?}/{month?}/{day?}', 'GameController@index')->whereNumber(['year', 'month', 'day'])->name('index');
+        Route::get('/{year}/{month}/{day}/{game}', 'GameController@show')->whereNumber(['year', 'month', 'day', 'game'])->name('show');
+    });
+
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
     Route::post('file/file/upload/chunk/{media}', 'FileController@uploadChunk')->name('file.upload.chunk.add');
 
