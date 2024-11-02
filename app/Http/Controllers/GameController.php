@@ -16,6 +16,11 @@ class GameController extends Controller
             return redirect()->route('game.index', compact('year', 'month'));
         }
 
+        if ($month >= 100 || $day >= 100) {
+            logger('月日に100以上の数値はNG');
+            return redirect()->route('game.index', compact('year'));
+        }
+
         if (empty($year)) {
             // yearが未指定なので全範囲
             $startDate = CarbonImmutable::create(2024, 1, 1, 0, 0, 0);
@@ -26,22 +31,19 @@ class GameController extends Controller
             // monthが未指定なので１年範囲
             $startDate = CarbonImmutable::create($year, 1, 1, 0, 0, 0);
             $endDate = CarbonImmutable::create($year, 12, 31, 23, 59, 59);
-            if ($startDate->year != $year) {
-                return redirect($canonicalUrl);
-            }
             $canonicalUrl = route('game.index', [
                 'year' => $startDate->year,
             ]);
             $title = __(":year年に行われたゲーム一覧", [
                 'year' => $startDate->year,
             ]);
+            if ($startDate->year != $year) {
+                return redirect($canonicalUrl);
+            }
         } else if (empty($day)) {
             // dayが未指定なので１ヶ月範囲
             $startDate = CarbonImmutable::create($year, $month, 1, 0, 0, 0);
             $endDate = CarbonImmutable::create($year, $month, $startDate->endOfMonth()->day, 23, 59, 59);
-            if ($startDate->year != $year || $startDate->month != $month) {
-                return redirect($canonicalUrl);
-            }
             $canonicalUrl = route('game.index', [
                 'year' => $startDate->year,
                 'month' => $startDate->month,
@@ -50,13 +52,13 @@ class GameController extends Controller
                 'year' => $startDate->year,
                 'month' => $startDate->month,
             ]);
+            if ($startDate->year != $year || $startDate->month != $month) {
+                return redirect($canonicalUrl);
+            }
         } else {
             // dayまで指定されてるので１日範囲
             $startDate = CarbonImmutable::create($year, $month, $day, 0, 0, 0);
             $endDate = CarbonImmutable::create($year, $month, $day, 23, 59, 59);
-            if ($startDate->year != $year || $startDate->month != $month || $startDate->day != $day) {
-                return redirect($canonicalUrl);
-            }
             $canonicalUrl = route('game.index', [
                 'year' => $startDate->year,
                 'month' => $startDate->month,
@@ -67,8 +69,14 @@ class GameController extends Controller
                 'month' => $startDate->month,
                 'day' => $startDate->day,
             ]);
+            if ($startDate->year != $year || $startDate->month != $month || $startDate->day != $day) {
+                return redirect($canonicalUrl);
+            }
         }
         dd([$year, $month, $day, $startDate->__toString(), $endDate->__toString(), $canonicalUrl, $title]);
+
+        // TODO startDate,endDateからGameリストを取得
+
         return view('game.index');
     }
 }

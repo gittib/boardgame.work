@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::connection('mysql_for_migration')->create('games', function (Blueprint $table) {
+            $table->id()->comment('ゲームログ');
+            $table->timestamp("created_at")->useCurrent();
+            $table->timestamp("updated_at")->useCurrent();
+            $table->softDeletes();
+
+            $table->timestamp("started_at")->nullable()->index()->comment('ゲーム開始日時');
+            $table->timestamp("ended_at")->nullable()->comment('ゲーム終了日時');
+            $table->json("game_state")->nullable()->comment('最新のゲーム状態');
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('games');
+        Schema::connection('mysql_for_migration')->dropIfExists('games');
     }
 };
