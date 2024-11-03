@@ -17,6 +17,7 @@ return new class extends Migration
             $table->timestamp("updated_at")->useCurrent();
             $table->softDeletes();
 
+            $table->unsignedBigInteger("scenario_id")->nullable()->comment('脚本');
             $table->timestamp("started_at")->nullable()->index()->comment('ゲーム開始日時');
             $table->timestamp("ended_at")->nullable()->comment('ゲーム終了日時');
             $table->json("game_state")->nullable()->comment('最新のゲーム状態');
