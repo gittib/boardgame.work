@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(InitializeMasterData::class);
         $this->call(AddBeyondLineToEverySet::class);
+        $this->call(SetCharacterImageUrl::class);
     }
 }

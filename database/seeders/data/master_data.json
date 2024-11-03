@@ -1224,6 +1224,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "boy,student",
             "anxiety_critical": 2,
+            "card_image_url": "character_01_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1237,6 +1238,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,student",
             "anxiety_critical": 3,
+            "card_image_url": "character_02_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1250,6 +1252,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,student",
             "anxiety_critical": 1,
+            "card_image_url": "character_03_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1263,6 +1266,7 @@
             "keep_out_board_ids": "3",
             "chara_attrs": "girl,student",
             "anxiety_critical": 2,
+            "card_image_url": "character_04_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1280,6 +1284,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 3,
+            "card_image_url": "character_05_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1297,6 +1302,7 @@
             "keep_out_board_ids": "4",
             "chara_attrs": "male,adult",
             "anxiety_critical": 2,
+            "card_image_url": "character_06_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1310,6 +1316,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "female,adult",
             "anxiety_critical": 3,
+            "card_image_url": "character_07_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1323,6 +1330,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 2,
+            "card_image_url": "character_08_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1342,6 +1350,7 @@
             "keep_out_board_ids": "1,3,4",
             "chara_attrs": "boy",
             "anxiety_critical": 2,
+            "card_image_url": "character_09_1.png",
             "abilities": []
         },
         "Chairman": {
@@ -1349,6 +1358,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,student",
             "anxiety_critical": 2,
+            "card_image_url": "character_10_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1362,6 +1372,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "boy,student",
             "anxiety_critical": 3,
+            "card_image_url": "character_11_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1377,6 +1388,7 @@
             "keep_out_board_ids": "2",
             "chara_attrs": "girl",
             "anxiety_critical": 2,
+            "card_image_url": "character_12_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1394,6 +1406,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,female",
             "anxiety_critical": 3,
+            "card_image_url": "character_13_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1413,6 +1426,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,student",
             "anxiety_critical": 2,
+            "card_image_url": "character_14_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1430,6 +1444,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 2,
+            "card_image_url": "character_15_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1447,6 +1462,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 4,
+            "card_image_url": "character_16_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1462,6 +1478,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "female,adult",
             "anxiety_critical": 3,
+            "card_image_url": "character_17_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1477,6 +1494,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 1,
+            "card_image_url": "character_18_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1492,6 +1510,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 2,
+            "card_image_url": "character_19_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1505,6 +1524,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "fiction,female",
             "anxiety_critical": 3,
+            "card_image_url": "character_20_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1524,6 +1544,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 3,
+            "card_image_url": "character_21_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1541,6 +1562,7 @@
             "keep_out_board_ids": "1,2,4",
             "chara_attrs": "artifact",
             "anxiety_critical": 4,
+            "card_image_url": "character_22_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1558,6 +1580,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "female,adult",
             "anxiety_critical": 2,
+            "card_image_url": "character_23_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1575,6 +1598,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,student",
             "anxiety_critical": 2,
+            "card_image_url": "character_24_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1590,6 +1614,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "male,adult",
             "anxiety_critical": 3,
+            "card_image_url": "character_25_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1607,6 +1632,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "animal",
             "anxiety_critical": 0,
+            "card_image_url": "character_26_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1620,6 +1646,7 @@
             "keep_out_board_ids": "1,2,3",
             "chara_attrs": "girl,student",
             "anxiety_critical": 1,
+            "card_image_url": "character_27_1.png",
             "abilities": [
                 {
                     "is_ability": false,
@@ -1637,6 +1664,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "adult,female",
             "anxiety_critical": 3,
+            "card_image_url": "character_29_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1656,6 +1684,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "student,boy",
             "anxiety_critical": 2,
+            "card_image_url": "character_28_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1671,6 +1700,7 @@
             "keep_out_board_ids": "2,3,4",
             "chara_attrs": "tree",
             "anxiety_critical": 4,
+            "card_image_url": "character_30_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1684,6 +1714,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl,sister",
             "anxiety_critical": 3,
+            "card_image_url": "character_31_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1699,6 +1730,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "adult,male",
             "anxiety_critical": 1,
+            "card_image_url": "character_32_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1714,6 +1746,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl",
             "anxiety_critical": 3,
+            "card_image_url": "character_33_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1729,6 +1762,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "adult,female",
             "anxiety_critical": 3,
+            "card_image_url": "character_34_1.png",
             "abilities": [
                 {
                     "is_ability": true
@@ -1748,6 +1782,7 @@
             "keep_out_board_ids": null,
             "chara_attrs": "girl",
             "anxiety_critical": 2,
+            "card_image_url": "character_35_1.png",
             "abilities": [
                 {
                     "is_ability": false,
