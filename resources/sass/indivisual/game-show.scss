@@ -2,11 +2,53 @@
 
 .game-show {
     main {
+        width: 1280px;
         max-width: 100%;
 
         > * {
             margin-left: 0;
             margin-right: 0;
+        }
+
+        .game_wrapper {
+
+            .board_wrapper {
+                height: 720px;
+                position: relative;
+
+                img.board {
+                    position: absolute;
+                    width: 512px;
+                    height: 360px;
+
+                    &.hospital {
+                        top: 0;
+                        left: 0;
+                    }
+
+                    &.shrine {
+                        top: 0;
+                        left: 512px;
+                    }
+
+                    &.city {
+                        top: 360px;
+                        left: 0;
+                    }
+
+                    &.school {
+                        top: 360px;
+                        left: 512px;
+                    }
+                }
+
+                img.data_board {
+                    position: absolute;
+                    height: 720px;
+                    top: 0;
+                    left: 1024px;
+                }
+            }
         }
     }
 }
