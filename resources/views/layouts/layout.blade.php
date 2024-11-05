@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=@yield('viewport_width', 'device-width'), initial-scale=1">
         <meta name="chunk_upload_url" content="{{ route('file.upload.chunk.first') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        @hasSection('noindex')
+        <meta name="robots" content="noindex,noarchive">
+        @else
+        @hasSection('robots')
+        <meta name="robots" content="@yield('robots')">
+        @endif
+        @endif
 
         <link rel="shortcut icon" href="/images/favicon.png">
 

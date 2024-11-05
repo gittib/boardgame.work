@@ -6,6 +6,7 @@ $bodyClass = 'game-show';
 @section('viewport_width', '1280px')
 @section('title', __("ゲーム :game", ['game' => $game->id]))
 @section('canonical_url', $game->url)
+@section('noindex', empty($game->started_at))
 
 @section('body_class', $bodyClass)
 
@@ -29,4 +30,15 @@ $bodyClass = 'game-show';
 @endsection
 
 @section('additional_scripts')
+<script>
+(() => {
+    let moousePoint = {x:0, y:0};
+    document.addEventListener('mousemove', function(event) {
+        moousePoint = {
+            x: event.pageX,
+            y: event.pageY,
+        };
+    });
+})();
+</script>
 @endsection
