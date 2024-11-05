@@ -152,10 +152,14 @@ class GameController extends Controller
             // 全期間の一覧では年で絞り込むリンクを出す
             $minStartedAt = Game::min('started_at');
             $maxStartedAt = Game::max('started_at');
-            for ($y = $minStartedAt->year ; $y <= $maxStartedAt->year ; $y++) {
-                $subPageLinks[__(':year年', ['year' => $y])] = route('game.index', [
-                    'year' => $y,
-                ]);
+            if (!empty($minStartedAt)) {
+                $minStartedAt = CarbonImmutable::parse($minStartedAt);
+                $maxStartedAt = CarbonImmutable::parse($maxStartedAt);
+                for ($y = $minStartedAt->year ; $y <= $maxStartedAt->year ; $y++) {
+                    $subPageLinks[__(':year年', ['year' => $y])] = route('game.index', [
+                        'year' => $y,
+                    ]);
+                }
             }
         } else if (empty($month)) {
             // 年の一覧では月で絞り込むリンクを出す
@@ -165,7 +169,7 @@ class GameController extends Controller
             $months = $allGames->map(fn($it) => $it->started_at->month)->unique();
             foreach ($months as $m) {
                 $subPageLinks[__(':month月', ['month' => $m])] = route('game.index', [
-                    'year' => $firstStarted->year,
+                    'year' => $startDate->year,
                     'month' => $m,
                 ]);
             }
@@ -177,8 +181,8 @@ class GameController extends Controller
             $days = $allGames->map(fn($it) => $it->started_at->day)->unique();
             foreach ($days as $d) {
                 $subPageLinks[__(':day日', ['day' => $d])] = route('game.index', [
-                    'year' => $firstStarted->year,
-                    'month' => $firstStarted->month,
+                    'year' => $startDate->year,
+                    'month' => $startDate->month,
                     'day' => $d,
                 ]);
             }
