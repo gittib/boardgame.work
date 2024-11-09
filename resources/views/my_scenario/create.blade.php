@@ -262,14 +262,14 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                     </p>
                 </li>
             </ul>
-            <div class="fixed_footer_console">
-                <div class="submit_button_wrapper">
-                    <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
-                        @lang('プレビュー')
-                    </div>
-                    <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
-                        @lang('登録')
-                    </div>
+        </div>
+        <div class="fixed_footer_console">
+            <div class="submit_button_wrapper">
+                <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
+                    @lang('プレビュー')
+                </div>
+                <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
+                    @lang('登録')
                 </div>
             </div>
         </div>
