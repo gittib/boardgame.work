@@ -19,7 +19,7 @@ class ScenarioController extends Controller
             'writer',
             'set',
             'likes',
-        ])->where('is_open', 1)
+        ])->whereOpen()
             ->where('is_quiz', 0)
             ->orderBy('set_id')
             ->orderBy('difficulty')
@@ -49,7 +49,7 @@ class ScenarioController extends Controller
             'writer',
             'set',
             'likes',
-        ])->where('is_open', 1)
+        ])->whereOpen()
             ->where('is_quiz', 1)
             ->orderBy('set_id')
             ->orderByDesc('id');
@@ -74,9 +74,9 @@ class ScenarioController extends Controller
      */
     public function show($id)
     {
-        $scenario = Scenario::with([
-            'incidents.criminal',
-        ])->findOrFail($id);
+        $scenario = Scenario::with('incidents.criminal', 'set.rules.roles')
+            ->where('is_preview', false)
+            ->findOrFail($id);
 
         if (!$scenario->is_open) {
             if (Auth::check()) {
@@ -107,7 +107,7 @@ class ScenarioController extends Controller
     }
 
     public function like(Request $request, $id) {
-        Scenario::where('is_open', 1)->findOrFail($id);
+        Scenario::whereOpen()->findOrFail($id);
         Auth::user()->likeScenarios()->toggle([$id]);
         return [
             'result' => 'OK',

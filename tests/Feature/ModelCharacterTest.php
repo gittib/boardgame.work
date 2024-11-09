@@ -10,7 +10,7 @@ class ModelCharacterTest extends TestCase
     /**
      * @dataProvider attrProvider
      */
-    public function test_attr_check(string $attrSet, string $attr): void
+    public function test_has_attr(string $attrSet, string $attr): void
     {
         $chara = new Character([
             'chara_attrs' => $attrSet,

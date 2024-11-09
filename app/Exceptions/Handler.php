@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Throwable;
+use Whoops\Run;
+use Whoops\Handler\PrettyPageHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -37,5 +40,17 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        if (config('app.debug')) {
+            $this->renderable(function (Throwable $e, Request $request) {
+                if (($this->isHttpException($e))) {
+                    return $this->renderHttpException($e);
+                }
+
+                $whoops = new Run;
+                $whoops->pushHandler(new PrettyPageHandler);
+                return response($whoops->handleException($e));
+            });
+        }
     }
 }

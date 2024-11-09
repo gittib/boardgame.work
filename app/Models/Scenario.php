@@ -52,9 +52,14 @@ class Scenario extends Model
     }
 
     // scope
+    public function scopeWhereOpen($query) {
+        return $query->where('is_open', true)
+            ->where('is_preview', false);
+    }
+
     public function scopeWhereVisible($query) {
         return $query->where(function($q) {
-            $q->where('scenarios.is_open', 1);
+            $q->where('scenarios.is_open', true);
             if (Auth::check()) {
                 $q->orWhere('scenarios.user_id', Auth::id());
             }
@@ -176,6 +181,11 @@ class Scenario extends Model
                     // AIがパーソンは禁止
                     if ($chara->role?->code == 'Person') {
                         $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.AI'), 'role' => __('tragedy_master.role.Person.name')]);
+                    }
+                } else if ($chara->character?->code == 'Sister') {
+                    // 妹が友好無視役職は禁止
+                    if ($chara->role?->hostility_type != 0) {
+                        $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.Sister'), 'role' => $chara->role?->name]);
                     }
                 }
 
