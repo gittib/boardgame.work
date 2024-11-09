@@ -180,7 +180,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                             @foreach($scenario->characters as $chara)
                             <?php $charasInBoard[$chara->character->initial_board_code][] = $chara->character->name; ?>
                             <tr>
-                                <td class="name">{{ $chara->character->name }}</td>
+                                <td class="name" data-code="{{ $chara->character->code }}">{{ $chara->character->name }}</td>
                                 <td class="role @if(!$chara->role->isPerson) not-person @endif">
                                     <span>
                                         {!! $chara->role->hostility_type_html !!}

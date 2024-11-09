@@ -67,5 +67,6 @@
         @endif
 
         @yield('additional_scripts')
+        @stack('stack_scripts')
     </body>
 </html>
