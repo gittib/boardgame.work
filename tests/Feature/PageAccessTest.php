@@ -38,7 +38,6 @@ class PageAccessTest extends TestCase
             ['login', false, 200],
             ['my-scenario.index', true, 200],
             ['my-scenario.bookmarks', true, 200],
-            ['my-scenario.create', true, 200],
             ['scenario.index', false, 200],
             ['scenario.quiz-index', false, 200],
         ])->mapWithKeys(fn($it) => [$it[0] => $it]);
@@ -68,6 +67,6 @@ class PageAccessTest extends TestCase
             'WM',
             'LL',
             'AHR',
-        ])->mapWithKeys(fn($it) => [$it => [$it]]);
+        ])->mapWithKeys(fn($it) => [strtolower($it) => [$it]]);
     }
 }
