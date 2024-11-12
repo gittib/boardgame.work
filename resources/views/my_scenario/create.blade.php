@@ -66,25 +66,32 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
     <form method="post">
         @csrf
         @if($isEdit) @method('put') @endif
-        {{ Form::hidden('set_id', $set->id) }}
+        {{ html()->hidden()->name('set_id')->value($set->id) }}
         <dl class="summary_setting">
             <dt>@lang('ルールY')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_y_id') }}">
-                    {{ Form::select('rule_y_id', $ruleYs, $helper->inputVal('rule_y_id') ?? $scenario->rule_y_id) }}
+                    {{ html()->select('rule_y_id', $ruleYs)
+                        ->value($helper->inputVal('rule_y_id') ?? $scenario->rule_y_id)
+                    }}
                 </div>
             </dd>
             <dt>@lang('ルールX1')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_x1_id') }}">
-                    {{ Form::select('rule_x1_id', $ruleXs, $helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id, ['class' => 'rule_x']) }}
+                    {{ html()->select('rule_x1_id', $ruleXs)
+                        ->value($helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id, ['class' => 'rule_x'])
+                    }}
                 </div>
             </dd>
             @if($set->hasRuleX2)
             <dt>@lang('ルールX2')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_x2_id') }}">
-                    {{ Form::select('rule_x2_id', $ruleXs, $helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id, ['class' => 'rule_x']) }}
+                    {{ html()->select('rule_x2_id', $ruleXs)
+                        ->value($helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id)
+                        ->class('rule_x')
+                    }}
                 </div>
             </dd>
             @endif
@@ -92,7 +99,9 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
             <dt class="for_crazy_truth">@lang(':rule用ルールY', ['rule' => __('tragedy_master.rule_name.Crazy-Truth')])</dt>
             <dd class="for_crazy_truth">
                 <div class="select_wrapper {{ $helper->errClass('crazy_rule_y_id') }}">
-                    {{ Form::select('crazy_rule_y_id', $ruleYs, $helper->inputVal('crazy_rule_y_id') ?? $scenario->crazy_rule_y_id) }}
+                    {{ html()->select('crazy_rule_y_id', $ruleYs)
+                        ->value($helper->inputVal('crazy_rule_y_id') ?? $scenario->crazy_rule_y_id)
+                    }}
                 </div>
                 <p id="crazy_truth_rule_id" class="hidden" data-rule_id="{{ $crazyTruthId }}"></p>
             </dd>
@@ -100,25 +109,35 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
             <dt>@lang('ループ数')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('loops') }}">
-                    {{ Form::select('loops', $loopSelect, $helper->inputVal('loops') ?? $scenario->loops) }}
+                    {{ html()->select('loops', $loopSelect)
+                        ->value($helper->inputVal('loops') ?? $scenario->loops)
+                    }}
                 </div>
             </dd>
             <dt>@lang('日数')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('days') }}">
-                    {{ Form::select('days', $daySelect, $helper->inputVal('days') ?? $scenario->days) }}
+                    {{ html()->select('days', $daySelect)
+                        ->value($helper->inputVal('days') ?? $scenario->days)
+                    }}
                 </div>
             </dd>
             <dt>@lang('難易度')</dt>
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('difficulty') }}">
-                    {{ Form::select('difficulty', $aDifficulty, $helper->inputVal('difficulty') ?? $scenario->difficulty) }}
+                    {{ html()->select('difficulty', $aDifficulty)
+                        ->value($helper->inputVal('difficulty') ?? $scenario->difficulty)
+                    }}
                 </div>
             </dd>
             <dt>@lang('プラス脚本')</dt>
             <dd class="plus_setting">
                 <label class="checkbox_wrapper">
-                    {{ Form::checkbox('is_plus', 1, $helper->inputVal('is_plus') ?? $scenario->is_plus) }}
+                    {{ html()->checkbox()
+                        ->name('is_plus')
+                        ->value(1)
+                        ->checked($helper->inputVal('is_plus') ?? $scenario->is_plus)
+                    }}
                     @lang('プラス脚本にする')
                 </label>
                 <a href="javascript:void(0);" class="js-what_is_plus">@lang('プラス脚本とは？')</a>
@@ -155,14 +174,18 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                     <li class="character_row {{ $helper->errClass('scenario_chara.'.$loop->iteration.'.*') }}" data-index="{{ $loop->iteration }}">
                         <div>
                             <span class="select_wrapper">
-                                {{ Form::select('scenario_chara[][character_id]', $charaSelect, $ch->character_id, [
-                                    'data-list_name' => 'scenario_chara',
-                                    'data-key_name' => 'character_id']) }}
+                                {{ html()->select('scenario_chara[][character_id]', $charaSelect)
+                                    ->value($ch->character_id)
+                                    ->data('list_name', 'scenario_chara')
+                                    ->data('key_name', 'character_id')
+                                }}
                             </span>
                             <span class="select_wrapper">
-                                {{ Form::select('scenario_chara[][role_id]', $roleSelect, $ch->role_id, [
-                                    'data-list_name' => 'scenario_chara',
-                                    'data-key_name' => 'role_id']) }}
+                                {{ html()->select('scenario_chara[][role_id]', $roleSelect)
+                                    ->value($ch->role_id)
+                                    ->data('list_name', 'scenario_chara')
+                                    ->data('key_name', 'role_id')
+                                }}
                             </span>
                             <span class="label_and_input_wrapper">
                                 <span class="label_name">@lang('特記事項')</span>
@@ -190,15 +213,21 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                             <div>
                                 <span class="label">@lang(':day日目', ['day' => $i])</span>
                                 <span class="select_wrapper">
-                                    {{ Form::select('scenario_incident['.$i.'][incident_id]', $incidentSelect, $selectedIncidentId,
-                                        ['placeholder' => '', 'class' => 'incident']) }}
+                                    {{ html()->select('scenario_incident['.$i.'][incident_id]', $incidentSelect)
+                                        ->value($selectedIncidentId)
+                                        ->placeholder('')
+                                        ->class('incident')
+                                    }}
                                 </span>
                             </div>
                             <div>
                                 <span class="label">@lang('犯人')：</span>
                                 <span class="select_wrapper">
-                                    {{ Form::select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect,
-                                        $criminalCharacterId, ['placeholder' => '', 'class' => 'criminal']) }}
+                                    {{ html()->select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect)
+                                        ->value($criminalCharacterId)
+                                        ->placeholder('')
+                                        ->class('criminal')
+                                    }}
                                 </span>
                             </div>
                             @if($set->hasFalsifiedIncidents)
@@ -221,7 +250,10 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
             </dd>
             <dt>@lang('脚本タイトル')</dt>
             <dd class="scenario_title">
-                {{ Form::text('title', $helper->inputVal('title') ?? $scenario->title) }}
+                {{ html()->text()
+                    ->name('title')
+                    ->value($helper->inputVal('title') ?? $scenario->title)
+                }}
             </dd>
             <dt>@lang('脚本の特徴')</dt>
             <dd class="scenario_text">
@@ -246,13 +278,21 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
             <ul>
                 <li>
                     <label class="checkbox_wrapper">
-                        {{ Form::checkbox('is_open', 1, $helper->inputVal('is_open') ?? $scenario->is_open) }}
+                        {{ html()->checkbox()
+                            ->name('is_open')
+                            ->value(1)
+                            ->checked($helper->inputVal('is_open') ?? $scenario->is_open)
+                        }}
                         @lang('脚本を公開する')
                     </label>
                 </li>
                 <li>
                     <label class="checkbox_wrapper">
-                        {{ Form::checkbox('is_quiz', 1, $helper->inputVal('is_quiz') ?? $scenario->is_quiz) }}
+                        {{ html()->checkbox()
+                            ->name('is_quiz')
+                            ->value(1)
+                            ->checked($helper->inputVal('is_quiz') ?? $scenario->is_quiz)
+                        }}
                         @lang('脚本家への指針クイズにする')
                     </label><br>
                     <a href="javascript:void(0);" class="js-what_is_quiz">@lang('脚本家への指針クイズとは？')</a>

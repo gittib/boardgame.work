@@ -182,11 +182,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                             <tr>
                                 <td class="name" data-code="{{ $chara->character->code }}">{{ $chara->character->name }}</td>
                                 <td class="role @if(!$chara->role->isPerson) not-person @endif">
-                                    <span>
-                                        {!! $chara->role->hostility_type_html !!}
-                                        {!! $chara->role->immortality_html !!}
-                                        {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
-                                    </span>
+                                    <x-role_spec :role="$chara->role" />
                                 </td>
                                 <td class="note">
                                     <span>{{ __($chara->note) }}</span>

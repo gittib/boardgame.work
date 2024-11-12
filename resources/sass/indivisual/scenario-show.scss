@@ -233,19 +233,11 @@
                             td {
                                 color: black;
 
-                                &.not-person {
-                                    font-weight: bold;
-                                }
-
                                 &.note {
                                     * {
                                         word-break: initial;
                                         white-space: initial;
                                     }
-                                }
-
-                                > span {
-                                    display: table-row;
                                 }
                             }
                         }
