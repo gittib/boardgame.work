@@ -6,6 +6,7 @@
 // 以下、コンポーネント用SASS
 @use 'component/list_item-script';
 @use 'component/paginator_link';
+@use 'component/role_spec';
 
 // 以下、個別ページのSASS
 @use 'indivisual/top-index';
