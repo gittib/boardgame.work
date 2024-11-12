@@ -45,8 +45,8 @@ $bodyClass = 'scenario-index';
 <div style="display:none;">
     <p id="js-show_title_confirm_message">@lang('脚本名を見るとネタバレになるかも知れませんが、表示してもよろしいですか？')</p>
     <form id="narrow_form">
-        {{ Form::hidden('page', 1) }}
-        {{ Form::hidden('set_abbr') }}
+        {{ html()->hidden()->name('page')->value(1) }}
+        {{ html()->hidden()->name('set_abbr') }}
     </form>
 </div>
 @endsection

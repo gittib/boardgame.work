@@ -27,14 +27,21 @@ for ($i = 0 ; $i <= 8 ; $i++) {
                 <dl>
                     <dt>@lang('惨劇セット')</dt>
                     <dd>
-                        <span class="select_wrapper">{{ Form::select('set', $setsForSel, request()->set, ['placeholder' => '&nbsp;']) }}</span>
+                        <span class="select_wrapper">{{ html()->select('set', $setsForSel)
+                            ->value(request()->set)
+                            ->placeholder('&nbsp;')
+                        }}</span>
                     </dd>
                 </dl>
                 <dl>
                     <dt>@lang('難易度')</dt>
                     <dd class="difficult_setting">
-                        <span class="select_wrapper">{{ Form::select('dif_min', $difficultSel, request()->dif_min ?? 0) }}</span>～
-                        <span class="select_wrapper">{{ Form::select('dif_max', $difficultSel, request()->dif_max ?? 8) }}</span>
+                        <span class="select_wrapper">{{ html()->select('dif_min', $difficultSel)
+                            ->value(request()->dif_min ?? 0)
+                        }}</span>～
+                        <span class="select_wrapper">{{ html()->select('dif_max', $difficultSel)
+                            ->value(request()->dif_max ?? 8)
+                        }}</span>
                     </dd>
                 </dl>
 
