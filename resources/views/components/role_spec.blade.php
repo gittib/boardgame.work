@@ -16,6 +16,5 @@ $roleName = \Str::of($role->name)->replace('／', '/')->explode('/')->map(fn($it
     {{ html()->i()
         ->classIf($role->is_immortality, 'fa-solid fa-star')
         ->classIf(!$role->is_immortality, 'fa-regular fa-star') }}
-
     <span class="role-name">{!! $roleName !!}</span>
 </span>
