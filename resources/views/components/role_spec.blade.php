@@ -7,12 +7,12 @@ $roleName = \Str::of($role->name)->replace('／', '/')->explode('/')->map(fn($it
 <span class="role-spec {{ $role->isPerson ? '' : 'not-person' }}">
     {{ html()->span()
         ->class('dia')
-        ->classIf(in_array($role->hostility_type, [2, 3]), 'black')
-        ->textIf(in_array($role->hostility_type, [2, 3]), '◆')
-        ->textIf(!in_array($role->hostility_type, [2, 3]), '◇') }}
+        ->classIf($role->isSpecialHostility, 'black')
+        ->textIf($role->isSpecialHostility, '◆')
+        ->textIf(!$role->isSpecialHostility, '◇') }}
     {{ html()->i()
-        ->classIf(in_array($role->hostility_type, [1, 2, 3]), 'fas fa-heart-broken')
-        ->classIf(!in_array($role->hostility_type, [1, 2, 3]), 'fa-regular fa-heart') }}
+        ->classIf($role->isHostility, 'fas fa-heart-broken')
+        ->classIf(!$role->isHostility, 'fa-regular fa-heart') }}
     {{ html()->i()
         ->classIf($role->is_immortality, 'fa-solid fa-star')
         ->classIf(!$role->is_immortality, 'fa-regular fa-star') }}
