@@ -180,7 +180,12 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                             @foreach($scenario->characters as $chara)
                             <?php $charasInBoard[$chara->character->initial_board_code][] = $chara->character->name; ?>
                             <tr>
-                                <td class="name" data-code="{{ $chara->character->code }}">{{ $chara->character->name }}</td>
+                                <td class="name">
+                                    {{ html()->span()
+                                        ->classIf(\Cookie::get('applocale') == 'en', 'wrap')
+                                        ->data('code', $chara->character->code)
+                                        ->child($chara->character->name) }}
+                                </td>
                                 <td class="role @if(!$chara->role->isPerson) not-person @endif">
                                     <x-role_spec :role="$chara->role" />
                                 </td>

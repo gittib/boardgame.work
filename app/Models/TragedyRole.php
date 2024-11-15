@@ -39,4 +39,14 @@ class TragedyRole extends Model
     public function getIsPersonAttribute():bool {
         return $this->code == 'Person';
     }
+
+    /** 友好無視を持っているか */
+    public function getIsHostilityAttribute():bool {
+        return in_array($this->hostility_type, [1, 2, 3]);
+    }
+
+    /** 特殊な友好無視を持っているか */
+    public function getIsSpecialHostilityAttribute():bool {
+        return in_array($this->hostility_type, [2, 3]);
+    }
 }
