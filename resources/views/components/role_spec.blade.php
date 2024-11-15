@@ -2,7 +2,12 @@
     'role',
 ])
 <?php
-$roleName = \Str::of($role->name)->replace('／', '/')->explode('/')->map(fn($it) => trim(e($it)))->implode('<br>／');
+$roleName = \Str::of(e($role->name))
+    ->replace('Conspiracy Theorist', 'Conspiracy<br>Theorist')
+    ->replace('／', '/')
+    ->explode('/')
+    ->map(fn($it) => trim($it))
+    ->implode('<br>／');
 ?>
 <span class="role-spec {{ $role->isPerson ? '' : 'not-person' }}">
     {{ html()->span()
