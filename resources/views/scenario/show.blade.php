@@ -63,7 +63,9 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
         <div class="img_wrapper">
-            <img src="{{ $scenario->set->summary_qr_url }}" alt="summary sheet">
+            {{ html()->img()
+                ->src($scenario->set->summary_qr_url)
+                ->alt('summary sheet') }}
         </div>
         <span>Summary</span>
     </div>
@@ -114,8 +116,13 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     </div>
 
     <div class="button_wrapper private_toggle_button_wrapper">
-        <div class="button js-show_private_sheet" data-dialog_message="@lang('非公開シートを表示します。よろしいですか？')">@lang('非公開シートを表示')</div>
-        <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
+        {{ html()->div()
+            ->class('button js-show_private_sheet')
+            ->data('dialog_message', __('非公開シートを表示します。よろしいですか？'))
+            ->child(__('非公開シートを表示')) }}
+        {{ html()->div()
+            ->class('button js-hide_private_sheet')
+            ->child(__('非公開シートを隠す')) }}
     </div>
 
     <div class="private_sheet_wrapper">
@@ -140,8 +147,17 @@ if (Number(localStorage.scenarioFontSize) > 0) {
             <div class="private_scroll_wrapper">
                 <div class="private_sheet">
                     <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
-                    <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
-
+                    {{ html()->div()
+                        ->class('difficulty')
+                        ->children([
+                            __('難易度').'：',
+                            html()->span()
+                                ->class('difficult_name')
+                                ->child($scenario->difficultName),
+                            html()->span()
+                                ->child($scenario->difficultStar),
+                        ])
+                    }}
                     <table class="summary mx-center mt-16 mb-16">
                         <tr>
                             <th>@lang('ルールY')</th>
@@ -182,9 +198,8 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                             <tr>
                                 <td class="name">
                                     {{ html()->span()
-                                        ->classIf(\Cookie::get('applocale') == 'en', 'wrap')
                                         ->data('code', $chara->character->code)
-                                        ->child($chara->character->name) }}
+                                        ->child($chara->character->slimName) }}
                                 </td>
                                 <td class="role @if(!$chara->role->isPerson) not-person @endif">
                                     <x-role_spec :role="$chara->role" />
@@ -262,9 +277,11 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                     </span>
                 </div>
                 @endif
-                <a class="hide_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を隠す')</a>
+                {{ html()->a('javascript:void(0);', __('キャラクター初期配置を隠す'))
+                    ->class('hide_initial_board_wrapper') }}
             </div>
-            <a class="show_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を表示')</a>
+            {{ html()->a('javascript:void(0);', __('キャラクター初期配置を表示'))
+                ->class('show_initial_board_wrapper') }}
         </div>
 
         <dl>
@@ -330,9 +347,13 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                 <p>@lang('この脚本は製作者本人しか見ることができません。')</p>
             @endif
             </div>
-            <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
-                <p class="button">@lang('脚本を編集する')</p>
-            </a>
+            {{ html()->a()
+                ->href(route('my-scenario.edit', ['my_scenario' => $scenario->id]))
+                ->child(
+                    html()->p(__('脚本を編集する'))
+                        ->class('button')
+                )
+            }}
         </div>
         @endif
     </div>

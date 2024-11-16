@@ -4,6 +4,7 @@
 <?php
 $roleName = \Str::of(e($role->name))
     ->replace('Conspiracy Theorist', 'Conspiracy<br>Theorist')
+    ->replace('Private Investigator', 'Private<br>Investigator')
     ->replace('／', '/')
     ->explode('/')
     ->map(fn($it) => trim($it))
