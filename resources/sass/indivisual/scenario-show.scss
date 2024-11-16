@@ -233,13 +233,8 @@
                             td {
                                 color: black;
 
-                                &.name{
-                                    .wrap {
-                                        &[data-code="Lady"] {
-                                            word-break: break-word;
-                                            white-space: normal;
-                                        }
-                                    }
+                                &.name {
+                                    line-height: 1.25;
                                 }
 
                                 &.note {
