@@ -337,7 +337,7 @@ class MyScenarioController extends Controller
             $scenario->characters()->delete();
             foreach ($request->scenario_chara as $chara) {
                 if (!empty($aTrans[strtolower($chara['note'])])) {
-                    $chara['note'] = $aTrans[$chara['note']];
+                    $chara['note'] = $aTrans[strtolower($chara['note'])];
                 }
 
                 $scenario->characters()->save(new ScenarioCharacter([
