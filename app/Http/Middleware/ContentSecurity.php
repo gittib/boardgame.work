@@ -39,6 +39,7 @@ class ContentSecurity
                 "'unsafe-inline'",
                 "https://kit.fontawesome.com",
                 "https://code.jquery.com",
+                "https://www.googletagmanager.com",
             ],
         ]);
 
