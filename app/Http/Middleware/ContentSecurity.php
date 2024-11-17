@@ -22,6 +22,7 @@ class ContentSecurity
                 "'self'",
                 "data:",
                 "https://ka-f.fontawesome.com",
+                "https://www.google-analytics.com",
             ],
             "style-src" => [
                 "'self'",
