@@ -263,11 +263,12 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                     </tr>
                 </table>
                 @if(!empty($charasInBoard[1099]))
-                <div class="others"><p>@lang('tragedy_master.board_name.1099')</p>
+                <div class="others">
                     <div class="charas_in_board_wrapper">
-                    @foreach($charasInBoard[1099] as $charaName)
-                        <div>{{ $charaName }}</div>
-                    @endforeach
+                        <p>@lang('tragedy_master.board_name.1099')</p>
+                        @foreach($charasInBoard[1099] as $charaName)
+                            <div>{{ $charaName }}</div>
+                        @endforeach
                     </div>
                 </div>
                 @endif
