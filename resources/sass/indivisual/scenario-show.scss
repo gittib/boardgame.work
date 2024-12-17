@@ -311,7 +311,11 @@
             }
 
             .charas_in_board_wrapper {
-                span {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+
+                div {
                     font-size: .75rem;
                     border: solid 1px;
                     border-radius: 2px;

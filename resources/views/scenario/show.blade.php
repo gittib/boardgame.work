@@ -147,17 +147,11 @@ if (Number(localStorage.scenarioFontSize) > 0) {
             <div class="private_scroll_wrapper">
                 <div class="private_sheet">
                     <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
-                    {{ html()->div()
-                        ->class('difficulty')
-                        ->children([
-                            __('難易度').'：',
-                            html()->span()
-                                ->class('difficult_name')
-                                ->child($scenario->difficultName),
-                            html()->span()
-                                ->child($scenario->difficultStar),
-                        ])
-                    }}
+                    <div class="difficulty">
+                        @lang('難易度')：
+                        <span class="difficult_name">{{ $scenario->difficultName }}</span>
+                        <span>{{ $scenario->difficultStar }}</span>
+                    </div>
                     <table class="summary mx-center mt-16 mb-16">
                         <tr>
                             <th>@lang('ルールY')</th>
@@ -237,44 +231,44 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                 <table>
                     <tr>
                         <td><p>@lang('tragedy_master.board_name.1002')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1002] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                         <td><p>@lang('tragedy_master.board_name.1001')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1001] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td><p>@lang('tragedy_master.board_name.1003')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1003] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                         <td><p>@lang('tragedy_master.board_name.1004')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1004] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                     </tr>
                 </table>
                 @if(!empty($charasInBoard[1099]))
                 <div class="others"><p>@lang('tragedy_master.board_name.1099')</p>
-                    <span class="inline_block_wrapper charas_in_board_wrapper">
+                    <div class="charas_in_board_wrapper">
                     @foreach($charasInBoard[1099] as $charaName)
-                        <span>{{ $charaName }}</span>
+                        <div>{{ $charaName }}</div>
                     @endforeach
-                    </span>
+                    </div>
                 </div>
                 @endif
                 {{ html()->a('javascript:void(0);', __('キャラクター初期配置を隠す'))
