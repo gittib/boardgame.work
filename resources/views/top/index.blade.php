@@ -1,6 +1,6 @@
 <?php
-$trLink = '<a href="'.__('messages.official_url').'" target="_blank">'.__('惨劇RoopeR').'</a>';
-$oldSiteLink = '<a href="http://www.boardgame.work/sangeki/" target="_blank">'.__('こちら').'</a>';
+$trLink = html()->a(__('messages.official_url'), __('惨劇RoopeR'))->target('_blank');
+$oldSiteLink = html()->a('http://www.boardgame.work/sangeki/', __('こちら'))->target('_blank');
 ?>
 @extends('layouts.layout')
 

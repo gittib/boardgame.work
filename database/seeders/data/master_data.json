@@ -978,7 +978,7 @@
     ],
     "roleMaster": {
         "Avenger": {
-            "hostility_type": 0,
+            "hostility_type": 1,
             "is_immortality": false
         },
         "Alice": {
@@ -990,8 +990,8 @@
             "is_immortality": true
         },
         "Eraser": {
-            "hostility_type": 0,
-            "is_immortality": false
+            "hostility_type": 1,
+            "is_immortality": true
         },
         "Influencer": {
             "hostility_type": 0,
@@ -1119,8 +1119,8 @@
             "is_immortality": false
         },
         "PiedPiper": {
-            "hostility_type": 1,
-            "is_immortality": false
+            "hostility_type": 0,
+            "is_immortality": true
         },
         "PiedPiper-Gossip": {
             "hostility_type": 0,

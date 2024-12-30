@@ -32,6 +32,14 @@ class Character extends Model
         return __("tragedy_master.chara_name.{$code}");
     }
 
+    public function getSlimNameAttribute() {
+        switch ($this->code) {
+        case 'Lady':
+            return str_replace(' Daughter', '<br>Daughter', $this->name);
+        }
+        return $this->name;
+    }
+
     public function getInitialBoardCodeAttribute(): int {
         if (in_array($this->code, ['Divinity', 'TransferStudent',])) {
             // 神格と転校生は初期状態で盤面にいないので特殊扱い

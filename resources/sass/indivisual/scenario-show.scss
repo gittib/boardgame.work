@@ -233,8 +233,8 @@
                             td {
                                 color: black;
 
-                                &.not-person {
-                                    font-weight: bold;
+                                &.name {
+                                    line-height: 1.25;
                                 }
 
                                 &.note {
@@ -242,10 +242,6 @@
                                         word-break: initial;
                                         white-space: initial;
                                     }
-                                }
-
-                                > span {
-                                    display: table-row;
                                 }
                             }
                         }
@@ -315,7 +311,11 @@
             }
 
             .charas_in_board_wrapper {
-                span {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+
+                div {
                     font-size: .75rem;
                     border: solid 1px;
                     border-radius: 2px;

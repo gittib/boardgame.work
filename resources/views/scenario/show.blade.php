@@ -42,7 +42,7 @@ if (!$isPreview) {
 @endif
 @endsection
 
-@section('contents')
+@pushOnce('stack_headers')
 <script id="initial_adjust_scenario_font_size">
 if (Number(localStorage.scenarioFontSize) > 0) {
     const fontSize = Number(localStorage.scenarioFontSize);
@@ -56,14 +56,18 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     });
 }
 </script>
+@endPushOnce
 
+@section('contents')
 <div class="title_wrapper">
     <h1>@lang('惨劇脚本 :set', ['set' => $scenario->setName])</h1>
 
     @if(!empty($scenario->set->summary_qr_url))
     <div class="summary_qr">
         <div class="img_wrapper">
-            <img src="{{ $scenario->set->summary_qr_url }}" alt="summary sheet">
+            {{ html()->img()
+                ->src($scenario->set->summary_qr_url)
+                ->alt('summary sheet') }}
         </div>
         <span>Summary</span>
     </div>
@@ -114,8 +118,13 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     </div>
 
     <div class="button_wrapper private_toggle_button_wrapper">
-        <div class="button js-show_private_sheet" data-dialog_message="@lang('非公開シートを表示します。よろしいですか？')">@lang('非公開シートを表示')</div>
-        <div class="button js-hide_private_sheet">@lang('非公開シートを隠す')</div>
+        {{ html()->div()
+            ->class('button js-show_private_sheet')
+            ->data('dialog_message', __('非公開シートを表示します。よろしいですか？'))
+            ->child(__('非公開シートを表示')) }}
+        {{ html()->div()
+            ->class('button js-hide_private_sheet')
+            ->child(__('非公開シートを隠す')) }}
     </div>
 
     <div class="private_sheet_wrapper">
@@ -140,8 +149,11 @@ if (Number(localStorage.scenarioFontSize) > 0) {
             <div class="private_scroll_wrapper">
                 <div class="private_sheet">
                     <h3 class="scenario_title"><span>{{ $scenario->title }}</span></h3>
-                    <div class="difficulty">@lang('難易度')：<span class="difficult_name">{{ $scenario->difficultName }}</span><span>{{ $scenario->difficultStar }}</span></div>
-
+                    <div class="difficulty">
+                        @lang('難易度')：
+                        <span class="difficult_name">{{ $scenario->difficultName }}</span>
+                        <span>{{ $scenario->difficultStar }}</span>
+                    </div>
                     <table class="summary mx-center mt-16 mb-16">
                         <tr>
                             <th>@lang('ルールY')</th>
@@ -180,13 +192,13 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                             @foreach($scenario->characters as $chara)
                             <?php $charasInBoard[$chara->character->initial_board_code][] = $chara->character->name; ?>
                             <tr>
-                                <td class="name">{{ $chara->character->name }}</td>
+                                <td class="name">
+                                    {{ html()->span()
+                                        ->data('code', $chara->character->code)
+                                        ->child($chara->character->slimName) }}
+                                </td>
                                 <td class="role @if(!$chara->role->isPerson) not-person @endif">
-                                    <span>
-                                        {!! $chara->role->hostility_type_html !!}
-                                        {!! $chara->role->immortality_html !!}
-                                        {!! str_replace('／', '<br>／', e($chara->role->name)) !!}
-                                    </span>
+                                    <x-role_spec :role="$chara->role" />
                                 </td>
                                 <td class="note">
                                     <span>{{ __($chara->note) }}</span>
@@ -221,49 +233,52 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                 <table>
                     <tr>
                         <td><p>@lang('tragedy_master.board_name.1002')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1002] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                         <td><p>@lang('tragedy_master.board_name.1001')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1001] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                     </tr>
                     <tr>
                         <td><p>@lang('tragedy_master.board_name.1003')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1003] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                         <td><p>@lang('tragedy_master.board_name.1004')</p>
-                            <span class="inline_block_wrapper charas_in_board_wrapper">
+                            <div class="charas_in_board_wrapper">
                             @foreach($charasInBoard[1004] as $charaName)
-                                <span>{{ $charaName }}</span>
+                                <div>{{ $charaName }}</div>
                             @endforeach
-                            </span>
+                            </div>
                         </td>
                     </tr>
                 </table>
                 @if(!empty($charasInBoard[1099]))
-                <div class="others"><p>@lang('tragedy_master.board_name.1099')</p>
-                    <span class="inline_block_wrapper charas_in_board_wrapper">
-                    @foreach($charasInBoard[1099] as $charaName)
-                        <span>{{ $charaName }}</span>
-                    @endforeach
-                    </span>
+                <div class="others">
+                    <div class="charas_in_board_wrapper">
+                        <p>@lang('tragedy_master.board_name.1099')</p>
+                        @foreach($charasInBoard[1099] as $charaName)
+                            <div>{{ $charaName }}</div>
+                        @endforeach
+                    </div>
                 </div>
                 @endif
-                <a class="hide_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を隠す')</a>
+                {{ html()->a('javascript:void(0);', __('キャラクター初期配置を隠す'))
+                    ->class('hide_initial_board_wrapper') }}
             </div>
-            <a class="show_initial_board_wrapper" href="javascript:void(0);">@lang('キャラクター初期配置を表示')</a>
+            {{ html()->a('javascript:void(0);', __('キャラクター初期配置を表示'))
+                ->class('show_initial_board_wrapper') }}
         </div>
 
         <dl>
@@ -329,9 +344,13 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                 <p>@lang('この脚本は製作者本人しか見ることができません。')</p>
             @endif
             </div>
-            <a href="{{ route('my-scenario.edit', ['my_scenario' => $scenario->id]) }}">
-                <p class="button">@lang('脚本を編集する')</p>
-            </a>
+            {{ html()->a()
+                ->href(route('my-scenario.edit', ['my_scenario' => $scenario->id]))
+                ->child(
+                    html()->p(__('脚本を編集する'))
+                        ->class('button')
+                )
+            }}
         </div>
         @endif
     </div>

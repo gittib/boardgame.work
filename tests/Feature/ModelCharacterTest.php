@@ -10,7 +10,7 @@ class ModelCharacterTest extends TestCase
     /**
      * @dataProvider attrProvider
      */
-    public function test_attr_check(string $attrSet, string $attr): void
+    public function test_has_attr(string $attrSet, string $attr): void
     {
         $chara = new Character([
             'chara_attrs' => $attrSet,
@@ -20,7 +20,7 @@ class ModelCharacterTest extends TestCase
         $this->assertSame($isStrExists, $isAttrExists);
     }
 
-    public function attrProvider()
+    public static function attrProvider()
     {
         $attrs = [
             'adult',
@@ -72,7 +72,7 @@ class ModelCharacterTest extends TestCase
         $this->assertSame($chara->sex, $sex);
     }
 
-    public function sexAttrProvider()
+    public static function sexAttrProvider()
     {
         return collect([
             ["adult,female", "f"],

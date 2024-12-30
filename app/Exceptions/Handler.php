@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Throwable;
 use Whoops\Run;
@@ -16,7 +17,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
-        //
+        ValidationException::class,
     ];
 
     /**
@@ -43,13 +44,17 @@ class Handler extends ExceptionHandler
 
         if (config('app.debug')) {
             $this->renderable(function (Throwable $e, Request $request) {
-                if (($this->isHttpException($e))) {
+                if ($this->isHttpException($e)) {
                     return $this->renderHttpException($e);
                 }
 
-                $whoops = new Run;
-                $whoops->pushHandler(new PrettyPageHandler);
-                return response($whoops->handleException($e));
+                if ($e instanceof ValidationException) {
+                    // レスポンスをreturnしないことで、Laravelデフォルトのエラーハンドリングに任せる
+                } else {
+                    $whoops = new Run;
+                    $whoops->pushHandler(new PrettyPageHandler);
+                    return response($whoops->handleException($e));
+                }
             });
         }
     }

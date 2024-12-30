@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
 
             \App\Http\Middleware\DevBasicAuth::class,
             \App\Http\Middleware\Language::class,
+            \App\Http\Middleware\ContentSecurity::class,
         ],
 
         'api' => [

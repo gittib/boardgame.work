@@ -81,7 +81,7 @@ class MyScenarioController extends Controller
      */
     public function edit($id)
     {
-        $scenario = Scenario::where('user_id', Auth::id())->findOrFail($id);
+        $scenario = Scenario::with('set.rules.roles')->where('user_id', Auth::id())->findOrFail($id);
         $set = $scenario->set;
         $charas = Character::get();
         if ($scenario->characters->isEmpty()) {
@@ -337,7 +337,7 @@ class MyScenarioController extends Controller
             $scenario->characters()->delete();
             foreach ($request->scenario_chara as $chara) {
                 if (!empty($aTrans[strtolower($chara['note'])])) {
-                    $chara['note'] = $aTrans[$chara['note']];
+                    $chara['note'] = $aTrans[strtolower($chara['note'])];
                 }
 
                 $scenario->characters()->save(new ScenarioCharacter([

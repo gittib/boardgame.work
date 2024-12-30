@@ -44,8 +44,8 @@ $bodyClass = 'scenario-index is_quiz';
 </div>
 <div style="display:none;">
     <form id="narrow_form">
-        {{ Form::hidden('page', 1) }}
-        {{ Form::hidden('set') }}
+        {{ html()->hidden()->name('page')->value(1) }}
+        {{ html()->hidden()->name('set') }}
     </form>
 </div>
 @endsection

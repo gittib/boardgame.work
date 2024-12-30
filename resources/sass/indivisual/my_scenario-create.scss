@@ -1,7 +1,6 @@
 @use '../parts';
 
 body.my_scenario-create {
-    padding-bottom: 32px;
 
     dl.summary_setting {
         display: grid;
@@ -162,24 +161,32 @@ body.my_scenario-create {
                 }
             }
         }
+    }
 
-        .fixed_footer_console {
+    .fixed_footer_console {
+        width: 100%;
+        padding: 8px;
+        z-index: 10;
+        background-color: white;
+        position: sticky;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 0 auto;
+
+        .submit_button_wrapper {
+            display: flex;
+            justify-content: space-around;
             width: 100%;
-            padding: 8px;
-            z-index: 10;
-            background-color: white;
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            max-width: 600px;
+            flex-wrap: wrap;
+            margin: 0 auto;
 
-            .submit_button_wrapper {
-                display: flex;
-                justify-content: space-around;
-                width: 100%;
-                max-width: 600px;
-                flex-wrap: wrap;
-                margin: 0 auto;
+            .button {
+                font-weight: 600;
             }
         }
     }

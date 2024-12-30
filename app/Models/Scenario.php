@@ -182,6 +182,11 @@ class Scenario extends Model
                     if ($chara->role?->code == 'Person') {
                         $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.AI'), 'role' => __('tragedy_master.role.Person.name')]);
                     }
+                } else if ($chara->character?->code == 'Sister') {
+                    // 妹が友好無視役職は禁止
+                    if ($chara->role?->hostility_type != 0) {
+                        $errors[] = __(':nameに:roleが配役されています', ['name' => __('tragedy_master.chara_name.Sister'), 'role' => $chara->role?->name]);
+                    }
                 }
 
                 if (!empty($roleCounter[$chara->role_id])) {

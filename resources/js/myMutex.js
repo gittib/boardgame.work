@@ -12,7 +12,7 @@ class MyMutex {
         });
     }
 
-    async function lock(timeout = 60000) {
+    async lock(timeout = 60000) {
         const timeLimit = Date.now() + timeout;
         while (Date.now() < timeLimit) {
             let sleep = this.mySleep(33);
@@ -25,11 +25,11 @@ class MyMutex {
         return false;
     }
 
-    function unlock() {
+    unlock() {
         isLocking = false;
     }
 
-    async function withLock(callback, timeout = 60000) {
+    async withLock(callback, timeout = 60000) {
         let result = await this.lock(timeout);
         if (!result) {
             throw new Error('lock失敗');

@@ -74,7 +74,7 @@ class ScenarioController extends Controller
      */
     public function show($id)
     {
-        $scenario = Scenario::with('incidents.criminal')
+        $scenario = Scenario::with('incidents.criminal', 'set.rules.roles')
             ->where('is_preview', false)
             ->findOrFail($id);
 

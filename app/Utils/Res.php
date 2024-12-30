@@ -13,6 +13,6 @@ class Res {
 
         $path = $tmp['path'];
         $query = empty($tmp['query']) ? '' : $tmp['query'].'&';
-        return "${path}?${query}v=" . filemtime($publicPath);
+        return "{$path}?{$query}v=" . filemtime($publicPath);
     }
 }
