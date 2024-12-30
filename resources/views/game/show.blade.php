@@ -31,6 +31,9 @@ $bodyClass = 'game-show';
 
 @section('additional_scripts')
 <script>
+const SKYWAY_APP_ID = "{{ config('define.app_id') }}";
+</script>
+<script>
 (() => {
     let moousePoint = {x:0, y:0};
     document.addEventListener('mousemove', function(event) {

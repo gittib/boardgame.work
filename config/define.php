@@ -23,4 +23,9 @@ return [
     ],
 
     'rei_url' => 'https://main-bakafire.ssl-lolipop.jp/rooper/10th/rei.html',
+
+    'skyway' => [
+        'app_id' => env('SKYWAY_APP_ID'),
+        'secret_key' => env('SKYWAY_SECRET_KEY'),
+    ],
 ];
