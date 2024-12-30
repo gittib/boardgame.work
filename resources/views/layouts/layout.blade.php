@@ -24,6 +24,8 @@
             <link rel="canonical" href="@yield('canonical_url')">
         @endif
 
+        @stack('stack_headers')
+
         @if(config('app.env') == 'production')
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP74G1ZWM5"></script>
