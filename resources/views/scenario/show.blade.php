@@ -140,11 +140,14 @@ if (Number(localStorage.scenarioFontSize) > 0) {
         @endif
 
         <div class="writer_wrapper">
-            <h2>@lang('非公開シート')</h2>
-
-            @if(!empty($scenario->writer))
-            <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
-            @endif
+            <div class="private_sheet_title_wrapper">
+                <h2>@lang('非公開シート')</h2>
+                <div class="writer">
+                @if(!empty($scenario->writer))
+                    @lang('作者： :writer', ['writer' => e($scenario->writer->name)])
+                @endif
+                </div>
+            </div>
 
             <div class="private_scroll_wrapper">
                 <div class="private_sheet">

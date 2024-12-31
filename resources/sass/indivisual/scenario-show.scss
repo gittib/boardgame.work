@@ -164,8 +164,23 @@
             margin: 0 auto;
             max-width: 95%;
 
-            h2 {
-                font-size: 1.25em;
+            .private_sheet_title_wrapper {
+                width: 100%;
+                display: flex;
+                column-gap: 1em;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: baseline;
+
+                h2 {
+                    font-size: 1.25em;
+                }
+
+                .writer {
+                    margin-left: auto;
+                    font-size: 12px;
+                    text-align: right;
+                }
             }
 
             .private_scroll_wrapper {
@@ -309,12 +324,6 @@
                         }
                     }
                 }
-            }
-
-            .writer {
-                margin: 4px 0;
-                font-size: 12px;
-                text-align: right;
             }
         }
 
