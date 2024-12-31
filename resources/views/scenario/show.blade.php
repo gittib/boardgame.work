@@ -140,11 +140,14 @@ if (Number(localStorage.scenarioFontSize) > 0) {
         @endif
 
         <div class="writer_wrapper">
-            <h2>@lang('非公開シート')</h2>
-
-            @if(!empty($scenario->writer))
-            <div class="writer">@lang('作者： :writer', ['writer' => e($scenario->writer->name)])</div>
-            @endif
+            <div class="private_sheet_title_wrapper">
+                <h2>@lang('非公開シート')</h2>
+                <div class="writer">
+                @if(!empty($scenario->writer))
+                    @lang('作者： :writer', ['writer' => e($scenario->writer->name)])
+                @endif
+                </div>
+            </div>
 
             <div class="private_scroll_wrapper">
                 <div class="private_sheet">
@@ -154,32 +157,26 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                         <span class="difficult_name">{{ $scenario->difficultName }}</span>
                         <span>{{ $scenario->difficultStar }}</span>
                     </div>
-                    <table class="summary mx-center mt-16 mb-16">
-                        <tr>
-                            <th>@lang('ルールY')</th>
-                            <td>{{ $scenario->ruleY->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('ルールX1')</th>
-                            <td>
-                                <span>{{ $scenario->ruleX1->name }}</span>
-                                @if($scenario->ruleX1?->code == 'Crazy-Truth')
-                                    <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
-                                @endif
-                            </td>
-                        </tr>
+                    <dl class="summary mx-center mt-16 mb-16 {{ $scenario->set->hasRuleX2 ? 'has-rulex2' : '' }}">
+                        <dt class="rule_y">@lang('ルールY')</dt>
+                        <dd class="rule_y">{{ $scenario->ruleY->name }}</dd>
+                        <dt>@lang('ルールX1')</dt>
+                        <dd>
+                            <span>{{ $scenario->ruleX1->name }}</span>
+                            @if($scenario->ruleX1?->code == 'Crazy-Truth')
+                                <span class="crazy_rule_y">({{ $scenario->crazyRuleY?->name }})</span>
+                            @endif
+                        </dd>
                         @if($scenario->set->hasRuleX2)
-                        <tr>
-                            <th>@lang('ルールX2')</th>
-                            <td>
-                                <span>{{ $scenario->ruleX2->name }}</span>
-                                @if($scenario->ruleX2?->code == 'Crazy-Truth')
-                                    <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
-                                @endif
-                            </td>
-                        </tr>
+                        <dt>@lang('ルールX2')</dt>
+                        <dd>
+                            <span>{{ $scenario->ruleX2->name }}</span>
+                            @if($scenario->ruleX2?->code == 'Crazy-Truth')
+                                <span class="crazy_rule_y"><br>({{ $scenario->crazyRuleY?->name }})</span>
+                            @endif
+                        </dd>
                         @endif
-                    </table>
+                    </dl>
 
                     <div class="character_list_wrapper">
                         <p class="item_name">@lang('登場人物')<span class="people_count">{{ trans_choice('(:n人)', $scenario->characters->count()) }}</span></p>

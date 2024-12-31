@@ -164,8 +164,23 @@
             margin: 0 auto;
             max-width: 95%;
 
-            h2 {
-                font-size: 1.25em;
+            .private_sheet_title_wrapper {
+                width: 100%;
+                display: flex;
+                column-gap: 1em;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: baseline;
+
+                h2 {
+                    font-size: 1.25em;
+                }
+
+                .writer {
+                    margin-left: auto;
+                    font-size: 12px;
+                    text-align: right;
+                }
             }
 
             .private_scroll_wrapper {
@@ -197,9 +212,49 @@
                         text-align: center;
                     }
 
-                    table.summary {
-                        span.crazy_rule_y {
-                            font-size: 0.8em;
+                    dl.summary {
+                        display: grid;
+                        align-items: center;
+                        grid-template-columns: max-content 1fr;
+                        width: fit-content;
+                        line-height: 1;
+                        gap: 0.5em;
+
+                        &.has-rulex2 {
+                            @media screen and (min-width: parts.$wide_screen_min_width) {
+                                grid-template-columns: max-content max-content max-content 1fr;
+
+                                dd.rule_y {
+                                    grid-column: span 3;
+                                }
+                            }
+                        }
+
+                        dt {
+                            margin-top: 0;
+                            width: fit-content;
+                            font-family: parts.$tragedy_font;
+                            font-size: 0.85em;
+
+                            &.rule_y {
+                                font-size: 1em;
+                            }
+                        }
+
+                        dd {
+                            width: fit-content;
+                            font-weight: bold;
+                            display: flex;
+                            align-items: baseline;
+                            font-size: 0.9em;
+
+                            &.rule_y {
+                                font-size: 1.2em;
+                            }
+
+                            span.crazy_rule_y {
+                                font-size: 0.8em;
+                            }
                         }
                     }
 
@@ -269,12 +324,6 @@
                         }
                     }
                 }
-            }
-
-            .writer {
-                margin: 4px 0;
-                font-size: 12px;
-                text-align: right;
             }
         }
 
