@@ -12,21 +12,18 @@ foreach($breads as $label => $url) {
     $json['itemListElement'][] = [
         '@type' => 'ListItem',
         'position' => $loopIteration,
-        'item' => [
-            '@id' => $url,
-            'name' => $label,
-        ],
+        'name' => $label,
+        'item' =>  $url,
     ];
     $loopIteration++;
 }
 ?>
 <ol class="breadcrumb">
     @foreach($breads as $label => $url)
-        @if($loop->last)
-        <li>{{ $label }}</li>
-        @else
-        <li><a href="{{ $url }}">{{ $label }}</a></li>
-        @endif
+        <li>{{ $loop->last ? $label : html()->a($url, $label) }}</li>
     @endforeach
 </ol>
-<script type="application/ld+json">{!! json_encode($json) !!}</script>
+
+@pushOnce('stack_headers')
+<script type="application/ld+json">@json($json)</script>
+@endPushOnce

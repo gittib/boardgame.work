@@ -42,7 +42,7 @@ if (!$isPreview) {
 @endif
 @endsection
 
-@section('contents')
+@pushOnce('stack_headers')
 <script id="initial_adjust_scenario_font_size">
 if (Number(localStorage.scenarioFontSize) > 0) {
     const fontSize = Number(localStorage.scenarioFontSize);
@@ -56,7 +56,9 @@ if (Number(localStorage.scenarioFontSize) > 0) {
     });
 }
 </script>
+@endPushOnce
 
+@section('contents')
 <div class="title_wrapper">
     <h1>@lang('惨劇脚本 :set', ['set' => $scenario->setName])</h1>
 
