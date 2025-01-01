@@ -71,7 +71,7 @@ class TragedySet extends Model
         }
 
         $fragments = TragedyRole::where('code', 'Fragments')->firstOrFail();
-        if ($roles->some(fn($it) => $it->id == $fragments->id)) {
+        if (!$roles->some(fn($it) => $it->id == $fragments->id)) {
             $roles[] = $fragments;
         }
 
