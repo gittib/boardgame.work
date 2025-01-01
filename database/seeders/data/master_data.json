@@ -1216,6 +1216,10 @@
         "Vampire": {
             "hostility_type": 1,
             "is_immortality": true
+        },
+        "Zombie": {
+            "hostility_type": 0,
+            "is_immortality": false
         }
     },
     "charaMaster": {

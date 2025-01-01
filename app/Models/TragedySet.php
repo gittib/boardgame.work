@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class TragedySet extends Model
 {
@@ -59,24 +60,29 @@ class TragedySet extends Model
     }
 
     /** 偽装事件を含むかどうか */
-    public function getHasFalsifiedIncidentsAttribute():bool {
+    public function getHasFalsifiedIncidentsAttribute(): bool {
         return !empty($this->incidents->first(fn($i) => $i->code == 'FalsifiedIncidents'));
     }
 
-    public function getRolesAttribute() {
+    public function getRolesAttribute(): Collection {
         $roles = $this->rules->reduce(fn($roles, $rule) => ($roles ?? collect())->concat($rule->roles))->unique('id');
+        if ($this->rules->some(fn($it) => $it->code == 'He-Who-Rises-from-the-Grave')) {
+            $roles[] = TragedyRole::where('code', 'Zombie')->firstOrFail();
+        }
+
         $fragments = TragedyRole::where('code', 'Fragments')->firstOrFail();
-        if (empty($roles->first(fn($r) => $r->id == $fragments->id))) {
+        if ($roles->some(fn($it) => $it->id == $fragments->id)) {
             $roles[] = $fragments;
         }
+
         return $roles;
     }
 
-    public function getRuleYsAttribute() {
-        return $this->rules->filter(fn($r) => $r->is_y);
+    public function getRuleYsAttribute(): Collection {
+        return $this->rules->filter(fn($it) => $it->is_y);
     }
-    public function getRuleXsAttribute() {
-        return $this->rules->filter(fn($r) => !$r->is_y);
+    public function getRuleXsAttribute(): Collection {
+        return $this->rules->filter(fn($it) => !$it->is_y);
     }
 
     public function getSummaryQrUrlAttribute():?string {
