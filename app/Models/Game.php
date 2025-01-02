@@ -12,6 +12,7 @@ class Game extends Model
     protected $guarded = ['id'];
 
     protected $hidden = [
+        'deleted_at',
     ];
 
     protected $appends = [
@@ -20,19 +21,17 @@ class Game extends Model
     protected $casts = [
         'started_at' => 'datetime',
         'ended_at' => 'datetime',
+        'game_state' => 'json',
     ];
 
     // relations
     public function effects() {
-        return $this->hasMany(Effect::class);
+        return $this->hasMany(Effect::class)->orderBy('id');
     }
 
-    //public function likes() {
-    //    return $this->belongsToMany(User::class, 'like_scenario');
-    //}
-    //public function bookmarks() {
-    //    return $this->belongsToMany(User::class, 'bookmark_scenario');
-    //}
+    public function scenario() {
+        return $this->belongsTo(Scenario::class);
+    }
 
     // scope
     public function scopeWhereStarted($query) {

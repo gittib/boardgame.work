@@ -30,9 +30,11 @@ $bodyClass = 'game-show';
 @endsection
 
 @section('additional_scripts')
-<script>
-const SKYWAY_APP_ID = "{{ config('define.app_id') }}";
-</script>
+<div id="env-params"
+    data-gameId="{{ $game->id }}"
+    data-logLevel="{{ config('define.skyway.log_level') }}"
+    data-initial_api_url="{{ route('game.initial_api', ['game' => $game->id]) }}"
+></div>
 <script>
 (() => {
     let moousePoint = {x:0, y:0};

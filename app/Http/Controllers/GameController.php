@@ -95,6 +95,15 @@ class GameController extends Controller
         return view('game.show', compact('breads', 'game'));
     }
 
+    /**
+     * ページアクセス時にゲームの現状をロードする
+     * TODO: 途中
+     */
+    public function initialApi(Game $game): array {
+        $game->load('scenario', 'effects');
+        return $game->toArray();
+    }
+
     private function getBreads($year, $month, $day, ?Game $game): array {
         $breads = [
             __('TOP') => route('top.index'),

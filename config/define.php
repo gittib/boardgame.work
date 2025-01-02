@@ -27,5 +27,6 @@ return [
     'skyway' => [
         'app_id' => env('SKYWAY_APP_ID'),
         'secret_key' => env('SKYWAY_SECRET_KEY'),
+        'log_level' => env('SKYWAY_LOG_LEVEL', 'warn'),
     ],
 ];

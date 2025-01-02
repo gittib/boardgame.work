@@ -48,6 +48,9 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
     Route::prefix('game')->name('game.')->group(function() {
         Route::get('/{year?}/{month?}/{day?}', 'GameController@index')->whereNumber(['year', 'month', 'day'])->name('index');
         Route::get('/{year}/{month}/{day}/{game}', 'GameController@show')->whereNumber(['year', 'month', 'day', 'game'])->name('show');
+        Route::middleware('json')->withoutMiddleware('parse_html')->prefix('api')->group(function() {
+            Route::get('{game}', 'GameController@initialApi')->whereNumber('game')->name('initial_api');
+        });
     });
 
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
