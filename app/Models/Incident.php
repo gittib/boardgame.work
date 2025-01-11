@@ -35,4 +35,9 @@ class Incident extends Model
         $code = $this->attributes['code'];
         return __("tragedy_master.incident.{$code}.note");
     }
+
+    public function getIsSpecialAttribute():bool {
+        if ($this->is_crowd) return true;
+        return false;
+    }
 }
