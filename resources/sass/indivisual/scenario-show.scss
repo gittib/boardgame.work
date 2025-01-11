@@ -235,10 +235,10 @@
                             margin-top: 0;
                             width: fit-content;
                             font-family: parts.$tragedy_font;
-                            font-size: 0.85em;
+                            font-size: 0.9em;
 
                             &.rule_y {
-                                font-size: 1em;
+                                font-size: 1.1em;
                             }
                         }
 
@@ -250,7 +250,7 @@
                             font-size: 0.9em;
 
                             &.rule_y {
-                                font-size: 1.2em;
+                                font-size: 1.1em;
                             }
 
                             span.crazy_rule_y {
@@ -293,6 +293,7 @@
 
                                 &.name {
                                     line-height: 1.25;
+                                    text-align: center;
                                 }
 
                                 &.note {
@@ -392,11 +393,12 @@
             font-size: 1rem;
         }
 
-        dl {
+        dl.documents {
             margin-bottom: 40px;
 
             dt {
                 margin-top: 40px;
+                font-size: 1.1em;
             }
         }
     }

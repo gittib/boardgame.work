@@ -278,7 +278,7 @@ if (Number(localStorage.scenarioFontSize) > 0) {
                 ->class('show_initial_board_wrapper') }}
         </div>
 
-        <dl>
+        <dl class="documents">
             <dt>@lang('脚本の特徴')</dt>
             <dd class="feature"><div>{!! nl2br(e($scenario->feature ?: __('まだ記載がありません。'))) !!}</div></dd>
 

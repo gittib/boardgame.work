@@ -83,4 +83,11 @@ class ScenarioIncident extends Model
             return $this->criminal?->name ?? '？？？？';
         }
     }
+
+    /**
+     * 特殊な事件かどうか
+     */
+    public function getIsSpecialAttribute():bool {
+        return $this->incident->is_special;
+    }
 }
