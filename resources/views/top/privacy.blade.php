@@ -1,6 +1,6 @@
 <?php
 $app_link = '<a href="'.config('define.app_url.android').'">'.__('惨劇RoopeR アプリ').'</a>';
-$auther_link = '<a href="https://twitter.com/gittib_gittib">ペンスキー</a>';
+$auther_link = '<a href="'.config('define.auther.url').'">'.__(config('define.auther.name')).'</a>';
 ?>
 @extends('layouts.layout')
 
