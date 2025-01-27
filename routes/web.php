@@ -48,7 +48,8 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
     Route::post('file/file/upload/chunk', 'FileController@uploadFirstChunk')->name('file.upload.chunk.first');
     Route::post('file/file/upload/chunk/{media}', 'FileController@uploadChunk')->name('file.upload.chunk.add');
 
-    Route::view('privacy', 'top.privacy');
+    Route::view('privacy', 'top.privacy')->name('top.privacy');
+    Route::get('about', 'TopController@about')->name('top.about');
 });
 
 Route::fallback(fn() => response()->view('errors.404', [], 404));

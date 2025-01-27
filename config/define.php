@@ -23,4 +23,9 @@ return [
     ],
 
     'rei_url' => 'https://main-bakafire.ssl-lolipop.jp/rooper/10th/rei.html',
+
+    'auther' => [
+        'name' => 'ペンスキー',
+        'url' => 'https://x.com/gittib_gittib',
+    ],
 ];
