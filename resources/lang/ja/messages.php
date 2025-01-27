@@ -10,7 +10,7 @@ return [
 
     'official_url' => 'http://bakafire.main.jp/rooper/sr_top.htm',
 
-    'what_is_this' => 'こちらは、<span>:trlinkの脚本を</span><span>共有できるWebサイトです。</span>どなたでも脚本を閲覧でき、またTwitterアカウントがあれば<span>自由に脚本を</span><span>作成・公開</span><span>することが</span><span>できます。</span>',
+    'what_is_this' => 'こちらは、<span>:trLinkの脚本を</span><span>共有できるWebサイトです。</span>どなたでも脚本を閲覧でき、またTwitterアカウントがあれば<span>自由に脚本を</span><span>作成・公開</span><span>することが</span><span>できます。</span><span>詳しくは:aboutLink。</span>',
     'footer' => '本サイトはBakaFire Partyのゲーム「:trlink」のファンサイトです。本サイトについてのお問い合わせは、:managerまでご連絡ください。',
     'loop_day_summary' => [
         'loops' => '<span class="loop">:count</span>ループ',
