@@ -16,6 +16,7 @@ if (!$isPreview) {
 } else {
     $thisUrl = route('my-scenario.preview');
 }
+$pageType = \App\Enums\PageType::Scenario;
 ?>
 @extends('layouts.layout')
 
@@ -27,19 +28,7 @@ if (!$isPreview) {
 @section('body_class', $bodyClass)
 
 @section('bread')
-@if($isQuiz)
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('指針クイズ一覧') => route('scenario.quiz-index'),
-    __('惨劇脚本 :set', ['set' => $scenario->setName]) => $thisUrl,
-]])
-@else
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('脚本一覧') => route('scenario.index'),
-    __('惨劇脚本 :set', ['set' => $scenario->setName]) => $thisUrl,
-]])
-@endif
+<x-breadcrumbs :pageType=$pageType :scenario=$scenario />
 @endsection
 
 @pushOnce('stack_headers')

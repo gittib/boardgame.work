@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Enums\PageType;
 use App\Models\Scenario;
+use App\Utils\BreadcrumbGenerator;
 use Auth;
+use Illuminate\Http\Request;
 
 class ScenarioController extends Controller
 {
@@ -15,6 +17,7 @@ class ScenarioController extends Controller
      */
     public function index(Request $request)
     {
+        (new BreadcrumbGenerator)->setLastList(PageType::ScenarioList);
         $query = Scenario::with([
             'writer',
             'set',
@@ -45,6 +48,7 @@ class ScenarioController extends Controller
     }
     public function quizIndex(Request $request)
     {
+        (new BreadcrumbGenerator)->setLastList(PageType::QuizList);
         $query = Scenario::with([
             'writer',
             'set',
