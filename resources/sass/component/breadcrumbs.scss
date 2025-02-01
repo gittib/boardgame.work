@@ -1,0 +1,22 @@
+@use '../parts';
+
+ol.breadcrumb {
+    display: flex;
+    font-size: 12px;
+    padding: 4px;
+    margin-bottom: 4px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    > li {
+        margin-left: 6px;
+        white-space: nowrap;
+
+        &:before {
+            content: '>';
+        }
+        &:first-child:before {
+            content: '';
+        }
+    }
+}

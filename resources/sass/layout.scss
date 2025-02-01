@@ -109,24 +109,6 @@ header {
     }
 }
 
-ol.breadcrumb {
-    display: flex;
-    font-size: 12px;
-    margin: 4px;
-    margin-bottom: 8px;
-
-    > li {
-        margin-left: 6px;
-
-        &:before {
-            content: '>';
-        }
-        &:first-child:before {
-            content: '';
-        }
-    }
-}
-
 main {
     width: 100%;
     padding: 0;
