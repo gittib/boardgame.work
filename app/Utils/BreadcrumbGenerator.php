@@ -18,6 +18,13 @@ class BreadcrumbGenerator {
                     'url' => route('top.index'),
                 ],
             ];
+        case PageType::About:
+            $breads = $this->getBreadcrumbs(PageType::Top, $params);
+            $breads[] = [
+                'label' => __('惨劇RoopeR脚本データベースについて'),
+                'url' => route('top.about'),
+            ];
+            return $breads;
         case PageType::ScenarioList:
             $breads = $this->getBreadcrumbs(PageType::Top, $params);
             $breads[] = [
@@ -46,11 +53,27 @@ class BreadcrumbGenerator {
                 'url' => route('my-scenario.bookmarks'),
             ];
             return $breads;
+        case PageType::CreateScenario:
+            $scenario = $params['scenario'] ?? new Scenario;
+            if (!empty(session('last_list'))) {
+                $breads = $this->getBreadcrumbs(session('last_list'), $params);
+            } else {
+                $breads = $this->getBreadcrumbs(PageType::MyPage, $params);
+            }
+            if (!empty($scenario->id)) {
+                $breads[] = [
+                    'label' => __('惨劇脚本 :set', ['set' => $scenario->setName]),
+                    'url' => route('scenario.show', ['scenario' => $scenario->id]),
+                ];
+            }
+            $breads[] = [
+                'label' => __('脚本作成'),
+                'url' => route('my-scenario.create'),
+            ];
+            return $breads;
         case PageType::Scenario:
             $scenario = $params['scenario'] ?? new Scenario;
-            if (!empty($params['prev'])) {
-                $breads = $this->getBreadcrumbs($params['prev'], $params);
-            } else if (!empty(session('last_list'))) {
+            if (!empty(session('last_list'))) {
                 $breads = $this->getBreadcrumbs(session('last_list'), $params);
             } else if ($scenario->is_quiz) {
                 $breads = $this->getBreadcrumbs(PageType::QuizList, $params);

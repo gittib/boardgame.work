@@ -9,11 +9,7 @@ $bodyClass = 'my_scenario-bookmarks';
 @section('body_class', $bodyClass)
 
 @section('bread')
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('マイページ') => route('my-scenario.index'),
-    __('ブックマーク一覧') => route('my-scenario.bookmarks'),
-]])
+<x-breadcrumbs :pageType=\App\Enums\PageType::Bookmarks />
 @endsection
 
 @section('contents')

@@ -16,7 +16,7 @@ if (!$isPreview) {
 } else {
     $thisUrl = route('my-scenario.preview');
 }
-$pageType = \App\Enums\PageType::Scenario;
+$pageType = $isPreview ? \App\Enums\PageType::ScenarioPreview : \App\Enums\PageType::Scenario;
 ?>
 @extends('layouts.layout')
 

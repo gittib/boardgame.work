@@ -9,10 +9,7 @@ $bodyClass = 'scenario-index';
 @section('body_class', $bodyClass)
 
 @section('bread')
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('脚本一覧') => route('scenario.index'),
-]])
+<x-breadcrumbs :pageType=\App\Enums\PageType::ScenarioList />
 @endsection
 
 @section('contents')

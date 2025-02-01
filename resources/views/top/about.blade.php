@@ -9,10 +9,7 @@
 @endPushOnce
 
 @section('bread')
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('惨劇RoopeR脚本データベースについて') => route('top.about'),
-]])
+<x-breadcrumbs :pageType=\App\Enums\PageType::About />
 @endsection
 
 @section('contents')
