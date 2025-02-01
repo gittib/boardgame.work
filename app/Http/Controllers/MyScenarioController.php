@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Enums\PageType;
 use App\Models\TragedySet;
 use App\Models\TragedyRule;
 use App\Models\TragedyRole;
@@ -13,6 +14,7 @@ use App\Models\Scenario;
 use App\Models\ScenarioCharacter;
 use App\Models\ScenarioIncident;
 use App\Http\Requests\PostScenario;
+use App\Utils\BreadcrumbGenerator;
 use Auth;
 use DB;
 use Exception;
@@ -28,6 +30,7 @@ class MyScenarioController extends Controller
      */
     public function index()
     {
+        (new BreadcrumbGenerator)->setLastList(PageType::MyPage);
         $sets = TragedySet::get();
         $scenarios = Auth::user()->scenarios()
             ->with('likes')
@@ -305,6 +308,7 @@ class MyScenarioController extends Controller
     }
 
     public function bookmarks() {
+        (new BreadcrumbGenerator)->setLastList(PageType::Bookmarks);
         $sets = TragedySet::get();
         $bookmarks = Auth::user()->bookmarkScenarios()
             ->with('likes', 'writer')

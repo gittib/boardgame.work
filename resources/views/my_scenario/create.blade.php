@@ -33,20 +33,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
 @section('body_class', $bodyClass)
 
 @section('bread')
-@if($isEdit)
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('脚本一覧') => route('scenario.index'),
-    __('惨劇脚本 :set', ['set' => $scenario->set->name]) => route('scenario.show', ['scenario' => $scenario->id]),
-    __('脚本作成') => route('my-scenario.create'),
-]])
-@else
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('マイページ') => route('my-scenario.index'),
-    __('脚本作成') => route('my-scenario.create'),
-]])
-@endif
+<x-breadcrumbs :pageType=\App\Enums\PageType::CreateScenario :scenario=$scenario />
 @endsection
 
 @section('contents')

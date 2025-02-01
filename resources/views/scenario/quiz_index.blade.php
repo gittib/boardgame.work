@@ -9,10 +9,7 @@ $bodyClass = 'scenario-index is_quiz';
 @section('body_class', $bodyClass)
 
 @section('bread')
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('指針クイズ一覧') => route('scenario.quiz-index'),
-]])
+<x-breadcrumbs :pageType=\App\Enums\PageType::QuizList />
 @endsection
 
 @section('contents')

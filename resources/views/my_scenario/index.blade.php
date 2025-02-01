@@ -8,10 +8,7 @@ $bodyClass = 'my_scenario-index';
 @section('body_class', $bodyClass)
 
 @section('bread')
-@include('layouts.bread', ['breads' => [
-    __('TOP') => route('top.index'),
-    __('マイページ') => route('my-scenario.index'),
-]])
+<x-breadcrumbs :pageType=\App\Enums\PageType::MyPage />
 @endsection
 
 @section('contents')
