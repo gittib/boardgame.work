@@ -27,6 +27,7 @@ $isAdmin ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
             <link rel="canonical" href="@yield('canonical_url')">
         @endif
 
+        <x-admin_layout_css :isAdmin=$isAdmin />
         @stack('stack_headers')
 
         @if(config('app.env') == 'production')
@@ -48,10 +49,6 @@ $isAdmin ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
     <body class="@yield('body_class')">
         <div class="contents_wrapper">
             @include('layouts.header')
-
-            @if(!empty($isAdmin))
-                <div class="admin_header">Admin</div>
-            @endif
 
             @yield('bread')
 
