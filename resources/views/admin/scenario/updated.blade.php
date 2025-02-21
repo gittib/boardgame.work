@@ -7,6 +7,18 @@ $bodyClass = 'admin-scenario-updated';
 
 @section('body_class', $bodyClass)
 
+@push('stack_headers')
+<style>
+.admin-scenario-updated .scenario_list > li {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    column-gap: .3em;
+    border-bottom: double;
+}
+</style>
+@endpush
+
 @section('contents')
 <h1>脚本更新状況</h1>
 
