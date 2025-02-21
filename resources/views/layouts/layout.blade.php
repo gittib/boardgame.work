@@ -1,3 +1,6 @@
+<?php
+$isAdmin ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -45,6 +48,10 @@
     <body class="@yield('body_class')">
         <div class="contents_wrapper">
             @include('layouts.header')
+
+            @if(!empty($isAdmin))
+                <div class="admin_header">Admin</div>
+            @endif
 
             @yield('bread')
 
