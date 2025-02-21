@@ -50,6 +50,11 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
 
     Route::view('privacy', 'top.privacy')->name('top.privacy');
     Route::get('about', 'TopController@about')->name('top.about');
+
+    Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware('admin')->group(function() {
+        Route::get('scenario/updated', 'ScenarioController@updated')->name('scenario.updated');
+        Route::any('/', fn() => redirect()->route('admin.scenario.updated'));
+    });
 });
 
 Route::fallback(fn() => response()->view('errors.404', [], 404));
