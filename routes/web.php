@@ -52,8 +52,8 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
     Route::get('about', 'TopController@about')->name('top.about');
 
     Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware('admin')->group(function() {
+        Route::get('/', 'TopController@index')->name('index');
         Route::get('scenario/updated', 'ScenarioController@updated')->name('scenario.updated');
-        Route::any('/', fn() => redirect()->route('admin.scenario.updated'));
     });
 });
 

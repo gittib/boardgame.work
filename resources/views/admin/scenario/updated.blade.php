@@ -15,9 +15,10 @@ $bodyClass = 'admin-scenario-updated';
         @foreach($scenarios as $scenario)
         <li>
             <p>[{{ $scenario->id }}]</p>
-            <p>{{ $scenario->created_at->format('Y/m/d H:i:s') }} 作成</p>
-            <p>{{ $scenario->updated_at->format('Y/m/d H:i:s') }} 更新</p>
+            <p>{{ $scenario->set->abbr }}</p>
             <p>{{ $scenario->writer?->name }}</p>
+            <p>更新：{{ $scenario->updated_at->format('Y/m/d H:i:s') }}</p>
+            <p>作成：{{ $scenario->created_at->format('Y/m/d H:i:s') }}</p>
         </li>
         @endforeach
     </ul>

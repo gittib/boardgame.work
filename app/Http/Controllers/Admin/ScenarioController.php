@@ -16,7 +16,7 @@ class ScenarioController extends Controller
             'likes',
         ])
         ->orderByDesc('updated_at')
-        ->limit(30)
+        ->limit(10)
         ->get();
         return view('admin.scenario.updated', compact('scenarios'));
     }
