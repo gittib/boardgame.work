@@ -36,3 +36,9 @@ $bodyClass ??= '';
         <label for="menu_toggle" class="menu_bg_filter">&nbsp;</label>
     </div>
 </header>
+
+@if(!empty($isAdminPage ?? false))
+<div class="admin_header">
+    {{ html()->a(route('admin.index'), 'Admin') }}
+</div>
+@endif

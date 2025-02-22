@@ -1,14 +1,14 @@
 <?php
 namespace App\Enums;
 
-enum PageType {
-    case Top;
-    case About;
-    case ScenarioList;
-    case MyPage;
-    case Bookmarks;
-    case Scenario;
-    case CreateScenario;
-    case ScenarioPreview;
-    case QuizList;
+enum PageType: String {
+    case Top = 'Top';
+    case About = 'About';
+    case ScenarioList = 'ScenarioList';
+    case MyPage = 'MyPage';
+    case Bookmarks = 'Bookmarks';
+    case Scenario = 'Scenario';
+    case CreateScenario = 'CreateScenario';
+    case ScenarioPreview = 'ScenarioPreview';
+    case QuizList = 'QuizList';
 }

@@ -1,3 +1,6 @@
+<?php
+$isAdminPage ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,6 +27,7 @@
             <link rel="canonical" href="@yield('canonical_url')">
         @endif
 
+        <x-admin_layout_css :isAdminPage=$isAdminPage />
         @stack('stack_headers')
 
         @if(config('app.env') == 'production')
