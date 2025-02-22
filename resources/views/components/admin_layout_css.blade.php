@@ -1,8 +1,8 @@
 @props([
-    'isAdmin',
+    'isAdminPage',
 ])
 
-@if(!empty($isAdmin ?? false))
+@if(!empty($isAdminPage ?? false))
 <style>
 .admin_header {
     text-align: center;

@@ -37,7 +37,7 @@ $bodyClass ??= '';
     </div>
 </header>
 
-@if(!empty($isAdmin ?? false))
+@if(!empty($isAdminPage ?? false))
 <div class="admin_header">
     {{ html()->a(route('admin.index'), 'Admin') }}
 </div>

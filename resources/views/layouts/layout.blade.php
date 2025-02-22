@@ -1,5 +1,5 @@
 <?php
-$isAdmin ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
+$isAdminPage ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -27,7 +27,7 @@ $isAdmin ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
             <link rel="canonical" href="@yield('canonical_url')">
         @endif
 
-        <x-admin_layout_css :isAdmin=$isAdmin />
+        <x-admin_layout_css :isAdminPage=$isAdminPage />
         @stack('stack_headers')
 
         @if(config('app.env') == 'production')
