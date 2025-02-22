@@ -6,10 +6,11 @@ use App\Models\Scenario;
 
 class BreadcrumbGenerator {
     public function setLastList(PageType $pageType) {
-        session(['last_list' => $pageType]);
+        \Cookie::queue('last_visit_list', $pageType->value, 60*24*180);
     }
 
     public function getBreadcrumbs(PageType $pageType, array $params = []) {
+        $lastVisitPage = PageType::tryFrom(request()->cookie('last_visit_list'));
         switch($pageType) {
         case PageType::Top:
             return [
@@ -55,8 +56,8 @@ class BreadcrumbGenerator {
             return $breads;
         case PageType::CreateScenario:
             $scenario = $params['scenario'] ?? new Scenario;
-            if (!empty(session('last_list'))) {
-                $breads = $this->getBreadcrumbs(session('last_list'), $params);
+            if (!empty($lastVisitPage)) {
+                $breads = $this->getBreadcrumbs($lastVisitPage, $params);
             } else {
                 $breads = $this->getBreadcrumbs(PageType::MyPage, $params);
             }
@@ -73,8 +74,8 @@ class BreadcrumbGenerator {
             return $breads;
         case PageType::Scenario:
             $scenario = $params['scenario'] ?? new Scenario;
-            if (!empty(session('last_list'))) {
-                $breads = $this->getBreadcrumbs(session('last_list'), $params);
+            if (!empty($lastVisitPage)) {
+                $breads = $this->getBreadcrumbs($lastVisitPage, $params);
             } else if ($scenario->is_quiz) {
                 $breads = $this->getBreadcrumbs(PageType::QuizList, $params);
             } else {
