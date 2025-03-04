@@ -53,7 +53,7 @@ class User extends Authenticatable
     /** このサイトに脚本を投稿している人で絞り込み */
     public function scopeWhereHasScenario(Builder $query): Builder {
         return $query->whereHas('scenarios', function(Builder $q) {
-            $q->whereVisible();
+            $q->whereOpen();
         });
     }
 }
