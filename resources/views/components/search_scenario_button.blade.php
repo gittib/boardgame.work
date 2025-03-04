@@ -1,5 +1,5 @@
 <div class="button_wrapper">
-    <p class="button js-narrow_set">@lang('惨劇セットで絞り込む')</p>
+    <p class="button js-narrow_set">@lang('脚本検索')</p>
 </div>
 
 @pushOnce('stack_scripts')
