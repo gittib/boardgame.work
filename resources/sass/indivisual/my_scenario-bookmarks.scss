@@ -3,7 +3,7 @@
 .my_scenario-bookmarks {
     main {
         div.frame {
-            width: fit-content;
+            width: 100%;
             margin: auto;
 
             .no_bookmarks {
@@ -11,8 +11,8 @@
             }
 
             .bookmark_scenario_list {
-                width: 95%;
-                max-width: 520px;
+                width: 100%;
+                max-width: 480px;
                 margin: 20px auto;
                 padding: 0 8px;
             }

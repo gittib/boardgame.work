@@ -4,6 +4,7 @@ li.list_item_script {
     $scenario_border: solid 1px black;
     border-bottom: $scenario_border;
     padding: 8px;
+    width: 100%;
 
     &:first-child {
         border-top: $scenario_border;
@@ -24,6 +25,7 @@ li.list_item_script {
         }
         &.summary_wrapper {
             flex-wrap: wrap;
+            column-gap: 6px;
 
             .abbr_wrapper {
                 min-width: 42px;
@@ -56,7 +58,6 @@ li.list_item_script {
 
         .loop_day_summary {
             font-size: 0.9em;
-            margin: 0 12px 0 2px;
 
             > span {
                 font-size: 1.5em;
