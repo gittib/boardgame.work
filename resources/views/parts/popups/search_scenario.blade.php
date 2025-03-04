@@ -2,6 +2,7 @@
 <?php
 $sets ??= App\Models\TragedySet::get();
 $setsForSel = $sets->mapWithKeys(fn($s) => [$s->abbr => $s->name]);
+$writersForSel = App\Models\User::whereHasScenario()->orderBy('name')->get()->mapWithKeys(fn($it) => [$it->id => $it->name]);
 $difficultSel = [];
 for ($i = 0 ; $i <= 8 ; $i++) {
     $txt = '';
@@ -29,6 +30,15 @@ for ($i = 0 ; $i <= 8 ; $i++) {
                     <dd>
                         <span class="select_wrapper">{{ html()->select('set', $setsForSel)
                             ->value(request()->set)
+                            ->placeholder('&nbsp;')
+                        }}</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>@lang('作者')</dt>
+                    <dd>
+                        <span class="select_wrapper">{{ html()->select('writer', $writersForSel)
+                            ->value(request()->writer)
                             ->placeholder('&nbsp;')
                         }}</span>
                     </dd>
