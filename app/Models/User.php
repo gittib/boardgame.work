@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,12 @@ class User extends Authenticatable
 
     public function likeScenarios() {
         return $this->belongsToMany(Scenario::class, 'like_scenario')->whereVisible()->with('set');
+    }
+
+    /** このサイトに脚本を投稿している人で絞り込み */
+    public function scopeWhereHasScenario(Builder $query): Builder {
+        return $query->whereHas('scenarios', function(Builder $q) {
+            $q->whereOpen();
+        });
     }
 }
