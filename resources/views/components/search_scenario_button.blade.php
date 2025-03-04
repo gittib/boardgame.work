@@ -1,7 +1,20 @@
-@once
+<div class="button_wrapper">
+    <p class="button js-narrow_set">@lang('脚本検索')</p>
+</div>
+
+@pushOnce('stack_scripts')
+<script>
+$('.js-narrow_set').on('click', async () => {
+    const res = await openPopup('js-popup-search_scenario');
+});
+</script>
+@endPushOnce
+
+@pushOnce('stack_popups')
 <?php
 $sets ??= App\Models\TragedySet::get();
 $setsForSel = $sets->mapWithKeys(fn($s) => [$s->abbr => $s->name]);
+$writersForSel = App\Models\User::whereHasScenario()->orderBy('name')->get()->mapWithKeys(fn($it) => [$it->id => $it->name]);
 $difficultSel = [];
 for ($i = 0 ; $i <= 8 ; $i++) {
     $txt = '';
@@ -34,6 +47,15 @@ for ($i = 0 ; $i <= 8 ; $i++) {
                     </dd>
                 </dl>
                 <dl>
+                    <dt>@lang('作者')</dt>
+                    <dd>
+                        <span class="select_wrapper">{{ html()->select('writer', $writersForSel)
+                            ->value(request()->writer)
+                            ->placeholder('&nbsp;')
+                        }}</span>
+                    </dd>
+                </dl>
+                <dl>
                     <dt>@lang('難易度')</dt>
                     <dd class="difficult_setting">
                         <span class="select_wrapper">{{ html()->select('dif_min', $difficultSel)
@@ -54,4 +76,4 @@ for ($i = 0 ; $i <= 8 ; $i++) {
         </div>
     </div>
 </section>
-@endonce
+@endPushOnce
