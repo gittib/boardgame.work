@@ -1,4 +1,16 @@
-@once
+<div class="button_wrapper">
+    <p class="button js-narrow_set">@lang('惨劇セットで絞り込む')</p>
+</div>
+
+@pushOnce('stack_scripts')
+<script>
+$('.js-narrow_set').on('click', async () => {
+    const res = await openPopup('js-popup-search_scenario');
+});
+</script>
+@endPushOnce
+
+@pushOnce('stack_popups')
 <?php
 $sets ??= App\Models\TragedySet::get();
 $setsForSel = $sets->mapWithKeys(fn($s) => [$s->abbr => $s->name]);
@@ -64,4 +76,4 @@ for ($i = 0 ; $i <= 8 ; $i++) {
         </div>
     </div>
 </section>
-@endonce
+@endPushOnce

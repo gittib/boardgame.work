@@ -17,11 +17,7 @@ $bodyClass = 'scenario-index';
 
 <div class="">
 
-{{-- TODO: 検索条件を表示 --}}
-
-    <div class="button_wrapper">
-        <p class="button js-narrow_set">@lang('惨劇セットで絞り込む')</p>
-    </div>
+    <x-search_scenario_button />
 
     <div class="button_wrapper">
         <div class="button js-show_title">@lang('脚本名を表示')</div>
@@ -36,6 +32,8 @@ $bodyClass = 'scenario-index';
         @endforelse
     </ul>
 
+    <x-search_scenario_button />
+
     <x-paginator_link :paginator="$scenarios" />
 
 </div>
@@ -46,10 +44,6 @@ $bodyClass = 'scenario-index';
         {{ html()->hidden()->name('set_abbr') }}
     </form>
 </div>
-@endsection
-
-@section('popups')
-@include('parts.popups.search_scenario')
 @endsection
 
 @section('additional_scripts')
@@ -66,9 +60,6 @@ $('.js-hide_title').on('click', () => {
     $('ul.scenario_list .title').hide();
     $('.js-hide_title').hide();
     $('.js-show_title').show();
-});
-$('.js-narrow_set').on('click', async () => {
-    const res = await openPopup('js-popup-search_scenario');
 });
 </script>
 @endsection
