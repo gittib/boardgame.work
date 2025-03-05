@@ -32,6 +32,9 @@
         </a>
     </div>
     @endif
+    @if(!empty($scenario->public_message))
+    <p class="public_message">{{ $scenario->public_message }}</p>
+    @endif
     <div class="row summary_wrapper">
         <span class="abbr_wrapper">
             <span class="set_abbr {{ $scenario->set?->abbr }}">{{ $scenario->setAbbr }}</span>
@@ -53,7 +56,4 @@
             </span>
         </span>
     </div>
-    @if(!empty($scenario->public_message))
-    <p class="public_message">{{ $scenario->public_message }}</p>
-    @endif
 </li>

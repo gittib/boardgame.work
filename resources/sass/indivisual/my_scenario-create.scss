@@ -122,6 +122,12 @@ body.my_scenario-create {
             width: 90%;
             margin: auto;
         }
+
+        .is-error {
+            background-color: parts.$error_background_color;
+            padding: 0 4px;
+            margin-bottom: 4px;
+        }
     }
 
     .scenario_text {
