@@ -113,12 +113,14 @@ body.my_scenario-create {
         }
     }
 
-    .scenario_title {
+    .scenario_title, .public_message {
         display: flex;
+        flex-direction: column;
         justify-content: center;
 
-        input {
+        > * {
             width: 90%;
+            margin: auto;
         }
     }
 

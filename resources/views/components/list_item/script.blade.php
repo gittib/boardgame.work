@@ -53,4 +53,7 @@
             </span>
         </span>
     </div>
+    @if(!empty($scenario->public_message))
+    <p class="public_message">{{ $scenario->public_message }}</p>
+    @endif
 </li>

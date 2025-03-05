@@ -422,6 +422,7 @@ class MyScenarioController extends Controller
         $scenario->feature = $request->feature;
         $scenario->story = $request->story;
         $scenario->advice = $request->advice;
+        $scenario->public_message = $request->public_message;
         $scenario->is_open = isset($request->is_open);
         $scenario->is_quiz = isset($request->is_quiz);
         $scenario->is_plus = isset($request->is_plus);

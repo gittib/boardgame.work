@@ -85,6 +85,14 @@ li.list_item_script {
         }
     }
 
+    .public_message {
+        font-size: .85em;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+    }
+
     .title {
         display: none;
 
