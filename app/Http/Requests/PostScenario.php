@@ -29,6 +29,7 @@ class PostScenario extends FormRequest
             'scenario_chara.*.character_id' => 'distinct',
             'feature' => 'required_with:is_open',
             'advice' => 'required_with:is_open',
+            'public_message' => 'nullable|string|max:40',
         ];
     }
 
@@ -48,6 +49,7 @@ class PostScenario extends FormRequest
             'scenario_chara.*.character_id' => __('登場人物'),
             'feature' => __('脚本の特徴'),
             'advice' => __('脚本家への指針'),
+            'public_message' => __('公開用ひとことコメント'),
         ];
     }
 }

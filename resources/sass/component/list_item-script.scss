@@ -34,6 +34,10 @@ li.list_item_script {
 
         .writer {
             font-size: 0.8em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: calc(100% - 7em);
         }
         .open_now {
             background-color: gold;
@@ -78,6 +82,18 @@ li.list_item_script {
                 display: inline-block;
                 min-width: 1em;
             }
+        }
+    }
+
+    .public_message {
+        font-size: .85em;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+
+        &:hover {
+            white-space: wrap;
         }
     }
 
