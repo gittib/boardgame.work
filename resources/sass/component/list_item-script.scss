@@ -91,6 +91,10 @@ li.list_item_script {
         overflow: hidden;
         max-width: 100%;
         text-overflow: ellipsis;
+
+        &:hover {
+            white-space: wrap;
+        }
     }
 
     .title {

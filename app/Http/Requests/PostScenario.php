@@ -29,7 +29,7 @@ class PostScenario extends FormRequest
             'scenario_chara.*.character_id' => 'distinct',
             'feature' => 'required_with:is_open',
             'advice' => 'required_with:is_open',
-            'public_message' => 'nullable|string|max:30',
+            'public_message' => 'nullable|string|max:40',
         ];
     }
 
