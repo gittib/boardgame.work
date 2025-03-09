@@ -7,7 +7,7 @@ git push && \
 composer install && \
 php artisan db:seed "Database\Seeders\InitializeMasterData" \
 npm ci && \
-npm run prod && \
+npm run build && \
 php artisan view:cache && \
 php artisan config:cache && \
 php artisan route:cache

@@ -22,6 +22,8 @@ return [
 Please note that ":ll" and ":ahr" already handle :hope_c and :despair_c, so :plus_script cannot be created for them.',
     'expansion_rei' => 'レイ',
 
+    'spoiler_alert' => '主人公として脚本を遊ぶ予定がある場合、脚本の詳細ページを見ないようにしてください。脚本の非公開シートやプレイガイドを見てしまうとネタバレになり、主人公プレイヤーとしてゲームに参加できなくなる可能性があります。',
+
     'what_is_advice_quiz' => 'Quiz for the Mastermind is quiz game that guesses the Hints for the Mastermind after checking the Open card and the Secret card.',
     'what_is_advice_quiz_more' => 'When you open the Script, the Secret card will be displayed from the beginning, so please think about how to handle the Script.',
     'show_only_quiz_list' => 'Scripts set to Quiz for the Mastermind will not appear in the normal list of Scripts.',

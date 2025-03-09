@@ -21,6 +21,8 @@ return [
     'what_is_plus' => ':plus_scriptとは、惨劇RoopeR 10周年で登場した大型拡張「<a href=":rei_url" target="_blank">:rei</a>」で追加された選択ルールです。<br>:plus_scriptでは:hope_cと:despair_cを扱うことができます。これらを扱う「:sekaisen」「:fragment」「:hope」「:despair」は:plus_scriptでのみ採用可能です。<br><br>なお、:ll と :ahr は元から:hope_cと:despair_cを扱うため、:plus_scriptは作成できません。',
     'expansion_rei' => 'レイ',
 
+    'spoiler_alert' => '主人公として脚本を遊ぶ予定がある場合、脚本の詳細ページを見ないようにしてください。脚本の非公開シートやプレイガイドを見てしまうとネタバレになり、主人公プレイヤーとしてゲームに参加できなくなる可能性があります。',
+
     'what_is_advice_quiz' => '脚本家への指針クイズとは、公開シート・非公開シートを確認した上で脚本家への指針を言い当てるクイズゲームです。',
     'what_is_advice_quiz_more' => '脚本を開くと初めから非公開シートが表示されますので、どのように回す脚本なのか考えてみてください。',
     'show_only_quiz_list' => '指針クイズに設定した脚本は、通常の脚本一覧には表示されません。',

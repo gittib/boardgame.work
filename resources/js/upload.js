@@ -72,16 +72,33 @@ window.setFileUploadEvent = (option) => {
                     for (let i = 1 ; i <= RETRY_LIMIT ; i++) {
                         const upStartAt = new Date();
                         
-                        const ajaxResult = await $.ajax({
-                            type: 'POST',
-                            url: chunkUploadUrl,
-                            headers: {
-                                'X-CSRF-TOKEN': CSRF_TOKEN,
-                            },
-                            contentType: false,
-                            processData: false,
-                            data: fd,
-                        }).catch(async err => {
+                        try {
+                            const response = await fetch(chunkUploadUrl, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': CSRF_TOKEN,
+                                },
+                                data: fd,
+                            });
+
+                            if (response.ok) {
+                                // このチャンクは送信成功したので次に行く
+                                
+                                // 送信時間を計測
+                                const upTime = ((new Date()).getTime() - upStartAt.getTime()) / 1000.0;
+                                bps = (chunkEnd - sent) / upTime;
+                                
+                                // 次のURLが来てたら更新する
+                                chunkUploadUrl = ajaxResult.url ?? chunkUploadUrl;
+                                break;
+                            } else {
+                                const errorData = await response.json();
+                                const error = new Error('HTTP error');
+                                error.status = response.status;
+                                error.data = errorData;
+                                throw error;
+                            }
+                        } catch(err) {
                             myConsole.log(err);
                             if (i >= RETRY_LIMIT) {
                                 // 規定回数失敗したので、アップロード処理全体を失敗とみなす
@@ -89,23 +106,12 @@ window.setFileUploadEvent = (option) => {
                             } else if(err.status == 422) {
                                 // 422はバリデーションエラーなので、何度繰り返してもコケるはず
                                 throw err;
-                            } else {
-                                // 指数バックオフ
-                                await sleep(wait);
-                                wait *= 2;
                             }
-                        });
-                        if (ajaxResult?.result == 'OK') {
-                            // このチャンクは送信成功したので次に行く
-                            
-                            // 送信時間を計測
-                            const upTime = ((new Date()).getTime() - upStartAt.getTime()) / 1000.0;
-                            bps = (chunkEnd - sent) / upTime;
-                            
-                            // 次のURLが来てたら更新する
-                            chunkUploadUrl = ajaxResult.url ?? chunkUploadUrl;
-                            break;
                         }
+
+                        // 指数バックオフ
+                        await sleep(wait);
+                        wait *= 2;
                     }
                     sent = chunkEnd;
                     maybeSent = chunkEnd;
@@ -126,15 +132,23 @@ window.setFileUploadEvent = (option) => {
                 let lastAjaxResult;
                 wait = RETRY_INTERVAL;
                 for (let i = 0 ; i <= RETRY_LIMIT ; i++) {
-                    lastAjaxResult = await $.ajax({
-                        type: 'POST',
-                        url: chunkUploadUrl,
-                        headers: {
-                            'X-CSRF-TOKEN': CSRF_TOKEN,
-                        },
-                        contentType: 'application/json',
-                        data: JSON.stringify(finishData),
-                    }).catch(async err => {
+                    try {
+                        const response = await fetch(chunkUploadUrl, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': CSRF_TOKEN,
+                            },
+                            contentType: 'application/json',
+                            data: JSON.stringify(finishData),
+                        });
+                        if (response.ok) {
+                            lastAjaxResult = await response.json();
+                            if (lastAjaxResult?.media) {
+                                // ファイル結合APIも成功したので次へ
+                                break;
+                            }
+                        }
+                    } catch(err) {
                         myConsole.log(err);
                         if (i >= RETRY_LIMIT) {
                             // 規定回数失敗したので、アップロード処理全体を失敗とみなす
@@ -142,17 +156,11 @@ window.setFileUploadEvent = (option) => {
                         } else if(err.status == 422) {
                             // 422はバリデーションエラーなので、何度繰り返してもコケるはず
                             throw err;
-                        } else {
-                            // 指数バックオフ
-                            await sleep(wait);
-                            wait *= 2;
                         }
-                    });
-                    
-                    if (lastAjaxResult?.media) {
-                        // ファイル結合APIも成功したので次へ
-                        break;
                     }
+                    // 指数バックオフ
+                    await sleep(wait);
+                    wait *= 2;
                 }
                 myConsole.log(lastAjaxResult);
                 if (lastAjaxResult?.media) {

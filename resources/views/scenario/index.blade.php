@@ -44,6 +44,7 @@ $bodyClass = 'scenario-index';
         {{ html()->hidden()->name('set_abbr') }}
     </form>
 </div>
+<x-scenario_spoiler_alert />
 @endsection
 
 @section('additional_scripts')

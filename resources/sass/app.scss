@@ -8,6 +8,7 @@
 @use 'component/paginator_link';
 @use 'component/role_spec';
 @use 'component/breadcrumbs';
+@use 'component/scenario_spoiler_alert';
 
 // 以下、個別ページのSASS
 @use 'indivisual/top-index';
@@ -20,7 +21,4 @@
 @use 'indivisual/scenario-quiz-index';
 
 // Font Awesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+@import "@fortawesome/fontawesome-free/css/all.css";
