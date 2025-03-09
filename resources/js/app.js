@@ -1,8 +1,8 @@
-require('./bootstrap');
-require('./upload');
-require('./popup');
-require('./utility');
+import './bootstrap.js';
+import './upload.js';
+import './popup.js';
+import './utility.js';
 
-require('./indivisual/my_scenario-create');
-require('./indivisual/scenario-show');
+import './indivisual/my_scenario-create.js';
+import './indivisual/scenario-show.js';
 

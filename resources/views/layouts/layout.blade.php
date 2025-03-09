@@ -21,7 +21,7 @@ $isAdminPage ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://unpkg.com/ress@5.0.2/dist/ress.min.css">
-        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        @vite(['resources/sass/app.scss'])
 
         @hasSection('canonical_url')
             <link rel="canonical" href="@yield('canonical_url')">
@@ -64,9 +64,7 @@ $isAdminPage ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
         @include('parts.popups.my_confirm')
 
         <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-        <script src="{{ mix('/js/manifest.js') }}"></script>
-        <script src="{{ mix('/js/vendor.js') }}"></script>
-        <script src="{{ mix('/js/app.js') }}"></script>
+        @vite(['resources/js/app.js'])
 
         <?php $flushMessage = session()->pull('flush_message'); ?>
         @if(!empty($flushMessage))

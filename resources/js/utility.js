@@ -52,14 +52,25 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.ajaxSubmit = async $form => {
-    return await $.ajax({
-        url: $form.attr('action'),
-        type: $form.attr('method'),
+    const url = $form.attr('action');
+    const method = $form.attr('method');
+    const csrfToken = $('[name=csrf-token]').attr('content');
+    const formData = new URLSearchParams($form.serialize());
+
+    const response = await fetch(url, {
+        method: method,
         headers: {
-            'X-CSRF-TOKEN': $('[name=csrf-token]').attr('content'),
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: $form.serialize(),
+        body: formData,
     });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
 };
 
 // 脚本画面のフォントサイズ調整機能
