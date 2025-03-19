@@ -68,7 +68,11 @@ $isAdminPage ??= \Str::of($bodyClass ?? '')->startsWith('admin-');
 
         <?php $flushMessage = session()->pull('flush_message'); ?>
         @if(!empty($flushMessage))
-        <script>myAlert("{{ $flushMessage }}", "", "{{ now()->format('YmdHis') }}");</script>
+        <script>
+        window.addEventListener('load', () => {
+            myAlert("{{ $flushMessage }}", "", "{{ now()->format('YmdHis') }}");
+        });
+        </script>
         @endif
 
         @yield('additional_scripts')
