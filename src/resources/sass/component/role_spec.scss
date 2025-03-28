@@ -1,0 +1,25 @@
+@use '../parts';
+
+.role-spec {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+
+    &.not-person {
+        .role-name {
+            font-weight: bold;
+        }
+    }
+
+    > * {
+        line-height: 1;
+    }
+
+    .dia {
+        line-height: 1;
+        display: inline-block;
+        height: 100%;
+        width: 1em;
+        font-size: 1em;
+    }
+}

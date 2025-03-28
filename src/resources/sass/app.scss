@@ -1,0 +1,24 @@
+@use 'margin-padding';
+@use 'layout';
+@use 'input';
+@use 'popup';
+
+// 以下、コンポーネント用SASS
+@use 'component/list_item-script';
+@use 'component/paginator_link';
+@use 'component/role_spec';
+@use 'component/breadcrumbs';
+@use 'component/scenario_spoiler_alert';
+
+// 以下、個別ページのSASS
+@use 'indivisual/top-index';
+@use 'indivisual/top-privacy';
+@use 'indivisual/my_scenario-index';
+@use 'indivisual/my_scenario-create';
+@use 'indivisual/my_scenario-bookmarks';
+@use 'indivisual/scenario-index';
+@use 'indivisual/scenario-show';
+@use 'indivisual/scenario-quiz-index';
+
+// Font Awesome
+@import "@fortawesome/fontawesome-free/css/all.css";

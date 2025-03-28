@@ -125,7 +125,7 @@ sudo cat /etc/nginx/conf.d/laravel-dev.boardgame.work.conf
 ###         return 403 o;
 ###     }
 ### 
-###     root /srv/www/vhosts/laravel-dev.boardgame.work/public/;
+###     root /srv/www/vhosts/laravel-dev.boardgame.work/src/public/;
 ###     include /etc/nginx/default.d/*.conf;
 ### 
 ###     client_max_body_size 128M;

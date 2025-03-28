@@ -1,0 +1,50 @@
+services:
+  nginx:
+    container_name: develop-nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+      args:
+        - SERVER_NAME=laravel-dev.boardgame.work
+        - PHP_CONTAINER_NAME=develop-php
+    ports:
+      - 8443:443
+      - 8080:80
+    volumes:
+      - ./src/public:/var/www/html/public
+      - /etc/letsencrypt:/etc/letsencrypt
+  certbot:
+    image: certbot/certbot:v1.7.0
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./src/public:/var/www/html
+    command: ["--version"]
+  php:
+    container_name: develop-php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        - DEPLOY_ENV=develop
+    ports:
+      - 9001:9000
+    volumes:
+      - ./src:/var/www/html
+  db:
+    container_name: develop-db
+    image: mysql:8
+    env_file: ./src/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: "sd9h9ai8yDHAios7"
+      MYSQL_ROOT_HOST: "%"
+      # .envファイルの「DB_DATABASE」とMYSQL_DATABASEを合わせる
+      MYSQL_DATABASE: port_local
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/conf.d:/etc/mysql/conf.d
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 28002:3306
+

@@ -1,0 +1,251 @@
+@use 'parts';
+
+* {
+    font-family: sans-serif;
+}
+
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    > .contents_wrapper {
+        flex: 1;
+    }
+}
+
+header {
+    background-color: parts.$theme_color;
+    width: 100%;
+    padding: 4px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+
+    .my-link {
+        display: flex;
+        gap: 4px;
+        flex-direction: row-reverse;
+        color: white;
+        cursor: pointer;
+
+        span.menu {
+            margin-right: 4px;
+        }
+    }
+    .icon_wrapper {
+        display: inline-flex;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        overflow: hidden;
+
+        img {
+        }
+    }
+
+    .menu_wrapper {
+        position: relative;
+
+        .header_menu {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            top: 32px;
+            right: 0;
+            background-color: white;
+            text-align: right;
+            width: max-content;
+            
+            li {
+                height: 0;
+                margin: 0;
+                overflow-y: hidden;
+                transition-duration: 300ms;
+
+                img {
+                    height: 100%;
+                }
+            }
+
+            ~ .menu_bg_filter {
+                display: none;
+            }
+        }
+        #menu_toggle{
+            display: none;
+
+            &:checked {
+                ~ .header_menu {
+                    margin: 0 4px;
+                    z-index: 1001;
+                    li {
+                        margin: 16px;
+                        height: max-content;
+                        min-height: 1.2rem;
+                    }
+                }
+
+                ~ .menu_bg_filter {
+                    display: block;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    z-index: 999;
+                    background-color: rgba(0, 0, 0, 0.5)
+                }
+            }
+        }
+    }
+}
+
+main {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+        width: calc(100% - 16px);
+        max-width: 960px;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+footer {
+    margin-top: 60px;
+    font-size: 10px;
+
+    > div {
+        width: fit-content;
+        margin: auto;
+        padding: 0 8px 40px;
+    }
+}
+
+dt {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 20px;
+    border-left: solid 7px parts.$theme_color;
+    margin-top: 4px;
+    padding: 0 0 0 8px;
+}
+h2 {
+    font-size: 20px;
+    margin-top: 28px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: parts.$border_style;
+
+    th {
+        background-color: black;
+        color: white;
+    }
+
+    th,td {
+        padding: 0 4px;
+        border-right: parts.$border_style;
+        border-bottom: parts.$border_style;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    tr:last-child {
+        th,td {
+            border-bottom: none;
+        }
+    }
+}
+
+.inline_block_wrapper > span {
+    display: inline-block;
+}
+.inline_block {
+    display: inline-block;
+}
+
+span.difficult_name {
+    display: inline-block;
+}
+.difficult_name {
+    font-weight: bold;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    width: calc(3em + 16px);
+    text-align: center;
+}
+html[lang=en] {
+    .difficult_name {
+        display: none;
+    }
+}
+
+.set_abbr {
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    padding: 0 4px;
+
+    &.FS {
+        background-color: darkturquoise;
+        text-decoration: underline darkturquoise;
+    }
+    &.BTX {
+        background-color: blue;
+        text-decoration: underline blue;
+    }
+    &.MZ {
+        background-color: purple;
+        text-decoration: underline purple;
+    }
+    &.MCX {
+        background-color: red;
+        text-decoration: underline red;
+    }
+    &.HSA {
+        background-color: darkblue;
+        text-decoration: underline darkblue;
+    }
+    &.WM {
+        background-color: darkgreen;
+        text-decoration: underline darkgreen;
+    }
+    &.LL {
+        background-color: lightsteelblue;
+        text-decoration: underline lightsteelblue;
+    }
+    &.AHR {
+        background-color: orange;
+        text-decoration: underline orange;
+    }
+}
+
+.hidden {
+    display: none;
+}

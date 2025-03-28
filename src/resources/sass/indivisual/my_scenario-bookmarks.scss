@@ -1,0 +1,21 @@
+@use '../parts';
+
+.my_scenario-bookmarks {
+    main {
+        div.frame {
+            width: 100%;
+            margin: auto;
+
+            .no_bookmarks {
+                margin: 24px auto;
+            }
+
+            .bookmark_scenario_list {
+                width: 100%;
+                max-width: 480px;
+                margin: 20px auto;
+                padding: 0 8px;
+            }
+        }
+    }
+}

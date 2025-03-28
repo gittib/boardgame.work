@@ -1,0 +1,107 @@
+@use '../parts';
+
+li.list_item_script {
+    $scenario_border: solid 1px black;
+    border-bottom: $scenario_border;
+    padding: 8px;
+    width: 100%;
+
+    &:first-child {
+        border-top: $scenario_border;
+    }
+
+    &.not_found {
+        border-top: none;
+        border-bottom: none;
+        text-align: center;
+    }
+
+    .row {
+        display: flex;
+        align-items: baseline;
+
+        &.id_wrapper {
+            justify-content: space-between;
+        }
+        &.summary_wrapper {
+            flex-wrap: wrap;
+            column-gap: 6px;
+
+            .abbr_wrapper {
+                min-width: 42px;
+            }
+        }
+
+        .writer {
+            font-size: 0.8em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: calc(100% - 7em);
+        }
+        .open_now {
+            background-color: gold;
+            padding: 0 6px;
+            font-weight: bold;
+        }
+        .quiz {
+            border-radius: 100em;
+            background-color: black;
+            display: inline-block;
+            width: 1.4em;
+            height: 1.4em;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            vertical-align: baseline;
+        }
+
+        .set_name {
+            margin-right: 4px;
+        }
+
+        .loop_day_summary {
+            font-size: 0.9em;
+
+            > span {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+        }
+
+        .like {
+            margin-left: auto;
+            font-size: 0.75em;
+
+            img {
+                width: 1em;
+                height: 1em;
+            }
+
+            .like_count {
+                display: inline-block;
+                min-width: 1em;
+            }
+        }
+    }
+
+    .public_message {
+        font-size: .85em;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+
+        &:hover {
+            white-space: wrap;
+        }
+    }
+
+    .title {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+}
