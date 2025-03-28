@@ -4,7 +4,9 @@ git pull && \
 git checkout master && \
 git merge develop -m "Merge branch 'develop'" && \
 git push && \
-composer install && \
+cd ./src/ && \
+composer install --no-dev && \
+php artisan migrate --force && \
 php artisan db:seed "Database\Seeders\InitializeMasterData" \
 npm ci && \
 npm run build && \

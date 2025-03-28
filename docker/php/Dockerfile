@@ -32,8 +32,6 @@ RUN apt-get update && apt-get -y upgrade && \
 RUN composer config -g process-timeout 3600 && \
     composer config -g repos.packagist composer https://packagist.org
 
-#RUN sed -i 's/^listen = 127.0.0.1:9000/listen = 9000/g' /usr/local/etc/php-fpm.d/www.conf
-
 RUN if [ "$DEPLOY_ENV" = "local" ]; then \
   curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
   apt-get -y install --no-install-recommends nodejs && \
