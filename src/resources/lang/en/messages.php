@@ -22,7 +22,7 @@ return [
 Please note that ":ll" and ":ahr" already handle :hope_c and :despair_c, so :plus_script cannot be created for them.',
     'expansion_rei' => 'レイ',
 
-    'spoiler_alert' => '主人公として脚本を遊ぶ予定がある場合、脚本の詳細ページを見ないようにしてください。脚本の非公開シートやプレイガイドを見てしまうとネタバレになり、主人公プレイヤーとしてゲームに参加できなくなる可能性があります。',
+    'spoiler_alert' => 'If you plan to play the Script as the protagonist, do not look at the Script\'s detail page. Looking at the Script\'s private sheet or play guide will spoil the Script and may prevent you from participating in the game as the protagonist player.',
 
     'what_is_advice_quiz' => 'Quiz for the Mastermind is quiz game that guesses the Hints for the Mastermind after checking the Open card and the Secret card.',
     'what_is_advice_quiz_more' => 'When you open the Script, the Secret card will be displayed from the beginning, so please think about how to handle the Script.',
