@@ -12,6 +12,12 @@ return [
         'height' => 512,
     ],
 
+    'cookie' => [
+        'key' => [
+            'browser_id_hash' => 'usautkn',
+        ],
+    ],
+
 
     'basic_auth' => [
         'name' => env('BASIC_AUTH_NAME'),

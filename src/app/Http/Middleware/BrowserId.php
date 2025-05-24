@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Json
+class BrowserId
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,9 @@ class Json
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->headers->set('Accept', 'application/json');
+        $cookieKey = config('define.cookie.key.browser_id_hash');
+        $browserId = \Cookie::get($cookieKey) ?: (now()->format('YmdHis-') . \Str::uuid());
+        \Cookie::queue($cookieKey, $browserId, 60*24*30*12);
         return $next($request);
     }
 }
