@@ -18,7 +18,7 @@ class BrowserId
     {
         $cookieKey = config('define.cookie.key.browser_id_hash');
         $browserId = \Cookie::get($cookieKey) ?: (now()->format('YmdHis-') . \Str::uuid());
-        \Cookie::queue($cookieKey, $browserId, 60*24*30*12);
+        \Cookie::queue($cookieKey, $browserId, 60*24*365);
         return $next($request);
     }
 }

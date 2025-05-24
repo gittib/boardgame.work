@@ -6,11 +6,11 @@ use App\Models\Scenario;
 
 class BreadcrumbGenerator {
     public function setLastList(PageType $pageType) {
-        \Cookie::queue('last_visit_list', $pageType->value, 60*24*180);
+        \Cookie::queue(config('define.cookie.key.last_visit_list'), $pageType->value, 60*24*180);
     }
 
     public function getBreadcrumbs(PageType $pageType, array $params = []) {
-        $lastVisitPage = PageType::tryFrom(request()->cookie('last_visit_list'));
+        $lastVisitPage = PageType::tryFrom(request()->cookie(config('define.cookie.key.last_visit_list')));
         switch($pageType) {
         case PageType::Top:
             return [

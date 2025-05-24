@@ -16,7 +16,7 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale($request->cookie('applocale') ?? config('app.fallback_locale'));
+        app()->setLocale($request->cookie(config('define.cookie.key.applocale')) ?? config('app.fallback_locale'));
         return $next($request);
     }
 }

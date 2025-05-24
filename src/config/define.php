@@ -14,6 +14,8 @@ return [
 
     'cookie' => [
         'key' => [
+            'applocale' => 'applocale',
+            'last_visit_list' => 'last_visit_list',
             'browser_id_hash' => 'usautkn',
         ],
     ],
