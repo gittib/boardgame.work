@@ -51,6 +51,8 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
     Route::view('privacy', 'top.privacy')->name('top.privacy');
     Route::get('about', 'TopController@about')->name('top.about');
 
+    Route::resource('enquete', 'EnqueteController', ['only' => ['index', 'create', 'store']]);
+
     Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware('admin')->group(function() {
         Route::get('/', 'TopController@index')->name('index');
         Route::get('scenario/updated', 'ScenarioController@updated')->name('scenario.updated');
