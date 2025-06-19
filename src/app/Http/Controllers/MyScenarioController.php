@@ -424,6 +424,11 @@ class MyScenarioController extends Controller
         $scenario->advice = $request->advice;
         $scenario->public_message = $request->public_message;
         $scenario->is_open = isset($request->is_open);
+        if ($scenario->is_open) {
+            if (empty($scenario->opened_at)) $scenario->opened_at = now();
+        } else {
+            $scenario->opened_at = null;
+        }
         $scenario->is_quiz = isset($request->is_quiz);
         $scenario->is_plus = isset($request->is_plus);
         return $scenario;
