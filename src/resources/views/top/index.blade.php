@@ -1,6 +1,6 @@
 <?php
 $trLink = html()->a(__('messages.official_url'), __('惨劇RoopeR'))->target('_blank');
-$aboutLink = html()->a(route('top.about'), __('こちら'));
+$aboutLink = html()->a(route('top.about'), __('詳しくはこちら'));
 $oldSiteLink = html()->a('http://www.boardgame.work/sangeki/', __('こちら'))->target('_blank');
 ?>
 @extends('layouts.layout')

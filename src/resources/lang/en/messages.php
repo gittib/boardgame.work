@@ -10,7 +10,7 @@ return [
 
     'official_url' => 'http://bakafire.main.jp/game01.html',
 
-    'what_is_this' => 'This is a website where you can share your :trLink Scripts. Anyone can read the Script. If you have a Twitter account, you can also create and publish Scripts. Click :aboutLink for details.',
+    'what_is_this' => 'This is a website where you can share your :trLink Scripts. Anyone can read the Script. If you have a Twitter account, you can also create and publish Scripts. :aboutLink.',
     'footer' => 'This is a fan site for BakaFire Party\'s game ":trlink". If you have any questions about this site, please contact :manager.',
     'loop_day_summary' => [
         'loops' => '<span class="loop">:count</span> loop |<span class="loop">:count</span> loops ',
