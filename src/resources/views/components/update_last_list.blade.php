@@ -9,7 +9,6 @@ window.addEventListener('pageshow', async function() {
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content'),
             "Content-Type": "application/json",
-            "Accept": "application/json",
         },
         body: JSON.stringify({
             pageType: "{{ $pageType }}"
