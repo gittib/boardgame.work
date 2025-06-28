@@ -26,6 +26,7 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
     Route::middleware('json')->withoutMiddleware('parse_html')->group(function() {
         Route::post('scenario/{scenario}/bookmark', 'ScenarioController@bookmark')->name('scenario.bookmark');
         Route::post('scenario/{scenario}/like', 'ScenarioController@like')->name('scenario.like');
+        Route::post('scenario/last/list/update', 'ScenarioController@lastListUpdate')->name('scenario.last_list_update');
     });
     Route::get('scenario-quiz', 'ScenarioController@quizIndex')->name('scenario.quiz-index');
 

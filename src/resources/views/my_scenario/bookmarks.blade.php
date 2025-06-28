@@ -32,4 +32,5 @@ $bodyClass = 'my_scenario-bookmarks';
 @endsection
 
 @section('additional_scripts')
+<x-update_last_list :pageType=\App\Enums\PageType::Bookmarks />
 @endsection

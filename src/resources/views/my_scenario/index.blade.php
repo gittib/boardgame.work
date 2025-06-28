@@ -64,4 +64,5 @@ $('.js-logout_button[data-message][data-url]').on('click', async function() {
     }
 });
 </script>
+<x-update_last_list :pageType=\App\Enums\PageType::MyPage />
 @endsection

@@ -61,4 +61,5 @@ $('.js-narrow_set').on('click', async () => {
     }
 });
 </script>
+<x-update_last_list :pageType=\App\Enums\PageType::QuizList />
 @endsection

@@ -63,4 +63,5 @@ $('.js-hide_title').on('click', () => {
     $('.js-show_title').show();
 });
 </script>
+<x-update_last_list :pageType=\App\Enums\PageType::ScenarioList />
 @endsection

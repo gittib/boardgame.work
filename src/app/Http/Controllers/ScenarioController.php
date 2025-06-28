@@ -17,7 +17,6 @@ class ScenarioController extends Controller
      */
     public function index(Request $request)
     {
-        (new BreadcrumbGenerator)->setLastList(PageType::ScenarioList);
         $query = Scenario::with([
             'writer',
             'set',
@@ -51,7 +50,6 @@ class ScenarioController extends Controller
     }
     public function quizIndex(Request $request)
     {
-        (new BreadcrumbGenerator)->setLastList(PageType::QuizList);
         $query = Scenario::with([
             'writer',
             'set',
@@ -119,6 +117,31 @@ class ScenarioController extends Controller
         return [
             'result' => 'OK',
             'likes' => Scenario::find($id)->likes()->count(),
+        ];
+    }
+
+    public function lastListUpdate(Request $request) {
+        switch($request->pageType) {
+        case PageType::ScenarioList->value:
+            (new BreadcrumbGenerator)->setLastList(PageType::ScenarioList);
+            break;
+        case PageType::QuizList->value:
+            (new BreadcrumbGenerator)->setLastList(PageType::QuizList);
+            break;
+        case PageType::MyPage->value:
+            (new BreadcrumbGenerator)->setLastList(PageType::MyPage);
+            break;
+        case PageType::Bookmarks->value:
+            (new BreadcrumbGenerator)->setLastList(PageType::Bookmarks);
+            break;
+        default:
+            return [
+                'result' => 'NG',
+                'pageType' => $request->pageType,
+            ];
+        }
+        return [
+            'result' => 'OK',
         ];
     }
 }
