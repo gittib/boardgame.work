@@ -17,7 +17,7 @@ if (empty($authName) || empty($authPass)) {
 }
 
 if ($authName == $_SERVER['PHP_AUTH_USER'] && $authPass == $_SERVER['PHP_AUTH_PW']) {
-    require(__DIR__.'/../app/adminer-4.8.1.php');
+    require(__DIR__.'/../app/adminer-5.3.0.php');
 } else {
     // 初回時または認証が失敗したとき
     header('WWW-Authenticate: Basic realm="Enter username and password."');
