@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Scenario;
 
 class TopController extends Controller
 {
     public function index() {
-        return view('top.index');
+        $latestScenario = Scenario::whereOpen()->orderByDesc('opened_at')->first();
+        return view('top.index', compact('latestScenario'));
     }
 
     public function about() {
