@@ -419,12 +419,23 @@ class MyScenarioController extends Controller
         $scenario->story = $request->story;
         $scenario->advice = $request->advice;
         $scenario->public_message = $request->public_message;
-        $scenario->is_open = isset($request->is_open);
         if ($scenario->is_open) {
-            if (empty($scenario->opened_at)) $scenario->opened_at = now();
+            if (!isset($request->is_open)) {
+                // 公開→非公開
+                $scenario->closed_at = now();
+
+                // 非公開にしてもopened_atはNULLにはしない
+            }
         } else {
-            $scenario->opened_at = null;
+            if (isset($request->is_open)) {
+                // 非公開→公開
+                if (empty($scenario->opened_at) || now()->diffInDays($scenario->closed_at) >= 7) {
+                    // 初公開または一定期間非公開にした後に再公開の場合、公開日時を設定する
+                    $scenario->opened_at = now();
+                }
+            }
         }
+        $scenario->is_open = isset($request->is_open);
         $scenario->is_quiz = isset($request->is_quiz);
         $scenario->is_plus = isset($request->is_plus);
         return $scenario;

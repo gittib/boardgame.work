@@ -24,7 +24,7 @@ $oldSiteLink = html()->a('http://www.boardgame.work/sangeki/', __('こちら'))-
                         'set' => __($latestScenario->set->name),
                     ])</span>
                 @endif
-                <a href="">@lang('新着脚本をもっと見る')</a>
+                <a href="{{ route('scenario.published-index') }}">@lang('新着脚本をもっと見る')</a>
             </p>
         </li>
         <li>

@@ -4,6 +4,7 @@
     'withTitle' => true,
     'showTitle' => false,
     'withDifficult' => true,
+    'isMixed' => false,
     'isMyPage' => false,
 ])
 
@@ -19,6 +20,12 @@
             @endif
             @if($scenario->is_open)
             <span class="open_now">@lang('公開中')</span>
+            @endif
+        </span>
+        @elseif($isMixed)
+        <span>
+            @if($scenario->is_quiz)
+            <span class="quiz">Q</span>
             @endif
         </span>
         @else

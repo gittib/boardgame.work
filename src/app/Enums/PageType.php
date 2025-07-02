@@ -11,4 +11,5 @@ enum PageType: String {
     case CreateScenario = 'CreateScenario';
     case ScenarioPreview = 'ScenarioPreview';
     case QuizList = 'QuizList';
+    case PublishedScenarioList = 'PublishedScenarioList';
 }

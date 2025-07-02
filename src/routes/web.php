@@ -29,6 +29,7 @@ Route::namespace('App\Http\Controllers')->middleware('parse_html')->group(functi
         Route::post('scenario/last/list/update', 'ScenarioController@lastListUpdate')->name('scenario.last_list_update');
     });
     Route::get('scenario-quiz', 'ScenarioController@quizIndex')->name('scenario.quiz-index');
+    Route::get('new-scenario', 'ScenarioController@publishedIndex')->name('scenario.published-index');
 
     Route::namespace('Auth')->middleware('guest')->group(function() {
         Route::get('login', 'LoginController@login')->name('login');

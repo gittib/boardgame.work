@@ -70,6 +70,21 @@ class ScenarioController extends Controller
         $isQuiz = true;
         return view('scenario.quiz_index', compact('scenarios', 'isQuiz'));
     }
+    public function publishedIndex(Request $request)
+    {
+        $scenarios = Scenario::with([
+            'writer',
+            'set',
+            'likes',
+        ])->whereOpen()
+            ->orderByDesc('opened_at')
+            ->orderByDesc('id')
+            ->limit(30)
+            ->get();
+
+        $canonicalUrl = route('scenario.published-index');
+        return view('scenario.published_index', compact('scenarios', 'canonicalUrl'));
+    }
 
     /**
      * Display the specified resource.

@@ -33,6 +33,13 @@ class BreadcrumbGenerator {
                 'url' => route('scenario.index'),
             ];
             return $breads;
+        case PageType::PublishedScenarioList:
+            $breads = $this->getBreadcrumbs(PageType::Top, $params);
+            $breads[] = [
+                'label' => __('新着脚本一覧'),
+                'url' => route('scenario.published-index'),
+            ];
+            return $breads;
         case PageType::QuizList:
             $breads = $this->getBreadcrumbs(PageType::Top, $params);
             $breads[] = [

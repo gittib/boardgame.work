@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -10,6 +11,10 @@ class Scenario extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'opened_at' => 'datetime',
+    ];
 
     protected $hidden = [
         'created_at',
@@ -52,14 +57,15 @@ class Scenario extends Model
     }
 
     // scope
-    public function scopeWhereOpen($query) {
+    public function scopeWhereOpen(Builder $query) {
         return $query->where('is_open', true)
+            ->whereNotNull('opened_at')
             ->where('is_preview', false);
     }
 
-    public function scopeWhereVisible($query) {
-        return $query->where(function($q) {
-            $q->where('scenarios.is_open', true);
+    public function scopeWhereVisible(Builder $query) {
+        return $query->where(function(Builder $q) {
+            $q->whereOpen();
             if (Auth::check()) {
                 $q->orWhere('scenarios.user_id', Auth::id());
             }
