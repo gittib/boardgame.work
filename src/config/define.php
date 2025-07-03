@@ -28,4 +28,6 @@ return [
         'name' => 'ペンスキー',
         'url' => 'https://x.com/gittib_gittib',
     ],
+
+    'scenarios_per_page' => 30,
 ];

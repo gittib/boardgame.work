@@ -45,7 +45,7 @@ class ScenarioController extends Controller
 
         $canonicalUrl = route('scenario.index', ['page' => $request->page == 1 ? null : $request->page]);
 
-        $scenarios = $query->paginate(30)->appends($request->query());
+        $scenarios = $query->paginate(config('define.scenarios_per_page'))->appends($request->query());
         return view('scenario.index', compact('scenarios', 'canonicalUrl'));
     }
     public function quizIndex(Request $request)
@@ -66,7 +66,7 @@ class ScenarioController extends Controller
             });
         }
 
-        $scenarios = $query->paginate(30)->appends($request->query());
+        $scenarios = $query->paginate(config('define.scenarios_per_page'))->appends($request->query());
         $isQuiz = true;
         return view('scenario.quiz_index', compact('scenarios', 'isQuiz'));
     }
@@ -79,7 +79,7 @@ class ScenarioController extends Controller
         ])->whereOpen()
             ->orderByDesc('opened_at')
             ->orderByDesc('id')
-            ->limit(30)
+            ->limit(config('define.scenarios_per_page'))
             ->get();
 
         $canonicalUrl = route('scenario.published-index');
