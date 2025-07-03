@@ -14,6 +14,7 @@ class Scenario extends Model
 
     protected $casts = [
         'opened_at' => 'datetime',
+        'closed_at' => 'datetime',
     ];
 
     protected $hidden = [
