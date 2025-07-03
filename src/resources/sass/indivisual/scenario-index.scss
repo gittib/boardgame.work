@@ -3,6 +3,11 @@
         width: 100%;
     }
 
+    h1, .what_is_this {
+        max-width: 520px;
+        padding: 0 8px;
+    }
+
     .button_wrapper {
         width: fit-content;
         margin: 24px auto;

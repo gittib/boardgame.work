@@ -16,7 +16,7 @@ $bodyClass = 'scenario-index is_new';
 <h1>@lang('新着脚本一覧')</h1>
 <div class="what_is_this">
     <p>
-        @lang('最近公開された脚本を公開された順に表示しています。')
+        @lang('最新の脚本を公開された順に表示しています。上の脚本ほど公開されて間もない作品です。')
     </p>
 </div>
 
