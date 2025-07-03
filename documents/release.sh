@@ -12,5 +12,5 @@ npm ci && \
 npm run build && \
 php artisan view:cache && \
 php artisan config:cache && \
-php artisan route:cache
-
+php artisan route:cache && \
+cd ..
