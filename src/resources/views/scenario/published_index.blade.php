@@ -23,12 +23,11 @@ $bodyClass = 'scenario-index is_new';
 <div class="">
     <ul class="scenario_list">
         @forelse($scenarios as $scenario)
-        <x-list_item.script :isMixed=true :scenario="$scenario" />
+        <x-list_item.script :type="$scenario->is_quiz ? '指針クイズ' : '脚本'" :scenario="$scenario" />
         @empty
         <li class="not_found">@lang('該当する脚本はありませんでした。')</li>
         @endforelse
     </ul>
-
 </div>
 <div style="display:none;">
     <form id="narrow_form">
@@ -43,14 +42,5 @@ $bodyClass = 'scenario-index is_new';
 @endsection
 
 @section('additional_scripts')
-<script>
-$('.js-narrow_set').on('click', async () => {
-    const res = await openPopup('js-popup-select_set');
-    if (res.result == 'ok') {
-        $('[name=set]').val(res.info);
-        $('#narrow_form').submit();
-    }
-});
-</script>
-<x-update_last_list :pageType=\App\Enums\PageType::QuizList />
+<x-update_last_list :pageType=\App\Enums\PageType::PublishedScenarioList />
 @endsection

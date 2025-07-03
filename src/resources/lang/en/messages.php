@@ -11,7 +11,10 @@ return [
     'official_url' => 'http://bakafire.main.jp/game01.html',
 
     'what_is_this' => 'This is a website where you can share your :trLink Scripts. Anyone can read the Script. If you have a Twitter account, you can also create and publish Scripts. :aboutLink.',
-    'new_open_scenario_notice' => ':writer has published the <a href=":url">:set Script [:scenarioNo]</a>!',
+    'new_open_scenario' => [
+        'summary' => 'Up to :count most recently released screenplays are available in the linked list. The most recently released screenplays are also listed below.',
+        'notice' => ':writer has published the <a href=":url">:set :type [:scenarioNo]</a>!',
+    ],
     'footer' => 'This is a fan site for BakaFire Party\'s game ":trlink". If you have any questions about this site, please contact :manager.',
     'loop_day_summary' => [
         'loops' => '<span class="loop">:count</span> loop |<span class="loop">:count</span> loops ',

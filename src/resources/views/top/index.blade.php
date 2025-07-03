@@ -13,19 +13,24 @@ $oldSiteLink = html()->a('http://www.boardgame.work/sangeki/', __('こちら'))-
     <ul class="top_menu">
         <li><a href="{{ route('scenario.index') }}">@lang('脚本一覧')</a></li>
         <li><a href="{{ route('my_page') }}">@lang('脚本を作る')</a></li>
-        <li>
+        <li class="new_open">
             <h3>@lang('新着脚本')</h3>
-            <p>
+            <div>
+                <div>@lang('messages.new_open_scenario.summary', ['count' => config('define.scenarios_per_page')])</div>
                 @if(!empty($latestScenario))
-                    <span>@lang('messages.new_open_scenario_notice', [
-                        'writer' => __($latestScenario->writer?->name),
-                        'scenarioNo' => $latestScenario->id,
-                        'url' => route('scenario.show', $latestScenario->id),
-                        'set' => __($latestScenario->set->name),
-                    ])</span>
+                    <span>
+                        <span class="notify">！</span>
+                        @lang('messages.new_open_scenario.notice', [
+                            'writer' => __($latestScenario->writer?->name),
+                            'scenarioNo' => $latestScenario->id,
+                            'url' => route('scenario.show', $latestScenario->id),
+                            'set' => __($latestScenario->set->name),
+                            'type' => __($latestScenario->is_quiz ? '指針クイズ' : '脚本'),
+                        ])
+                    </span>
                 @endif
-                <a href="{{ route('scenario.published-index') }}">@lang('新着脚本をもっと見る')</a>
-            </p>
+                <a class="see_more" href="{{ route('scenario.published-index') }}">@lang('新着脚本をもっと見る')</a>
+            </div>
         </li>
         <li>
             <h3>@lang('脚本家への指針クイズ')</h3>
