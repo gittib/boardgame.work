@@ -140,6 +140,9 @@ class ScenarioController extends Controller
         case PageType::ScenarioList->value:
             (new BreadcrumbGenerator)->setLastList(PageType::ScenarioList);
             break;
+        case PageType::PublishedScenarioList->value:
+            (new BreadcrumbGenerator)->setLastList(PageType::PublishedScenarioList);
+            break;
         case PageType::QuizList->value:
             (new BreadcrumbGenerator)->setLastList(PageType::QuizList);
             break;
