@@ -1,12 +1,14 @@
 @props([
     'scenario',
-    'type' => '脚本',
+    'type' => null,
     'withTitle' => true,
     'showTitle' => false,
     'withDifficult' => true,
     'isMyPage' => false,
 ])
-
+<?php
+$type ??= $scenario->is_quiz ? '指針クイズ' : '脚本';
+?>
 <li class="list_item_script">
     <div class="row id_wrapper">
         <a href="{{ route('scenario.show', ['scenario' => $scenario->id])}}">
@@ -14,9 +16,6 @@
         </a>
         @if($isMyPage)
         <span>
-            @if($scenario->is_quiz)
-            <span class="quiz">Q</span>
-            @endif
             @if($scenario->is_open)
             <span class="open_now">@lang('公開中')</span>
             @endif
