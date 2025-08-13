@@ -251,7 +251,7 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                 @error('public_message')
                 <p class="is-error">{{ $errors->first('public_message') }}</p>
                 @enderror
-                <p>@lang('※このコメントは脚本一覧で公開されます。:max文字以内が推奨です。', ['max' => 20])</p>
+                <p>※@lang('このコメントは脚本一覧で公開されます。20文字以内が推奨です。')</p>
             </dd>
             <dt>@lang('脚本の特徴')</dt>
             <dd class="scenario_text">

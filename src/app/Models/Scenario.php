@@ -147,6 +147,8 @@ class Scenario extends Model
     private function getInvalidConditions():array {
         $errors = []; // エラーがあればこの変数に突っ込んでいく
 
+        $isPlusScript = $this->is_plus && $this->set?->isPlusSupport; // プラス脚本非対応の惨劇セットではis_plusフラグを無視する
+
         if ($this->rule_x1_id == $this->rule_x2_id) {
             $errors[] = __('ルールXが重複しています。');
         }
@@ -163,6 +165,15 @@ class Scenario extends Model
                 'picked' => 0,
             ]
         ])->toArray();
+        if ($isPlusScript) { // プラス脚本の場合はフラグメントが１人追加される
+            $fragmentId = TragedyRole::where('code', 'Fragments')->first()->id;
+            $roleCounter[$fragmentId] ??= [
+                'count' => 1,
+                'code' => 'Fragments',
+                'name' => __('tragedy_master.role.Fragments.name'),
+                'picked' => 0,
+            ];
+        }
 
         // 脚本で実際に採用されてる人数をカウント。ついでに個別で判定できるものもチェックする
         $criminalRoles = ['Fool', 'Twin', 'Zettisha', 'Hitohashira', 'Joker', ]; // 犯人にならなければならない役職
@@ -171,6 +182,7 @@ class Scenario extends Model
         $copyCatRoleId = null; // コピーキャットの役職
         $vampSex = null; // ヴァンパイアの性別
         $keySex = null; // キーパーソンの性別
+        $isPersonExist = false; // パーソンがいるかどうか
         foreach($this->characters as $chara) {
             if ($chara->character?->code == 'Irregular') {
                 // イレギュラーは判定ロジックが全然別
@@ -261,6 +273,8 @@ class Scenario extends Model
                         ]);
                     }
                 }
+            } else if ($chara->role?->code == 'Person') {
+                $isPersonExist = true;
             }
 
             // 役職による事件の犯人設定が正しいか確認
@@ -315,15 +329,23 @@ class Scenario extends Model
             } else if ($val->picked < $val->count) {
                 if ($val->code == 'Minus' && $this->hasRule('The-Worst-Retired-Book')) {
                     // 最低の却本が採用されている場合、マイナスは足りなくてもいい
+                } else if ($val->code == 'Fragments') {
+                    // フラグメントが不足している場合、プラス脚本かどうかで分岐する
+                    if ($isPlusScript && !$isPersonExist) {
+                        // プラス脚本でパーソンがいない場合、フラグメントはいなくてOK
+                        assert($val->count == 1);
+                        assert($val->picked == 0);
+                    } else {
+                        $errors[] = __('プラス脚本で:role1がいる場合、誰か１人を:role2にしなければなりません。', [
+                            'role1' => __('tragedy_master.role.Person.name'),
+                            'role2' => $val->name
+                        ]);
+                    }
                 } else {
                     $errors[] = __(':roleが:diff人足りません。', ['role' => $val->name, 'diff' => $val->count - $val->picked]);
                 }
             } else if ($val->picked > $val->count) {
-                if ($val->code == 'Fragments' && $this->set?->isPlusSupport && $this->is_plus && $val->picked == 1) {
-                    // プラス拡張の場合、フラグメントを一人入れても入れなくてもいいので、ここはエラーじゃない
-                } else {
-                    $errors[] = __(':roleが:diff人多すぎます。', ['role' => $val->name, 'diff' => $val->picked - $val->count]);
-                }
+                $errors[] = __(':roleが:diff人多すぎます。', ['role' => $val->name, 'diff' => $val->picked - $val->count]);
             }
         }
 
