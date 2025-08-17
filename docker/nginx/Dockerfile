@@ -26,6 +26,11 @@ RUN apt-get install -y vim
 
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
+
+# dhparam.pemは以下のコマンドで生成する
+# openssl dhparam -out ./docker/nginx/dhparam.pem 4096
+COPY ./docker/nginx/dhparam.pem /etc/nginx/dhparam.pem
+
 COPY ./docker/.vimrc /root
 RUN sed -i 's/\r//' /root/.vimrc
 RUN sed -i "s/___SERVER_NAME___/${SERVER_NAME}/g" /etc/nginx/conf.d/default.conf && \

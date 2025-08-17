@@ -42,13 +42,33 @@ RUN if [ "$DEPLOY_ENV" = "local" ]; then \
 COPY ./docker/.vimrc /root
 RUN sed -i 's/\r//' /root/.vimrc
 
-COPY ./src /var/www/html
-
 WORKDIR /var/www/html
+COPY ./docker/php/.env.${DEPLOY_ENV} ./.env
+COPY ./src/artisan ./artisan
+COPY ./src/.editorconfig ./.editorconfig
+COPY ./src/.gitattributes ./.gitattributes
+COPY ./src/.gitignore ./.gitignore
+COPY ./src/.styleci.yml ./.styleci.yml
+COPY ./src/phpunit.xml ./phpunit.xml
+COPY ./src/server.php ./server.php
+COPY ./src/vite.config.js ./vite.config.js
+COPY ./src/webpack.mix.js ./webpack.mix.js
+COPY ./src/composer.json ./composer.json
+COPY ./src/composer.lock ./composer.lock
+COPY ./src/package-lock.json ./package-lock.json
+COPY ./src/package.json ./package.json
+COPY ./src/storage/ ./storage
+COPY ./src/bootstrap/ ./bootstrap
+COPY ./src/routes/ ./routes
+COPY ./src/tests/ ./tests
+COPY ./src/public/ ./public
+COPY ./src/database/ ./database
+COPY ./src/config/ ./config
+COPY ./src/resources/ ./resources
+COPY ./src/app/ ./app
+
 RUN composer update
-RUN chown -R www-data:www-data storage/ && \
-    echo 'export LANG=C.UTF-8' >> /root/.bashrc && \
-    chmod -R 777 storage bootstrap/cache && \
+RUN echo 'export LANG=C.UTF-8' >> /root/.bashrc && \
     rm -rf storage/logs/*.log
 RUN php artisan optimize:clear && \
     php artisan optimize && \
