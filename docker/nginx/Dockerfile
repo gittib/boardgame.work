@@ -18,6 +18,7 @@ FROM nginx:1.27-bookworm
 
 ARG SERVER_NAME
 ARG PHP_CONTAINER_NAME
+ARG SSL_PORT=443
 
 ENV TZ=Asia/Tokyo
 
@@ -34,7 +35,8 @@ COPY ./docker/nginx/dhparam.pem /etc/nginx/dhparam.pem
 COPY ./docker/.vimrc /root
 RUN sed -i 's/\r//' /root/.vimrc
 RUN sed -i "s/___SERVER_NAME___/${SERVER_NAME}/g" /etc/nginx/conf.d/default.conf && \
-    sed -i "s/___PHP_CONTAINER_NAME___/${PHP_CONTAINER_NAME}/g" /etc/nginx/conf.d/default.conf
+    sed -i "s/___PHP_CONTAINER_NAME___/${PHP_CONTAINER_NAME}/g" /etc/nginx/conf.d/default.conf && \
+    sed -i "s/___SSL_PORT___/${SSL_PORT}/g" /etc/nginx/conf.d/default.conf
 
 COPY ./src/public /var/www/html/public
 RUN rm -rf /var/www/html/public/build && \

@@ -7,6 +7,7 @@ services:
       args:
         - SERVER_NAME=laravel-dev.boardgame.work
         - PHP_CONTAINER_NAME=develop-php
+        - SSL_PORT=8443
     ports:
       - 8443:443
       - 8080:80
