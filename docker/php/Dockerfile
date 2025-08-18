@@ -7,7 +7,7 @@ ENV TZ=Asia/Tokyo \
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
 
-COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get -y upgrade && \
   apt-get -y install --no-install-recommends \
@@ -41,8 +41,10 @@ RUN if [ "$DEPLOY_ENV" = "local" ]; then \
   npm install npm@latest -g \
 ; fi
 
+RUN useradd -ms /bin/bash myuser
 COPY ./docker/.vimrc /root
-RUN sed -i 's/\r//' /root/.vimrc
+RUN sed -i 's/\r//' /root/.vimrc && \
+    cp /root/.vimrc /home/myuser/.vimrc
 
 WORKDIR /var/www/html
 COPY ./docker/php/.env.${DEPLOY_ENV} ./.env
@@ -69,18 +71,29 @@ COPY ./src/config/ ./config
 COPY ./src/resources/ ./resources
 COPY ./src/app/ ./app
 
-RUN composer update
 RUN echo 'export LANG=C.UTF-8' >> /root/.bashrc && \
-    rm -rf storage/logs/*.log
+    chmod -R 777 /var/www/html/ && \
+    rm -rf storage/logs/*.log && \
+    chmod a+r /composer/*.json && \
+    chmod -R 777 /composer/cache/
+
+USER myuser
+RUN composer update
 RUN php artisan optimize:clear && \
     php artisan optimize && \
     php artisan cache:clear && \
+    php artisan debugbar:clear && \
     php artisan route:cache && \
     php artisan config:cache && \
-    php artisan view:cache && \
-    chmod -R 777 storage bootstrap/cache
+    php artisan view:cache
 
+USER root
+RUN cd storage/framework/sessions/ && \
+    ls | grep -i -v -E '.gitignore' | xargs rm -rf && \
+    cd ../../../
+RUN chmod -R 777 storage bootstrap/cache
+
+USER myuser
 RUN if [ "$DEPLOY_ENV" = "local" ]; then \
   npm ci && npm run dev \
 ; fi
-
