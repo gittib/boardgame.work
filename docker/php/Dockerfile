@@ -15,6 +15,7 @@ RUN apt-get update && apt-get -y upgrade && \
     checkinstall \
     libicu-dev \
     libonig-dev \
+    libtidy-dev \
     libzip-dev \
     locales \
     procps \
@@ -26,6 +27,7 @@ RUN apt-get update && apt-get -y upgrade && \
     bcmath \
     intl \
     pdo_mysql \
+    tidy \
     zip && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
