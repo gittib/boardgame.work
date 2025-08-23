@@ -8,6 +8,8 @@ services:
         - SERVER_NAME=laravel-dev.boardgame.work
         - PHP_CONTAINER_NAME=develop-php
         - SSL_PORT=8443
+    depends_on:
+      - php
     ports:
       - 8443:443
       - 8080:80

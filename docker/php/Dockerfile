@@ -1,6 +1,10 @@
 FROM php:8.2-fpm-bookworm
 
 ARG DEPLOY_ENV
+ARG UID=1000
+ARG GID=1000
+ARG USERNAME=myuser
+ARG GROUPNAME=myuser
 
 ENV TZ=Asia/Tokyo \
   # composer environment
@@ -41,59 +45,31 @@ RUN if [ "$DEPLOY_ENV" = "local" ]; then \
   npm install npm@latest -g \
 ; fi
 
-RUN useradd -ms /bin/bash myuser
 COPY ./docker/.vimrc /root
-RUN sed -i 's/\r//' /root/.vimrc && \
-    cp /root/.vimrc /home/myuser/.vimrc
+RUN groupadd -g $GID $GROUPNAME && \
+    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME && \
+    sed -i 's/\r//' /root/.vimrc && \
+    cp /root/.vimrc /home/$USERNAME/.vimrc && \
+    chown $USERNAME:$GROUPNAME /home/$USERNAME/.vimrc
 
 WORKDIR /var/www/html
-COPY ./docker/php/.env.${DEPLOY_ENV} ./.env
-COPY ./src/artisan ./artisan
-COPY ./src/.editorconfig ./.editorconfig
-COPY ./src/.gitattributes ./.gitattributes
-COPY ./src/.gitignore ./.gitignore
-COPY ./src/.styleci.yml ./.styleci.yml
-COPY ./src/phpunit.xml ./phpunit.xml
-COPY ./src/server.php ./server.php
-COPY ./src/vite.config.js ./vite.config.js
-COPY ./src/webpack.mix.js ./webpack.mix.js
-COPY ./src/composer.json ./composer.json
-COPY ./src/composer.lock ./composer.lock
-COPY ./src/package-lock.json ./package-lock.json
-COPY ./src/package.json ./package.json
-COPY ./src/storage/ ./storage
-COPY ./src/bootstrap/ ./bootstrap
-COPY ./src/routes/ ./routes
-COPY ./src/tests/ ./tests
-COPY ./src/public/ ./public
-COPY ./src/database/ ./database
-COPY ./src/config/ ./config
-COPY ./src/resources/ ./resources
-COPY ./src/app/ ./app
+COPY --chown=$USERNAME:$GROUPNAME ./src .
+COPY --chown=$USERNAME:$GROUPNAME ./docker/php/.env.${DEPLOY_ENV} ./.env
 
 RUN echo 'export LANG=C.UTF-8' >> /root/.bashrc && \
-    chmod -R 777 /var/www/html/ && \
+    chown -R $USERNAME:$GROUPNAME /var/www/html/ && \
     rm -rf storage/logs/*.log && \
     chmod a+r /composer/*.json && \
-    chmod -R 777 /composer/cache/
-
-USER myuser
-RUN composer update
-RUN php artisan optimize:clear && \
-    php artisan optimize && \
+    chown -R $USERNAME /composer/cache/ && \
+    composer update && \
     php artisan cache:clear && \
     php artisan debugbar:clear && \
     php artisan route:cache && \
     php artisan config:cache && \
-    php artisan view:cache
+    php artisan view:cache && \
+    chown -R $USERNAME:$GROUPNAME /var/www/html/
 
-USER root
-RUN cd storage/framework/sessions/ && \
-    ls | grep -i -v -E '.gitignore' | xargs rm -rf && \
-    cd ../../../
-RUN chmod -R 777 storage bootstrap/cache
-
-USER myuser
+USER $USERNAME
 RUN if [ "$DEPLOY_ENV" = "local" ]; then \
   npm ci && npm run dev \
 ; fi
