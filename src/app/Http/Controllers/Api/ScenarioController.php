@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Scenario as ScenarioResource;
 use App\Models\Scenario;
 use Auth;
