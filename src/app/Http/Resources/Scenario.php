@@ -37,6 +37,8 @@ class Scenario extends JsonResource
                 'story' => $this->story,
                 'detail' => $this->advice,
             ],
+
+            'invalidConditions' => $this->invalidConditions,
         ];
     }
 
