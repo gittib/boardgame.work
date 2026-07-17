@@ -1,0 +1,4 @@
+
+openssl dhparam -out ./docker/nginx/dhparam.pem 4096
+
+docker compose -f docker-compose-dev.yml run --rm certbot certonly --webroot -w /var/www/html -d laravel-dev.boardgame.work

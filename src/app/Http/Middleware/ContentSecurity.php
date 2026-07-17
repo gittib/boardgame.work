@@ -23,6 +23,7 @@ class ContentSecurity
                 "data:",
                 "https://ka-f.fontawesome.com",
                 "https://www.google-analytics.com",
+                "https://www.google.com",
             ],
             "style-src" => [
                 "'self'",
@@ -41,6 +42,8 @@ class ContentSecurity
                 "https://kit.fontawesome.com",
                 "https://code.jquery.com",
                 "https://www.googletagmanager.com",
+                "https://www.google.com",
+                "https://www.gstatic.com",
             ],
         ]);
 

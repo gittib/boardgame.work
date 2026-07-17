@@ -7,16 +7,20 @@ services:
       args:
         - SERVER_NAME=laravel-dev.boardgame.work
         - PHP_CONTAINER_NAME=develop-php
+        - SSL_PORT=8443
+    depends_on:
+      - php
     ports:
       - 8443:443
       - 8080:80
     volumes:
       - ./src/public:/var/www/html/public
-      - /etc/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/etc/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/logs:/var/log/nginx
   certbot:
     image: certbot/certbot:v1.7.0
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/etc/letsencrypt:/etc/letsencrypt
       - ./src/public:/var/www/html
     command: ["--version"]
   php:
@@ -29,22 +33,31 @@ services:
     ports:
       - 9001:9000
     volumes:
-      - ./src:/var/www/html
+      - ./src/app:/var/www/html/app/
+      - ./src/bootstrap:/var/www/html/bootstrap/
+      - ./src/config:/var/www/html/config/
+      - ./src/database:/var/www/html/database/
+      - ./src/public:/var/www/html/public/
+      - ./src/resources:/var/www/html/resources/
+      - ./src/routes:/var/www/html/routes/
+      - ./src/tests:/var/www/html/tests/
+      - ./src/.gitignore:/var/www/html/.gitignore
+      - ./src/composer.json:/var/www/html/composer.json
+      - ./src/composer.lock:/var/www/html/composer.lock
+      - ./src/package-lock.json:/var/www/html/package-lock.json
+      - ./src/package.json:/var/www/html/package.json
+      - ./src/phpunit.xml:/var/www/html/phpunit.xml
+      - ./src/server.php:/var/www/html/server.php
+      - ./src/vite.config.js:/var/www/html/vite.config.js
+      - ./src/webpack.mix.js:/var/www/html/webpack.mix.js
   db:
     container_name: develop-db
     image: mysql:8
-    env_file: ./src/.env
-    environment:
-      MYSQL_ROOT_PASSWORD: "sd9h9ai8yDHAios7"
-      MYSQL_ROOT_HOST: "%"
-      # .envファイルの「DB_DATABASE」とMYSQL_DATABASEを合わせる
-      MYSQL_DATABASE: port_local
-      TZ: "Asia/Tokyo"
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    env_file: ./docker/php/.env.develop
     volumes:
-      - ./docker/db/data:/var/lib/mysql
+      - develop-db-store:/var/lib/mysql
       - ./docker/db/conf.d:/etc/mysql/conf.d
-      - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 28002:3306
-
+volumes:
+  develop-db-store:
