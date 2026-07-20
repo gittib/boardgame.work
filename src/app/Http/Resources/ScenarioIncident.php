@@ -16,8 +16,9 @@ class ScenarioIncident extends JsonResource
     {
         return [
             'name' => $this->name,
+            'publicName' => $this->publicName,
             'day' => $this->day,
-            'criminal' => $this->criminal?->name,
+            'criminal' => $this->criminalNameStr,
             'note' => $this->note,
         ];
     }
