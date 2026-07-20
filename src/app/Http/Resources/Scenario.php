@@ -17,8 +17,10 @@ class Scenario extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'publicMessage' => $this->public_message,
             'writer' => $this->writer?->name ?? '？？？？',
             'set' => $this->set?->abbr,
+            'isPlus' => (bool)$this->is_plus,
             'difficulty' => $this->difficulty,
             'rule' => [
                 $this->ruleY?->name,
