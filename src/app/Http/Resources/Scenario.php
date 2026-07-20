@@ -31,6 +31,8 @@ class Scenario extends JsonResource
             'loop' => (string)$this->loops, // 無限ループとか数字じゃないケースを想定して文字列とする
             'day' => $this->days,
 
+            'crazyRuleY' => $this->crazyRuleY?->name,
+
             // ネストされたリストのリソース化
             'characterList' => ScenarioCharacter::collection($this->whenLoaded('characters', $this->characters ?? [])),
             'incidentList' => ScenarioIncident::collection($this->whenLoaded('incidents', $this->incidents ?? [])),
