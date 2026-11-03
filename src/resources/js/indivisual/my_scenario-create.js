@@ -40,18 +40,6 @@ if ($('body').hasClass('my_scenario-create')) {
         });
     });
 
-    $('.scenario_character_list').on('click', '.character_row .js-chara_delete_button', async function() {
-        const $self = $(this);
-        const charaName = $self.closest('.character_row').find('select[data-key_name=character_id] option:selected').text();
-        const msg = CHARA_DELETE_CONFIRM_MESSAGE.replace('___CHARA___', charaName);
-        if ($('.character_row').length > 1) {
-            const {result} = await myConfirm(msg);
-            if (result == 'ok') {
-                $self.closest('.character_row').remove();
-                updateLists();
-            }
-        }
-    });
     $('.scenario_character_list').on('click change', 'select[data-key_name=character_id]', function() {
         updateLists();
     });

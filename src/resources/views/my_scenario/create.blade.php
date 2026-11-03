@@ -25,6 +25,14 @@ $aDifficulty = collect(__('tragedy_master.difficulty'))->mapWithKeys(function($d
 $isBoard = fn($id) => in_array($id, array_keys(__('tragedy_master.board_name')));
 
 $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')?->id);
+
+
+$characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->characters)
+    ->map(fn($it, $index) => [
+        ...(is_array($it) ? $it : $it->toArray()),
+        'errors' => $errors->first('scenario_chara.'.$index.'.*'),
+    ]);
+
 ?>
 @extends('layouts.layout')
 
@@ -178,12 +186,16 @@ $crazyTruthId = (int)($set->ruleXs->first(fn($it) => $it->code == 'Crazy-Truth')
                                 <span class="label_name">@lang('特記事項')</span>
                                 <input value="{{ __($ch->note) }}" data-list_name="scenario_chara" data-key_name="note">
                             </span>
-                            <div class="button js-chara_delete_button">@lang('このキャラを削除')</div>
+                            <div class="button" data-chara_delete_button>@lang('このキャラを削除')</div>
+                        </div>
+                        <div>
+                            <button type="button" data-up>↑</button>
+                            <button type="button" data-down>↓</button>
                         </div>
                     </li>
                     @endforeach
                 </ul>
-                <div class="button js-chara_add_button">@lang('キャラ追加')</div>
+                <div class="button" data-chara_add_button>@lang('キャラ追加')</div>
             </dd>
             <dt>@lang('事件')</dt>
             <dd>
@@ -329,4 +341,84 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
 @endsection
 
 @section('additional_scripts')
+<script>
+(function() {
+    let characterList = @json($characterList);
+    const characterRowHtml = (() => {
+        const $dom = $('.scenario_character_list .character_row').clone();
+        $dom.removeClass('is-error');
+        return $dom[0].outerHTML;
+    })();
+    $('.scenario_character_list').on('change keyup keydown', '[data-index] select,input', function() {
+        const $self = $(this);
+        const index = $self.closest('[data-index]').attr('data-index') - 1;
+        characterList[index][$self.attr('data-key_name')] = $self.val();
+    });
+    $('.scenario_character_list').on('change blur', '[data-index] select,input', function() {
+        updateCharacterListDom();
+    });
+    $('[data-chara_add_button]').on('click', function() {
+        characterList.push({
+            character_id: 1,
+            role_id: 1,
+            note: null,
+        });
+        updateCharacterListDom();
+    });
+    $('.scenario_character_list').on('click', '.character_row [data-chara_delete_button]', async function() {
+        const $self = $(this);
+        const charaName = $self.closest('.character_row').find('select[data-key_name=character_id] option:selected').text();
+        const msg = CHARA_DELETE_CONFIRM_MESSAGE.replace('___CHARA___', charaName);
+        if ($('.character_row').length > 1) {
+            const {result} = await myConfirm(msg);
+            if (result == 'ok') {
+                const index = $self.closest('[data-index]').attr('data-index') - 1;
+                characterList.splice(index, 1);
+                updateCharacterListDom();
+            }
+        }
+    });
+    $('.scenario_character_list').on('click', '.character_row [data-up]', function() {
+        const $self = $(this);
+        const index = Number($self.closest('[data-index]').attr('data-index')) - 1;
+        const t = characterList[index-1];
+        if (!t) return;
+        characterList[index-1] = characterList[index];
+        characterList[index] = t;
+        updateCharacterListDom();
+    });
+    $('.scenario_character_list').on('click', '.character_row [data-down]', function() {
+        const $self = $(this);
+        const index = Number($self.closest('[data-index]').attr('data-index')) - 1;
+        const t = characterList[index+1];
+        if (!t) return;
+        characterList[index+1] = characterList[index];
+        characterList[index] = t;
+        updateCharacterListDom();
+    });
+    function updateCharacterListDom() {
+        characterList = Object.values(characterList).filter(it => it);
+        console.log(characterList);
+        const $list = $('.scenario_character_list');
+        $list.empty();
+        let index = 1;
+        characterList.forEach(ch => {
+            const $row = $(characterRowHtml);
+            $row.attr('data-index', index);
+            if (ch.errors) $row.addClass('is-error');
+            $row.find('[data-list_name][data-key_name]').each(function() {
+                const $dom = $(this);
+                $dom.attr('name', `${$dom.attr('data-list_name')}[${index}][${$dom.attr('data-key_name')}]`);
+                $dom.val(ch[$dom.attr('data-key_name')]);
+            });
+            $list.append($row);
+            index++;
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+        updateCharacterListDom();
+    });
+})();
+</script>
 @endsection
