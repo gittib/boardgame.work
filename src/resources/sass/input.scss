@@ -78,6 +78,11 @@ input:not([type]), input[type=text] {
     background: #070664;
     cursor: pointer;
     border-radius: 8px;
+
+    &[disabled] {
+        background: lightgray;
+        cursor: not-allowed;
+    }
 }
 
 .inline_block {

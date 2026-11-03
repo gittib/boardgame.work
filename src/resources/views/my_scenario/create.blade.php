@@ -188,9 +188,9 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                             </span>
                             <div class="button" data-chara_delete_button>@lang('このキャラを削除')</div>
                         </div>
-                        <div>
-                            <button type="button" data-up>↑</button>
-                            <button type="button" data-down>↓</button>
+                        <div class="order_console">
+                            <button class="button" type="button" data-up>上へ↑</button>
+                            <button class="button" type="button" data-down>下へ↓</button>
                         </div>
                     </li>
                     @endforeach
@@ -326,7 +326,7 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
     </form>
 </div>
 <div class="clone_base hidden">
-    <select>
+    <select data-crowd_criminal_list_html>
         <option class="js-crowd_criminal_list_html"></option>
         @foreach(__('tragedy_master.board_name') as $key => $boardName)
         <option class="js-crowd_criminal_list_html" value="{{ $key }}">@lang(':boardの群像', ['board' => $boardName])</option>
@@ -343,13 +343,20 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
 @section('additional_scripts')
 <script>
 (function() {
+    const charaNameMaster = {};
+    $('select[data-list_name="scenario_chara"][data-key_name="character_id"] option').each(function() {
+        const $opt = $(this);
+        charaNameMaster[$opt.val()] = $opt.text().trim();
+    });
+    const crowdCriminalListHtml = $('.clone_base [data-crowd_criminal_list_html] > option');
+
     let characterList = @json($characterList);
     const characterRowHtml = (() => {
         const $dom = $('.scenario_character_list .character_row').clone();
         $dom.removeClass('is-error');
         return $dom[0].outerHTML;
     })();
-    $('.scenario_character_list').on('change keyup keydown', '[data-index] select,input', function() {
+    $('.scenario_character_list').on('change input keyup keydown', '[data-index] select,input', function() {
         const $self = $(this);
         const index = $self.closest('[data-index]').attr('data-index') - 1;
         characterList[index][$self.attr('data-key_name')] = $self.val();
@@ -397,7 +404,11 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         updateCharacterListDom();
     });
     function updateCharacterListDom() {
-        characterList = Object.values(characterList).filter(it => it);
+        characterList = Object.values(characterList).filter(it => it).map(it => ({
+            ...it,
+            character_id: Number(it.character_id),
+            character_name: charaNameMaster[Number(it.character_id)] || '',
+        }));
         console.log(characterList);
         const $list = $('.scenario_character_list');
         $list.empty();
@@ -406,6 +417,8 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             const $row = $(characterRowHtml);
             $row.attr('data-index', index);
             if (ch.errors) $row.addClass('is-error');
+            if (index == 1) $row.find('[data-up]').attr('disabled', 'disabled');
+            if (index == characterList.length) $row.find('[data-down]').attr('disabled', 'disabled');
             $row.find('[data-list_name][data-key_name]').each(function() {
                 const $dom = $(this);
                 $dom.attr('name', `${$dom.attr('data-list_name')}[${index}][${$dom.attr('data-key_name')}]`);
@@ -413,6 +426,23 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             });
             $list.append($row);
             index++;
+        });
+        updateCriminalSelect();
+    }
+    function updateCriminalSelect() {
+        const criminalListHtml = '<option></option>' + characterList.map(it => `<option value="${it.character_id}">${it.character_name}</option>`);
+        $('select.criminal').each(function() {
+            const $select = $(this);
+            const $selectIncident = $select.closest('.incident_wrapper').find('select.incident');
+            const incidentId = Number($selectIncident.val());
+
+            const charaId = $select.val();
+            if (CROWD_INCIDENT_IDS.includes(incidentId)) {
+                $select.html(crowdCriminalListHtml.clone());
+            } else {
+                $select.html(criminalListHtml);
+            }
+            $select.val(charaId);
         });
     }
 
