@@ -74,6 +74,31 @@ class Scenario extends Model
     }
 
     // attribute
+    public function getJsonLdAttribute():array {
+        return [
+            "@context" => "https://schema.org",
+            "@type" => "WebPage",
+            "name" => $this->title,
+            "description" => $this->public_message,
+            "url" => route('scenario.show', $this->id),
+            "isPartOf" => [
+                "@type" => "WebSite",
+                "name" => "惨劇RoopeR 脚本データベース",
+                "url" => route('top.index'),
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => $this->writer?->name,
+            ],
+            "publisher" => [
+                "@type" => "Person",
+                "name" => config('define.auther.name'),
+            ],
+            "datePublished" => $this->opened_at,
+            "dateModified" => $this->updated_at,
+        ];
+    }
+
     public function getSetNameAttribute():string {
         if ($this->is_plus) {
             return ($this->set?->name ?? '') . '＋';
