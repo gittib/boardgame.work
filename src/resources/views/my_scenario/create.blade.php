@@ -215,6 +215,7 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                                     {{ html()->select('scenario_incident['.$i.'][incident_id]', $incidentSelect)
                                         ->value($selectedIncidentId)
                                         ->placeholder('')
+                                        ->data('name', 'incident_id')
                                         ->class('incident')
                                     }}
                                 </span>
@@ -225,6 +226,7 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                                     {{ html()->select('scenario_incident['.$i.'][character_id]', $isCrowd ? __('tragedy_master.board_name') : $charaSelect)
                                         ->value($criminalCharacterId)
                                         ->placeholder('')
+                                        ->data('name', 'character_id')
                                         ->class('criminal')
                                     }}
                                 </span>
@@ -233,12 +235,12 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                             <div>
                                 <span class="label_and_input_wrapper">
                                     <span class="label_name">@lang('偽装事件の公開名')</span>
-                                    <input class="incident_note" name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
+                                    <input class="incident_note" data-name="special_note" name="scenario_incident[{{$i}}][special_note]" value="{{ $helper->inputVal("scenario_incident.$i.special_note") ?? $incidentOnDb->public_name_input }}">
                                 </span>
                             </div>
+                            @endif
                         </div>
-                        @endif
-                        <div>
+                        <div data-incident_error_wrapper>
                             @error("scenario_incident.$i.*")
                             <p class="is-error">{{ $errors->first("scenario_incident.$i.*") }}</p>
                             @enderror
@@ -351,6 +353,18 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
     const crowdCriminalListHtml = $('.clone_base [data-crowd_criminal_list_html] > option');
 
     let characterList = @json($characterList);
+    const incidentList = {};
+    $('.incident_wrapper[data-day]').each(function() {
+        const $li = $(this);
+        const day = Number($li.attr('data-day'));
+        incidentList[day] = {
+            incident_id: $li.find('select[data-name=incident_id]').val(),
+            character_id: $li.find('select[data-name=character_id]').val(),
+            special_note: $li.find('input[data-name=special_note]').val(),
+        };
+    });
+    console.log(incidentList);
+
     const characterRowHtml = (() => {
         const $dom = $('.scenario_character_list .character_row').clone();
         $dom.removeClass('is-error');
@@ -403,6 +417,20 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         characterList[index] = t;
         updateCharacterListDom();
     });
+
+    $('[name=days]').on('change click', function() {
+        updateCriminalSelect();
+    });
+    $('.scenario_incident_list li[data-day] select').on('change input keyup keydown', function() {
+        const $self = $(this);
+        const day = Number($self.closest('[data-day]').attr('data-day'));
+        const name = $self.attr('data-name');
+        incidentList[day][name] = $self.val();
+    });
+    $('.scenario_incident_list li[data-day] [data-name]').on('change blur', function() {
+        updateCriminalSelect();
+    });
+
     function updateCharacterListDom() {
         characterList = Object.values(characterList).filter(it => it).map(it => ({
             ...it,
@@ -444,6 +472,17 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             }
             $select.val(charaId);
         });
+
+        const days = Number($('[name=days]').val());
+        $(`.scenario_incident_list li`).hide();
+        for (let i = 1 ; i <= days ; i++) {
+            $(`.scenario_incident_list li[data-day=${i}]`).show();
+            const $errorWrapper = $(`.scenario_incident_list li[data-day=${i}] [data-incident_error_wrapper]`);
+            $errorWrapper.empty();
+            if (!!incidentList[i].character_id != !!incidentList[i].incident_id) {
+                $errorWrapper.append('<p class="is-error">犯人と事件はセットで指定してください</p>');
+            }
+        }
     }
 
     document.addEventListener("DOMContentLoaded", (event) => {

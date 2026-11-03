@@ -87,6 +87,10 @@ body.my_scenario-create {
         > li {
             $border_style: double 3px;
             border-bottom: $border_style;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
             &:first-child {
                 border-top: $border_style;
