@@ -80,7 +80,7 @@ class Scenario extends Model
             "@type" => "WebPage",
             "name" => $this->title,
             "description" => $this->public_message,
-            "url" => route('scenario.show', $this->id),
+            "url" => $this->id ? route('scenario.show', $this->id) : null,
             "isPartOf" => [
                 "@type" => "WebSite",
                 "name" => "惨劇RoopeR 脚本データベース",
