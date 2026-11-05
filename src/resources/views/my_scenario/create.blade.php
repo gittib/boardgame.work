@@ -188,9 +188,12 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                             </span>
                             <div class="button" data-chara_delete_button>@lang('このキャラを削除')</div>
                         </div>
-                        <div class="order_console">
-                            <button class="button" type="button" data-up>@lang('上へ↑')</button>
-                            <button class="button" type="button" data-down>@lang('下へ↓')</button>
+                        <div class="error_order_console">
+                            <p class="error_message" data-error_message></p>
+                            <div class="order_console">
+                                <button class="button" type="button" data-up>@lang('上へ↑')</button>
+                                <button class="button" type="button" data-down>@lang('下へ↓')</button>
+                            </div>
                         </div>
                     </li>
                     @endforeach
@@ -442,9 +445,19 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             character_id: Number(it.character_id) || firstCharacterId,
             character_name: charaNameMaster[Number(it.character_id)] || firstCharacterName,
             role_id: Number(it.role_id) || personRoleId,
+            errors: null,
         }));
-        // TODO: キャラ重複チェック
-        console.log(characterList);
+
+        // キャラ重複チェック
+        const duplicateCharaIds = characterList.map(it => it.character_id).filter((item, index, self) => {
+            // 自身と同じ項目が自身のindexより先に出現しているなら重複
+            return self.indexOf(item) !== index;
+        });
+        characterList = characterList.map(it => ({
+            ...it,
+            errors: duplicateCharaIds.includes(it.character_id) ? 'キャラクター重複' : null,
+        }));
+
         const $list = $('.scenario_character_list');
         $list.empty();
         let index = 1;
@@ -453,7 +466,9 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             $row.attr('data-index', index);
             if (ch.errors) {
                 $row.addClass('is-error');
-                // TODO: エラーメッセージを表示
+                $row.find('[data-error_message]').text(ch.errors);
+            } else {
+                $row.find('[data-error_message]').text('');
             }
             if (index == 1) $row.find('[data-up]').attr('disabled', 'disabled');
             if (index == characterList.length) $row.find('[data-down]').attr('disabled', 'disabled');

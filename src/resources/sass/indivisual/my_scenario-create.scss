@@ -71,8 +71,19 @@ body.my_scenario-create {
             align-items: baseline;
             flex-wrap: wrap;
 
-            &.order_console {
-                justify-content: end;
+            &.error_order_console {
+                display: flex;
+                justify-content: between;
+
+                .error_message {
+                    flex: 1;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-size: .75em;
+                    color: red;
+                    padding-left: 4px;
+                }
             }
         }
 
