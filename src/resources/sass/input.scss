@@ -82,6 +82,7 @@ input:not([type]), input[type=text] {
     &[disabled] {
         background: lightgray;
         cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
