@@ -75,7 +75,9 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
             <dd>
                 <div class="select_wrapper {{ $helper->errClass('rule_x1_id') }}">
                     {{ html()->select('rule_x1_id', $ruleXs)
-                        ->value($helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id, ['class' => 'rule_x'])
+                        ->value($helper->inputVal('rule_x1_id') ?? $scenario->rule_x1_id)
+                        ->class('rule_x')
+                        ->data('rule_x')
                     }}
                 </div>
             </dd>
@@ -86,13 +88,14 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                     {{ html()->select('rule_x2_id', $ruleXs)
                         ->value($helper->inputVal('rule_x2_id') ?? $scenario->rule_x2_id)
                         ->class('rule_x')
+                        ->data('rule_x')
                     }}
                 </div>
             </dd>
             @endif
             @if(!empty($crazyTruthId))
-            <dt class="for_crazy_truth">@lang(':rule用ルールY', ['rule' => __('tragedy_master.rule_name.Crazy-Truth')])</dt>
-            <dd class="for_crazy_truth">
+            <dt class="for_crazy_truth" data-for_crazy_truth>@lang(':rule用ルールY', ['rule' => __('tragedy_master.rule_name.Crazy-Truth')])</dt>
+            <dd class="for_crazy_truth" data-for_crazy_truth>
                 <div class="select_wrapper {{ $helper->errClass('crazy_rule_y_id') }}">
                     {{ html()->select('crazy_rule_y_id', $ruleYs)
                         ->value($helper->inputVal('crazy_rule_y_id') ?? $scenario->crazy_rule_y_id)
@@ -323,7 +326,9 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                 <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
                     @lang('プレビュー')
                 </div>
-                <div class="button submit_button" data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
+                <div class="button submit_button"
+                    data-register_button
+                    data-action="{{ $isEdit ? route('my-scenario.update', ['my_scenario' => $scenario->id]) : route('my-scenario.store') }}">
                     @lang('登録')
                 </div>
             </div>
@@ -483,6 +488,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             index++;
         });
         updateCriminalSelect();
+        switchCrazyTruthSetting();
     }
     function updateCriminalSelect() {
         const criminalListHtml = '<option></option>' + characterList.map(it => `<option value="${it.character_id}">${it.character_name}</option>`);
@@ -503,18 +509,46 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
 
         const days = Number($('[name=days]').val());
         $(`.scenario_incident_list li`).hide();
-        for (let i = 1 ; i <= days ; i++) {
+        for (let i = 1 ; i <= 8 ; i++) {
+            incidentList[i].errors = null;
+        }
+        for (i = 1 ; i <= days ; i++) {
             $(`.scenario_incident_list li[data-day=${i}]`).show();
             const $errorWrapper = $(`.scenario_incident_list li[data-day=${i}] [data-incident_error_wrapper]`);
             $errorWrapper.empty();
             if (!!incidentList[i].character_id != !!incidentList[i].incident_id) {
-                $errorWrapper.append('<p class="is-error">犯人と事件はセットで指定してください</p>');
+                incidentList[i].errors = '犯人と事件はセットで指定してください';
+                $errorWrapper.append(`<p class="is-error">${incidentList[i].errors}</p>`);
             }
         }
+        disableIfErrorHas();
+    }
+    function disableIfErrorHas() {
+        const hasErrors = (() => {
+            if (characterList.some(it => it.errors)) return true;
+            if (Object.values(incidentList).some(it => it.errors)) return true;
+            return false;
+        })();
+        $('[data-register_button]').attr('disabled', hasErrors ? 'disabled' : null);
+    }
+
+    $('select[data-rule_x]').on('change', function() {
+        switchCrazyTruthSetting();
+    });
+
+    const crazyTruthId = Number($('#crazy_truth_rule_id').attr('data-rule_id'));
+    function switchCrazyTruthSetting() {
+        if (!crazyTruthId) return;
+        let includedCrazyTruth = false;
+        $('select[data-rule_x]').each(function() {
+            if (Number($(this).val()) == crazyTruthId) includedCrazyTruth = true;
+        });
+        $('[data-for_crazy_truth]').attr('data-for_crazy_truth', includedCrazyTruth ? 'selected' : 'none');
     }
 
     document.addEventListener("DOMContentLoaded", (event) => {
         updateCharacterListDom();
+        switchCrazyTruthSetting();
     });
 })();
 </script>

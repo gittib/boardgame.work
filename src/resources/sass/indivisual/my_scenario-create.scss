@@ -27,6 +27,10 @@ body.my_scenario-create {
 
         .for_crazy_truth {
             display: none;
+
+            &[data-for_crazy_truth="selected"] {
+                display: block;
+            }
         }
     }
 
