@@ -189,8 +189,8 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                             <div class="button" data-chara_delete_button>@lang('このキャラを削除')</div>
                         </div>
                         <div class="order_console">
-                            <button class="button" type="button" data-up>上へ↑</button>
-                            <button class="button" type="button" data-down>下へ↓</button>
+                            <button class="button" type="button" data-up>@lang('上へ↑')</button>
+                            <button class="button" type="button" data-down>@lang('下へ↓')</button>
                         </div>
                     </li>
                     @endforeach
@@ -421,22 +421,29 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
     $('[name=days]').on('change click', function() {
         updateCriminalSelect();
     });
-    $('.scenario_incident_list li[data-day] select').on('change input keyup keydown', function() {
+    $('.scenario_incident_list').on('change input', 'li[data-day] select', function() {
         const $self = $(this);
         const day = Number($self.closest('[data-day]').attr('data-day'));
         const name = $self.attr('data-name');
         incidentList[day][name] = $self.val();
     });
-    $('.scenario_incident_list li[data-day] [data-name]').on('change blur', function() {
-        updateCriminalSelect();
+    $('.scenario_incident_list').on('change', 'li[data-day] [data-name]', function() {
+        setTimeout(() => {
+            updateCriminalSelect();
+        }, 1);
     });
 
+    const firstCharacterId = Object.keys(charaNameMaster)[0];
+    const firstCharacterName = Object.values(charaNameMaster)[0];
+    const personRoleId = Number($('.character_row select[data-key_name=role_id] > option:first').val());
     function updateCharacterListDom() {
         characterList = Object.values(characterList).filter(it => it).map(it => ({
             ...it,
-            character_id: Number(it.character_id),
-            character_name: charaNameMaster[Number(it.character_id)] || '',
+            character_id: Number(it.character_id) || firstCharacterId,
+            character_name: charaNameMaster[Number(it.character_id)] || firstCharacterName,
+            role_id: Number(it.role_id) || personRoleId,
         }));
+        // TODO: キャラ重複チェック
         console.log(characterList);
         const $list = $('.scenario_character_list');
         $list.empty();
@@ -444,13 +451,18 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         characterList.forEach(ch => {
             const $row = $(characterRowHtml);
             $row.attr('data-index', index);
-            if (ch.errors) $row.addClass('is-error');
+            if (ch.errors) {
+                $row.addClass('is-error');
+                // TODO: エラーメッセージを表示
+            }
             if (index == 1) $row.find('[data-up]').attr('disabled', 'disabled');
             if (index == characterList.length) $row.find('[data-down]').attr('disabled', 'disabled');
+            if (characterList.length <= 1) $row.find('[data-chara_delete_button]').attr('disabled', 'disabled');
             $row.find('[data-list_name][data-key_name]').each(function() {
                 const $dom = $(this);
-                $dom.attr('name', `${$dom.attr('data-list_name')}[${index}][${$dom.attr('data-key_name')}]`);
-                $dom.val(ch[$dom.attr('data-key_name')]);
+                const keyName = $dom.attr('data-key_name');
+                $dom.attr('name', `${$dom.attr('data-list_name')}[${index}][${keyName}]`);
+                $dom.val(ch[keyName]);
             });
             $list.append($row);
             index++;
@@ -461,10 +473,11 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         const criminalListHtml = '<option></option>' + characterList.map(it => `<option value="${it.character_id}">${it.character_name}</option>`);
         $('select.criminal').each(function() {
             const $select = $(this);
+            const day = Number($select.closest('[data-day]').attr('data-day'));
             const $selectIncident = $select.closest('.incident_wrapper').find('select.incident');
-            const incidentId = Number($selectIncident.val());
+            const incidentId = incidentList[day].incident_id;
 
-            const charaId = $select.val();
+            const charaId = incidentList[day].character_id;
             if (CROWD_INCIDENT_IDS.includes(incidentId)) {
                 $select.html(crowdCriminalListHtml.clone());
             } else {
