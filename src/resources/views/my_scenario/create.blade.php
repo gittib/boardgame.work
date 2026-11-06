@@ -303,8 +303,8 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                         }}
                         @lang('脚本を公開する')
                     </label>
-                    <div>
-                        <p class="is-error" data-error_message="open_without_advice_error">@lang('脚本を公開する場合は、脚本の特徴と脚本家への指針を記入して下さい。')</p>
+                    <div data-js_loaded="not_yet">
+                        <p class="is-error" data-error_message="open_without_advice_error">@lang('脚本を公開する場合は、タイトルと脚本の特徴と脚本家への指針を記入して下さい。')</p>
                     </div>
                 </li>
                 <li>
@@ -324,7 +324,7 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                 </li>
             </ul>
         </div>
-        <div class="fixed_footer_console">
+        <div class="fixed_footer_console" data-js_loaded="not_yet">
             <div class="submit_button_wrapper">
                 <div class="button submit_button" data-target="preview" data-action="{{ route('my-scenario.preview') }}">
                     @lang('プレビュー')
@@ -541,7 +541,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         $('[data-for_crazy_truth]').attr('data-for_crazy_truth', includedCrazyTruth ? 'selected' : 'none');
     }
 
-    $('[name=feature],[name=advice]').on('input keydown keyup', function() {
+    $('[name=title],[name=feature],[name=advice]').on('input keydown keyup', function() {
         checkAdviceInputIfOpen();
     });
     $('[name=is_open]').on('change click', function() {
@@ -552,6 +552,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         isOpenWithoutAdvice = false;
         if ($('[name=is_open]').prop('checked')) {
             isOpenWithoutAdvice = [
+                'title',
                 'feature',
                 'advice',
             ].some(it => !$(`[name=${it}]`).val());
@@ -575,6 +576,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         updateCharacterListDom();
         switchCrazyTruthSetting();
         checkAdviceInputIfOpen();
+        $('[data-js_loaded="not_yet"]').attr('data-js_loaded', 'done');
     });
 })();
 </script>

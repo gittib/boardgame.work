@@ -233,4 +233,8 @@ body.my_scenario-create {
             }
         }
     }
+
+    [data-js_loaded="not_yet"] {
+        display: none;
+    }
 }
