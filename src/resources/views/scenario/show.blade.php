@@ -32,6 +32,7 @@ $pageType = $isPreview ? \App\Enums\PageType::ScenarioPreview : \App\Enums\PageT
 @endsection
 
 @pushOnce('stack_headers')
+<script type="application/ld+json">@json($scenario->jsonLd)</script>
 <script id="initial_adjust_scenario_font_size">
 if (Number(localStorage.scenarioFontSize) > 0) {
     const fontSize = Number(localStorage.scenarioFontSize);

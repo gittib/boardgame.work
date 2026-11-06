@@ -27,6 +27,10 @@ body.my_scenario-create {
 
         .for_crazy_truth {
             display: none;
+
+            &[data-for_crazy_truth="selected"] {
+                display: block;
+            }
         }
     }
 
@@ -52,6 +56,9 @@ body.my_scenario-create {
     .character_row {
         margin-bottom: 24px;
         border-bottom: 3px double;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 8px;
 
         &:first-child {
             border-top: 3px double;
@@ -67,6 +74,21 @@ body.my_scenario-create {
             justify-content: center;
             align-items: baseline;
             flex-wrap: wrap;
+
+            &.error_order_console {
+                display: flex;
+                justify-content: between;
+
+                .error_message {
+                    flex: 1;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    font-size: .75em;
+                    color: red;
+                    padding-left: 4px;
+                }
+            }
         }
 
         .note_wrapper {
@@ -80,6 +102,10 @@ body.my_scenario-create {
         > li {
             $border_style: double 3px;
             border-bottom: $border_style;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
             &:first-child {
                 border-top: $border_style;
@@ -162,10 +188,19 @@ body.my_scenario-create {
 
             > li {
                 margin: 1em 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
                 a {
                     display: block;
                     margin-top: 0.5em;
+                }
+
+                .is-error {
+                    background-color: parts.$error_background_color;
+                    padding: 0 4px;
+                    margin-bottom: 4px;
                 }
             }
         }
@@ -197,5 +232,9 @@ body.my_scenario-create {
                 font-weight: 600;
             }
         }
+    }
+
+    [data-js_loaded="not_yet"] {
+        display: none;
     }
 }
