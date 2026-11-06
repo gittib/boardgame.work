@@ -303,6 +303,9 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
                         }}
                         @lang('脚本を公開する')
                     </label>
+                    <div>
+                        <p class="is-error" data-error_message="open_without_advice_error">@lang('脚本を公開する場合は、脚本の特徴と脚本家への指針を記入して下さい。')</p>
+                    </div>
                 </li>
                 <li>
                     <label class="checkbox_wrapper">
@@ -523,14 +526,6 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         }
         disableIfErrorHas();
     }
-    function disableIfErrorHas() {
-        const hasErrors = (() => {
-            if (characterList.some(it => it.errors)) return true;
-            if (Object.values(incidentList).some(it => it.errors)) return true;
-            return false;
-        })();
-        $('[data-register_button]').attr('disabled', hasErrors ? 'disabled' : null);
-    }
 
     $('select[data-rule_x]').on('change', function() {
         switchCrazyTruthSetting();
@@ -546,9 +541,40 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         $('[data-for_crazy_truth]').attr('data-for_crazy_truth', includedCrazyTruth ? 'selected' : 'none');
     }
 
+    $('[name=feature],[name=advice]').on('input keydown keyup', function() {
+        checkAdviceInputIfOpen();
+    });
+    $('[name=is_open]').on('change click', function() {
+        checkAdviceInputIfOpen();
+    });
+    let isOpenWithoutAdvice = false;
+    function checkAdviceInputIfOpen() {
+        isOpenWithoutAdvice = false;
+        if ($('[name=is_open]').prop('checked')) {
+            isOpenWithoutAdvice = [
+                'feature',
+                'advice',
+            ].some(it => !$(`[name=${it}]`).val());
+        }
+        $("[data-error_message=open_without_advice_error]")
+            .css('display', isOpenWithoutAdvice ? 'block' : 'none');
+        disableIfErrorHas();
+    }
+
+    function disableIfErrorHas() {
+        const hasErrors = (() => {
+            if (characterList.some(it => it.errors)) return true;
+            if (Object.values(incidentList).some(it => it.errors)) return true;
+            if (isOpenWithoutAdvice) return true;
+            return false;
+        })();
+        $('[data-register_button]').attr('disabled', hasErrors ? 'disabled' : null);
+    }
+
     document.addEventListener("DOMContentLoaded", (event) => {
         updateCharacterListDom();
         switchCrazyTruthSetting();
+        checkAdviceInputIfOpen();
     });
 })();
 </script>
