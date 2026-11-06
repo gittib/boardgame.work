@@ -501,7 +501,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             const $select = $(this);
             const day = Number($select.closest('[data-day]').attr('data-day'));
             const $selectIncident = $select.closest('.incident_wrapper').find('select.incident');
-            const incidentId = incidentList[day].incident_id;
+            const incidentId = Number(incidentList[day].incident_id);
 
             const charaId = incidentList[day].character_id;
             if (CROWD_INCIDENT_IDS.includes(incidentId)) {
