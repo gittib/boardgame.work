@@ -348,6 +348,7 @@ $characterList = collect($helper->inputVal('scenario_chara') ?? $scenario->chara
 </div>
 
 <script>
+const INCIDENT_CRIMINAL_MISMATCH_MESSAGE = "@lang('犯人と事件はセットで指定してください')";
 const CHARA_DELETE_CONFIRM_MESSAGE = "@lang('___CHARA___を削除します。よろしいですか？')";
 const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id') }};
 </script>
@@ -376,6 +377,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
     });
     console.log(incidentList);
 
+    // キャラクター設定UIの表示制御
     const characterRowHtml = (() => {
         const $dom = $('.scenario_character_list .character_row').clone();
         $dom.removeClass('is-error');
@@ -428,22 +430,6 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         characterList[index] = t;
         updateCharacterListDom();
     });
-
-    $('[name=days]').on('change click', function() {
-        updateCriminalSelect();
-    });
-    $('.scenario_incident_list').on('change input', 'li[data-day] select', function() {
-        const $self = $(this);
-        const day = Number($self.closest('[data-day]').attr('data-day'));
-        const name = $self.attr('data-name');
-        incidentList[day][name] = $self.val();
-    });
-    $('.scenario_incident_list').on('change', 'li[data-day] [data-name]', function() {
-        setTimeout(() => {
-            updateCriminalSelect();
-        }, 1);
-    });
-
     const firstCharacterId = Object.keys(charaNameMaster)[0];
     const firstCharacterName = Object.values(charaNameMaster)[0];
     const personRoleId = Number($('.character_row select[data-key_name=role_id] > option:first').val());
@@ -493,6 +479,22 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         updateCriminalSelect();
         switchCrazyTruthSetting();
     }
+
+    // 事件設定UIの表示制御
+    $('[name=days]').on('change click', function() {
+        updateCriminalSelect();
+    });
+    $('.scenario_incident_list').on('change input', 'li[data-day] select', function() {
+        const $self = $(this);
+        const day = Number($self.closest('[data-day]').attr('data-day'));
+        const name = $self.attr('data-name');
+        incidentList[day][name] = $self.val();
+    });
+    $('.scenario_incident_list').on('change', 'li[data-day] [data-name]', function() {
+        setTimeout(() => {
+            updateCriminalSelect();
+        }, 1);
+    });
     function updateCriminalSelect() {
         const criminalListHtml = '<option></option>' + characterList.map(it => `<option value="${it.character_id}">${it.character_name}</option>`);
         $('select.criminal').each(function() {
@@ -520,17 +522,17 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             const $errorWrapper = $(`.scenario_incident_list li[data-day=${i}] [data-incident_error_wrapper]`);
             $errorWrapper.empty();
             if (!!incidentList[i].character_id != !!incidentList[i].incident_id) {
-                incidentList[i].errors = '犯人と事件はセットで指定してください';
+                incidentList[i].errors = INCIDENT_CRIMINAL_MISMATCH_MESSAGE;
                 $errorWrapper.append(`<p class="is-error">${incidentList[i].errors}</p>`);
             }
         }
         disableIfErrorHas();
     }
 
+    // 狂った真実の追加設定UIの制御
     $('select[data-rule_x]').on('change', function() {
         switchCrazyTruthSetting();
     });
-
     const crazyTruthId = Number($('#crazy_truth_rule_id').attr('data-rule_id'));
     function switchCrazyTruthSetting() {
         if (!crazyTruthId) return;
@@ -541,6 +543,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         $('[data-for_crazy_truth]').attr('data-for_crazy_truth', includedCrazyTruth ? 'selected' : 'none');
     }
 
+    // タイトル、脚本の特徴、脚本家への指針が未入力の脚本は公開させない
     $('[name=title],[name=feature],[name=advice]').on('input keydown keyup', function() {
         checkAdviceInputIfOpen();
     });
@@ -562,6 +565,7 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         disableIfErrorHas();
     }
 
+    // バリデーションエラーになる入力状態の場合、登録ボタンを無効化する
     function disableIfErrorHas() {
         const hasErrors = (() => {
             if (characterList.some(it => it.errors)) return true;
