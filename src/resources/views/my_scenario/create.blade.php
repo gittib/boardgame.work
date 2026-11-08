@@ -363,6 +363,8 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         charaNameMaster[$opt.val()] = $opt.text().trim();
     });
     const crowdCriminalListHtml = $('.clone_base [data-crowd_criminal_list_html] > option');
+    const crowdCriminalIds = [...document.querySelectorAll('[data-crowd_criminal_list_html] > option')]
+        .map(it => Number(it.getAttribute('value'))).filter(it => it);
 
     let characterList = @json($characterList);
     const incidentList = {};
@@ -496,6 +498,32 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
         }, 1);
     });
     function updateCriminalSelect() {
+        const days = Number($('[name=days]').val());
+
+        // 日ごとの事件設定の補正とエラー判定を行う
+        for (let i = 1 ; i <= 8 ; i++) {
+            incidentList[i].errors = null;
+        }
+        for (i = 1 ; i <= days ; i++) {
+            const incidentId = Number(incidentList[i].incident_id);
+            const criminalCharaId = Number(incidentList[i].character_id);
+            if (CROWD_INCIDENT_IDS.includes(incidentId)) {
+                if (!crowdCriminalIds.includes(criminalCharaId)) {
+                    // 群像事件なのに普通のキャラクターが犯人になってるのでクリアする
+                    incidentList[i].character_id = null;
+                }
+            } else if (!characterList.some(it => it.character_id == criminalCharaId)) {
+                // キャラクターリストに含まれないキャラIDなのでクリアする
+                incidentList[i].character_id = null;
+            }
+
+            if (!!incidentList[i].character_id != !!incidentList[i].incident_id) {
+                // 事件と犯人の片方だけが設定されているのはNG
+                incidentList[i].errors = INCIDENT_CRIMINAL_MISMATCH_MESSAGE;
+            }
+        }
+
+        // 事件設定のセレクトボックスを構築する
         const criminalListHtml = '<option></option>' + characterList.map(it => `<option value="${it.character_id}">${it.character_name}</option>`);
         $('select.criminal').each(function() {
             const $select = $(this);
@@ -512,17 +540,13 @@ const CROWD_INCIDENT_IDS = {{ $set->incidents->where('is_crowd', 1)->pluck('id')
             $select.val(charaId);
         });
 
-        const days = Number($('[name=days]').val());
+        // エラーがあれば表示する
         $(`.scenario_incident_list li`).hide();
-        for (let i = 1 ; i <= 8 ; i++) {
-            incidentList[i].errors = null;
-        }
         for (i = 1 ; i <= days ; i++) {
             $(`.scenario_incident_list li[data-day=${i}]`).show();
             const $errorWrapper = $(`.scenario_incident_list li[data-day=${i}] [data-incident_error_wrapper]`);
             $errorWrapper.empty();
-            if (!!incidentList[i].character_id != !!incidentList[i].incident_id) {
-                incidentList[i].errors = INCIDENT_CRIMINAL_MISMATCH_MESSAGE;
+            if (incidentList[i].errors) {
                 $errorWrapper.append(`<p class="is-error">${incidentList[i].errors}</p>`);
             }
         }
