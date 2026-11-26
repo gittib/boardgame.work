@@ -1,0 +1,58 @@
+services:
+  nginx:
+    container_name: local-nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+      args:
+        - SERVER_NAME=localhost
+        - PHP_CONTAINER_NAME=local-php
+        - DEFAULT_CONF_FILE_NAME=local-default.conf
+        - NGINX_BASE_STATE=nginx_base
+    depends_on:
+      - php
+    ports:
+      - 8080:80
+    volumes:
+      - ./src/public:/var/www/html/public
+      - ./docker/nginx/etc/letsencrypt:/etc/letsencrypt
+      - ./docker/nginx/logs:/var/log/nginx
+  php:
+    container_name: local-php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        - DEPLOY_ENV=local
+        - APP_BASE_STAGE=local_base
+    ports:
+      - 9001:9000
+    volumes:
+      - ./src/app:/var/www/html/app/
+      - ./src/bootstrap:/var/www/html/bootstrap/
+      - ./src/config:/var/www/html/config/
+      - ./src/database:/var/www/html/database/
+      - ./src/public:/var/www/html/public/
+      - ./src/resources:/var/www/html/resources/
+      - ./src/routes:/var/www/html/routes/
+      - ./src/tests:/var/www/html/tests/
+      - ./src/.gitignore:/var/www/html/.gitignore
+      - ./src/composer.json:/var/www/html/composer.json
+      - ./src/composer.lock:/var/www/html/composer.lock
+      - ./src/package-lock.json:/var/www/html/package-lock.json
+      - ./src/package.json:/var/www/html/package.json
+      - ./src/phpunit.xml:/var/www/html/phpunit.xml
+      - ./src/server.php:/var/www/html/server.php
+      - ./src/vite.config.js:/var/www/html/vite.config.js
+      - ./src/webpack.mix.js:/var/www/html/webpack.mix.js
+  db:
+    container_name: local-db
+    image: mysql:8
+    env_file: ./docker/php/.env.local
+    volumes:
+      - local-db-store:/var/lib/mysql
+      - ./docker/db/conf.d:/etc/mysql/conf.d
+    ports:
+      - 28002:3306
+volumes:
+  local-db-store:
