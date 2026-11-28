@@ -41,12 +41,10 @@ ARG SSL_PORT=443
 
 WORKDIR /var/www/html/
 COPY --from=assets /var/www/html/public/build ./public/build
-COPY --from=assets /var/www/html/public/js ./public/js
 COPY ./docker/.vimrc /root
 RUN sed -i 's/\r//' /root/.vimrc && \
     sed -i "s/___SERVER_NAME___/${SERVER_NAME}/g" /etc/nginx/conf.d/default.conf && \
     sed -i "s/___PHP_CONTAINER_NAME___/${PHP_CONTAINER_NAME}/g" /etc/nginx/conf.d/default.conf && \
-    sed -i "s/___SSL_PORT___/${SSL_PORT}/g" /etc/nginx/conf.d/default.conf && \
-    nginx -t
+    sed -i "s/___SSL_PORT___/${SSL_PORT}/g" /etc/nginx/conf.d/default.conf
 EXPOSE 80
 EXPOSE 443

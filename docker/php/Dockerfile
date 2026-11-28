@@ -54,6 +54,10 @@ RUN npm run build
 
 FROM base AS php_base
 ARG DEPLOY_ENV
+ARG UID
+ARG GID
+ARG USERNAME
+ARG GROUPNAME
 COPY ./docker/.vimrc /root
 RUN groupadd -g $GID $GROUPNAME && \
     useradd -m -s /bin/bash -u $UID -g $GID $USERNAME && \
@@ -67,8 +71,9 @@ RUN groupadd -g $GID $GROUPNAME && \
 WORKDIR /var/www/html
 COPY --chown=$USERNAME:$GROUPNAME ./docker/php/.env.${DEPLOY_ENV} ./.env
 COPY --chown=$USERNAME:$GROUPNAME ./src/composer.json ./src/composer.lock .
+RUN sed -i 's/\r//' ./.env
 USER $USERNAME
-RUN composer install \
+RUN composer update \
     --no-interaction \
     --prefer-dist \
     --no-scripts \
@@ -77,6 +82,8 @@ USER root
 
 
 FROM php_base AS local_base
+ARG USERNAME
+ARG GROUPNAME
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
   apt-get -y install --no-install-recommends nodejs && \
   apt-get clean && rm -rf /var/lib/apt/lists/* && \
@@ -85,6 +92,8 @@ COPY --chown=$USERNAME:$GROUPNAME --from=node_base /var/www/html/node_modules/ .
 
 
 FROM ${APP_BASE_STAGE} AS app
+ARG USERNAME
+ARG GROUPNAME
 COPY --chown=$USERNAME:$GROUPNAME ./src .
 COPY --chown=$USERNAME:$GROUPNAME --from=assets /var/www/html/public/build/ ./public/build/
 RUN rm -rf storage/logs/*.log && \
